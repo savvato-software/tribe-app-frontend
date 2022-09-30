@@ -1,0 +1,36 @@
+<ion-content>
+<div class="centered">
+  </div>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="validationsForm" (ngSubmit)="onSubmitClick(validationsForm.value)">
+        <ion-item>
+          <ion-label position="floating" color="primary">Email Address</ion-label>
+          <ion-input data-test="emaliaddress-input" class="centered" type="text" formControlName="emailaddress" (ionInput)="onEmailAddressChange($event)" [value]="getEmailAddress()" required></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validationMessages.emailaddress">
+            <div class="error-message" *ngIf="validationsForm.get('emailaddress').hasError(validation.type) && (validationsForm.get('emailaddress').dirty)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Password</ion-label>
+          <ion-input data-test="name-input" class="centered" type="password" formControlName="password" (ionInput)="onPasswordChange($event)" [value]="getPassword()" required></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validationMessages.password">
+            <div class="error-message" *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty)">
+              <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-button class="submit-btn" color="warning" type="submit" >Sign In</ion-button>
+        <ion-button class="submit-btn" color="warning" (click)="onCreateNewUserClick()">Create New User</ion-button>
+        <ion-button class="submit-btn" (click)="onLostPasswordClick()" fill="clear">Forgot Password?</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Profile</ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="tertiary" (click)="onEditBtnClick()">Edit</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="topicCard centered" [style.position]="'absolute'">
+        <img [src]="getAssociatedImage()" [style.width]="'100%'">
+        <ion-card-header>
+            <ion-card-title>{{getUsername()}}</ion-card-title>
+            <ion-card-subtitle>{{getPhoneNumber()}}</ion-card-subtitle>
+            <ion-card-subtitle>{{getEmail()}}</ion-card-subtitle>
+            <br/>
+            <ion-card-subtitle>You joined {{getMemberSince()}}.</ion-card-subtitle>
+        </ion-card-header>
+    </ion-card>
+
+<!--    Your Active Topics<br/>-->
+<!--    Your Inactive Topics<br/>-->
+<!---->
+<!--    Topics You Have Voted On<br/>-->
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar id="bottom-toolbar" color="light">
+        <ion-button (click)="onHomeBtnClick()" fill="clear"><ion-icon name="albums"></ion-icon></ion-button>
+        <ion-button (click)="onTopicBtnClick()" fill="clear"><ion-icon name="list"></ion-icon></ion-button>
+        <ion-button (click)="onNewTopicBtnClick()" fill="clear"><ion-icon name="add-circle"></ion-icon></ion-button>
+        <ion-button (click)="onProfileBtnClick()" fill="clear"><ion-icon name="person"></ion-icon></ion-button>
+        <ion-button (click)="onSettingsBtnClick()" fill="clear"><ion-icon name="settings"></ion-icon></ion-button>
+    </ion-toolbar>
+</ion-footer>

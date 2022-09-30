@@ -1,0 +1,15 @@
+
+node_modules/
+
+www/
+
+.angular/
+.idea/
+
+*.bak/
+
+*.jks
+
+src/app/_environments/environment.ts
+
+.DS_Store

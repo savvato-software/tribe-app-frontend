@@ -1,0 +1,32 @@
+ion-content {
+  --background: url(/assets/img/voting-background.png);
+}
+
+ion-card {
+  margin-top: 3rem;
+}
+
+.logo {
+  width: 72%;
+  margin-top: 3rem;
+}
+
+ion-item:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.submit-btn {
+  display: block;
+}
+
+ion-button {
+  margin-top: .5rem;
+}
+
+ion-button[type="submit"] {
+  margin-top: 3rem;
+}
+
+ion-button[fill="clear"] {
+  font-size: .9rem;
+}

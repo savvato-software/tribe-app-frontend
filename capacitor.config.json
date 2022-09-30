@@ -1,0 +1,6 @@
+{
+	"appId": "com.haxwell.votingapp",
+	"appName": "Voting App",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

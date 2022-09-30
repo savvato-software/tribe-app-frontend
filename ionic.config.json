@@ -1,0 +1,8 @@
+{
+  "name": "Voting App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "4961da33"
+}

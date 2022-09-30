@@ -1,0 +1,11 @@
+
+<ion-content class="ion-padding">
+	<div class="fooicon">
+	Which way to your new photo?<br/>
+	</div>
+	<div class="fooicon btnrow">
+		<ion-button class="foobtn" (click)="onCameraBtnTap($event)" fill="clear"><div><ion-icon class="fooicon fooicon2" name="camera-outline"></ion-icon><span>Camera</span></div></ion-button>
+		<ion-button class="foobtn" (click)="onGalleryBtnTap($event)" fill="clear"><div><ion-icon class="fooicon fooicon2" name="grid-outline"></ion-icon><span>Photo Gallery</span></div></ion-button>
+		<ion-button class="foobtn" (click)="onCancelBtnTap($event)" fill="clear"><div><ion-icon  class="fooicon fooicon2" name="close-outline"></ion-icon><span>Cancel</span></div></ion-button>
+	</div>
+</ion-content>

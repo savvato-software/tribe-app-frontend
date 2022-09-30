@@ -1,0 +1,39 @@
+page-profile {
+
+}
+
+/* For Mobile */
+@media screen and (max-width: 540px) {
+  ion-card.topicCard {
+    width: 100%;
+    color: yellow;
+    margin-top: 5%;
+  }
+}
+
+/* For Tablets */
+@media screen and (min-width: 540px) and (max-width: 780px) {
+  ion-card.topicCard {
+    width: 38%;
+    color: yellow;
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 780px) {
+  ion-card.topicCard {
+    width: 30%;
+    color: darkgreen;
+    margin-top: 5%;
+    margin-left: 27%;
+  }
+}
+
+ion-toolbar#bottom-toolbar {
+  display: flex;
+  justify-content: space-evenly;
+
+  ion-button {
+    width: 18.9%;
+  }
+}

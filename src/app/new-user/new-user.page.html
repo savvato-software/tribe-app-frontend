@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create new user</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="validationsForm" (ngSubmit)="onSaveBtnClicked()">
+    <ion-item>
+      <ion-label position="floating" color="primary">Name</ion-label>
+      <ion-input data-test="name-input" type="text" formControlName="name" (ionInput)="onNameChange($event)" [value]="getName()" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMessages.name">
+        <div class="error-message" *ngIf="validationsForm.get('name').hasError(validation.type) && (validationsForm.get('name').dirty)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Email</ion-label>
+      <ion-input data-test="email-input" type="text" formControlName="email" (ionInput)="onEmailChange($event)" [value]="getEmail()" ></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMessages.email">
+        <div class="error-message" *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Password</ion-label>
+      <ion-input data-test="password-input" type="text" formControlName="password" (ionInput)="onPasswordChange($event)" [value]="getPassword()" ></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMessages.password">
+        <div class="error-message" *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty)">
+          <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <div formGroupName="countryPhone">
+      <ion-item>
+        <ion-label position="floating" color="primary">Phone</ion-label>
+        <ion-input data-test="phone-input" type="text" formControlName="phone" (ionInput)="onPhoneChange($event)" [value]="getPhone()" placeholder="{{ validationsForm.value.countryPhone.country.sample_phone }}"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.phone">
+          <div class="error-message" *ngIf="validationsForm.get('countryPhone').get('phone').hasError(validation.type) && (validationsForm.get('countryPhone').get('phone').dirty)">
+            <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <br/><br/>
+    <ion-button color="warning" type="submit" [disabled]="!isSaveBtnEnabled()">Sign Me Up!</ion-button>
+    <ion-button (click)="onCancelBtnClicked()">Cancel</ion-button>
+  </form>
+</ion-content>

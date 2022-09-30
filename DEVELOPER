@@ -1,0 +1,40 @@
+
+USEFUL COMMANDS
+===
+ionic capacitor copy android --source-map && date  -- copies stuff into the Android native project, which is used to deploy to phone, etc.
+ionic serve  -- run the project locally in the browser
+chrome://inspect  -- in browser url for device debugging
+
+
+IOS BUILDING
+=====
+
+ionic build
+npx cap sync ios
+npx cap open ios
+
+you can build to your local phone
+    plug it in
+    select the device
+    run
+
+Production release
+    select the generic IOS device
+    Build
+    Archive
+
+    Look for old archives in WIndow > Organizer
+
+
+
+
+GENERATING DOMAIN OBJECTS
+===
+From the project directory.. 
+
+    schematics ../../savvato-schematics/ionic/savvato-ionic-schematics:page --name=topic --debug=true
+
+This will do a dry run creation of the necessary file updates. Change debug to false to actually write the changes. You will need the savvato-ionic-schematics project in place.
+
+
+

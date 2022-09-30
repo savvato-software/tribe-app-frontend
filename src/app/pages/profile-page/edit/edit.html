@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="onCancelBtnClick()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title>Edit Profile</ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="tertiary" (click)="onSaveBtnClicked()" [disabled]="!isSaveBtnEnabled()">Save</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <ion-list-header>Image</ion-list-header>
+        <ion-item lines="none">
+            <div class="avatar">
+                <img [class]="getAssociatedImageCSS()" [src]="getAssociatedImage()" (click)="onAssociatedImageClick($event)" (press)="onAssociatedImagePress($event)"/>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <form [formGroup]="validationsForm" (ngSubmit)="onSaveBtnClicked()">
+        <ion-list>
+            <ion-list-header>Profile</ion-list-header>
+            <ion-item>
+                <ion-label position="floating" color="primary">Name</ion-label>
+                <ion-input data-test="name-input" type="text" formControlName="name" (ionInput)="onNameChange($event)" [value]="getName()" required></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.name">
+                    <div class="error-message" *ngIf="validationsForm.get('name').hasError(validation.type) && (validationsForm.get('name').dirty)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <ion-item formGroupName="countryPhone">
+                <ion-label position="floating" color="primary">Phone</ion-label>
+                <ion-input data-test="phone-input" type="text" formControlName="phone" (ionInput)="onPhoneChange($event)" [value]="getPhone()" placeholder="{{ validationsForm.value.countryPhone.country.sample_phone }}"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.phone">
+                    <div class="error-message" *ngIf="validationsForm.get('countryPhone').get('phone').hasError(validation.type) && (validationsForm.get('countryPhone').get('phone').dirty)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+        </ion-list>
+    </form>
+
+</ion-content>
+
