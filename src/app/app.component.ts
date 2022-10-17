@@ -12,9 +12,7 @@ export class AppComponent {
 
   public loggedInAppPages =  [
     {title: 'Home', url: '/home', icon: 'albums'},
-    {title: 'Profile', url: '/profile', icon: 'person'},
-    {title: 'Explore All Topics', url: '/topic', icon: 'list'},
-    {title: 'Create New Topic', url: '/topic/create', icon: 'add-circle'},
+    {title: 'Profile', url: '/profile', icon: 'person'}
   ];
 
   public loggedOutAppPages = [
