@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
 
     if (!environment.production) {
-      this.emailaddress = "testuser@votingapp.com";
+      this.emailaddress = "testuser@tribeapp.com";
       this.password = "admin"
     } else {
       this.emailaddress = '';
