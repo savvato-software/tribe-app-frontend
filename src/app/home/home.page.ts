@@ -36,9 +36,9 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter() {
     this._pictureService.init();
-    this._loadingService.show({message: "..loading.."}).then(() => {
-
-    })
+//    this._loadingService.show({message: "..loading.."}).then(() => {
+//
+//    })
   }
 
   getAssociatedImageCSS(topic) {
@@ -63,5 +63,13 @@ export class HomePage implements OnInit {
 
   onSettingsBtnClick() {
     this._menuController.open();
+  }
+
+  onSunBtnClick() {
+    this.router.navigate(['/sunpage'])
+  }
+
+  onAttributesBtnClick() {
+    this.router.navigate(['/attributes'])
   }
 }
