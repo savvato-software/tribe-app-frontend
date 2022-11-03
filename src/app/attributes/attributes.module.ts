@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AttributesPageRoutingModule } from './attributes-routing.module';
 
 import { AttributesPage } from './attributes.page';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [

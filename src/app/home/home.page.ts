@@ -65,10 +65,6 @@ export class HomePage implements OnInit {
     this._menuController.open();
   }
 
-  onSunBtnClick() {
-    this.router.navigate(['/sunpage'])
-  }
-
   onAttributesBtnClick() {
     this.router.navigate(['/attributes'])
   }
