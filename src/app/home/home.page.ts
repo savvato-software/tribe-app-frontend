@@ -36,9 +36,9 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter() {
     this._pictureService.init();
-    this._loadingService.show({message: "..loading.."}).then(() => {
-
-    })
+    //this._loadingService.show({message: "..loading.."}).then(() => {
+    // TODO: loading dialog is not clearing so it needs to clear on page load
+    //})
   }
 
   getAssociatedImageCSS(topic) {

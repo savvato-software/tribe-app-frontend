@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'domain-object',
     loadChildren: () => import('./pages/_common/domain-object/domain-object.module').then( m => m.DomainObjectPageModule)
+  },
+  {
+    path: 'attributes',
+    loadChildren: () => import('./pages/attributes/attributes.module').then( m => m.AttributesPageModule)
   }
 
 ];
