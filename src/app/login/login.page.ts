@@ -223,7 +223,7 @@ export class LoginPage implements OnInit {
 
                           self._alertService.show({
                             header: 'Arggh!',
-                            message: "Something bad happened on the server. We hate when that happens. Please email us at info@votingapp.com and let us know.",
+                            message: "Something bad happened on the server. We hate when that happens. Please email us at info@tribeapp.com and let us know.",
                             buttons: [{
                               text: 'OK',
                               handler: () => {

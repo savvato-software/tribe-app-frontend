@@ -9,7 +9,8 @@ import {Constants} from '../../_constants/constants';
 
 import {environment} from '../../_environments/environment';
 
-import {WebView} from '@ionic-native/ionic-webview/ngx';
+// import {WebView} from '@ionic-native/ionic-webview/ngx';
+
 import {DomSanitizer} from '@angular/platform-browser'
 import {switchMap} from "rxjs/operators";
 import {Observable} from "rxjs";
@@ -27,7 +28,7 @@ export class PictureService {
               private _authService: AuthService,
               private _functionPromiseService: FunctionPromiseService,
               private _constants: Constants
-              ,private _webview: WebView
+   //           ,private _webview: WebView
               ,private _domSanitizer: DomSanitizer
               ) {
 

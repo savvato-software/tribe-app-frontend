@@ -67,6 +67,15 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
             _pictureService: _pictureService,
             photoType: _constants.PHOTO_TYPE_PROFILE
         })
+
+        this.validationsForm = this.formBuilder.group({
+            name: new FormControl('', Validators.required),
+            email: new FormControl('', Validators.compose([
+                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+            ])),
+            password: new FormControl('', Validators.required),
+            countryPhone: this.countryPhoneGroup
+        });
     }
 
     // eslint-disable-next-line @typescript-eslint/member-ordering
