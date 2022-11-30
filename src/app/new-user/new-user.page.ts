@@ -189,7 +189,7 @@ export class NewUserPage implements OnInit {
           .catch((err) => {
             self._alertService.show({
               header: 'Aargh',
-              message: "We got an error. Please email info@votingapp.com about it. Our bad :(",
+              message: "We got an error. Please email info@tribeapp.com about it. Our bad :(",
               buttons: [
                 {
                   text: 'Shucks.', role: 'cancel', handler: () => {
