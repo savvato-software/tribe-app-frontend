@@ -1,9 +1,44 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>attributes</ion-title>
+    <ion-title>Attributes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Output</ion-label>
+      <ion-input [readonly]="true" id="output" data-test="outputField" [value]="getOutputValue()"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>Input One</ion-label>
+      <ion-input id="inputOne" data-test="inputOneField" (ionInput)="onInputOneFieldChange($event)"></ion-input> 
+      <ion-button id="buttonOne" data-test="inputOneButton" (click)="onInputOneButtonClick()">One</ion-button>
+    </ion-item>
+    <!-- 
+     
+      ion change event handler needed
+      populate this field need a getter for attribute for this field 
+      when the corresponding button is clicked, set value of read only field to input 1 
+    --> 
+
+    <ion-item>
+      <ion-label>Input Two</ion-label>
+      <ion-input id="inputTwo" data-test="inputTwoField" (ionInput)="onInputTwoFieldChange($event)"></ion-input>
+      <ion-button id="buttonTwo" data-test="inputTwoButton" (click)="onInputTwoButtonClick()">Two</ion-button>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Input Three</ion-label>
+      <ion-input id="inputThree" data-test="inputThreeField"(ionInput)="onInputThreeFieldChange($event)"></ion-input>
+      <ion-button id="buttonThree" data-test="inputThreeButton" (click)="onInputThreeButtonClick()">Three</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Input Four</ion-label>
+      <ion-input id="inputFour" data-test="inputFourField" (ionInput)="onInputFourFieldChange($event)"></ion-input>
+      <ion-button id="buttonFour" data-test="inputFourButton" (click)="onInputFourButtonClick()">Four</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

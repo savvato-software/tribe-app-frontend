@@ -64,4 +64,8 @@ export class HomePage implements OnInit {
   onSettingsBtnClick() {
     this._menuController.open();
   }
+
+  onGoToAttritubesBtnClick() {
+    this.router.navigate(['/attributes'])
+  }
 }
