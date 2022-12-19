@@ -17,37 +17,37 @@ export class AttributesPage implements OnInit {
   }
 
   // get the value from the input field
-  onInputOneFieldChange($event) {
+  onInputAdverbFieldChange($event) {
     this.inputTxt = $event.currentTarget.value
   }
 
   // click button to put value in the read only output field
   // use this value as your current state
-  onInputOneButtonClick() {
+  onInputAdverbButtonClick() {
     this.outputTxt = this.inputTxt
   }
 
-  onInputTwoFieldChange($event) {
+  onInputVerbFieldChange($event) {
     this.inputTxt = $event.currentTarget.value
   }
 
-  onInputTwoButtonClick() {
+  onInputVerbButtonClick() {
     this.outputTxt = this.inputTxt
   }
 
-  onInputThreeFieldChange($event) {
+  onInputPrepositionFieldChange($event) {
     this.inputTxt = $event.currentTarget.value
   }
 
-  onInputThreeButtonClick() {
+  onInputPrepositionButtonClick() {
     this.outputTxt = this.inputTxt
   }
 
-  onInputFourFieldChange($event) {
+  onInputNounFieldChange($event) {
     this.inputTxt = $event.currentTarget.value
   }
 
-  onInputFourButtonClick() {
+  onInputNounButtonClick() {
     this.outputTxt = this.inputTxt
   }
 
