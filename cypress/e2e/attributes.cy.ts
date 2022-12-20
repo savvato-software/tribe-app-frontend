@@ -24,7 +24,7 @@ describe('empty spec', () => {
   })
 
   // check for reactivity for read only output field from adverb input field
-  it('check for reactivity for read only output field from first input field', () => {
+  it('check for reactivity for read only output field from adverb input field', () => {
     cy.get('[data-test="inputAdverbField"]').type('banana')
 
     // press the button
@@ -41,7 +41,7 @@ describe('empty spec', () => {
   })
 
   // check for reactivity for read only output field from verb input field
-  it('check for reactivity for read only output field from first input field', () => {
+  it('check for reactivity for read only output field from verb input field', () => {
     cy.get('[data-test="inputVerbField"]').type('apple')
 
     // press the button
@@ -53,7 +53,7 @@ describe('empty spec', () => {
   })
 
   // check for reactivity for read only output field from preposition input field
-  it('check for reactivity for read only output field from second input field', () => {
+  it('check for reactivity for read only output field from preposition input field', () => {
 
     cy.get('[data-test="inputPrepositionField"]').type('watermelon')
 
@@ -67,7 +67,7 @@ describe('empty spec', () => {
   })
 
   // check for reactivity for read only output field from noun input field
-  it('check for reactivity for read only output field from third input field', () => {
+  it('check for reactivity for read only output field from noun input field', () => {
 
     cy.get('[data-test="inputNounField"]').type('strawberry')
 
@@ -76,6 +76,13 @@ describe('empty spec', () => {
 
     // read value from output field
     cy.get('[data-test="outputField"]').should('have.value', 'strawberry')
+
+  })
+
+  // check to see if the submit button exists
+  it('check to see if the submit button exists', () => {
+
+    cy.get('[data-test="submitButton"]').should('have.length', 2)
 
   })
 })
