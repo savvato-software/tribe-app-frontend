@@ -179,11 +179,18 @@ export class NewUserPage implements OnInit {
     console.log('Save Btn Clicked!');
 
     const self = this;
+    let { phone, ...rest } = self.user;
+    let formattedUserObj: object;
+    if (phone.length === 12) {
+      formattedUserObj = { ...rest, phone: phone.replace(/-/g, "") };
+    } else {
+      formattedUserObj = { ...rest, phone };
+    }
 
     const DEFAULT_PASSWORD = 'password11';
 
     if (self.isSaveBtnEnabled()) {
-      self._userService.isUserInformationUnique(self.user).then((userInfo) => {
+      self._userService.isUserInformationUnique(formattedUserObj).then((userInfo) => {
         if (userInfo == true) {
           if (!self.codeAlreadySent) {
             self._alertService.show({
@@ -196,7 +203,7 @@ export class NewUserPage implements OnInit {
                   },
                 }, {
                   text: 'Yes', handler: () => {
-                    self._challengeCodeService.sendCodeToPhoneNumber(self.user["phone"]);
+                    self._challengeCodeService.sendCodeToPhoneNumber(formattedUserObj["phone"]);
                     self.codeAlreadySent = true;
                     self.onOKBtnTap2();
                   }, cssClass: 'e2e-sendCodeToPhoneNumberBtn'
