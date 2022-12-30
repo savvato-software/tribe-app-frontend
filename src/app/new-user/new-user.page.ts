@@ -70,11 +70,11 @@ export class NewUserPage implements OnInit {
     });
 
     this.validationsForm = this.formBuilder.group({
-      name: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', Validators.compose([
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       countryPhone: this.countryPhoneGroup
     });
   }
@@ -116,41 +116,81 @@ export class NewUserPage implements OnInit {
   }
 
   isSaveBtnEnabled() {
-    let rtn = this.user['name'] && this.user['name'].length > 3;
-    let atLeastOneFieldIsValid = false;
+    let allFieldsAreValid = false;
+    let fields = { name: false, phone: false, password: false, email: false };
+
+    if (this.user['name']){
+      if(this.validationsForm.get('name') !== null &&
+      !!this.validationsForm.get('name').errors === false){
+        fields['name'] = true;
+
+      }
+
+    }
+      
 
     if (this.user['phone']) {
-      rtn = rtn &&
-          this.validationsForm.get('countryPhone') !== null &&
-          (!!this.validationsForm.get('countryPhone').errors === false) && this.user['phone'].length === 10;
+      let dashesIncluded = this.user['phone'].includes("-");
+      let checkLength: number;
+      if (dashesIncluded) {
+        checkLength = 12;
+      } else {
+        checkLength = 10;
+      }
 
-      if (rtn) {
-        atLeastOneFieldIsValid = true;
+      if (
+        this.validationsForm.get('countryPhone') !== null &&
+        !!this.validationsForm.get('countryPhone').errors === false &&
+        this.user['phone'].length === checkLength
+      ) {
+        fields['phone'] = true;
+      }
+    }
+
+    if (this.user['password']) {
+      if (
+        this.validationsForm.get('password') !== null &&
+        !!this.validationsForm.get('password').errors === false
+      ) {
+        fields['password'] = true;
       }
     }
 
     if (this.user['email']) {
-      rtn = rtn &&
-          this.validationsForm.get('email') !== null &&
-          (!!this.validationsForm.get('email').errors === false) && this.user['email'].length > 6;
-
-      if (rtn) {
-        atLeastOneFieldIsValid = true;
+      if (
+        this.validationsForm.get('email') !== null &&
+        !!this.validationsForm.get('email').errors === false 
+      ) {
+        fields['email'] = true;
       }
     }
 
-    return rtn && atLeastOneFieldIsValid;
+    let validateNewUserInputs = Object.values(fields).includes(false);
+    if (validateNewUserInputs) {
+      allFieldsAreValid = false;
+    } else {
+      allFieldsAreValid = true;
+    }
+
+    return allFieldsAreValid;
   }
 
   onSaveBtnClicked() {
     console.log('Save Btn Clicked!');
 
     const self = this;
+    let { phone, ...rest } = self.user;
+    let formattedUserObj: object;
+    if (phone.length === 12) {
+      formattedUserObj = { ...rest, phone: phone.replace(/-/g, "") };
+    } else {
+      formattedUserObj = { ...rest, phone };
+    }
 
     const DEFAULT_PASSWORD = 'password11';
 
     if (self.isSaveBtnEnabled()) {
-      self._userService.isUserInformationUnique(self.user).then((userInfo) => {
+      self._userService.isUserInformationUnique(formattedUserObj).then((userInfo) => {
         if (userInfo == true) {
           if (!self.codeAlreadySent) {
             self._alertService.show({
@@ -163,7 +203,7 @@ export class NewUserPage implements OnInit {
                   },
                 }, {
                   text: 'Yes', handler: () => {
-                    self._challengeCodeService.sendCodeToPhoneNumber(self.user["phone"]);
+                    self._challengeCodeService.sendCodeToPhoneNumber(formattedUserObj["phone"]);
                     self.codeAlreadySent = true;
                     self.onOKBtnTap2();
                   }, cssClass: 'e2e-sendCodeToPhoneNumberBtn'
