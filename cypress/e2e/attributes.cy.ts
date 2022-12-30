@@ -10,6 +10,10 @@ describe('empty spec', () => {
     cy.get('[data-test="launchAttributesPageButton"]').click()
   })
 
+  // Requirement is that for each field the value in the field should be copied to output when you click the field's button
+  // I am using a single variable and should be using multiple variables
+  // Test - deeper cases - off the happy path 
+
   // check for four input fields 
   // typing something in one of those fields and then hit a button then read value from read only field and compare that value to what was typed into that field
   
@@ -85,4 +89,16 @@ describe('empty spec', () => {
     cy.get('[data-test="submitButton"]').should('have.length', 2)
 
   })
+
+// Not happy path test by Johnathan James
+// get the value from the input field
+// Hi Sun.. sorry I am just seeing this now, but you would enter a value in the first input field, then press it's button. That will copy the text to the read only field. Enter something in the second field, press it's button.. the value is copied. Then delete the value in the second field, and press the button of the first field. The read only field is cleared. It should instead show the value of the first field.
+it('not happy path one', () => {
+  cy.get('[data-test="inputAdverbField"]').type('banana')
+  cy.get('[data-test="inputAdverbButton"]').click()
+  cy.get('[data-test="inputVerbField"]').type('apple')
+  cy.get('[data-test="inputAdverbButton"]').click()
+  cy.get('[data-test="inputAdverbButton"]').click()
+})
+
 })
