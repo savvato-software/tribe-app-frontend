@@ -116,30 +116,63 @@ export class NewUserPage implements OnInit {
   }
 
   isSaveBtnEnabled() {
-    let rtn = this.user['name'] && this.user['name'].length > 3;
-    let atLeastOneFieldIsValid = false;
+    let allFieldsAreValid = false;
+    let fields = { name: false, phone: false, password: false, email: false };
+
+    if (this.user['name']){
+      if(this.validationsForm.get('name') !== null &&
+      !!this.validationsForm.get('name').errors === false){
+        fields['name'] = true;
+
+      }
+
+    }
+      
 
     if (this.user['phone']) {
-      rtn = rtn &&
-          this.validationsForm.get('countryPhone') !== null &&
-          (!!this.validationsForm.get('countryPhone').errors === false) && this.user['phone'].length === 10;
+      let dashesIncluded = this.user['phone'].includes("-");
+      let checkLength: number;
+      if (dashesIncluded) {
+        checkLength = 12;
+      } else {
+        checkLength = 10;
+      }
 
-      if (rtn) {
-        atLeastOneFieldIsValid = true;
+      if (
+        this.validationsForm.get('countryPhone') !== null &&
+        !!this.validationsForm.get('countryPhone').errors === false &&
+        this.user['phone'].length === checkLength
+      ) {
+        fields['phone'] = true;
+      }
+    }
+
+    if (this.user['password']) {
+      if (
+        this.validationsForm.get('password') !== null &&
+        !!this.validationsForm.get('password').errors === false
+      ) {
+        fields['password'] = true;
       }
     }
 
     if (this.user['email']) {
-      rtn = rtn &&
-          this.validationsForm.get('email') !== null &&
-          (!!this.validationsForm.get('email').errors === false) && this.user['email'].length > 6;
-
-      if (rtn) {
-        atLeastOneFieldIsValid = true;
+      if (
+        this.validationsForm.get('email') !== null &&
+        !!this.validationsForm.get('email').errors === false 
+      ) {
+        fields['email'] = true;
       }
     }
 
-    return rtn && atLeastOneFieldIsValid;
+    let validateNewUserInputs = Object.values(fields).includes(false);
+    if (validateNewUserInputs) {
+      allFieldsAreValid = false;
+    } else {
+      allFieldsAreValid = true;
+    }
+
+    return allFieldsAreValid;
   }
 
   onSaveBtnClicked() {
