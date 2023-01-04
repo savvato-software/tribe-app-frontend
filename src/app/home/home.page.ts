@@ -37,7 +37,7 @@ export class HomePage implements OnInit {
   ionViewWillEnter() {
     this._pictureService.init();
     //this._loadingService.show({message: "..loading.."}).then(() => {
-    //
+       // Do nothing
     //})
   }
 
@@ -63,5 +63,9 @@ export class HomePage implements OnInit {
 
   onSettingsBtnClick() {
     this._menuController.open();
+  }
+
+  onGoToAttritubesBtnClick() {
+    this.router.navigate(['/attributes'])
   }
 }
