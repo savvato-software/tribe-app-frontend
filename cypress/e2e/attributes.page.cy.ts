@@ -92,7 +92,12 @@ describe('empty spec', () => {
 
 // Not happy path test by Johnathan James
 // get the value from the input field
-// Hi Sun.. sorry I am just seeing this now, but you would enter a value in the first input field, then press it's button. That will copy the text to the read only field. Enter something in the second field, press it's button.. the value is copied. Then delete the value in the second field, and press the button of the first field. The read only field is cleared. It should instead show the value of the first field.
+// Hi Sun.. sorry I am just seeing this now, but you would enter a value in the first 
+// input field, then press it's button. 
+// That will copy the text to the read only field. 
+// Enter something in the second field, press it's button.. the value is copied. 
+// Then delete the value in the second field, and press the button of the first field. 
+// The read only field is cleared. It should instead show the value of the first field.
 it('not happy path one', () => {
   cy.get('[data-test="inputAdverbField"]').type('banana')
   cy.get('[data-test="inputAdverbButton"]').click()
@@ -100,5 +105,6 @@ it('not happy path one', () => {
   cy.get('[data-test="inputAdverbButton"]').click()
   cy.get('[data-test="inputAdverbButton"]').click()
 })
+// Must check the change in the input read only field
 
 })
