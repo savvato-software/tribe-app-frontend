@@ -99,11 +99,24 @@ describe('empty spec', () => {
 // Then delete the value in the second field, and press the button of the first field. 
 // The read only field is cleared. It should instead show the value of the first field.
 it('not happy path one', () => {
-  cy.get('[data-test="inputAdverbField"]').type('banana')
+  // cy.get('[data-test="inputAdverbField"]').type('banana').clear()
+  // cy.get('[data-test="outputField"]').type('banana').clear()
+
+  cy.get('[data-test="inputAdverbField"]').type('cake')
   cy.get('[data-test="inputAdverbButton"]').click()
-  cy.get('[data-test="inputVerbField"]').type('apple')
+  cy.get('[data-test="outputField"]').should('have.value', 'cake')
+
+  cy.get('[data-test="inputVerbField"]').type('chocolate')
   cy.get('[data-test="inputAdverbButton"]').click()
+  cy.get('[data-test="outputField"]').should('have.value', 'chocolate')
+
+  cy.get('[data-test="inputVerbField"]').type('chocolate')
   cy.get('[data-test="inputAdverbButton"]').click()
+  cy.get('[data-test="outputField"]').should('have.value', '')
+  cy.get('[data-test="inputAdverbField"]').type(' ')
+  cy.get('[data-test="inputAdverbButton"]').click()
+  cy.get('[data-test="outputField"]').should('have.value', 'cake')
+
 })
 // Must check the change in the input read only field
 
