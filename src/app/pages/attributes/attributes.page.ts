@@ -68,32 +68,32 @@ export class AttributesPage implements OnInit {
   // won't be able to make the call but put the code in place
   // actual backend is tribe 11 but don't need to worr about this now
   sendPostRequest() {
-    var headers = new Headers();
-    headers.append("Accept", 'application/json');
-    headers.append('Content-Type', 'application/json' );
-    const requestOptions({ headers: headers });
+    // var headers = new Headers();
+    // headers.append("Accept", 'application/json');
+    // headers.append('Content-Type', 'application/json' );
+    // const requestOptions({ headers: headers });
 
-    /*
-      inputAdverbTxt:string = ''
-      inputVerbTxt:string = ''
-      inputPrepositionTxt:string = ''
-      inputNounTxt:string = ''
-      outputTxt:string = ''
-    */
+    // /*
+    //   inputAdverbTxt:string = ''
+    //   inputVerbTxt:string = ''
+    //   inputPrepositionTxt:string = ''
+    //   inputNounTxt:string = ''
+    //   outputTxt:string = ''
+    // */
 
-    let postData = {
-            "adverb": this.inputAdverbTxt,
-            "verb": this.inputVerbTxt,
-            "preposition": this.inputPrepositionTxt,
-            "noun": this.inputNounTxt
-    }
+    // let postData = {
+    //         "adverb": this.inputAdverbTxt,
+    //         "verb": this.inputVerbTxt,
+    //         "preposition": this.inputPrepositionTxt,
+    //         "noun": this.inputNounTxt
+    // }
 
-    this.http.post("http://127.0.0.1:3000/", postData, requestOptions)
-      .subscribe(data => {
-        console.log(data['_body']);
-       }, error => {
-        console.log(error);
-      });
+    // this.http.post("http://127.0.0.1:3000/", postData, requestOptions)
+    //   .subscribe(data => {
+    //     console.log(data['_body']);
+    //    }, error => {
+    //     console.log(error);
+    //   });
   }
 
 }

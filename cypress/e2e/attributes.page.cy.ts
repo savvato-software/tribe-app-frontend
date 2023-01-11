@@ -99,25 +99,38 @@ describe('empty spec', () => {
 // Then delete the value in the second field, and press the button of the first field. 
 // The read only field is cleared. It should instead show the value of the first field.
 it('not happy path one', () => {
-  // cy.get('[data-test="inputAdverbField"]').type('banana').clear()
-  // cy.get('[data-test="outputField"]').type('banana').clear()
+  cy.reload()
 
-  cy.get('[data-test="inputAdverbField"]').type('cake')
-  cy.get('[data-test="inputAdverbButton"]').click()
-  cy.get('[data-test="outputField"]').should('have.value', 'cake')
+  //enter a value in the first input field
+   cy.get('[data-test="inputAdverbField"]').type('cake')
+   // then press it's button. 
+   cy.get('[data-test="inputAdverbButton"]').click()
+   // the value is copied. 
+   cy.get('[data-test="outputField"]').should('have.value', 'cake')
 
+   // Enter something in the second field 
   cy.get('[data-test="inputVerbField"]').type('chocolate')
-  cy.get('[data-test="inputAdverbButton"]').click()
+  // press it's button..
+  cy.get('[data-test="inputVerbButton"]').click()
+  // the value is copied.
   cy.get('[data-test="outputField"]').should('have.value', 'chocolate')
 
-  cy.get('[data-test="inputVerbField"]').type('chocolate')
+  // Then delete the value in the second field 
+  cy.get('[data-test="inputVerbField"]').invoke('val', ' ')
+  // press the button of the first field. 
   cy.get('[data-test="inputAdverbButton"]').click()
-  cy.get('[data-test="outputField"]').should('have.value', '')
-  cy.get('[data-test="inputAdverbField"]').type(' ')
-  cy.get('[data-test="inputAdverbButton"]').click()
+  // The read only field is cleared.
+  // cy.get('[data-test="outputField"]').should('have.value', '')
+  
+  // It should instead show the value of the first field.
   cy.get('[data-test="outputField"]').should('have.value', 'cake')
 
 })
-// Must check the change in the input read only field
 
+// Must check the change in the input read only field
+// put *.mp4 in gitignore
+// delete the videos then commit that change then add it to the gitignore
+// create the attributes services page on javascript services or call the javascript services
+// merge to first cypress branch
+// create new branch for post request code 
 })
