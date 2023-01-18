@@ -56,7 +56,7 @@
       </div>
     </div>
     <br/><br/>
-    <ion-button color="warning" type="submit" [disabled]="!isSaveBtnEnabled()">Sign Me Up!</ion-button>
-    <ion-button (click)="onCancelBtnClicked()">Cancel</ion-button>
+    <ion-button data-test="submit-button" color="warning" type="submit" [disabled]="!isSaveBtnEnabled()">Sign Me Up!</ion-button>
+    <ion-button data-test="cancel-button" (click)="onCancelBtnClicked()">Cancel</ion-button>
   </form>
 </ion-content>
