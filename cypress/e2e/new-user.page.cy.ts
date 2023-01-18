@@ -1,6 +1,6 @@
 describe('empty spec', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:8101/new-user')
+        cy.visit('http://localhost:8100/new-user')
     })
    
     it('takes user to new user page', () => {
