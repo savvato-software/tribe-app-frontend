@@ -1,6 +1,5 @@
-describe('empty spec', () => {
- 
-  // check to see if attributes page exists
+// check to see if attributes page exists
+describe('check for existence of attributes page', () => {
   // get to attributes page
   it('navigate to attributes page', () => {
     cy.visit('http://localhost:8100/login')
@@ -37,11 +36,6 @@ describe('empty spec', () => {
     // read value from output field
     cy.get('[data-test="outputField"]').should('have.value', 'banana')
     
-    
-    // cy.get('[data-test="outputField"]').clear()
-    
-    // not working and don't know where to call clear method
-    // cy.get('[data-test="outputField"]').type('banana').clear()
   })
 
   // check for reactivity for read only output field from verb input field
@@ -86,7 +80,7 @@ describe('empty spec', () => {
   // check to see if the submit button exists
   it('check to see if the submit button exists', () => {
 
-    cy.get('[data-test="submitButton"]').should('have.length', 2)
+    cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
   })
 
@@ -127,10 +121,4 @@ it('not happy path one', () => {
 
 })
 
-// Must check the change in the input read only field
-// put *.mp4 in gitignore
-// delete the videos then commit that change then add it to the gitignore
-// create the attributes services page on javascript services or call the javascript services
-// merge to first cypress branch
-// create new branch for post request code 
 })

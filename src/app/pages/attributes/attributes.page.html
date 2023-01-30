@@ -16,13 +16,7 @@
       <ion-input id="inputAdverb" data-test="inputAdverbField" (ionInput)="onInputAdverbFieldChange($event)"></ion-input> 
       <ion-button id="buttonAdverb" data-test="inputAdverbButton" (click)="onInputAdverbButtonClick()">Adverb</ion-button>
     </ion-item>
-    <!-- 
-     
-      ion change event handler needed
-      populate this field need a getter for attribute for this field 
-      when the corresponding button is clicked, set value of read only field to input 1 
-    --> 
-
+    
     <ion-item>
       <ion-label>Verb</ion-label>
       <ion-input id="inputVerb" data-test="inputVerbField" (ionInput)="onInputVerbFieldChange($event)"></ion-input>
@@ -41,7 +35,7 @@
       <ion-button id="buttonNoun" data-test="inputNounButton" (click)="onInputNounButtonClick()">Noun</ion-button>
     </ion-item>
     <ion-item>
-      <ion-button data-test="submitButton" class="submit-btn" color="warning" type="submit" (click)="sendPostRequest()">Submit</ion-button>
+      <ion-button data-test="submitAttributesButton" class="submit-attributes-btn" color="warning" type="submit" (click)="sendPostRequest()">Submit</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

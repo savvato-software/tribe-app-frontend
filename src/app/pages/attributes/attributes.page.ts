@@ -59,41 +59,4 @@ export class AttributesPage implements OnInit {
     return this.outputTxt
   }
 
-  // making a rest api call
-  // look at other code to see the api call
-  // then use that to make a post call
-  // good example would be login page
-  // make it in a different branch
-  // tribe 17
-  // won't be able to make the call but put the code in place
-  // actual backend is tribe 11 but don't need to worr about this now
-  sendPostRequest() {
-    // var headers = new Headers();
-    // headers.append("Accept", 'application/json');
-    // headers.append('Content-Type', 'application/json' );
-    // const requestOptions({ headers: headers });
-
-    // /*
-    //   inputAdverbTxt:string = ''
-    //   inputVerbTxt:string = ''
-    //   inputPrepositionTxt:string = ''
-    //   inputNounTxt:string = ''
-    //   outputTxt:string = ''
-    // */
-
-    // let postData = {
-    //         "adverb": this.inputAdverbTxt,
-    //         "verb": this.inputVerbTxt,
-    //         "preposition": this.inputPrepositionTxt,
-    //         "noun": this.inputNounTxt
-    // }
-
-    // this.http.post("http://127.0.0.1:3000/", postData, requestOptions)
-    //   .subscribe(data => {
-    //     console.log(data['_body']);
-    //    }, error => {
-    //     console.log(error);
-    //   });
-  }
-
 }
