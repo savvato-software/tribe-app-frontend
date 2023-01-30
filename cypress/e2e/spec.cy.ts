@@ -3,3 +3,4 @@ describe('empty spec', () => {
     cy.visit('https://example.cypress.io')
   })
 })
+

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Attributes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Output</ion-label>
+      <ion-input [readonly]="true" id="output" data-test="outputField" [value]="getOutputValue()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Adverb</ion-label>
+      <ion-input id="inputAdverb" data-test="inputAdverbField" (ionInput)="onInputAdverbFieldChange($event)"></ion-input> 
+      <ion-button id="buttonAdverb" data-test="inputAdverbButton" (click)="onInputAdverbButtonClick()">Adverb</ion-button>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Verb</ion-label>
+      <ion-input id="inputVerb" data-test="inputVerbField" (ionInput)="onInputVerbFieldChange($event)"></ion-input>
+      <ion-button id="buttonVerb" data-test="inputVerbButton" (click)="onInputVerbButtonClick()">Verb</ion-button>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Preposition</ion-label>
+      <ion-input id="inputPreposition" data-test="inputPrepositionField"(ionInput)="onInputPrepositionFieldChange($event)"></ion-input>
+      <ion-button id="buttonPreposition" data-test="inputPrepositionButton" (click)="onInputPrepositionButtonClick()">Preposition</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Noun</ion-label>
+      <ion-input id="inputNoun" data-test="inputNounField" (ionInput)="onInputNounFieldChange($event)"></ion-input>
+      <ion-button id="buttonNoun" data-test="inputNounButton" (click)="onInputNounButtonClick()">Noun</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button data-test="submitAttributesButton" class="submit-attributes-btn" color="warning" type="submit" (click)="sendPostRequest()">Submit</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

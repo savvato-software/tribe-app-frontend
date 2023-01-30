@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-toolbar>
       <ion-title>Home</ion-title>
@@ -7,6 +8,8 @@
 <ion-content>
 
   This is the home page!
+ 
+  <ion-button (click)="onGoToAttritubesBtnClick()" data-test="launchAttributesPageButton" fill="clear">Edit Your Attributes</ion-button>
 
 </ion-content>
 
@@ -14,6 +17,6 @@
   <ion-toolbar id="bottom-toolbar" color="light">
     <ion-button (click)="onHomeBtnClick()" fill="clear"><ion-icon name="albums"></ion-icon></ion-button>
     <ion-button (click)="onProfileBtnClick()" fill="clear"><ion-icon name="person"></ion-icon></ion-button>
-    <ion-button (click)="onSettingsBtnClick()" fill="clear"><ion-icon name="settings"></ion-icon></ion-button>
+    <ion-button (click)="onSettingsBtnClick()" fill="clear"><ion-icon name="Edit Your Attributes"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-footer>

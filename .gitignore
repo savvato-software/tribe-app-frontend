@@ -10,6 +10,8 @@ www/
 
 *.jks
 
+*.mp4
+
 src/app/_environments/environment.ts
 
 .DS_Store
