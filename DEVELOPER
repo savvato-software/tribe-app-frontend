@@ -7,6 +7,12 @@ chrome://inspect  -- in browser url for device debugging
 ./node_modules/cypress/bin/cypress open -- run cypress E2E tests
 
 
+INITIAL SETUP
+=====
+# Be sure to copy the environment settings into place!
+cp src/app/_environments/environment.dev.ts  src/app/_environments/environment.ts
+
+
 IOS BUILDING
 =====
 
