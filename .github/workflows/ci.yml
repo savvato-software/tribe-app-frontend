@@ -10,6 +10,7 @@ jobs:
           node-version: '14'
       - run: npm install -g @ionic/cli
       - run: npm install -g @angular/cli
+      - run: npm install 
       - run: ng test --no-watch --no-progress
 
 
