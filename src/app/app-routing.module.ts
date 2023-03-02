@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'attributes',
-    loadChildren: () => import('./pages/attributes/attributes.module').then( m => m.AttributesPageModule)
+    loadChildren: () => import('./pages/attributes-page/attributes.page.module').then( m => m.AttributesPageModule)
   }
   
 

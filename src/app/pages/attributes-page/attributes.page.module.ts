@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AttributesPageRoutingModule } from './attributes-routing.module';
+import { AttributesPageRoutingModule } from './attributes.page-routing.module';
 
 import { AttributesPage } from './attributes.page';
 
