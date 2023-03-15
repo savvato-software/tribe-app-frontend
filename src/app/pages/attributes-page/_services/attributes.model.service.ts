@@ -19,32 +19,17 @@ export class AttributesModelService {
 
     }
 
-    save(phrase) {
+    save(model: {}) {
         const self = this;
         return new Promise((resolve, reject) => {
-            this._attributesApiService.save(phrase).then((rtn) => {
+            this._attributesApiService.save(model).then((rtn) => {
                     console.log("Call to attributeApiService was successfull");
 
                     resolve({ "successful": rtn });
-                (err) => {
+                (err: any) => {
                     reject(err);
                 }
             });
-                // if (model["isImageChanged"]) {
-                    
-
-                //         self._pictureService.save(this._constants.PHOTO_TYPE_PROFILE, model).then((data) => {
-                //             console.log("changed image for " + model['id'] + " successfully saved on server.")
-                //             model["isImageChanged"] = false;
-                //             resolve(rtn);
-                //         }, (err) => {
-                //             console.log("Error with saving picture in call to pictureService!")
-                //             reject(err);
-                //         })
-                // } else {
-                //     resolve(rtn);
-                // }
-            //})
         });
     }
 }
