@@ -19,7 +19,7 @@ export class AttributesApiService {
 
         return new Promise(
             (resolve, reject) => {
-                // this._apiService.post(url, data).subscribe( //Confirm: Is this what's saving the atrribute to the user?
+                // this._apiService.post(url, data).subscribe(
                 //     (_data) => {
                 //         console.log('save attribute to server' + ' was successful --> ' + _data);
                         resolve({ "successful": {status: true} });
@@ -27,16 +27,6 @@ export class AttributesApiService {
                 //     }, (err) => {
                 //         reject(err);
                 //     });
-
-                /*Taken from tribe-app-frontend/blob/develop/src/app/_services/picture/picture.service.ts
-                self._apiService.post(url, data)
-                    .subscribe(res => {
-                      if (res['msg'] === 'ok') {
-                        resolve(true);
-                      } else {
-                        reject("error saving attribute to server");
-                      }
-                    });*/
             });
     }
 }

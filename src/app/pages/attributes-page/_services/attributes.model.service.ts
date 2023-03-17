@@ -22,14 +22,15 @@ export class AttributesModelService {
     save(model: {}) {
         const self = this;
         return new Promise((resolve, reject) => {
-            this._attributesApiService.save(model).then((rtn) => {
-                    console.log("Call to attributeApiService was successfull");
-
-                    resolve({ "successful": rtn });
-                (err: any) => {
+            this._attributesApiService.save(model).then(
+                (rtn) => {
+                    console.log("Call to attributeApiService was successful");
+                    resolve({"successful": rtn});
+                },
+                (err) => {
                     reject(err);
                 }
-            });
+            );
         });
     }
 }
