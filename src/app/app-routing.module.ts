@@ -3,11 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from "./auth-guard";
 
 const routes: Routes = [
-	{
-		path: 'profile',
-		loadChildren: () => import('./pages/profile-page/profile.page.module').then( m => m.ProfilePageModule)
-        ,canActivate: [AuthGuard]
-	},
   {
     path: '',
     redirectTo: 'login',
@@ -27,15 +22,15 @@ const routes: Routes = [
     ,canActivate: [AuthGuard]
   },
   {
-    path: 'domain-object',
-    loadChildren: () => import('./pages/_common/domain-object/domain-object.module').then( m => m.DomainObjectPageModule)
+    path: 'profile',
+    loadChildren: () => import('./pages/profile-page/profile.page.module').then( m => m.ProfilePageModule)
+    ,canActivate: [AuthGuard]
   },
   {
     path: 'attributes',
     loadChildren: () => import('./pages/attributes-page/attributes.page.module').then( m => m.AttributesPageModule)
+    ,canActivate: [AuthGuard]
   }
-  
-
 ];
 
 @NgModule({
