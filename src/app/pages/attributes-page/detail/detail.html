@@ -1,0 +1,11 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="onCancelBtnClick()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title>Detail Attribute</ion-title>
+        <ion-buttons slot="end">
+            <ion-button color="tertiary" (click)="onEditBtnClicked()" [disabled]="!isEditBtnEnabled()">Edit</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
