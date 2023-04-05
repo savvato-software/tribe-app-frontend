@@ -21,22 +21,41 @@ export class AttributesPage implements OnInit {
 
   }
 
-  async getAttributes() {
-    await this._attributesModelService.getAttributesByUser();
+  getAttributes() {
+    // await this._attributesModelService.getAttributesByUser();
+
+    return [
+        {
+            "phrase": {
+                "adverb": "competitively",
+                "verb": "writes",
+                "preposition": null,
+                "noun": "code"
+            }
+        },
+        {
+            "phrase": {
+                "adverb": null,
+                "verb": "plays",
+                "preposition": null,
+                "noun": "chess"
+            }
+        }
+    ];
   }
 
   getAttrString(attr) {
     let rtn = "";
 
-    if (attr.adverb)
-      rtn += attr.adverb + " ";
+    if (attr.phrase.adverb)
+      rtn += attr.phrase.adverb + " ";
 
-    rtn += attr.verb + " ";
+    rtn += attr.phrase.verb + " ";
 
-    if (attr.preposition)
-      rtn += attr.preposition + " ";
+    if (attr.phrase.preposition)
+      rtn += attr.phrase.preposition + " ";
 
-    rtn += attr.noun;
+    rtn += attr.phrase.noun;
 
     return rtn;
   }
