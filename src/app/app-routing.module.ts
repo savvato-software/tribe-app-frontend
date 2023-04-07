@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'attributes',
     loadChildren: () => import('./pages/attributes-page/attributes.page.module').then( m => m.AttributesPageModule)
     ,canActivate: [AuthGuard]
+  },
+  {
+    path: 'permissions-page',
+    loadChildren: () => import('./pages/permissions-page/permissions-page.module').then( m => m.PermissionsPagePageModule)
   }
 ];
 
