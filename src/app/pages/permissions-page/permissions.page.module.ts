@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PermissionsPagePageRoutingModule } from './permissions.page-routing.module';
+import { PermissionsPageRoutingModule } from './permissions.page-routing.module';
 
 import { PermissionsPage } from './permissions.page.page';
 
@@ -13,8 +13,8 @@ import { PermissionsPage } from './permissions.page.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PermissionsPagePageRoutingModule
+    PermissionsPageRoutingModule
   ],
   declarations: [PermissionsPage]
 })
-export class PermissionsPagePageModule {}
+export class PermissionsPageModule {}
