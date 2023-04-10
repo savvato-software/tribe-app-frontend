@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PermissionsPagePage } from './permissions-page.page';
+import { PermissionsPage } from './permissions.page.page';
 
 describe('PermissionsPagePage', () => {
-  let component: PermissionsPagePage;
-  let fixture: ComponentFixture<PermissionsPagePage>;
+  let component: PermissionsPage;
+  let fixture: ComponentFixture<PermissionsPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PermissionsPagePage ],
+      declarations: [ PermissionsPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PermissionsPagePage);
+    fixture = TestBed.createComponent(PermissionsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

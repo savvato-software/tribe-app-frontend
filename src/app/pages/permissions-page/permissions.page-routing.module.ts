@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PermissionsPagePage } from './permissions-page.page';
+import { PermissionsPage } from './permissions.page.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PermissionsPagePage
+    component: PermissionsPage
   }
 ];
 
