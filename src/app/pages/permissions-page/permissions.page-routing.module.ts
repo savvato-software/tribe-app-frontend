@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PermissionsPage } from './permissions.page.page';
+import { PermissionsPage } from './permissions.page';
 
 const routes: Routes = [
   {

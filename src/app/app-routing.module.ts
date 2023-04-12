@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'permissions',
-    loadChildren: () => import('./pages/permissions-page/permissions.page.module').then( m => m.PermissionsPagePageModule)
+    loadChildren: () => import('./pages/permissions-page/permissions.page.module').then( m => m.PermissionsPageModule)
   }
 ];
 

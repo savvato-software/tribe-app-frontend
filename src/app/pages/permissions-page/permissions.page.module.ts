@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PermissionsPageRoutingModule } from './permissions.page-routing.module';
 
-import { PermissionsPage } from './permissions.page.page';
+import { PermissionsPage } from './permissions.page';
 
 @NgModule({
   imports: [
