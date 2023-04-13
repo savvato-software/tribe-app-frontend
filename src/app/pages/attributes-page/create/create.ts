@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {DomainObjectPage} from "../../_common/domain-object/domain-object.page";
+
+import { Router} from "@angular/router";
 
 import { AlertService } from '../../../_services/alert/alert.service';
 import { UserService } from '../../../_services/user/user.service';
@@ -25,15 +26,17 @@ export class CreateAttributePage implements OnInit
     constructor(private _userService: UserService,
                 private _alertService: AlertService,
                 private _loadingService: LoadingService,
-                private _attributesModelService: AttributesModelService) {
+                private _attributesModelService: AttributesModelService,
+                private _router: Router) {
 
     }
 
     public ngOnInit() {
 
     }
-    onCancelBtnClick() {
 
+    onCancelBtnClick() {
+        this.navigateTo('attributes');
     }
 
     // get the value from the input field
@@ -51,32 +54,14 @@ export class CreateAttributePage implements OnInit
         this.inputVerbTxt = $event.currentTarget.value
     }
 
-    onInputVerbButtonClick() {
-        this.outputTxt = this.inputVerbTxt
-    }
-
     onInputPrepositionFieldChange($event) {
         this.inputPrepositionTxt = $event.currentTarget.value
-    }
-
-    onInputPrepositionButtonClick() {
-        this.outputTxt = this.inputPrepositionTxt
     }
 
     onInputNounFieldChange($event) {
         this.inputNounTxt = $event.currentTarget.value
     }
 
-    onInputNounButtonClick() {
-        this.outputTxt = this.inputNounTxt
-    }
-
-    // this is the current state of the output field
-    getOutputValue() {
-        return this.outputTxt
-    }
-
-    // Taken from  tribe-app-frontend/blob/develop/src/app/pages/profile-page/edit/edit.ts/doTheSaveFunc()
     applyPhraseToUser(){ //Change the method called in the html
         const self = this;
         let msg = 'Saving your attributes!';
@@ -100,4 +85,8 @@ export class CreateAttributePage implements OnInit
         })
     }
 
+    navigateTo(url?: string) {
+        url = url || 'nav';
+        this._router.navigate([url], { replaceUrl: true });
+    }
 }
