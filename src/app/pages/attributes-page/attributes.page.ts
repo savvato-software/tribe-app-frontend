@@ -1,5 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { AlertService } from '../../_services/alert/alert.service';
 import { UserService } from '../../_services/user/user.service';
 import { LoadingService } from "../../_services/loading-spinner/loading.service";
@@ -15,7 +17,8 @@ export class AttributesPage implements OnInit {
   constructor(private _userService: UserService,
     private _alertService: AlertService,
     private _loadingService: LoadingService,
-    private _attributesModelService: AttributesModelService,) { }
+    private _attributesModelService: AttributesModelService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -59,4 +62,14 @@ export class AttributesPage implements OnInit {
 
     return rtn;
   }
+
+  onCreateBtnClick() {
+      this.navigateTo('attributes/create');
+  }
+
+  navigateTo(url?: string) {
+    url = url || 'nav';
+    this.router.navigate([url], { replaceUrl: true });
+  }
+
 }
