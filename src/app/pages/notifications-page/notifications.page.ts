@@ -4,9 +4,9 @@ import {AuthService} from "@savvato-software/savvato-javascript-services";
 
 @Component({
 selector: 'page-notification',
-templateUrl: './notification.page.html',
-styleUrls: ['./notification.page.scss']
+templateUrl: './notifications.page.html',
+styleUrls: ['./notifications.page.scss']
 })
 
-export class NotificationPage implements OnInit {}
+export class NotificationPage {}
 
