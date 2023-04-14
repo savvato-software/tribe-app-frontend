@@ -36,6 +36,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/notifications-page/notifications.page.module').then( m => m.NotificationsPageModule)
     ,canActivate:[AuthGuard]
   },
+    path: 'permissions',
+    loadChildren: () => import('./pages/permissions-page/permissions.page.module').then( m => m.PermissionsPageModule)
+  }
 ];
 
 @NgModule({
