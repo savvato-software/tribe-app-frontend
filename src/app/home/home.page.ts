@@ -68,4 +68,8 @@ export class HomePage implements OnInit {
   onGoToAttritubesBtnClick() {
     this.router.navigate(['/attributes'])
   }
+
+  onGoToPermissionsBtnClick() {
+    this.router.navigate(['/permissions'])
+  }
 }
