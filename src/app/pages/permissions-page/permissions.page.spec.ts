@@ -3,7 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PermissionsPage } from './permissions.page';
 
-describe('PermissionsPagePage', () => {
+describe('PermissionsPage', () => {
   let component: PermissionsPage;
   let fixture: ComponentFixture<PermissionsPage>;
 
