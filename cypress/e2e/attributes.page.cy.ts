@@ -19,6 +19,10 @@ describe('check for existence of attributes page', () => {
   // check if the four fields exist on the attributes page
   // How do I check to see if they exist on the attributes page
   it('check to see if the four fields exist', () => {
+
+    cy.get('[data-test="launchCreateButton"]').should('have.length', 1)
+    cy.get('[data-test="launchCreateButton"]').click()
+
     cy.get('[data-test="inputAdverbField"]').should('have.length', 1)
     cy.get('[data-test="inputVerbField"]').should('have.length', 1)
     cy.get('[data-test="inputPrepositionField"]').should('have.length', 1)
