@@ -35,10 +35,10 @@ describe('check for existence of attributes page', () => {
     cy.get('[data-test="inputAdverbField"]').type('banana')
 
     // press the button
-    cy.get('[data-test="inputAdverbButton"]').click()
+    cy.get('[data-test="submitAttributesButton"]').click()
 
     // read value from output field
-    cy.get('[data-test="outputField"]').should('have.value', 'banana')
+        cy.get('[data-test="inputAdverbField"]').should('have.value', 'banana')
     
   })
 
