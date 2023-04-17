@@ -39,18 +39,21 @@ describe('check for existence of attributes page', () => {
 
     // read value from output field
         cy.get('[data-test="inputAdverbField"]').should('have.value', 'banana')
+
+    // clear success button
+        cy.get('button').click()
     
   })
 
   // check for reactivity for read only output field from verb input field
   it('check for reactivity for read only output field from verb input field', () => {
-    cy.get('[data-test="inputVerbField"]').type('apple')
+        cy.get('[data-test="inputVerbField"]').type('apple')
 
     // press the button
-    cy.get('[data-test="inputVerbButton"]').click()
+    cy.get('[data-test="submitAttributesButton"]').click()
 
     // read value from output field
-    cy.get('[data-test="outputField"]').should('have.value', 'apple')
+    cy.get('[data-test="inputVerbField"]').should('have.value', 'apple')
 
   })
 
