@@ -72,18 +72,21 @@ describe('check for existence of attributes page', () => {
     
     cy.get('[data-test="inputPrepositionField"]').should('have.value', 'watermelon')
 
+    // clear success button
+        cy.get('button').click()
+
   })
 
   // check for reactivity for read only output field from noun input field
   it('check for reactivity for read only output field from noun input field', () => {
 
-    cy.get('[data-test="inputNounField"]').type('strawberry')
+    cy.get('[data-test="inputNounField"]').type('sstrawberry')
 
     // press the button
-    cy.get('[data-test="inputNounButton"]').click()
+    cy.get('[data-test="submitAttributesButton"]').click()
 
     // read value from output field
-    cy.get('[data-test="outputField"]').should('have.value', 'strawberry')
+    cy.get('[data-test="inputNounField"]').should('have.value', 'strawberry')
 
   })
 
