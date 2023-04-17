@@ -5,7 +5,16 @@
 </ion-header>
 
 <ion-content>
-
-    No new Notifications
-
-</ion-content>
+    <ng-container *ngIf="notifications.length > 0; else noNotifications">
+      <ion-list>
+        <ion-item *ngFor="let notification of notifications" (click)="onDeleteNotification(notification.id)">
+          <ion-icon slot="start" [name]="getIcon(notification.iconId)"></ion-icon>
+          <ion-label>{{ notification.text }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  
+    <ng-template #noNotifications>
+      <div>No new notifications</div>
+    </ng-template>
+  </ion-content>
