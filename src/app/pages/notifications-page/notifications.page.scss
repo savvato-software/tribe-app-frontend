@@ -3,3 +3,8 @@ ion-toolbar#bottom-toolbar {
   justify-content: space-evenly;
 
  }
+
+ion-item.long-press {
+  background-color: #e6e6e6;
+  transition: background-color 1s;
+}
