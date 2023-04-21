@@ -46,8 +46,8 @@ describe('check for existence of attributes page', () => {
   })
 
   // check for reactivity for inputVerbField, click submit button, read value, click success button
-  it('check for reactivity from verb input field', () => {
-        cy.get('[data-test="inputVerbField"]').type('aapple')
+    it('check for reactivity from verb input field', () => {
+       cy.wait(500); cy.get('[data-test="inputVerbField"]').type('apple')
 
     // press the button
     cy.get('[data-test="submitAttributesButton"]').click()
@@ -61,9 +61,8 @@ describe('check for existence of attributes page', () => {
   })
 
   // check for reactivity for inputPrepositionField, click submit button, read value, click success button
-  it('check for reactivity from preposition input field', () => {
-
-        cy.get('[data-test="inputPrepositionField"]').type('wwatermelon')
+    it('check for reactivity from preposition input field', () => {
+       cy.wait(500); cy.get('[data-test="inputPrepositionField"]').type('watermelon')
 
     // press the button
     cy.get('[data-test="submitAttributesButton"]').click()
@@ -78,9 +77,8 @@ describe('check for existence of attributes page', () => {
   })
 
   // check for reactivity for inputNounField, click submit button, read value, click success button
-  it('check for reactivity from noun input field', () => {
-
-    cy.get('[data-test="inputNounField"]').type('sstrawberry')
+    it('check for reactivity from noun input field', () => {
+       cy.wait(500); cy.get('[data-test="inputNounField"]').type('strawberry')
 
     // press the button
     cy.get('[data-test="submitAttributesButton"]').click()
