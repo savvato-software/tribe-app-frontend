@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AttributesPage } from './attributes.page';
 import {HttpClientModule} from "@angular/common/http";
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { Constants } from '../../_constants/constants';
 
@@ -16,7 +17,7 @@ describe('AttributesPage', () => {
       providers: [
         { provide: Constants, useClass: Constants }
       ],
-      imports: [HttpClientModule, IonicModule.forRoot()]
+      imports: [HttpClientModule, RouterTestingModule.withRoutes([]), IonicModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AttributesPage);
