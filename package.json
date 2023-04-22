@@ -78,5 +78,5 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.6.3"
   },
-  "description": "Lets users voice their opinion on various topics."
+  "description": "Helps you find the members of your tribe."
 }
