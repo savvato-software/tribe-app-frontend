@@ -5,5 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <p>This is some test text <br/> If you can read this, the adjustments <br/> Were successful!!!</p>
+  <p>List of users</p>
 </ion-content>
+
+<label for="permissions-availabe"> Permissions </label>
+<form>
+  <select id="permissions-availabe">
+    <option *ngFor="let permit of permissions"> {{permit}} </option>
+  </select>
+</form>
+
+<ion-footer>
+  <ion-toolbar id="bottom-toolbar" color="light">
+    <ion-button (click)="saveChanges()" fill="clear">Save</ion-button>
+    <ion-button (click)="cancelChanges()" fill="clear">Cancel</ion-button>
+  </ion-toolbar>
+</ion-footer>
