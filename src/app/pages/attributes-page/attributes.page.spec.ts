@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { RouterTestingModule } from "@angular/router/testing";
 
 import { AttributesPage } from './attributes.page';
 import {HttpClientModule} from "@angular/common/http";
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { Constants } from '../../_constants/constants';
 

@@ -12,23 +12,6 @@ import { Component } from '@angular/core';
 
 export class PermissionsPage {
 
-  permissions = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "reviewer",
-    "observer"
-  ]
-
-  saveChanges() {
-
-  }
-
-  cancelChanges() {
-
-  }
-
 }
 
 

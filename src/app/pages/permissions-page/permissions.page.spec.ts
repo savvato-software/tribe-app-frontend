@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { RouterTestingModule } from "@angular/router/testing";
 
 import { PermissionsPage } from './permissions.page';
 
@@ -11,7 +10,7 @@ describe('PermissionsPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PermissionsPage ],
-      imports: [IonicModule.forRoot(), RouterTestingModule.withRoutes([])]
+      imports: [IonicModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PermissionsPage);
