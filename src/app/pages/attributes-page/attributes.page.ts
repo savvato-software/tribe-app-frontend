@@ -53,7 +53,7 @@ export class AttributesPage implements OnInit {
     if (attr.phrase.adverb)
       rtn += attr.phrase.adverb + " ";
 
-    rtn += attr.phrase.verb + " ";
+      rtn += attr.phrase.verb + " ";
 
     if (attr.phrase.preposition)
       rtn += attr.phrase.preposition + " ";
