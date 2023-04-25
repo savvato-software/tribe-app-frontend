@@ -19,6 +19,10 @@ describe('check for existence of attributes page', () => {
   // check if the four fields exist on the attributes page
   // How do I check to see if they exist on the attributes page
   it('check to see if the four fields exist', () => {
+
+    cy.get('[data-test="launchCreateButton"]').should('have.length', 1)
+    cy.get('[data-test="launchCreateButton"]').click()
+
     cy.get('[data-test="inputAdverbField"]').should('have.length', 1)
     cy.get('[data-test="inputVerbField"]').should('have.length', 1)
     cy.get('[data-test="inputPrepositionField"]').should('have.length', 1)
@@ -26,54 +30,64 @@ describe('check for existence of attributes page', () => {
     
   })
 
-  // check for reactivity for read only output field from adverb input field
-  it('check for reactivity for read only output field from adverb input field', () => {
+  // check for reactivity for inputAdverbField, click submit button, read value, click success button
+  it('check for reactivity from adverb input field', () => {
     cy.get('[data-test="inputAdverbField"]').type('banana')
 
     // press the button
-    cy.get('[data-test="inputAdverbButton"]').click()
+    cy.get('[data-test="submitAttributesButton"]').click()
 
     // read value from output field
-    cy.get('[data-test="outputField"]').should('have.value', 'banana')
+        cy.get('[data-test="inputAdverbField"]').should('have.value', 'banana')
+
+    // clear success button
+        cy.get('button').click()
     
   })
 
-  // check for reactivity for read only output field from verb input field
-  it('check for reactivity for read only output field from verb input field', () => {
-    cy.get('[data-test="inputVerbField"]').type('apple')
+  // check for reactivity for inputVerbField, click submit button, read value, click success button
+    it('check for reactivity from verb input field', () => {
+       cy.wait(500); cy.get('[data-test="inputVerbField"]').type('apple')
 
     // press the button
-    cy.get('[data-test="inputVerbButton"]').click()
+    cy.get('[data-test="submitAttributesButton"]').click()
 
     // read value from output field
-    cy.get('[data-test="outputField"]').should('have.value', 'apple')
+    cy.get('[data-test="inputVerbField"]').should('have.value', 'apple')
+
+    // clear success button
+        cy.get('button').click()
 
   })
 
-  // check for reactivity for read only output field from preposition input field
-  it('check for reactivity for read only output field from preposition input field', () => {
-
-    cy.get('[data-test="inputPrepositionField"]').type('watermelon')
+  // check for reactivity for inputPrepositionField, click submit button, read value, click success button
+    it('check for reactivity from preposition input field', () => {
+       cy.wait(500); cy.get('[data-test="inputPrepositionField"]').type('watermelon')
 
     // press the button
-    cy.get('[data-test="inputPrepositionButton"]').click()
+    cy.get('[data-test="submitAttributesButton"]').click()
 
     // read value from output field
     
-    cy.get('[data-test="outputField"]').should('have.value', 'watermelon')
+    cy.get('[data-test="inputPrepositionField"]').should('have.value', 'watermelon')
+
+    // clear success button
+        cy.get('button').click()
 
   })
 
-  // check for reactivity for read only output field from noun input field
-  it('check for reactivity for read only output field from noun input field', () => {
-
-    cy.get('[data-test="inputNounField"]').type('strawberry')
+  // check for reactivity for inputNounField, click submit button, read value, click success button
+    it('check for reactivity from noun input field', () => {
+       cy.wait(500); cy.get('[data-test="inputNounField"]').type('strawberry')
 
     // press the button
-    cy.get('[data-test="inputNounButton"]').click()
+    cy.get('[data-test="submitAttributesButton"]').click()
 
     // read value from output field
-    cy.get('[data-test="outputField"]').should('have.value', 'strawberry')
+    cy.get('[data-test="inputNounField"]').should('have.value', 'strawberry')
+
+// clear success button
+        cy.get('button').click()
 
   })
 
@@ -83,42 +97,5 @@ describe('check for existence of attributes page', () => {
     cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
   })
-
-// Not happy path test by Johnathan James
-// get the value from the input field
-// Hi Sun.. sorry I am just seeing this now, but you would enter a value in the first 
-// input field, then press it's button. 
-// That will copy the text to the read only field. 
-// Enter something in the second field, press it's button.. the value is copied. 
-// Then delete the value in the second field, and press the button of the first field. 
-// The read only field is cleared. It should instead show the value of the first field.
-it('not happy path one', () => {
-  cy.reload()
-
-  //enter a value in the first input field
-   cy.get('[data-test="inputAdverbField"]').type('cake')
-   // then press it's button. 
-   cy.get('[data-test="inputAdverbButton"]').click()
-   // the value is copied. 
-   cy.get('[data-test="outputField"]').should('have.value', 'cake')
-
-   // Enter something in the second field 
-  cy.get('[data-test="inputVerbField"]').type('chocolate')
-  // press it's button..
-  cy.get('[data-test="inputVerbButton"]').click()
-  // the value is copied.
-  cy.get('[data-test="outputField"]').should('have.value', 'chocolate')
-
-  // Then delete the value in the second field 
-  cy.get('[data-test="inputVerbField"]').invoke('val', ' ')
-  // press the button of the first field. 
-  cy.get('[data-test="inputAdverbButton"]').click()
-  // The read only field is cleared.
-  // cy.get('[data-test="outputField"]').should('have.value', '')
-  
-  // It should instead show the value of the first field.
-  cy.get('[data-test="outputField"]').should('have.value', 'cake')
-
-})
 
 })
