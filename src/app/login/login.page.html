@@ -27,7 +27,7 @@
           </ng-container>
         </div>
         <ion-button data-test="submitButton" class="submit-btn" color="warning" type="submit" >Sign In</ion-button>
-        <ion-button class="submit-btn" color="warning" (click)="onCreateNewUserClick()">Create New User</ion-button>
+        <ion-button data-test="create-new-user-btn" class="submit-btn" color="warning" (click)="onCreateNewUserClick()">Create New User</ion-button>
         <ion-button class="submit-btn" (click)="onLostPasswordClick()" fill="clear">Forgot Password?</ion-button>
       </form>
     </ion-card-content>

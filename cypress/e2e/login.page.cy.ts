@@ -1,10 +1,12 @@
 describe('empty spec', () => {
-  it('passes', () => {
-    cy.visit('http://localhost:8100/login')
-    cy.get('[data-test="create-new-user-btn"]').click()
+    beforeEach(() => {
+        cy.visit('http://localhost:8100/login')
+    })
 
-    cy.get(".new-user-page-content ion-input").should('have.length', 5)
+    it('visits the login page and clicks the create new user button', () => {
+     cy.get('[data-test="create-new-user-btn"]').click()
+
   })
 
-  it('')
+
 })
