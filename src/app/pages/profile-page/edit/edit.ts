@@ -324,3 +324,4 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
         this._router.navigate([url], { replaceUrl: true });
     }
 }
+
