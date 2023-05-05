@@ -308,7 +308,7 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
 
         self._loadingService.show({message: msg}).then(() => {
 
-            self._profileModelService.save(this.model).then(() => {
+        self._profileModelService.save(this.model).then(() => {
                 self._loadingService.dismiss().then(() => {
 
                     self._alertService.show({
@@ -324,7 +324,7 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
                         }]
                     })
                 })
-            });
+        });
         })
     }
 
