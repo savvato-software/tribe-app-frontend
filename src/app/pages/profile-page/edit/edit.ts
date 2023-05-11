@@ -272,22 +272,22 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
                     handler: (data) => {
                         if (data.code !== undefined && data.code.length > 0) {
 
-                            self._challengeCodeService.isAValidSMSChallengeCode(self.model["phone"], data.code).then((isValidSMSCC) => {
-                                if (isValidSMSCC) {
-                                    self.doTheSaveFunc();
-                                } else {
-                                    self._alertService.show({
-                                        header: 'Aargh...',
-                                        message: "That wasn't a valid code.......",
-                                        buttons: [{
-                                            text: 'Grr.',
-                                            handler: () => {
+                                self._challengeCodeService.isAValidSMSChallengeCode(self.model["phone"], data.code).then((isValidSMSCC) => {
+                                    if (isValidSMSCC) {
+                                        self.doTheSaveFunc();
+                                    } else {
+                                        self._alertService.show({
+                                            header: 'Aargh...',
+                                            message: "That wasn't a valid code.......",
+                                            buttons: [{
+                                                text: 'Grr.',
+                                                handler: () => {
 
-                                            }
-                                        }]
-                                    })
-                                }
-                            })
+                                                }
+                                            }]
+                                        })
+                                    }
+                                })
                         }
                     }
                 }]
@@ -299,6 +299,9 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
 
     doTheSaveFunc() {
         const self = this;
+        const code = self.model["data.code"]
+        const phoneNumber = self.model["phone"]
+        const pw = self.model["password"]
         let msg = '';
 
         let model =  this.model;
@@ -308,23 +311,42 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
 
         self._loadingService.show({message: msg}).then(() => {
 
-        self._profileModelService.save(this.model).then(() => {
-                self._loadingService.dismiss().then(() => {
+            self._profileModelService.save(this.model).then(() => {
+                if (model['isPasswordChanged'])
+                        self._userService.changeLostPassword(code, phoneNumber, pw).then(() => {
+                            self._loadingService.dismiss().then(() => {
 
-                    self._alertService.show({
-                        header: 'Alright!',
-                        message: "Changes saved!",
-                        buttons: [{
-                            text: 'OK',
-                            cssClass: 'e2e-changes-saved-btn',
-                            handler: () => {
-                                self.codeAlreadySent = false;
-                                self.navigateTo('/profile') ;
-                            }
-                        }]
-                    })
-                })
-        });
+                                self._alertService.show({
+                                    header: 'Alright!',
+                                    message: "Changes saved!",
+                                    buttons: [{
+                                        text: 'OK',
+                                        cssClass: 'e2e-changes-saved-btn',
+                                        handler: () => {
+                                            self.codeAlreadySent = false;
+                                            self.navigateTo('/profile') ;
+                                        }
+                                    }]
+                                })
+                            })
+                        });else {
+                        self._loadingService.dismiss().then(() => {
+
+                                self._alertService.show({
+                                    header: 'Alright!',
+                                    message: "Changes saved!",
+                                    buttons: [{
+                                        text: 'OK',
+                                        cssClass: 'e2e-changes-saved-btn',
+                                        handler: () => {
+                                            self.codeAlreadySent = false;
+                                            self.navigateTo('/profile') ;
+                                        }
+                                    }]
+                                })
+                        })
+                    }
+            });
         })
     }
 
