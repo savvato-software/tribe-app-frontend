@@ -117,7 +117,7 @@ export class UserService {
 			let self = this;
 			let url = environment.apiUrl + "/api/public/user/changeLostPassword";
 
-			let data = {smsChallengeCode: smsChallengeCode, phoneNumber: phoneNumber, pw: newPassword }
+			let data = {smsChallengeCode: smsChallengeCode, phoneNumber: phoneNumber, pw: newPassword}
 
 			self._apiService.postUnsecuredAPI_w_body(url, data).subscribe((resp) => {
 				resolve(resp);
