@@ -3,7 +3,7 @@ describe('check for existence of attributes page', () => {
   // get to attributes page
   it('navigate to attributes page', () => {
     cy.visit('http://localhost:8100/login')
-    cy.get('[data-test="submitButton"]').click()
+    cy.get('[data-test="sign-in-btn"]').click()
     
     cy.get('[data-test="launchAttributesPageButton"]').should('have.length', 1)
     cy.get('[data-test="launchAttributesPageButton"]').click()
