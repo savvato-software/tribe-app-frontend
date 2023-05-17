@@ -14,7 +14,8 @@ import { HttpConfigInterceptor } from './_services/_http/interceptor.service';
 import { Constants } from './_constants/constants';
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { WebView } from '@ionic-native/ionic-webview/ngx'
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+
 
 
 export class CustomHammerConfig extends HammerGestureConfig {
