@@ -5,14 +5,23 @@
 </ion-header>
 
 <ion-content>
-  <p>List of users</p>
+  <ion-card-title> All Users  :current {{currentUser()}} </ion-card-title>
+
+  <ion-item *ngFor="let user of getListOfUsers()">
+    {{user.name}}
+  </ion-item>
+
+  
 </ion-content>
 
-<label for="permissions-availabe"> Permissions </label>
+<label for="permissions-roles"> User roles </label>
 <form>
-  <select id="permissions-availabe">
-    <option *ngFor="let permit of permissions"> {{permit}} </option>
+  
+  <select id="permissions-roles">
+  <option *ngFor="let role of getListOfRoles()"><ion-item> {{role}} </ion-item></option>
+      <option>  </option>
   </select>
+
 </form>
 
 <ion-footer>
