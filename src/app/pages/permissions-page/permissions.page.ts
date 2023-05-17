@@ -59,6 +59,7 @@ export class PermissionsPage {
 
   }
 
+
   navigateTo(url?: string) {
     url = url || 'nav';
     this.router.navigate([url], { replaceUrl: true });
