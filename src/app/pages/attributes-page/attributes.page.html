@@ -8,9 +8,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let attr of getAttributes()">
-      {{getAttrString(attr)}}
-    </ion-item>
-  </ion-list>
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col>Adverb</ion-col>
+      <ion-col>Verb</ion-col>
+      <ion-col>Preposition</ion-col>
+      <ion-col>Noun</ion-col>
+    </ion-row>
+    
+    <!-- <ion-row>
+      <ion-col>{{data.adverb}}</ion-col>
+      <ion-col>{{data.verb}}</ion-col>
+      <ion-col>{{data.preposition}}</ion-col>
+      <ion-col>{{data.noun}}</ion-col>
+    </ion-row> -->
+  </ion-grid>
 </ion-content>
