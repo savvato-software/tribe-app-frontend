@@ -76,4 +76,8 @@ export class HomePage implements OnInit {
   onGoToPermissionsBtnClick() {
     this.router.navigate(['/permissions'])
   }
+
+  onGoToConnectBtnClick() {
+    this.router.navigate(['/connect'])
+  }
 }
