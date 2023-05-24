@@ -9,18 +9,18 @@
 
 <ion-content>
   <ion-grid [fixed]="true">
-    <ion-row>
+    <ion-row class="header-row">
       <ion-col>Adverb</ion-col>
       <ion-col>Verb</ion-col>
       <ion-col>Preposition</ion-col>
       <ion-col>Noun</ion-col>
     </ion-row>
     
-    <!-- <ion-row>
+    <ion-row *ngfor="let attr of getAttributes()">
       <ion-col>{{data.adverb}}</ion-col>
       <ion-col>{{data.verb}}</ion-col>
       <ion-col>{{data.preposition}}</ion-col>
       <ion-col>{{data.noun}}</ion-col>
-    </ion-row> -->
+    </ion-row>
   </ion-grid>
 </ion-content>
