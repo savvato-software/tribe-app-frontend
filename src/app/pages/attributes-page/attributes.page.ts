@@ -25,26 +25,10 @@ export class AttributesPage implements OnInit {
   }
 
   getAttributes() {
-    // await this._attributesModelService.getAttributesByUser();
-
-    return [
-        {
-            "phrase": {
-                "adverb": "competitively",
-                "verb": "writes",
-                "preposition": null,
-                "noun": "code"
-            }
-        },
-        {
-            "phrase": {
-                "adverb": null,
-                "verb": "plays",
-                "preposition": null,
-                "noun": "chess"
-            }
-        }
-    ];
+   
+    // getAdverb() {
+    //   return this._attributesModelService.getAttributesByUser()['adverb'];
+    // }
   }
 
   getAttrString(attr) {
