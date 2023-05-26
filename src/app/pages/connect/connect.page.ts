@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connect',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnectPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onGoToListConnectionsBtnClick() {
+    this.router.navigate(['/list-connections'])
   }
 
 }
