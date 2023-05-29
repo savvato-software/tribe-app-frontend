@@ -24,12 +24,20 @@ export class AttributesPage implements OnInit {
 
   }
 
-  getAttributes() {
+  //  getAttributes() {
+
+  //   return this._attributesModelService.getAttributesByUser();
+    
+  //  }
+
+getAttributes = {
+  adverb : this._attributesModelService.getAttributesByUser()['adverb'],
+  verb : this._attributesModelService.getAttributesByUser()['verb'],
+  preposition : this._attributesModelService.getAttributesByUser()['preposition'],
+  noun : this._attributesModelService.getAttributesByUser()['noun']
+}
+    
    
-    // getAdverb() {
-    //   return this._attributesModelService.getAttributesByUser()['adverb'];
-    // }
-  }
 
   getAttrString(attr) {
     let rtn = "";
