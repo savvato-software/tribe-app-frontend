@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JWTApiService } from '@savvato-software/savvato-javascript-services';
-
+import { ModelTransformingService } from '@savvato-software/savvato-javascript-services';
 import { environment } from '../../../_environments/environment';
 
 @Injectable({
@@ -19,8 +19,6 @@ getListOfRoles() {
     (resolve, reject) => {
         this._apiService.get(url).subscribe(
             (_data) => {
-                //console.log('Roles acquired');
-                //console.log(_data);
 
                 resolve(_data);
             }, (err) => {
@@ -38,8 +36,6 @@ getListOfAllUsers() {
     (resolve, reject) => {
         this._apiService.get(url).subscribe(
             (_data) => {
-                //console.log('All users acquired');
-                //console.log(_data);
 
                 resolve(_data);
             }, (err) => {
