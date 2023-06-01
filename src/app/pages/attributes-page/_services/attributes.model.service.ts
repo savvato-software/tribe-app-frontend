@@ -19,19 +19,23 @@ export class AttributesModelService {
 
     }
 
-    async getAttributesByUser() {
-        const self = this;
+    init() {
         return new Promise((resolve, reject) => {
             this._attributesApiService.getAttributesByUser().then(
                 (rtn) => {
+                    this.model = rtn;
                     resolve(rtn);
                 }
             )
         })
     }
 
+
+    get() {
+        return this.model;
+    }
+
     save(model: {}) {
-        const self = this;
         return new Promise((resolve, reject) => {
             this._attributesApiService.save(model).then(
                 (rtn) => {

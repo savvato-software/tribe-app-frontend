@@ -20,22 +20,31 @@ export class AttributesPage implements OnInit {
     private _attributesModelService: AttributesModelService,
     private router: Router) { }
 
-  ngOnInit() {
-
+  public ngOnInit() {
+    console.log('!!!!!!!!!!!!!!')
+    this._attributesModelService.init();
   }
 
-  //  getAttributes() {
+  ionViewWillEnter() {
+    this._loadingService.show({message: "..loading.."}).then(() => {
+      this._attributesModelService.init().then(() => {
+        this._loadingService.dismiss();
+      })
+    })
+  }
 
-  //   return this._attributesModelService.getAttributesByUser();
+   getAttributes() {
+
+    return this._attributesModelService.get();
     
-  //  }
+   }
 
-getAttributes = {
-  adverb : this._attributesModelService.getAttributesByUser()['adverb'],
-  verb : this._attributesModelService.getAttributesByUser()['verb'],
-  preposition : this._attributesModelService.getAttributesByUser()['preposition'],
-  noun : this._attributesModelService.getAttributesByUser()['noun']
-}
+// getAttributes = {
+//   adverb : this._attributesModelService.getAttributesByUser()['adverb'],
+//   verb : this._attributesModelService.getAttributesByUser()['verb'],
+//   preposition : this._attributesModelService.getAttributesByUser()['preposition'],
+//   noun : this._attributesModelService.getAttributesByUser()['noun']
+// }
     
    
 
