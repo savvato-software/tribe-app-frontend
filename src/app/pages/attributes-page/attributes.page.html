@@ -16,7 +16,7 @@
       <ion-col>Noun</ion-col>
     </ion-row>
     
-    <ion-row *ngFor="let attr of getAttributes | keyvalue">
+    <ion-row *ngFor="let attr of getAttributes()">
       <ion-col>{{attr.adverb}}</ion-col>
       <ion-col>{{attr.verb}}</ion-col>
       <ion-col>{{attr.preposition}}</ion-col>
