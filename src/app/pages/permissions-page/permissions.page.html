@@ -5,15 +5,26 @@
 </ion-header>
 
 <ion-content>
-  <p>List of users</p>
+  <ion-card-title>  Logged in as: {{theCurrentUser.name}} </ion-card-title> 
+  <ion-card-title *ngIf="hasUser == false">Select a user </ion-card-title>
+  <ion-card-title *ngIf="hasUser == true">You selected {{selectedUser.name}} </ion-card-title>
+  <ion-item (click)="clearUser()"></ion-item>
+  <ion-item *ngFor="let user of getListOfUsers()" (click)="selectUser(user)">
+    {{user.name}} 
+  </ion-item>
+  <ion-item (click)="clearUser()"></ion-item>
+  <ion-item>Assigned Roles</ion-item>
+  <ng-container *ngIf="selectedSkills != []">
+    <ion-item *ngFor="let skils of selectedSkills"> {{skils}} <ion-button> X </ion-button></ion-item>    
+  </ng-container>
+  <ion-item>
+    <select aria-label="additional-roles">
+      <option> Options will</option>
+      <option> Go Here</option>
+    </select>
+  </ion-item>
 </ion-content>
 
-<label for="permissions-availabe"> Permissions </label>
-<form>
-  <select id="permissions-availabe">
-    <option *ngFor="let permit of permissions"> {{permit}} </option>
-  </select>
-</form>
 
 <ion-footer>
   <ion-toolbar id="bottom-toolbar" color="light">
