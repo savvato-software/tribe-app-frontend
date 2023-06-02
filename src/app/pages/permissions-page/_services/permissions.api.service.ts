@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { JWTApiService } from '@savvato-software/savvato-javascript-services';
-import { ModelTransformingService } from '@savvato-software/savvato-javascript-services';
 import { environment } from '../../../_environments/environment';
 
 @Injectable({

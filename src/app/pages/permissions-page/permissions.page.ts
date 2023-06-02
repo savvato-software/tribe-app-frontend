@@ -30,11 +30,9 @@ export class PermissionsPage {
 
   ionViewWillEnter() {
     this._loadingService.show({message: "..loading.."}).then(() => { 
-      this._permissionsModelService.init().then(() => {
-          this._loadingService.dismiss ();
-      })
+      this._permissionsModelService.init();
+      this._loadingService.dismiss ();
     })
-    
   }
 
   hasUser = false;

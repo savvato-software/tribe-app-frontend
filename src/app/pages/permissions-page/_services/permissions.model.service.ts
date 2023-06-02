@@ -1,31 +1,37 @@
 import { Injectable } from '@angular/core';
 import { PermissionsApiService } from './permissions.api.service';
+import { ModelTransformingService } from '@savvato-software/savvato-javascript-services';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionsModelService{
-  
+export class PermissionsModelService {
+
   model: any = {};
 
 
-  constructor(private _permissionsApiService: PermissionsApiService) {}
+  constructor(
+    private _modelTransformingService: ModelTransformingService,
+    private _permissionsApiService: PermissionsApiService) { }
 
+  init() {
+    this._modelTransformingService.clearAllTransformers();
 
-    init() {
-    return new Promise((resolve, reject) => {
-        this._permissionsApiService.getListOfAllUsers().then((response1) => {
-          this.model['listOfUsers'] = response1;
-          this._permissionsApiService.getListOfRoles().then((response2) => {
-            this.model['listOfUserRoles'] = response2;
-            resolve(response2);
-          })    
-          resolve(response1);
-        })
+    this._modelTransformingService.addTransformer((model, done) => {
+      this._permissionsApiService.getListOfAllUsers().then((response1) => {
+        model['listOfUsers'] = response1;
+        done();
+      })
+    });
 
-        console.log(this.model);
-        
-    })
+    this._modelTransformingService.addTransformer((model, done) => {
+      this._permissionsApiService.getListOfRoles().then((response2) => {
+        model['listOfUserRoles'] = response2;
+        done();
+      })
+    });
+
+    this._modelTransformingService.transform(this.model);
 
   }
   
