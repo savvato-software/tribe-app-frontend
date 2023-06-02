@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'connect',
     loadChildren: () => import('./pages/connect/connect.module').then( m => m.ConnectPageModule)
+  },
+  {
+    path: 'list-connections',
+    loadChildren: () => import('./pages/list-connections/list-connections.module').then( m => m.ListConnectionsPageModule)
   }
 ];
 
