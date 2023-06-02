@@ -46,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'review-attributes',
-    loadChildren: () => import('./pages/review-attributes/review-attributes.module').then( m => m.ReviewAttributesPageModule)
+    loadChildren: () => import('./pages/review-attributes/review-attributes.page.module').then( m => m.ReviewAttributesPageModule)
   }
 ];
 
