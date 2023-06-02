@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'connect',
     loadChildren: () => import('./pages/connect/connect.module').then( m => m.ConnectPageModule)
+  },
+  {
+    path: 'review-attributes',
+    loadChildren: () => import('./pages/review-attributes/review-attributes.module').then( m => m.ReviewAttributesPageModule)
   }
 ];
 
