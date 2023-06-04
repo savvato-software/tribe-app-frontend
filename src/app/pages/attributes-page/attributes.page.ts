@@ -21,8 +21,7 @@ export class AttributesPage implements OnInit {
     private router: Router) { }
 
   public ngOnInit() {
-    console.log('!!!!!!!!!!!!!!')
-    this._attributesModelService.init();
+ 
   }
 
   ionViewWillEnter() {
