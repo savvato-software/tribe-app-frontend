@@ -10,7 +10,7 @@ import { Constants } from "../../../_constants/constants";
 })
 export class AttributesModelService {
 
-    model: any = {};
+    model: any = [];
 
     constructor(private _apiService: JWTApiService,
                 private _authService: AuthService,
