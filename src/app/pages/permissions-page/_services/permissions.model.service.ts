@@ -43,8 +43,4 @@ export class PermissionsModelService {
     return this.model['listOfUserRoles'];
   }
 
-  getAssignedRoles() {
-    return this.model['listOfUsers'];
-  }
-
 }
