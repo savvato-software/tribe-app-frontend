@@ -79,15 +79,7 @@ export class PermissionsPage {
   }
 
   cancelChanges() {
-
-  }
-
-  
-
-
-  navigateTo(url?: string) {
-    url = url || 'nav';
-    this.router.navigate([url], { replaceUrl: true });
+    this.router.navigate(['home']);
   }
 }
 
