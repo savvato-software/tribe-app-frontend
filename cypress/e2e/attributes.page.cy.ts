@@ -9,6 +9,19 @@ describe('check for existence of attributes page', () => {
     cy.get('[data-test="launchAttributesPageButton"]').click()
   })
 
+  // check to see if the 4 attributes columns exist
+
+  it('should display the four columns', () => {
+    // Assert that the four columns exist in the grid
+    cy.get('ion-grid').within(() => {
+      cy.get('ion-row.header-row')
+        .should('contain', 'Adverb')
+        .and('contain', 'Verb')
+        .and('contain', 'Preposition')
+        .and('contain', 'Noun')
+    })
+  })
+
   // Requirement is that for each field the value in the field should be copied to output when you click the field's button
   // I am using a single variable and should be using multiple variables
   // Test - deeper cases - off the happy path 
@@ -16,9 +29,9 @@ describe('check for existence of attributes page', () => {
   // check for four input fields 
   // typing something in one of those fields and then hit a button then read value from read only field and compare that value to what was typed into that field
   
-  // check if the four fields exist on the attributes page
-  // How do I check to see if they exist on the attributes page
-  it('check to see if the four fields exist', () => {
+  // check if the four fields exist on the create attributes page
+  // How do I check to see if they exist on the create attributes page
+  it('check to see if the four edit fields exist', () => {
 
     cy.get('[data-test="launchCreateButton"]').should('have.length', 1)
     cy.get('[data-test="launchCreateButton"]').click()
