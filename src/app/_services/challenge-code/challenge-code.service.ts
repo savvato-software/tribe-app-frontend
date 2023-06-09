@@ -17,6 +17,10 @@ export class ChallengeCodeService {
     let url = environment.apiUrl + "/api/public/sendSMSChallengeCodeToPhoneNumber";
 
     // assume phoneNumber looks like '3035551212'
+    if (!environment.production) {
+        phoneNumber = "0" + phoneNumber.substring(1);
+    }
+
     let data = {"phoneNumber": phoneNumber};
 
     this._apiService.postUnsecuredAPI_w_body(url, data).subscribe(() => {
@@ -28,6 +32,10 @@ export class ChallengeCodeService {
   }
 
   isAValidSMSChallengeCode(phoneNumber, code) {
+    if (!environment.production) {
+        phoneNumber = "0" + phoneNumber.substring(1);
+    }
+
     let data = {"code": code, "phoneNumber": phoneNumber};
     let url = environment.apiUrl + "/api/public/isAValidSMSChallengeCode";
 
