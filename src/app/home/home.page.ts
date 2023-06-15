@@ -80,4 +80,8 @@ export class HomePage implements OnInit {
   onGoToConnectBtnClick() {
     this.router.navigate(['/connect'])
   }
+
+  onGoToReviewAttributesBtnClick() {
+    this.router.navigate(['/review-attributes'])
+  }
 }
