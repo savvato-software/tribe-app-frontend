@@ -39,6 +39,7 @@ const routes: Routes = [
   {
     path: 'permissions',
     loadChildren: () => import('./pages/permissions-page/permissions.page.module').then( m => m.PermissionsPageModule)
+    ,canActivate:[AuthGuard]
   },
   {
     path: 'connect',
@@ -47,6 +48,7 @@ const routes: Routes = [
   {
     path: 'review-attributes',
     loadChildren: () => import('./pages/review-attributes/review-attributes.page.module').then( m => m.ReviewAttributesPageModule)
+    ,canActivate:[AuthGuard]
   }
 ];
 
