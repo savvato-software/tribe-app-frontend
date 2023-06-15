@@ -20,17 +20,11 @@ describe('check for existence of attributes page', () => {
         .and('contain', 'Preposition')
         .and('contain', 'Noun')
     })
-  })
+  }) 
 
-  // Requirement is that for each field the value in the field should be copied to output when you click the field's button
-  // I am using a single variable and should be using multiple variables
-  // Test - deeper cases - off the happy path 
-
-  // check for four input fields 
-  // typing something in one of those fields and then hit a button then read value from read only field and compare that value to what was typed into that field
   
+
   // check if the four fields exist on the create attributes page
-  // How do I check to see if they exist on the create attributes page
   it('check to see if the four edit fields exist', () => {
 
     cy.get('[data-test="launchCreateButton"]').should('have.length', 1)
@@ -110,5 +104,8 @@ describe('check for existence of attributes page', () => {
     cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
   })
+
+
+  // check to see if the new attributes are displayed in the grid on the attributes page
 
 })

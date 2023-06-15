@@ -37,13 +37,6 @@ export class AttributesPage implements OnInit {
     return this._attributesModelService.get();
     
    }
-
-// getAttributes = {
-//   adverb : this._attributesModelService.getAttributesByUser()['adverb'],
-//   verb : this._attributesModelService.getAttributesByUser()['verb'],
-//   preposition : this._attributesModelService.getAttributesByUser()['preposition'],
-//   noun : this._attributesModelService.getAttributesByUser()['noun']
-// }
     
    
 
