@@ -18,4 +18,8 @@ export class ConnectPage implements OnInit {
     this.router.navigate(['/list-connections'])
   }
 
+  onGoToOpenConnectionBtnClick() {
+    this.router.navigate(['/open-connection'])
+  }
+
 }

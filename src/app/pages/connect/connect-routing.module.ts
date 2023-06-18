@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ConnectPage
+  },
+  {
+    path: 'open-connection',
+    loadChildren: () => import('./open-connection/open-connection.module').then( m => m.OpenConnectionPageModule)
   }
 ];
 
