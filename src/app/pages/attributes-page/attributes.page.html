@@ -17,10 +17,10 @@
     </ion-row>
     
     <ion-row *ngFor="let attr of getAttributes()">
-      <ion-col>{{attr.adverb}}</ion-col>
-      <ion-col>{{attr.verb}}</ion-col>
-      <ion-col>{{attr.preposition}}</ion-col>
-      <ion-col>{{attr.noun}}</ion-col>
+      <ion-col>{{attr.phrase.adverb}}</ion-col>
+      <ion-col>{{attr.phrase.verb}}</ion-col>
+      <ion-col>{{attr.phrase.preposition}}</ion-col>
+      <ion-col>{{attr.phrase.noun}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
