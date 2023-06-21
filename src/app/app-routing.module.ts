@@ -50,7 +50,12 @@ const routes: Routes = [
     path: 'list-connections',
     loadChildren: () => import('./pages/connect/list-connections/list-connections.module').then( m => m.ListConnectionsPageModule)
     ,canActivate:[AuthGuard]
-  }
+  },
+  {
+    path: 'open-connection',
+    loadChildren: () => import('./pages/connect/open-connection/open-connection.module').then( m => m.OpenConnectionPageModule)
+    ,canActivate:[AuthGuard]
+  },
 ];
 
 @NgModule({
