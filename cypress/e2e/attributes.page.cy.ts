@@ -9,7 +9,7 @@ describe('check for existence of attributes page', () => {
     cy.get('[data-test="launchAttributesPageButton"]').click()
   })
 
-  // check to see if the 4 attributes columns exist
+  // check to see if the 4 attributes columns exist on the attributes page
 
   it('should display the four columns', () => {
     // Assert that the four columns exist in the grid
@@ -24,7 +24,7 @@ describe('check for existence of attributes page', () => {
 
   
 
-  // check if the four fields exist on the create attributes page
+  // check if the four input fields exist on the create attributes page
   it('check to see if the four edit fields exist', () => {
 
     cy.get('[data-test="launchCreateButton"]').should('have.length', 1)
