@@ -14,6 +14,7 @@ import { AttributesModelService } from "./_services/attributes.model.service";
 })
 export class AttributesPage implements OnInit {
 
+
   constructor(private _userService: UserService,
     private _alertService: AlertService,
     private _loadingService: LoadingService,
@@ -32,11 +33,12 @@ export class AttributesPage implements OnInit {
     })
   }
 
-   getAttributes() {
 
-    return this._attributesModelService.get();
-    
-   }
+  getAttributes() {
+    const attributes = this._attributesModelService.get(); 
+    return Object.values(attributes);
+  }
+  
     
    
 
