@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ConnectPageRoutingModule } from './connect-routing.module';
 
 import { ConnectPage } from './connect.page';
+import { SharedComponentsModule } from '../../_shared-components/shared-components/shared-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConnectPageRoutingModule
+    ConnectPageRoutingModule,
+    SharedComponentsModule
   ],
   declarations: [ConnectPage]
 })
