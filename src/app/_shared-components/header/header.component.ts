@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   @Input() public title: string = "";
+  @Input() public action: string = "";
   @Input() public actionButtonFunc: () => void;
   
   ngOnInit() {}
