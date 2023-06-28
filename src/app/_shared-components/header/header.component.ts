@@ -10,7 +10,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
+
   @Input() public title: string = "";
+  @Input() public actionButtonFunc: () => void;
+  
   ngOnInit() {}
+
+  onActionButtonClick() {
+    this.actionButtonFunc();
+  }
 
 }
