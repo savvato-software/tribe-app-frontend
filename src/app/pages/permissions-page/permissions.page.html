@@ -15,12 +15,13 @@
   <ion-item (click)="clearUser()" class="clickable"></ion-item>
   <ion-item>Assigned Roles</ion-item>
   <ng-container *ngIf="selectedSkills != []">
-    <ion-item *ngFor="let skils of selectedSkills"> {{skils}} <ion-button> X </ion-button></ion-item>    
+    <ion-item *ngFor="let skils of selectedSkills"> {{skils}} <ion-button (click)="removeSkill()" > X </ion-button></ion-item>    
   </ng-container>
   <ion-item>
     <select aria-label="additional-roles">
       <option> Options will</option>
       <option> Go Here</option>
+      <option *ngFor="let role of getListOfRoles()"> {{role}} </option>
     </select>
   </ion-item>
 </ion-content>

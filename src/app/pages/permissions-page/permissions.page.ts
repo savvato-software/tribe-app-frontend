@@ -71,6 +71,7 @@ export class PermissionsPage {
   }
 
   getListOfRoles() {
+    console.log(this._permissionsModelService.getListOfRoles(), "ts page");
     return this._permissionsModelService.getListOfRoles();
   }
 
@@ -80,6 +81,10 @@ export class PermissionsPage {
 
   cancelChanges() {
     this.router.navigate(['home']);
+  }
+
+  removeSkill() {
+
   }
 }
 
