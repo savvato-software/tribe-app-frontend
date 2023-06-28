@@ -8,6 +8,7 @@ styleUrls: ['./notifications.page.scss']
 })
 export class NotificationPage implements OnInit {
 notifications: any[];
+headerPageTitle: string = 'Notifications';
 
 constructor(private notificationService: NotificationService) {}
 
