@@ -1,11 +1,5 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Profile</ion-title>
-        <ion-buttons slot="end">
-            <ion-button color="tertiary" (click)="onEditBtnClick()">Edit</ion-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+<app-header [title]="currentTitle" [actionButtonFunc]="getEditBtnClickFunc()"></app-header>
+
 
 <ion-content>
     <ion-card class="topicCard centered" [style.position]="'absolute'">
