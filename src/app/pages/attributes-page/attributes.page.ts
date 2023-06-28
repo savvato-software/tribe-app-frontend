@@ -14,6 +14,9 @@ import { AttributesModelService } from "./_services/attributes.model.service";
 })
 export class AttributesPage implements OnInit {
 
+  currentTitle: string = 'Attributes';
+  headerPageActionButtonLabel: string = 'Create';
+
   constructor(private _userService: UserService,
     private _alertService: AlertService,
     private _loadingService: LoadingService,
@@ -66,6 +69,13 @@ export class AttributesPage implements OnInit {
   onCreateBtnClick() {
       this.navigateTo('attributes/create');
   }
+
+  getCreateBtnClickFunc() {
+    const self = this;
+    return () => {
+      self.navigateTo('attributes/create');
+    }
+}
 
   navigateTo(url?: string) {
     url = url || 'nav';
