@@ -14,7 +14,7 @@ import { AttributesModelService } from "./_services/attributes.model.service";
 })
 export class AttributesPage implements OnInit {
 
-  currentTitle: string = 'Attributes';
+  headerPageTitle: string = 'Attributes';
   headerPageActionButtonLabel: string = 'Create';
 
   constructor(private _userService: UserService,
