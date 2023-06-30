@@ -7,19 +7,19 @@ import { OpenConnectionPage } from './open-connection/open-connection.page';
 
 const routes: Routes = [
   {
-    path: 'Connect',
+    path: '',
     component: ConnectPage
   },
   // {
-  //   path: '',
+  //   path: 'Connect',
   //   loadChildren: () => import('./open-connection/open-connection.module').then( m => m.OpenConnectionPageModule)
   // },
   {
-    path: 'List-Connections',
+    path: 'list-connections',
     component: ListConnectionsPage
   },
   {
-    path: 'Open-connection',
+    path: 'open-connection',
     component: OpenConnectionPage
   }
 ];
