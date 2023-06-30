@@ -42,6 +42,10 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
 
     dirty: boolean;
 
+    headerPageTitle: string = "Edit Profile";
+    headerPageActionButtonLabel: string = 'Save';
+    headerPageSecondaryActionButtonLabel: string = 'Cancel';
+
     constructor(private _location: Location,
                 private _router: Router,
                 private _route: ActivatedRoute,
