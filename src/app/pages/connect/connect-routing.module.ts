@@ -10,10 +10,6 @@ const routes: Routes = [
     path: '',
     component: ConnectPage
   },
-  // {
-  //   path: 'Connect',
-  //   loadChildren: () => import('./open-connection/open-connection.module').then( m => m.OpenConnectionPageModule)
-  // },
   {
     path: 'list-connections',
     component: ListConnectionsPage
