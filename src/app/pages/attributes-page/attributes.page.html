@@ -1,4 +1,6 @@
-<app-header [currentPageTitle]="headerPageTitle" [primaryActionButtonLabel]="headerPageActionButtonLabel" [primaryActionButtonFunc]="getCreateBtnClickFunc()"></app-header>
+<app-header [currentPageTitle]="headerPageTitle" [displayPrimaryActionButton]="true"
+  [primaryActionButtonLabel]="headerPageActionButtonLabel" [primaryActionButtonFunc]="getCreateBtnClickFunc()"
+  [displaySecondaryActionButton]="false"></app-header>
 
 <ion-content>
   <ion-list>

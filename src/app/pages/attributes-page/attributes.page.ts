@@ -66,6 +66,7 @@ export class AttributesPage implements OnInit {
     return rtn;
   }
 
+  //Do we need this function anymore? /////////////////////////////
   onCreateBtnClick() {
       this.navigateTo('attributes/create');
   }
