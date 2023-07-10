@@ -12,8 +12,12 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   @Input() public currentPageTitle: string = "";
+
+  @Input() public displayPrimaryActionButton = false;
   @Input() public primaryActionButtonLabel: string = "";
   @Input() public primaryActionButtonFunc: () => void;
+
+  @Input() public displaySecondaryActionButton = false;
   @Input() public secondaryActionButtonLabel: string = "";
   @Input() public secondaryActionButtonFunc: () => void;
   
