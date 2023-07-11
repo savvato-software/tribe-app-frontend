@@ -32,6 +32,10 @@ import {DomainObjectPage} from "../../_common/domain-object/domain-object.page";
 })
 export class EditProfilePage extends DomainObjectPage implements OnInit
 {
+    headerPageTitle: string = "Edit Profile";
+    headerPagePrimaryActionButtonLabel: string = 'Save';
+    headerPageSecondaryActionButtonLabel: string = 'Cancel';
+    
     codeAlreadySent = false;
     model = {};
 
@@ -41,10 +45,6 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
     countries: Array<CountryPhone>;
 
     dirty: boolean;
-
-    headerPageTitle: string = "Edit Profile";
-    headerPageActionButtonLabel: string = 'Save';
-    headerPageSecondaryActionButtonLabel: string = 'Cancel';
 
     constructor(private _location: Location,
                 private _router: Router,
@@ -357,6 +357,13 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
     onCancelBtnClick() {
         console.log('Cancel Btn Clicked!');
         this._router.navigate(['/profile']);
+    }
+
+    getCancelBtnClickFunc() {
+        const self = this;
+        return () => {
+          self.navigateTo('/profile');
+        }
     }
 
     navigateTo(url?: string) {
