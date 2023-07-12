@@ -17,7 +17,7 @@ import {MenuController} from "@ionic/angular";
 export class ProfilePage implements OnInit {
 
   headerPageTitle: string = "Profile";
-  headerPagePrimaryActionButtonLabel: string = 'Edit';
+  headerPagePrimaryActionButtonText: string = 'Edit';
 
   constructor(private router: Router,
               private _profileModelService: ProfileModelService,
