@@ -33,8 +33,7 @@ import {DomainObjectPage} from "../../_common/domain-object/domain-object.page";
 export class EditProfilePage extends DomainObjectPage implements OnInit
 {
     headerPageTitle: string = "Edit Profile";
-    headerPagePrimaryActionButtonLabel: string = 'Save';
-    headerPageSecondaryActionButtonLabel: string = 'Cancel';
+    headerPageSecondaryActionButtonText: string = 'Cancel';
     
     codeAlreadySent = false;
     model = {};
