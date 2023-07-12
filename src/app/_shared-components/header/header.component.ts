@@ -14,11 +14,11 @@ export class HeaderComponent implements OnInit {
   @Input() public currentPageTitle: string = "";
 
   @Input() public displayPrimaryActionButton = false;
-  @Input() public primaryActionButtonLabel: string = "";
+  @Input() public primaryActionButtonText: string = "";
   @Input() public primaryActionButtonFunc: () => void;
 
   @Input() public displaySecondaryActionButton = false;
-  @Input() public secondaryActionButtonLabel: string = "";
+  @Input() public secondaryActionButtonText: string = "";
   @Input() public secondaryActionButtonFunc: () => void;
   
   ngOnInit() {}
