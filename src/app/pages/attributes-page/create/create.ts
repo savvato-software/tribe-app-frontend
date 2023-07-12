@@ -15,7 +15,7 @@ import { AttributesModelService } from "../_services/attributes.model.service";
 export class CreateAttributePage implements OnInit
 {
     headerPageTitle: string = 'Create Attribute';
-    headerPageSecondaryActionButtonLabel: string = 'Cancel';
+    headerPageSecondaryActionButtonText: string = 'Cancel';
     
     // update the local value with the input that is typed in
     inputAdverbTxt: string = ''
