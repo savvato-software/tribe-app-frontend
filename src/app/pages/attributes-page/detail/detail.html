@@ -1,4 +1,7 @@
 <app-header [currentPageTitle]="headerPageTitle" [displaySecondaryActionButton]="true"
-  [secondaryActionButtonText]="headerPageSecondaryActionButtonText" [secondaryActionButtonFunc]="getCancelBtnClickFunc()"></app-header>
+    [secondaryActionButtonText]="headerPageSecondaryActionButtonText"
+    [secondaryActionButtonFunc]="getCancelBtnClickFunc()"></app-header>
 
-  <ion-button color="tertiary" (click)="onEditBtnClicked()" [disabled]="!isEditBtnEnabled()">Edit</ion-button>
+<ion-content>
+    <ion-button color="tertiary" (click)="onEditBtnClicked()" [disabled]="!isEditBtnEnabled()">Edit</ion-button>
+</ion-content>
