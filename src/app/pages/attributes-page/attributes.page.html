@@ -1,6 +1,7 @@
 <app-header [currentPageTitle]="headerPageTitle" [displayPrimaryActionButton]="true"
   [primaryActionButtonText]="headerPagePrimaryActionButtonText" [primaryActionButtonFunc]="getCreateBtnClickFunc()"></app-header>
-
+<!-- works if it's on this page   data-test="launchCreateButton" -->
+<!-- [primaryActionButtonDataTestSelectorText]="launchCreateButton" -->
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let attr of getAttributes()">
