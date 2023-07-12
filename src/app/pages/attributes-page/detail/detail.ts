@@ -8,8 +8,15 @@ import {DomainObjectPage} from "../../_common/domain-object/domain-object.page";
 })
 export class DetailAttributePage extends DomainObjectPage implements OnInit
 {
+    headerPageTitle: string = 'Detail Attribute';
+    headerPageSecondaryActionButtonText: string = 'Cancel';
+
     onCancelBtnClick() {
 
+    }
+
+    getCancelBtnClickFunc() {
+        
     }
 
     onEditBtnClicked() {
