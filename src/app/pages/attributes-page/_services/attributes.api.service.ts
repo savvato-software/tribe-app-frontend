@@ -31,14 +31,14 @@ export class AttributesApiService {
 
         return new Promise(
             (resolve, reject) => {
-                // this._apiService.post(url, data).subscribe(
-                //     (_data) => {
-                //         console.log('save attribute to server' + ' was successful --> ' + _data);
+                this._apiService.post(url, data).subscribe(
+                    (_data) => {
+                        console.log('save attribute to server' + ' was successful --> ' + _data);
                         resolve({ "successful": {status: true} });
-                        // resolve({ "successful": _data });
-                //     }, (err) => {
-                //         reject(err);
-                //     });
+                        resolve({ "successful": _data });
+                    }, (err) => {
+                        reject(err);
+                    });
             });
     }
 }
