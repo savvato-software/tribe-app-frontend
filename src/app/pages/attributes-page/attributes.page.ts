@@ -14,38 +14,33 @@ import { AttributesModelService } from "./_services/attributes.model.service";
 })
 export class AttributesPage implements OnInit {
 
+
   constructor(private _userService: UserService,
     private _alertService: AlertService,
     private _loadingService: LoadingService,
     private _attributesModelService: AttributesModelService,
     private router: Router) { }
 
-  ngOnInit() {
-
+  public ngOnInit() {
+ 
   }
+
+  ionViewWillEnter() {
+    this._loadingService.show({message: "..loading.."}).then(() => {
+      this._attributesModelService.init().then(() => {
+        this._loadingService.dismiss();
+      })
+    })
+  }
+
 
   getAttributes() {
-    // await this._attributesModelService.getAttributesByUser();
-
-    return [
-        {
-            "phrase": {
-                "adverb": "competitively",
-                "verb": "writes",
-                "preposition": null,
-                "noun": "code"
-            }
-        },
-        {
-            "phrase": {
-                "adverb": null,
-                "verb": "plays",
-                "preposition": null,
-                "noun": "chess"
-            }
-        }
-    ];
+    const attributes = this._attributesModelService.get(); 
+    return Object.values(attributes);
   }
+  
+    
+   
 
   getAttrString(attr) {
     let rtn = "";
