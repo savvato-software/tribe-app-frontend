@@ -16,7 +16,6 @@ export class AttributesPage implements OnInit {
 
   headerPageTitle: string = 'Attributes';
   headerPagePrimaryActionButtonText: string = 'Create';
-  testDataText: string = 'launchCreateButton';
 
   constructor(private _userService: UserService,
     private _alertService: AlertService,

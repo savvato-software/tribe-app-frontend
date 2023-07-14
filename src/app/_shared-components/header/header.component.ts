@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   @Input() public displayPrimaryActionButton = false;
   @Input() public primaryActionButtonText: string = "";
   @Input() public primaryActionButtonFunc: () => void;
-  @Input() public primaryActionButtonDataTestSelectorText: string = ""; //doesn't send to header html
 
   @Input() public displaySecondaryActionButton = false;
   @Input() public secondaryActionButtonText: string = "";
