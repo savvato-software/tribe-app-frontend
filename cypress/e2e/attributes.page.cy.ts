@@ -27,8 +27,8 @@ describe('check for existence of attributes page', () => {
   // check if the four input fields exist on the create attributes page
   it('check to see if the four edit fields exist', () => {
 
-    cy.get('[data-test="primaryActionButtonDataTestSelectorText"]').should('have.length', 1)
-    cy.get('[data-test="primaryActionButtonDataTestSelectorText"]').click()
+    cy.get('[data-test="launchHeaderPrimaryActionButton"]').should('have.length', 1)
+    cy.get('[data-test="launchHeaderPrimaryActionButton"]').click()
 
     cy.get('[data-test="inputAdverbField"]').should('have.length', 1)
     cy.get('[data-test="inputVerbField"]').should('have.length', 1)
