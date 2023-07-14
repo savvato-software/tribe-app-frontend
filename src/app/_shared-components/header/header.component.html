@@ -3,11 +3,11 @@
     <ion-buttons *ngIf="displaySecondaryActionButton" slot="start">
       <ion-menu-button></ion-menu-button>
       <!-- doesn't get test data property -->
-      <ion-button color="tertiary" (click)="onSecondaryActionButtonClick()" data-test="primaryActionButtonDataTestSelectorText">{{secondaryActionButtonText}}</ion-button>
+      <ion-button color="tertiary" (click)="onSecondaryActionButtonClick()" data-test="secondaryActionButtonDataTestSelectorText">{{secondaryActionButtonText}}</ion-button>
     </ion-buttons>
     <ion-title>{{currentPageTitle}}</ion-title>
     <ion-buttons *ngIf="displayPrimaryActionButton" slot="end">
-      <ion-button color="tertiary" (click)="onPrimaryActionButtonClick()">{{primaryActionButtonText}}</ion-button>
+      <ion-button color="tertiary" (click)="onPrimaryActionButtonClick()" data-test="primaryActionButtonDataTestSelectorText">{{primaryActionButtonText}}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
