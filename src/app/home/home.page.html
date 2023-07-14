@@ -1,9 +1,5 @@
 
-<ion-header>
-  <ion-toolbar>
-      <ion-title>Home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="currentTitle"></app-header>
 
 <ion-content>
 
@@ -13,9 +9,7 @@
   <ion-button (click)="onGoToReviewAttributesBtnClick()" fill="clear">Review Attributes</ion-button>
   <ion-button (click)="onGoToNotificationBtnClick()" fill="clear">Notifications</ion-button>
   <ion-button (click)="onGoToPermissionsBtnClick()" data-test="launchPermissionsPageButton" fill="clear">Edit Your Permissions</ion-button>
-
   <ion-button (click)="onGoToConnectBtnClick()" data-test="launchConnectPageButton" fill="clear">Connect</ion-button>
-
 </ion-content>
 
 <ion-footer>
