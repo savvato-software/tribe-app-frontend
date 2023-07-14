@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
+import { SharedComponentsModule } from '../_shared-components/shared-components/shared-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SharedComponentsModule
   ],
   declarations: [HomePage]
 })

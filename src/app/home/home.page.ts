@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
   @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>
 
   modelList: any = [];
+  currentTitle: string = "Home";
 
   constructor(private _authService:AuthService,
               private _alertService: AlertService,
