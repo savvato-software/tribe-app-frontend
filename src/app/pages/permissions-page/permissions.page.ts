@@ -18,6 +18,7 @@ import {LoadingService} from "../../_services/loading-spinner/loading.service";
 
 export class PermissionsPage {
 
+  headerPageTitle: string = 'Permissions';
 
   constructor( private router: Router,
     private _authService: AuthService,
