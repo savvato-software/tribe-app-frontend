@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewAttributesPage implements OnInit {
 
+  phraseToBeReviewed:String = "";
+  getNextPhraseButtonDisabled:boolean = false;
+  approveButtonDisabled:boolean = true;
+  rejectButtonDisabled:boolean = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -27,7 +32,10 @@ export class ReviewAttributesPage implements OnInit {
   getNextPhraseToBeReviewed() {
     const phraseTBR = {"adverb": "competitively", "verb": "writes", "preposition": "nullvalue", "noun": "code"};
     const phraseTBRAsString = this.getAttrString(phraseTBR);  
-    return phraseTBRAsString;
+    this.phraseToBeReviewed = phraseTBRAsString;
+    this.getNextPhraseButtonDisabled = true;
+    this.approveButtonDisabled = false;
+    this.rejectButtonDisabled = false;
   }
 
   getAttrString(tbr) {

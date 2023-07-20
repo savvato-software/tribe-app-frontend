@@ -6,9 +6,9 @@
 
 <ion-content>
   <ion-item>
-    <ion-input label="phrase" [value]="getNextPhraseToBeReviewed()" [readonly]="true"></ion-input>
+    <ion-input label="phrase" [value]="phraseToBeReviewed" placeholder="Click get next phrase to review" [readonly]="true"></ion-input>
   </ion-item>
-  <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="true">Get Next Phrase</ion-button>
-  <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" [disabled]="false">Approve</ion-button> <ion-button
-    color="tertiary" (click)="onRejectPhraseBtnClick()" [disabled]="false">Reject</ion-button>
+  <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="getNextPhraseButtonDisabled">Get Next Phrase</ion-button>
+  <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" [disabled]="approveButtonDisabled">Approve</ion-button>
+  <ion-button color="tertiary" (click)="onRejectPhraseBtnClick()" [disabled]="rejectButtonDisabled">Reject</ion-button>
 </ion-content>
