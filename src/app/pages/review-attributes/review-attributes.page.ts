@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AlertService } from '../../_services/alert/alert.service';
+import { LoadingService } from "../../_services/loading-spinner/loading.service";
+
 @Component({
   selector: 'app-review-attributes',
   templateUrl: './review-attributes.page.html',
@@ -7,12 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewAttributesPage implements OnInit {
 
-  phraseToBeReviewed:String = "";
-  getNextPhraseButtonDisabled:boolean = false;
-  approveButtonDisabled:boolean = true;
-  rejectButtonDisabled:boolean = true;
+  phraseToBeReviewed: String = "";
+  getNextPhraseButtonDisabled: boolean = false;
+  approveButtonDisabled: boolean = true;
+  rejectButtonDisabled: boolean = true;
 
-  constructor() { }
+  constructor(private _alertService: AlertService,
+    private _loadingService: LoadingService
+  ) { }
 
   ngOnInit() {
   }
@@ -22,7 +27,26 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onApprovePhraseBtnClick() {
-    throw new Error('Method not implemented.');
+    const self = this;
+    let msg = 'Message approved!';
+
+    self._loadingService.show({ message: msg }).then(() => {
+      self._loadingService.dismiss().then(() => {
+        self._alertService.show({
+          header: 'Alright!',
+          message: msg,
+          buttons: [{
+            text: 'OK', role: 'cancel',
+            handler: () => {
+            }
+          }]
+        })
+      })
+    })
+    this.phraseToBeReviewed = "";
+    this.getNextPhraseButtonDisabled = false;
+    this.approveButtonDisabled = true;
+    this.rejectButtonDisabled = true;
   }
 
   onGetNextPhraseBtnClick() {
@@ -30,8 +54,8 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   getNextPhraseToBeReviewed() {
-    const phraseTBR = {"adverb": "competitively", "verb": "writes", "preposition": "nullvalue", "noun": "code"};
-    const phraseTBRAsString = this.getAttrString(phraseTBR);  
+    const phraseTBR = {"adverb": "competitively", "verb": "writes", "preposition": "nullvalue", "noun": "code" };
+    const phraseTBRAsString = this.getAttrString(phraseTBR);
     this.phraseToBeReviewed = phraseTBRAsString;
     this.getNextPhraseButtonDisabled = true;
     this.approveButtonDisabled = false;
@@ -44,7 +68,7 @@ export class ReviewAttributesPage implements OnInit {
     if (tbr.adverb)
       rtn += tbr.adverb + " ";
 
-      rtn += tbr.verb + " ";
+    rtn += tbr.verb + " ";
 
     if (tbr.preposition)
       rtn += tbr.preposition + " ";
