@@ -12,4 +12,22 @@ export class ReviewAttributesPage implements OnInit {
   ngOnInit() {
   }
 
+  onRejectPhraseBtnClick() {
+    throw new Error('Method not implemented.');
+  }
+  onApprovePhraseBtnClick() {
+    throw new Error('Method not implemented.');
+  }
+  onGetNextPhraseBtnClick() {
+    this.getNextPhraseToBeReviewed();
+  }
+  getNextPhraseToBeReviewed() {
+    return [{
+      "phrase": {
+        "adverb": "competitively", "verb": "writes", "preposition": "nullvalue", "noun": "code"
+      }
+    }
+    ];
+  }
+
 }
