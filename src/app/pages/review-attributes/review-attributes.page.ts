@@ -23,7 +23,24 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onRejectPhraseBtnClick() {
-    throw new Error('Method not implemented.');
+    let alertButtons = ['OK'];
+    let alertInputs = [
+    {
+      label: 'Red',
+      type: 'radio',
+      value: 'red',
+    },
+    {
+      label: 'Blue',
+      type: 'radio',
+      value: 'blue',
+    },
+    {
+      label: 'Green',
+      type: 'radio',
+      value: 'green',
+    },
+  ];
   }
 
   onApprovePhraseBtnClick() {

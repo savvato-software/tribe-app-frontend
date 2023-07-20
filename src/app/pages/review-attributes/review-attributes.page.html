@@ -10,5 +10,13 @@
   </ion-item>
   <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="getNextPhraseButtonDisabled">Get Next Phrase</ion-button>
   <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" [disabled]="approveButtonDisabled">Approve</ion-button>
-  <ion-button color="tertiary" (click)="onRejectPhraseBtnClick()" [disabled]="rejectButtonDisabled">Reject</ion-button>
+  <ion-button id="reject" color="tertiary" (click)="onRejectPhraseBtnClick()" [disabled]="rejectButtonDisabled">Reject</ion-button>
+    <ion-alert
+    trigger="reject"
+    header="Select your favorite color"
+    [buttons]="alertButtons"
+    [inputs]="alertInputs"
+  ></ion-alert>
+
 </ion-content>
+
