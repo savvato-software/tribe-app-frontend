@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'open-connection',
     component: OpenConnectionPage
+  },
+  {
+    path: 'accept-new-connection',
+    loadChildren: () => import('./accept-new-connection/accept-new-connection.module').then( m => m.AcceptNewConnectionPageModule)
   }
 ];
 

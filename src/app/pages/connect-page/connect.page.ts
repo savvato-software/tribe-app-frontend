@@ -26,4 +26,8 @@ export class ConnectPage implements OnInit {
     this.router.navigate(['/connect/accept-new-connection'])
   }
 
+  onGoToOpenAcceptNewConnectionBtnClick() {
+    this.router.navigate(['/connect/accept-new-connection'])
+  }
+
 }
