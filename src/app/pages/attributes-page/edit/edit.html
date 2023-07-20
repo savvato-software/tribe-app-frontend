@@ -1,11 +1,7 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-button (click)="onCancelBtnClick()">Cancel</ion-button>
-        </ion-buttons>
-        <ion-title>Edit Attribute</ion-title>
-        <ion-buttons slot="end">
-            <ion-button color="tertiary" (click)="onSaveBtnClicked()" [disabled]="!isSaveBtnEnabled()">Save</ion-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+<app-header [currentPageTitle]="headerPageTitle" [displaySecondaryActionButton]="true"
+    [secondaryActionButtonText]="headerPageSecondaryActionButtonText"
+    [secondaryActionButtonFunc]="getCancelBtnClickFunc()"></app-header>
+
+<ion-content>
+    <ion-button color="tertiary" (click)="onSaveBtnClicked()" [disabled]="!isSaveBtnEnabled()">Save</ion-button>
+</ion-content>
