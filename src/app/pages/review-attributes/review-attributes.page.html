@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-item>
-    <ion-input label="phrase" value="testing" [readonly]="true"></ion-input>
+    <ion-input label="phrase" [value]="getNextPhraseToBeReviewed()" [readonly]="true"></ion-input>
   </ion-item>
   <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="true">Get Next Phrase</ion-button>
   <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" [disabled]="false">Approve</ion-button> <ion-button
