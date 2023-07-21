@@ -43,4 +43,30 @@ describe('check for inputs and buttons on review attributes page', () => {
 
     })
 
+    // display alert after reject button clicked (expect: mock data option "doesn't make sense")
+    it('should display an alert after reject button clicked', () => {
+
+        // click get next phrase button
+        cy.get('[data-test="launchGetNextPhraseBtn"]').should('have.length', 1)
+        cy.get('[data-test="launchGetNextPhraseBtn"]').click()
+        
+        // click reject button
+        cy.get('[data-test="launchRejectBtn"]').should('have.length', 1)
+        cy.get('[data-test="launchRejectBtn"]').click()
+
+        // Assert that the alert is displayed
+        cy.get('ion-alert').should('be.visible');
+
+        // Interact with the elements inside the alert
+        cy.get('ion-alert')
+            .within(() => {
+                cy.get('button').contains("doesn\'t make sense").click(); 
+                cy.get('button').contains('OK').click(); // dismiss alert to continue any following tests
+            });
+
+        // Assert that the alert is no longer visible (it has been dismissed)
+        cy.get('ion-alert').should('not.exist');
+
+    })
+
 })
