@@ -9,6 +9,8 @@
     <ion-input label="phrase" [value]="phraseToBeReviewed" placeholder="Click get next phrase to review" [readonly]="true"></ion-input>
   </ion-item>
   <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="getNextPhraseButtonDisabled">Get Next Phrase</ion-button>
-  <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" [disabled]="approveButtonDisabled">Approve</ion-button>
-  <ion-button id="reject" color="tertiary" (click)="onRejectPhraseBtnClick()" [disabled]="rejectButtonDisabled">Reject</ion-button>
+  <ion-buttons *ngIf="approveAndRejectButtonDisplayed">
+    <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" >Approve</ion-button>
+    <ion-button id="reject" color="tertiary" (click)="onRejectPhraseBtnClick()" >Reject</ion-button>
+  </ion-buttons>
 </ion-content>

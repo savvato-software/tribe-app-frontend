@@ -11,8 +11,7 @@ export class ReviewAttributesPage implements OnInit {
 
   phraseToBeReviewed: String = "";
   getNextPhraseButtonDisabled: boolean = false;
-  approveButtonDisabled: boolean = true;
-  rejectButtonDisabled: boolean = true;
+  approveAndRejectButtonDisplayed: boolean = false;
 
   constructor(private _alertService: AlertService) { }
 
@@ -47,8 +46,7 @@ export class ReviewAttributesPage implements OnInit {
 
     this.phraseToBeReviewed = "";
     this.getNextPhraseButtonDisabled = false;
-    this.approveButtonDisabled = true;
-    this.rejectButtonDisabled = true;
+    this.approveAndRejectButtonDisplayed = false;
   }
 
   onApprovePhraseBtnClick() {
@@ -65,8 +63,7 @@ export class ReviewAttributesPage implements OnInit {
 
     this.phraseToBeReviewed = "";
     this.getNextPhraseButtonDisabled = false;
-    this.approveButtonDisabled = true;
-    this.rejectButtonDisabled = true;
+    this.approveAndRejectButtonDisplayed = false;
   }
 
   onGetNextPhraseBtnClick() {
@@ -76,12 +73,11 @@ export class ReviewAttributesPage implements OnInit {
   getNextPhraseToBeReviewed() {
     //mock data
     const phraseTBR = {"adverb": "competitively", "verb": "writes", "preposition": "nullvalue", "noun": "code" };
-    
+
     const phraseTBRAsString = this.getAttrString(phraseTBR);
     this.phraseToBeReviewed = phraseTBRAsString;
     this.getNextPhraseButtonDisabled = true;
-    this.approveButtonDisabled = false;
-    this.rejectButtonDisabled = false;
+    this.approveAndRejectButtonDisplayed = true;
   }
 
   getAttrString(tbr) {
