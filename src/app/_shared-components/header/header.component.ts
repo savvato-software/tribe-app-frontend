@@ -10,7 +10,25 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-  @Input() public title: string = "";
+  
+  @Input() public currentPageTitle: string = "";
+
+  @Input() public displayPrimaryActionButton = false;
+  @Input() public primaryActionButtonText: string = "";
+  @Input() public primaryActionButtonFunc: () => void;
+
+  @Input() public displaySecondaryActionButton = false;
+  @Input() public secondaryActionButtonText: string = "";
+  @Input() public secondaryActionButtonFunc: () => void;
+
   ngOnInit() {}
+
+  onPrimaryActionButtonClick() {
+    this.primaryActionButtonFunc();
+  }
+
+  onSecondaryActionButtonClick() {
+    this.secondaryActionButtonFunc();
+  }
 
 }

@@ -1,11 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Attributes</ion-title>
-    <ion-buttons slot="end">
-      <ion-button color="tertiary" (click)="onCreateBtnClick()" data-test="launchCreateButton">Create</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header [currentPageTitle]="headerPageTitle" [displayPrimaryActionButton]="true"
+  [primaryActionButtonText]="headerPagePrimaryActionButtonText" [primaryActionButtonFunc]="getCreateBtnClickFunc()"></app-header>
 
 <ion-content>
   <ion-grid [fixed]="true">

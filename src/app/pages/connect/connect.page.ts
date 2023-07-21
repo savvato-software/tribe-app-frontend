@@ -11,6 +11,8 @@ export class ConnectPage implements OnInit {
   constructor(
     private router: Router) { }
 
+  headerPageTitle: string = 'Connect';
+
   ngOnInit() {
   }
 

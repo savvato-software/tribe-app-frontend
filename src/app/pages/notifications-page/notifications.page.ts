@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from './_service/notifications.api.service';
 
 @Component({
-selector: 'page-notification',
-templateUrl: './notifications.page.html',
-styleUrls: ['./notifications.page.scss']
+  selector: 'page-notification',
+  templateUrl: './notifications.page.html',
+  styleUrls: ['./notifications.page.scss']
 })
 export class NotificationPage implements OnInit {
-notifications: any[];
+  notifications: any[];
+  headerPageTitle: string = 'Notifications';
 
-constructor(private notificationService: NotificationService) {}
+  constructor(private notificationService: NotificationService) { }
 
   ngOnInit() {
     // Call the getMessages() method of the notification service to load all notifications

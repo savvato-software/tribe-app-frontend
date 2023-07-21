@@ -1,22 +1,18 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Notifications</ion-title>
-    </ion-toolbar>
-</ion-header>
+<app-header [currentPageTitle]="headerPageTitle"></app-header>
+
 <ion-content>
-    <ng-container *ngIf="notifications.length > 0; else noNotifications">
-      <ion-list>
-        <ion-item *ngFor="let notification of notifications"
-                  appLongPress (longPress)="onDeleteNotification(notification.id)"
-                  (click)="onShowMoreInfo(notification)"
-                  [class.long-press]="isPressed" >
-          <ion-icon slot="start" [name]="getIcon(notification)"></ion-icon>
-          <ion-label>{{ notification.text }}</ion-label>
-        </ion-item>
-      </ion-list>
-    </ng-container>
-  
-    <ng-template #noNotifications>
-      <div>No new notifications</div>
-    </ng-template>
-  </ion-content>
+  <ng-container *ngIf="notifications.length > 0; else noNotifications">
+    <ion-list>
+      <ion-item *ngFor="let notification of notifications" appLongPress
+        (longPress)="onDeleteNotification(notification.id)" (click)="onShowMoreInfo(notification)"
+        [class.long-press]="isPressed">
+        <ion-icon slot="start" [name]="getIcon(notification)"></ion-icon>
+        <ion-label>{{ notification.text }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-template #noNotifications>
+    <div>No new notifications</div>
+  </ng-template>
+</ion-content>
