@@ -36,7 +36,10 @@ export class ReviewAttributesPage implements OnInit {
               return {
                   type: 'radio',
                   label: rsn.reason,
-                  value: rsn.reason
+                  value: rsn.reason,
+                  handler: (data) => {
+                    console.log('User choice: ', data.value);
+                  }
               }
           }, self),
       buttons: [{
