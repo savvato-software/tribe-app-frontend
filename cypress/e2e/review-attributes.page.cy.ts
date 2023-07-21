@@ -9,4 +9,9 @@ describe('check for inputs and buttons on review attributes page', () => {
         cy.get('[data-test="launchToBeReviewedPageButton"]').click()
     })
 
+    // display placeholder text in input field (expect: Click get next phrase to review)
+    it('should display placeholder text in input field', () => {
+        cy.get('input[placeholder*="Click get next phrase to review"]')
+    })
+
 })
