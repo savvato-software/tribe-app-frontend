@@ -62,7 +62,7 @@ export class ReviewAttributesPage implements OnInit {
       }
       }]
     })
-    
+
     this.phraseToBeReviewed = "";
     this.getNextPhraseButtonDisabled = false;
     this.approveButtonDisabled = true;
@@ -74,7 +74,9 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   getNextPhraseToBeReviewed() {
+    //mock data
     const phraseTBR = {"adverb": "competitively", "verb": "writes", "preposition": "nullvalue", "noun": "code" };
+    
     const phraseTBRAsString = this.getAttrString(phraseTBR);
     this.phraseToBeReviewed = phraseTBRAsString;
     this.getNextPhraseButtonDisabled = true;
