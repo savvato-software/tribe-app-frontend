@@ -20,32 +20,42 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onRejectPhraseBtnClick() {
-    let alertButtons = ['OK'];
-    let alertInputs = [
-    {
-      label: 'Red',
-      type: 'radio',
-      value: 'red',
-    },
-    {
-      label: 'Blue',
-      type: 'radio',
-      value: 'blue',
-    },
-    {
-      label: 'Green',
-      type: 'radio',
-      value: 'green',
-    },
-  ];
+    //mock data
+    const reasons = [
+      {"id": 1, "reason": "approved"},
+      {"id": 2, "reason": "doesn't make sense"},
+      {"id": 3, "reason": "vulgar"}];
+
+    const self = this;
+
+    self._alertService.show({
+      header: 'Message rejected',
+      subheader: 'Choose a reason why:',
+      inputs: reasons.map((rsn) => {
+              return {
+                  type: 'radio',
+                  label: rsn.reason,
+                  value: rsn.reason
+              }
+          }, self),
+      buttons: [{
+        text: 'OK', role: 'cancel',
+        handler: () => {
+        }
+        }]
+    })
+
+    this.phraseToBeReviewed = "";
+    this.getNextPhraseButtonDisabled = false;
+    this.approveButtonDisabled = true;
+    this.rejectButtonDisabled = true;
   }
 
   onApprovePhraseBtnClick() {
     const self = this;
     let msg = 'Message approved!';
     self._alertService.show({
-    header: 'Alright!',
-    message: msg,
+    header: msg,
     buttons: [{
       text: 'OK', role: 'cancel',
       handler: () => {
