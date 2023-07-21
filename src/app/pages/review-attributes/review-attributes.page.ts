@@ -9,6 +9,8 @@ import { AlertService } from '../../_services/alert/alert.service';
 })
 export class ReviewAttributesPage implements OnInit {
 
+  headerPageTitle: string = 'Review Attributes';
+
   phraseToBeReviewed: String = "";
   getNextPhraseButtonDisabled: boolean = false;
   approveAndRejectButtonDisplayed: boolean = false;
