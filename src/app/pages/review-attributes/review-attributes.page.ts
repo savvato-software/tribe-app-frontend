@@ -53,15 +53,16 @@ export class ReviewAttributesPage implements OnInit {
 
   onApprovePhraseBtnClick() {
     const self = this;
-    let msg = 'Message approved!';
+
     self._alertService.show({
-    header: msg,
+    header: 'Message approved!',
     buttons: [{
       text: 'OK', role: 'cancel',
       handler: () => {
       }
       }]
     })
+    
     this.phraseToBeReviewed = "";
     this.getNextPhraseButtonDisabled = false;
     this.approveButtonDisabled = true;
