@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnectPage implements OnInit {
 
+  headerPageTitle: string = 'Connect';
+
   constructor() { }
 
   ngOnInit() {
