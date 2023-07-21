@@ -6,7 +6,7 @@
   </ion-item>
   <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="getNextPhraseButtonDisabled" data-test="launchGetNextPhraseBtn">Get Next Phrase</ion-button>
   <ion-buttons *ngIf="approveAndRejectButtonDisplayed">
-    <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" >Approve</ion-button>
+    <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" data-test="launchApproveBtn">Approve</ion-button>
     <ion-button id="reject" color="tertiary" (click)="onRejectPhraseBtnClick()" >Reject</ion-button>
   </ion-buttons>
 </ion-content>

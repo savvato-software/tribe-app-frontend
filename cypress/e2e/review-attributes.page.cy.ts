@@ -22,4 +22,25 @@ describe('check for inputs and buttons on review attributes page', () => {
 
     })
 
+    // display alert after approve button clicked
+    it('should display an alert after approve button clicked', () => {
+        
+        // click approve button
+        cy.get('[data-test="launchApproveBtn"]').should('have.length', 1)
+        cy.get('[data-test="launchApproveBtn"]').click()
+
+        // Assert that the alert is displayed
+        cy.get('ion-alert').should('be.visible');
+
+        // Interact with the elements inside the alert
+        cy.get('ion-alert')
+            .within(() => {
+                cy.get('button').contains('OK').click(); // dismiss alert to continue any following tests
+            });
+
+        // Assert that the alert is no longer visible (it has been dismissed)
+        cy.get('ion-alert').should('not.exist');
+
+    })
+
 })
