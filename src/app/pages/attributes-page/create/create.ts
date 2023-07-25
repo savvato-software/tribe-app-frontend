@@ -70,19 +70,33 @@ export class CreateAttributePage implements OnInit
 
             self._attributesModelService.save(self.model).then(() => {
                 self._loadingService.dismiss().then(() => {
-                    self._alertService.show({
-                        header: 'Success!',
-                        message: "Attribute has been applied!",
-                        buttons: [{
-                            text: 'OK', role: 'cancel',
-                            handler: () => {
-                                self.navigateTo('/attributes')
-                            }
-                        }]
-                    })
-                })
+                    if (result === true) {
+                        self._alertService.show({
+                            header: 'Success!',
+                            message: "Attribute has been applied!",
+                            buttons: [{
+                                text: 'OK', role: 'cancel',
+                                handler: () => {
+                                    self.navigateTo('/attributes')
+                                }
+                            }]
+                        });
+                    } else {
+                        self._alertService.show({
+                            header: 'In Review',
+                            message: "We have not seen this attribute before, it is in review. We will add it to your profile once it is approved.",
+                            buttons: [{
+                                text: 'OK',
+                                role: 'cancel',
+                                handler: () => {
+                                    self.navigateTo('/attributes');
+                                }
+                            }]
+                        });
+                    }
+                });
             });
-        })
+        });
     }
 
     navigateTo(url?: string) {
