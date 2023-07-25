@@ -71,12 +71,12 @@ export class CreateAttributePage implements OnInit
             self._attributesModelService.save(self.model).then(() => {
                 self._loadingService.dismiss().then(() => {
                     self._alertService.show({
-                        header: 'Alright!',
-                        message: "Success! Phrase Added!",
+                        header: 'Success!',
+                        message: "Attribute has been applied!",
                         buttons: [{
                             text: 'OK', role: 'cancel',
                             handler: () => {
-                                //this._router.navigate(['/attributes']);
+                                self.navigateTo('/attributes')
                             }
                         }]
                     })

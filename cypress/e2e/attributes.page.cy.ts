@@ -12,7 +12,7 @@ describe('check for existence of attributes page', () => {
   // check to see if the 4 attributes columns exist on the attributes page
 
   it('should display the four columns', () => {
-    // Assert that the four columns exist in the grid
+  
     cy.get('ion-grid').within(() => {
       cy.get('ion-row.header-row')
         .should('contain', 'Adverb')
@@ -104,8 +104,5 @@ describe('check for existence of attributes page', () => {
     cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
   })
-
-
-  // check to see if the new attributes are displayed in the grid on the attributes page
 
 })
