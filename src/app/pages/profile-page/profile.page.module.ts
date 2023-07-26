@@ -8,6 +8,7 @@ import { ProfilePageRoutingModule } from './profile.page-routing.module';
 
 import { ProfilePage } from './profile.page';
 import { EditProfilePage } from "./edit/edit";
+import { SharedComponentsModule } from '../../_shared-components/shared-components/shared-components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { EditProfilePage } from "./edit/edit";
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    ProfilePageRoutingModule
+    ProfilePageRoutingModule,
+    SharedComponentsModule
   ],
   declarations: [
     ProfilePage,

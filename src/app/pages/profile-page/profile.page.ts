@@ -16,6 +16,9 @@ import {MenuController} from "@ionic/angular";
 })
 export class ProfilePage implements OnInit {
 
+  headerPageTitle: string = "Profile";
+  headerPagePrimaryActionButtonText: string = 'Edit';
+
   constructor(private router: Router,
               private _profileModelService: ProfileModelService,
               private _loadingService: LoadingService,
@@ -38,6 +41,13 @@ export class ProfilePage implements OnInit {
 
   onEditBtnClick() {
     this.navigateTo('profile/edit');
+  }
+
+  getEditBtnClickFunc() {
+    const self = this;
+    return () => {
+      self.navigateTo('profile/edit');
+    }
   }
 
   getAssociatedImage() {

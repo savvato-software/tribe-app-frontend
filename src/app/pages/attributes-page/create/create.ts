@@ -14,6 +14,10 @@ import { AttributesModelService } from "../_services/attributes.model.service";
 })
 export class CreateAttributePage implements OnInit
 {
+
+    headerPageTitle: string = 'Create Attribute';
+    headerPageSecondaryActionButtonText: string = 'Cancel';
+
     // update the local value with the input that is typed in
     inputAdverbTxt: string = ''
     inputVerbTxt: string = ''
@@ -37,6 +41,13 @@ export class CreateAttributePage implements OnInit
 
     onCancelBtnClick() {
         this.navigateTo('attributes');
+    }
+
+    getCancelBtnClickFunc() {
+        const self = this;
+        return () => {
+          self.navigateTo('attributes');
+        }
     }
 
     // get the value from the input field

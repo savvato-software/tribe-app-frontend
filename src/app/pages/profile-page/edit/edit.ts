@@ -32,6 +32,10 @@ import {DomainObjectPage} from "../../_common/domain-object/domain-object.page";
 })
 export class EditProfilePage extends DomainObjectPage implements OnInit
 {
+
+    headerPageTitle: string = "Edit Profile";
+    headerPageSecondaryActionButtonText: string = 'Cancel';
+
     codeAlreadySent = false;
     model = {};
 
@@ -353,6 +357,13 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
     onCancelBtnClick() {
         console.log('Cancel Btn Clicked!');
         this._router.navigate(['/profile']);
+    }
+
+    getCancelBtnClickFunc() {
+        const self = this;
+        return () => {
+          self.navigateTo('/profile');
+        }
     }
 
     navigateTo(url?: string) {
