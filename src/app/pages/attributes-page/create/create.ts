@@ -70,7 +70,7 @@ export class CreateAttributePage implements OnInit
 
             self._attributesModelService.save(self.model).then(() => {
                 self._loadingService.dismiss().then(() => {
-                    if (result === true) {
+                    if (self.model === true) {
                         self._alertService.show({
                             header: 'Success!',
                             message: "Attribute has been applied!",

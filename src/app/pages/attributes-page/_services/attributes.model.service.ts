@@ -24,11 +24,13 @@ export class AttributesModelService {
             this._attributesApiService.getAttributesByUser().then(
                 (rtn) => {
                     this.model = rtn;
-                    // console.log('Retrieved data:', this.model);
                     resolve(rtn);
+                },
+                (err) => {
+                    reject(err);
                 }
-            )
-        })
+            );
+        });
     }
 
 
@@ -41,10 +43,11 @@ export class AttributesModelService {
             this._attributesApiService.save(model).then(
                 (rtn) => {
                     console.log("Call to attributeApiService was successful");
-                    resolve({"successful": rtn});
+                    resolve(true); //Resolve with true for success
                 },
                 (err) => {
-                    reject(err);
+                    console.error("Call to attributeApiService failed:", err);
+                    resolve(false); //Resolve with false for failure    
                 }
             );
         });
