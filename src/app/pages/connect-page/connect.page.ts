@@ -17,7 +17,19 @@ export class ConnectPage implements OnInit {
   }
 
   onGoToListConnectionsBtnClick() {
-    this.router.navigate(['/list-connections'])
+    this.router.navigate(['/connect/list-connections'])
+  }
+
+  onGoToOpenConnectionBtnClick() {
+    this.router.navigate(['/connect/open-connection'])
+  }
+
+  onGoToAcceptNewConnectionBtnClick() {
+    this.router.navigate(['/connect/accept-new-connection'])
+  }
+
+  onGoToOpenAcceptNewConnectionBtnClick() {
+    this.router.navigate(['/connect/accept-new-connection'])
   }
 
 }
