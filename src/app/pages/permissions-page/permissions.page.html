@@ -15,9 +15,8 @@
   </ng-container>
   <ion-item>
     <select aria-label="additional-roles">
-      <option> Options will</option>
-      <option> Go Here</option>
-      <option *ngFor="let role of getListOfRoles()"> {{role}} </option>
+
+      <option *ngFor="let role of getListOfRoles()"> {{role.name}} </option>
     </select>
   </ion-item>
 </ion-content>
