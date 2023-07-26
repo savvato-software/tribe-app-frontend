@@ -43,12 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'connect',
-    loadChildren: () => import('./pages/connect/connect.module').then( m => m.ConnectPageModule)
-    ,canActivate:[AuthGuard]
-  },
-  {
-    path: 'list-connections',
-    loadChildren: () => import('./pages/connect/list-connections/list-connections.module').then( m => m.ListConnectionsPageModule)
+    loadChildren: () => import('./pages/connect-page/connect.module').then( m => m.ConnectPageModule)
     ,canActivate:[AuthGuard]
   }
 ];
