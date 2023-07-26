@@ -38,21 +38,21 @@ export class PermissionsPage {
 
   hasUser = false;
 
+  role = [];
+
   selectedSkills = [];
 
   theCurrentUser = this.getUser();
 
   selectedUser = {};
-
-  
   
   selectUser(user) {
-    let role = [];
+    this.role = [];
     for (let i of user.roles){
-    role.push(i.name);
+    this.role.push(i.name);
     }
     this.selectedUser = user;
-    this.selectedSkills = role;
+    this.selectedSkills = this.role;
     this.hasUser = true;
   }
   

@@ -12,7 +12,7 @@ export class PermissionsApiService {
 }
 
 getListOfRoles() {
-  const url = environment.apiUrl + '/api/permissions/user-roles/';
+  const url = environment.apiUrl + '/api/permissions/user-roles-list/';
 
   const rtn = new Promise(
     (resolve, reject) => {
