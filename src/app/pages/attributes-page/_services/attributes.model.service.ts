@@ -47,7 +47,7 @@ export class AttributesModelService {
                 },
                 (err) => {
                     console.error("Call to attributeApiService failed:", err);
-                    resolve(false); //Resolve with false for failure    
+                    reject(false); //Resolve with false for failure    
                 }
             );
         });
