@@ -24,7 +24,6 @@ export class AttributesModelService {
             this._attributesApiService.getAttributesByUser().then(
                 (rtn) => {
                     this.model = rtn;
-                    // console.log('Retrieved data:', this.model);
                     resolve(rtn);
                 }
             )

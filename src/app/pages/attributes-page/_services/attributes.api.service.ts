@@ -37,15 +37,11 @@ export class AttributesApiService {
         return new Promise((resolve, reject) => {
             this._apiService.post(url, data).subscribe(
                 (response: any) => {
-                    // Assume that the response contains a property named 'success' indicating whether the phrase is reviewed (true) or in review (false).
-                    // Adjust the property name as needed based on the actual response from the backend.
                     const isPhraseReviewed = response.success;
     
-                    // Resolve with the boolean value indicating whether the phrase is reviewed or in review
                     resolve(isPhraseReviewed);
                 },
                 (err) => {
-                    // Handle any errors that occurred during the API call
                     reject(err);
                 }
             );
