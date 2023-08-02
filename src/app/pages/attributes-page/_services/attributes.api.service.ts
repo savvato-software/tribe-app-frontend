@@ -26,7 +26,7 @@ export class AttributesApiService {
     }
 
     save(model) {
-        const url = environment.apiUrl + '/api/attributes';
+        const url = environment.apiUrl + '/api/attributes' + model['userId'];
         let data = {
             'adverb': model['inputAdverbTxt'],
             'verb': model['inputVerbTxt'],
@@ -37,7 +37,7 @@ export class AttributesApiService {
         return new Promise((resolve, reject) => {
             this._apiService.post(url, data).subscribe(
                 (response: any) => {
-                    const isPhraseReviewed = response.success;
+                    const isPhraseReviewed = response;
     
                     resolve(isPhraseReviewed);
                 },
