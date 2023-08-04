@@ -64,10 +64,16 @@ export class CreateAttributePage implements OnInit
 
     applyPhraseToUser() {
         const self = this;
+        const model:any = {"inputAdverbText": this.inputAdverbTxt,
+                        "inputVerbText": this.inputVerbTxt, 
+                        "inputPrepositionText": this.inputPrepositionTxt, 
+                        "inputNounText": this.inputNounTxt};
         let msg = 'Saving your attributes!';
+
+        
     
         self._loadingService.show({ message: msg }).then(() => {
-            self._attributesModelService.save(self.model).then((isPhraseReviewed: boolean) => {
+            self._attributesModelService.save(model).then((isPhraseReviewed: boolean) => {
                 self._loadingService.dismiss().then(() => {
                     if (isPhraseReviewed === true) {
                         self._alertService.show({
