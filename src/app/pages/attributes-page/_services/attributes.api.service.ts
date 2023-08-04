@@ -26,12 +26,12 @@ export class AttributesApiService {
     }
 
     save(model) {
-        const url = environment.apiUrl + '/api/attributes' + model['userId'];
+        const url = environment.apiUrl + '/api/attributes/';
         let data = {
-            'adverb': model['inputAdverbTxt'],
-            'verb': model['inputVerbTxt'],
-            'preposition': model['inputPrepositionTxt'],
-            'noun': model['inputNounTxt']
+            'adverb': model['inputAdverbText'],
+            'verb': model['inputVerbText'],
+            'preposition': model['inputPrepositionText'],
+            'noun': model['inputNounText']
         };
     
         return new Promise((resolve, reject) => {
