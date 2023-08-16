@@ -3,25 +3,32 @@ describe('check for existence of attributes page', () => {
   // get to attributes page
   it('navigate to attributes page', () => {
     cy.visit('http://localhost:8100/login')
-    cy.get('[data-test="submitButton"]').click()
+    cy.get('[data-test="sign-in-btn"]').click()
     
     cy.get('[data-test="launchAttributesPageButton"]').should('have.length', 1)
     cy.get('[data-test="launchAttributesPageButton"]').click()
   })
 
-  // Requirement is that for each field the value in the field should be copied to output when you click the field's button
-  // I am using a single variable and should be using multiple variables
-  // Test - deeper cases - off the happy path 
+  // check to see if the 4 attributes columns exist on the attributes page
 
-  // check for four input fields 
-  // typing something in one of those fields and then hit a button then read value from read only field and compare that value to what was typed into that field
+  it('should display the four columns', () => {
+    // Assert that the four columns exist in the grid
+    cy.get('ion-grid').within(() => {
+      cy.get('ion-row.header-row')
+        .should('contain', 'Adverb')
+        .and('contain', 'Verb')
+        .and('contain', 'Preposition')
+        .and('contain', 'Noun')
+    })
+  }) 
+
   
-  // check if the four fields exist on the attributes page
-  // How do I check to see if they exist on the attributes page
-  it('check to see if the four fields exist', () => {
 
-    cy.get('[data-test="launchCreateButton"]').should('have.length', 1)
-    cy.get('[data-test="launchCreateButton"]').click()
+  // check if the four input fields exist on the create attributes page
+  it('check to see if the four edit fields exist', () => {
+
+    cy.get('[data-test="launchHeaderPrimaryActionButton"]').should('have.length', 1)
+    cy.get('[data-test="launchHeaderPrimaryActionButton"]').click()
 
     cy.get('[data-test="inputAdverbField"]').should('have.length', 1)
     cy.get('[data-test="inputVerbField"]').should('have.length', 1)
@@ -97,5 +104,8 @@ describe('check for existence of attributes page', () => {
     cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
   })
+
+
+  // check to see if the new attributes are displayed in the grid on the attributes page
 
 })

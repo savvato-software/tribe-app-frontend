@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NotificationService {
 
+
     constructor(private http: HttpClient) {}
-    //How do I get userID?
 
     getMessages(userId: any): Observable<any[]> {
         const apiNotificationUrl = `${environment.apiUrl}/api/notifications/user/${userId}`;
@@ -19,4 +19,3 @@ export class NotificationService {
 
     // deleteMessage(id: number): Observable<any> {}
     }
-

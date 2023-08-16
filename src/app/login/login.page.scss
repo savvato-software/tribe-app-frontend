@@ -1,14 +1,20 @@
 ion-content {
-  --background: url(/assets/img/voting-background.png);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ion-card {
-  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.logo {
-  width: 72%;
+form {
   margin-top: 3rem;
+  width: 100%;
 }
 
 ion-item:not(:first-child) {
@@ -20,7 +26,7 @@ ion-item:not(:first-child) {
 }
 
 ion-button {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 ion-button[type="submit"] {
@@ -28,5 +34,21 @@ ion-button[type="submit"] {
 }
 
 ion-button[fill="clear"] {
-  font-size: .9rem;
+  font-size: 0.9rem;
+}
+
+.login-logo {
+  display: flex;
+}
+
+.login-logo img {
+  max-width: 58%;
+}
+
+/* Media Query for larger screens */
+@media (min-width: 768px) {
+  .login-logo {
+    align-self: flex-start;
+    margin-right: 2rem;
+  }
 }

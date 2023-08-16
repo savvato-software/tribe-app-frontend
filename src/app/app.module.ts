@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpConfigInterceptor } from './_services/_http/interceptor.service';
 
 import { Constants } from './_constants/constants';
+import { SharedComponentsModule } from './_shared-components/shared-components/shared-components.module'
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -33,7 +34,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       SavvatoJavascriptServicesModule,
       HttpClientModule,
       AppRoutingModule,
-      HammerModule
+      HammerModule,
+      SharedComponentsModule
   ],
   providers: [
     {

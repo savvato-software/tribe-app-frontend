@@ -3,10 +3,11 @@ import { NotificationService } from './_service/notifications.api.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '@savvato-software/savvato-javascript-services';
 
+
 @Component({
-selector: 'page-notification',
-templateUrl: './notifications.page.html',
-styleUrls: ['./notifications.page.scss']
+  selector: 'page-notification',
+  templateUrl: './notifications.page.html',
+  styleUrls: ['./notifications.page.scss']
 })
 export class NotificationPage implements OnInit {
 notifications$: Observable<any[]>;
@@ -40,5 +41,3 @@ constructor(private notificationService: NotificationService,
 
   onShowMoreInfo(notification$: any) {
     console.log('More information: ', notification$);
-  }
-}

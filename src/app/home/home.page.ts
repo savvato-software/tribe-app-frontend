@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
   @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>
 
   modelList: any = [];
+  headerPageTitle: string = "Home";
 
   constructor(private _authService:AuthService,
               private _alertService: AlertService,
@@ -75,5 +76,13 @@ export class HomePage implements OnInit {
 
   onGoToPermissionsBtnClick() {
     this.router.navigate(['/permissions'])
+  }
+
+  onGoToConnectBtnClick() {
+    this.router.navigate(['/connect'])
+  }
+
+  onGoToReviewAttributesBtnClick() {
+    this.router.navigate(['/review-attributes'])
   }
 }

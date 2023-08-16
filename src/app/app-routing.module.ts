@@ -39,6 +39,12 @@ const routes: Routes = [
   {
     path: 'permissions',
     loadChildren: () => import('./pages/permissions-page/permissions.page.module').then( m => m.PermissionsPageModule)
+    ,canActivate:[AuthGuard]
+  },
+  {
+    path: 'connect',
+    loadChildren: () => import('./pages/connect/connect.module').then( m => m.ConnectPageModule)
+    ,canActivate:[AuthGuard]
   }
 ];
 

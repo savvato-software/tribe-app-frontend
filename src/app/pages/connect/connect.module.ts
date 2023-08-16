@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PermissionsPageRoutingModule } from './permissions.page-routing.module';
+import { ConnectPageRoutingModule } from './connect-routing.module';
 
-import { PermissionsPage } from './permissions.page';
+import { ConnectPage } from './connect.page';
 import { SharedComponentsModule } from '../../_shared-components/shared-components/shared-components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedComponentsModule } from '../../_shared-components/shared-componen
     CommonModule,
     FormsModule,
     IonicModule,
-    PermissionsPageRoutingModule,
+    ConnectPageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [PermissionsPage]
+  declarations: [ConnectPage]
 })
-export class PermissionsPageModule {}
+export class ConnectPageModule {}

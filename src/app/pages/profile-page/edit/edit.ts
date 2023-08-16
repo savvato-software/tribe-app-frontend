@@ -32,6 +32,10 @@ import {DomainObjectPage} from "../../_common/domain-object/domain-object.page";
 })
 export class EditProfilePage extends DomainObjectPage implements OnInit
 {
+
+    headerPageTitle: string = "Edit Profile";
+    headerPageSecondaryActionButtonText: string = 'Cancel';
+
     codeAlreadySent = false;
     model = {};
 
@@ -164,6 +168,11 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
 
     onPasswordChange($event) {
         this.model['password'] = $event.currentTarget.value;
+        this.dirty = true;
+    }
+
+    isPasswordChanged() {
+        return this._profileModelService.get()['password'] != this.model['password'];
     }
 
     getPassword() {
@@ -178,6 +187,16 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
             rtn = rtn &&
                 this.validationsForm.get('countryPhone') !== null &&
                 (!!this.validationsForm.get('countryPhone').errors === false) && this.model['phone'].length === 10;
+
+            if (rtn) {
+                atLeastOneFieldIsValid = true;
+            }
+        }
+
+         if (this.model['password']) {
+            rtn = rtn &&
+                this.validationsForm.get('password') !== null &&
+                (!!this.validationsForm.get('password').errors === false) && this.model['password'].length > 5;
 
             if (rtn) {
                 atLeastOneFieldIsValid = true;
@@ -205,10 +224,10 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
         const DEFAULT_PASSWORD = 'password11';
 
         if (self.isSaveBtnEnabled()) {
-            if (self.isPhoneChanged()) {
+            if (self.isPhoneChanged || self.isPasswordChanged()) {
                 self._alertService.show({
                     header: 'Ready for a text?',
-                    message: "Your phone number changed..<br/><br/>We're gonna send a text to your new number at " + self.model["phone"] + ". Okay?",
+                    message: "Some information changed..<br/><br/>We're gonna send a text to your number at " + self.model["phone"] + ". Okay?",
                     buttons: [
                         {
                             text: 'No', role: 'cancel', handler: () => {
@@ -257,22 +276,22 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
                     handler: (data) => {
                         if (data.code !== undefined && data.code.length > 0) {
 
-                            self._challengeCodeService.isAValidSMSChallengeCode(self.model["phone"], data.code).then((isValidSMSCC) => {
-                                if (isValidSMSCC) {
-                                    self.doTheSaveFunc();
-                                } else {
-                                    self._alertService.show({
-                                        header: 'Aargh...',
-                                        message: "That wasn't a valid code.......",
-                                        buttons: [{
-                                            text: 'Grr.',
-                                            handler: () => {
+                                self._challengeCodeService.isAValidSMSChallengeCode(self.model["phone"], data.code).then((isValidSMSCC) => {
+                                    if (isValidSMSCC) {
+                                        self.doTheSaveFunc();
+                                    } else {
+                                        self._alertService.show({
+                                            header: 'Aargh...',
+                                            message: "That wasn't a valid code.......",
+                                            buttons: [{
+                                                text: 'Grr.',
+                                                handler: () => {
 
-                                            }
-                                        }]
-                                    })
-                                }
-                            })
+                                                }
+                                            }]
+                                        })
+                                    }
+                                })
                         }
                     }
                 }]
@@ -284,33 +303,53 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
 
     doTheSaveFunc() {
         const self = this;
+        const code = self.model["data.code"]
+        const phoneNumber = self.model["phone"]
+        const pw = self.model["password"]
         let msg = '';
 
         let model =  this.model;
 
-        if (model['isImageChanged'])
-            msg = "Saving your changes! Uploading your image may seem looooonger than normal, fyi!";
-        else
-            msg = "Saving your changes!"
+        if (model['isImageChanged'] || model['isPhoneChanged'] || model['isPasswordChanged'])
+            msg = "Saving your changes!";
 
         self._loadingService.show({message: msg}).then(() => {
 
             self._profileModelService.save(this.model).then(() => {
-                self._loadingService.dismiss().then(() => {
+                if (model['isPasswordChanged'])
+                        self._userService.changeLostPassword(code, phoneNumber, pw).then(() => {
+                            self._loadingService.dismiss().then(() => {
 
-                    self._alertService.show({
-                        header: 'Alright!',
-                        message: "Changes saved!",
-                        buttons: [{
-                            text: 'OK',
-                            cssClass: 'e2e-changes-saved-btn',
-                            handler: () => {
-                                self.codeAlreadySent = false;
-                                self.navigateTo('/profile') ;
-                            }
-                        }]
-                    })
-                })
+                                self._alertService.show({
+                                    header: 'Alright!',
+                                    message: "Changes saved!",
+                                    buttons: [{
+                                        text: 'OK',
+                                        cssClass: 'e2e-changes-saved-btn',
+                                        handler: () => {
+                                            self.codeAlreadySent = false;
+                                            self.navigateTo('/profile') ;
+                                        }
+                                    }]
+                                })
+                            })
+                        });else {
+                        self._loadingService.dismiss().then(() => {
+
+                                self._alertService.show({
+                                    header: 'Alright!',
+                                    message: "Changes saved!",
+                                    buttons: [{
+                                        text: 'OK',
+                                        cssClass: 'e2e-changes-saved-btn',
+                                        handler: () => {
+                                            self.codeAlreadySent = false;
+                                            self.navigateTo('/profile') ;
+                                        }
+                                    }]
+                                })
+                        })
+                    }
             });
         })
     }
@@ -318,6 +357,13 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
     onCancelBtnClick() {
         console.log('Cancel Btn Clicked!');
         this._router.navigate(['/profile']);
+    }
+
+    getCancelBtnClickFunc() {
+        const self = this;
+        return () => {
+          self.navigateTo('/profile');
+        }
     }
 
     navigateTo(url?: string) {
