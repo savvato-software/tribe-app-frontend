@@ -11,7 +11,7 @@
   <ion-item (click)="clearUser()" class="clickable"></ion-item>
   <ion-item>Assigned Roles</ion-item>
   <ng-container *ngIf="selectedSkills != []">
-    <ion-item *ngFor="let skils of selectedSkills"> {{skils}} <ion-button (click)="removeSkill()" > X </ion-button></ion-item>    
+    <ion-item *ngFor="let skill of selectedSkills"> {{skill}} <ion-button (click)="removeSkill(skill)" > X </ion-button></ion-item>    
   </ng-container>
   <ion-item>
     <select aria-label="additional-roles">

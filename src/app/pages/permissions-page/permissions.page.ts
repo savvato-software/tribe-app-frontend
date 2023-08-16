@@ -72,8 +72,9 @@ export class PermissionsPage {
   }
 
   getListOfRoles() {
-    console.log(this._permissionsModelService.getListOfRoles(), "ts page");
-    return this._permissionsModelService.getListOfRoles();
+    let res = this._permissionsModelService.getListOfRoles();
+    
+    return res
   }
 
   saveChanges() {
@@ -84,8 +85,9 @@ export class PermissionsPage {
     this.router.navigate(['home']);
   }
 
-  removeSkill() {
-
+  removeSkill(skill) {
+    let x = this.role.indexOf(skill);
+    this.role.splice(x,1)
   }
 }
 
