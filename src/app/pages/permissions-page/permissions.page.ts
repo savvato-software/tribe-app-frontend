@@ -36,7 +36,9 @@ export class PermissionsPage {
     })
   }
 
-  hasUser = false;
+  // is dirty in model service
+
+  hasUser = true;
 
   role = [];
 

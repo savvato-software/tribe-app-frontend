@@ -7,8 +7,9 @@ import { ModelTransformingService } from '@savvato-software/savvato-javascript-s
 })
 export class PermissionsModelService {
 
-  model: any = {};
+  model = {};
 
+  //dirty = false;
 
   constructor(
     private _modelTransformingService: ModelTransformingService,
@@ -27,13 +28,12 @@ export class PermissionsModelService {
     this._modelTransformingService.addTransformer((model, done) => {
       this._permissionsApiService.getListOfRoles().then((response2) => {
         model['listOfUserRoles'] = response2;
-        //console.log(response2, "resp2");
         done();
       })
     });
 
     this._modelTransformingService.transform(this.model);
-    //console.log(this.model, "model service");
+    
 
   }
   
@@ -44,5 +44,9 @@ export class PermissionsModelService {
   getListOfRoles() {
     return this.model['listOfUserRoles'];
   }
+
+  //isDirty() {
+  //  return this.dirty;
+  //}
 
 }

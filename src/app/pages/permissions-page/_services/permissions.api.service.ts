@@ -12,7 +12,7 @@ export class PermissionsApiService {
 }
 
 getListOfRoles() {
-  const url = environment.apiUrl + '/user-roles-list';
+  const url = environment.apiUrl + '/api/permissions/user-roles-list';
 
   const rtn = new Promise(
     (resolve, reject) => {
@@ -29,7 +29,7 @@ return rtn;
 }
 
 getListOfAllUsers() {
-  const url = environment.apiUrl + '/users';
+  const url = environment.apiUrl + '/api/permissions/users';
 
   const rtn = new Promise(
     (resolve, reject) => {
