@@ -14,6 +14,7 @@ jobs:
       - run: cp src/app/_environments/environment.dev.ts  src/app/_environments/environment.ts
       - run: ng test --no-watch --no-progress --browsers ChromeHeadless
   cypress-run:
+    runs-on: ubuntu-latest
     steps:
       - name: Cypress run
         uses: cypress-io/github-action@v5
