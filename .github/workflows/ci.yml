@@ -1,5 +1,5 @@
 name: tribeapp-frontend-ci
-on: [push]
+on: [pull_request, push]
 jobs:
   build:
     runs-on: ubuntu-latest
