@@ -41,56 +41,28 @@ describe('check for existence of attributes page', () => {
   it('check for reactivity from adverb input field', () => {
     cy.get('[data-test="inputAdverbField"]').type('competetively')
 
-    // press submit button
-    // cy.get('[data-test="submitAttributesButton"]').click()
-
-    // read value from output field
         cy.get('[data-test="inputAdverbField"]').should('have.value', 'competetively')
-
-    // clear success button
-        // cy.get('button').click()
     
   })
 
-  // check for reactivity for inputVerbField, click submit button, read value, click success button
     it('check for reactivity from verb input field', () => {
-      //  cy.wait(500); 
       cy.get('[data-test="inputVerbField"]').type('writes')
 
-    // press submit button
-    // cy.get('[data-test="submitAttributesButton"]').click()
-
-    // read value from output field
     cy.get('[data-test="inputVerbField"]').should('have.value', 'writes')
-
-    // clear success button
-        // cy.get('button').click()
-
   })
 
   // check for reactivity for inputPrepositionField, click submit button, read value, click success button
     it('check for reactivity from preposition input field', () => {
-      //  cy.wait(500); 
       cy.get('[data-test="inputPrepositionField"]').type('watermelon')
 
-    // press submit button
-    // cy.get('[data-test="submitAttributesButton"]').click()
-
-    // read value from output field
-    
     cy.get('[data-test="inputPrepositionField"]').should('have.value', 'watermelon')
-
-    // clear success button
-        // cy.get('button').click()
 
   })
 
-  // check for reactivity for inputNounField, click submit button, read value, click success button
+
     it('check for reactivity from noun input field', () => {
-      //  cy.wait(500); 
        cy.get('[data-test="inputNounField"]').type('code')
 
-        // read value from output field
     cy.get('[data-test="inputNounField"]').should('have.value', 'code')
 
   })
@@ -106,11 +78,7 @@ describe('check for existence of attributes page', () => {
     // Assert that the success message is displayed
       cy.contains('ion-alert', 'Success!').should('exist');
 
-   
-// clear success button
        cy.wait(500); cy.get('button').click()
-
-
   })
 
 })
