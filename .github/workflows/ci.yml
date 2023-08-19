@@ -21,6 +21,7 @@ jobs:
     # Copy environment.dev.ts to environment.ts
 #     - name: Copy environment.dev.ts
 #       run: cp ./src/app/_environments/environment.dev.ts ./src/app/_environments/environment.ts
+#   steps:
 #     - name: Cypress run
 #       uses: cypress-io/github-action@v5
 #       with:
