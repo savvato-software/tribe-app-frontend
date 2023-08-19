@@ -1,12 +1,13 @@
 {
-  "name": "voting-app",
+  "name": "tribe-app",
   "version": "0.0.1",
   "author": "Savvato Software",
-  "homepage": "http://savvatosoftware.com/",
+  "homepage": "http://savvato.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "run": "",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
