@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
     <ion-buttons *ngIf="displaySecondaryActionButton" slot="start">
-      <ion-menu-button></ion-menu-button>
       <ion-button color="tertiary" (click)="onSecondaryActionButtonClick()" data-test="launchHeaderSecondaryActionButton">{{secondaryActionButtonText}}</ion-button>
     </ion-buttons>
     <ion-title>{{currentPageTitle}}</ion-title>
