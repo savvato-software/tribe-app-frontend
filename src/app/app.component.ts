@@ -12,7 +12,10 @@ export class AppComponent {
 
   public loggedInAppPages =  [
     {title: 'Home', url: '/home', icon: 'albums'},
-    {title: 'Profile', url: '/profile', icon: 'person'}
+    {title: 'Profile', url: '/profile', icon: 'person'},
+    {title: 'Attributes', url: '/attributes', icon: 'list'},
+    {title: 'Notifications', url: '/notifications', icon: 'notifications'},
+    {title: 'Permissions', url: '/permissions', icon: 'cog'}
   ];
 
   public loggedOutAppPages = [
