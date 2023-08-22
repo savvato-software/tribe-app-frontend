@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@savvato-software/savvato-javascript-services';
 import { PermissionsModelService } from './_services/permissions.model.service';
 import {LoadingService} from "../../_services/loading-spinner/loading.service";
+import { curry } from 'cypress/types/lodash';
 
 
 
@@ -27,10 +28,10 @@ export class PermissionsPage {
 
   }
 
-  
+
 
   ionViewWillEnter() {
-    this._loadingService.show({message: "..loading.."}).then(() => { 
+    this._loadingService.show({message: "..loading.."}).then(() => {
       this._permissionsModelService.init();
       this._loadingService.dismiss ();
     })
@@ -38,16 +39,18 @@ export class PermissionsPage {
 
   // is dirty in model service
 
-  hasUser = true;
+  hasUserSelected = false;
 
   role = [];
+
+  availRoles = [];
 
   selectedSkills = [];
 
   theCurrentUser = this.getUser();
 
   selectedUser = {};
-  
+
   selectUser(user) {
     this.role = [];
     for (let i of user.roles){
@@ -55,29 +58,51 @@ export class PermissionsPage {
     }
     this.selectedUser = user;
     this.selectedSkills = this.role;
-    this.hasUser = true;
+    this.hasUserSelected = true;
   }
-  
+
   clearUser() {
     this.selectedSkills = [];
-    this.hasUser = false;
-    
+    this.hasUserSelected = false;
+
   }
 
   getUser() {
     return this._authService.getUser();
   }
-  
-  
+
+
   getListOfUsers() {
     return this._permissionsModelService.getListOfUsers();
   }
 
+
+// TRIB --- 117
   getListOfRoles() {
-    let res = this._permissionsModelService.getListOfRoles();
     
-    return res
+    let rolz = this._permissionsModelService.getListOfRoles();
+    if (rolz !== undefined && rolz !== null) {
+      this.availRoles = [];
+      for (let j of Object.values(rolz)) {
+        if (this.selectedSkills.includes( j['name'])) {
+          console.log("this is in ", j['name'], ' on the list');
+          
+        }
+        else {
+          console.log("no sir ", j['name'], " not on the list");
+          this.availRoles.push(j['name']);
+        }
+      }
+    } else {
+      // Handle the case when rolz is undefined or null, e.g., show an error message.
+      console.error("rolz is undefined or null");
+    }
+    
+
+    return this.availRoles
+
   }
+
 
   saveChanges() {
 
@@ -90,6 +115,11 @@ export class PermissionsPage {
   removeSkill(skill) {
     let x = this.role.indexOf(skill);
     this.role.splice(x,1)
+  }
+
+
+  runTest(subject) {
+  console.log("i have", subject);
   }
 }
 
