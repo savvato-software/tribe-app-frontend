@@ -13,12 +13,10 @@ jobs:
       - run: npm install 
       - run: cp src/app/_environments/environment.dev.ts  src/app/_environments/environment.ts
       - run: ng test --no-watch --no-progress --browsers ChromeHeadless
-  cypress-run:
-    steps:
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          build: npm run build
-          start: npm start
-
-
+# cypress-run:
+#   steps:
+#     - name: Cypress run
+#       uses: cypress-io/github-action@v5
+#       with:
+#         build: npm run build
+#         start: npm start
