@@ -2,20 +2,30 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../_environments/environment';
 import { HttpClient } from '@angular/common/http';
+import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-services';
 
 @Injectable({
     providedIn: 'root'
 })
-export class NotificationService {
 
+export class NotificationApiService {
 
-    constructor(private http: HttpClient) {}
+    constructor(private _apiService: JWTApiService,
+                private _authService:AuthService) {}
 
-    getMessages(userId: any): Observable<any[]> {
-        const apiNotificationUrl = `${environment.apiUrl}/api/notifications/user/${userId}`;
-        console.log(`checking ${apiNotificationUrl} for notifications`);
-        return this.http.get<any[]>(apiNotificationUrl);
+    getAllNotificationsForUsers() {
+        
+        const url = environment.apiUrl + '/api/notifications/user/' + this._authService.getUser().id;
+        
+        return new Promise((resolve, reject) => {
+            this._apiService.get(url).subscribe(
+                (_data) => {
+                    resolve(_data);
+                }
+            )
+        })
     }
 
     // deleteMessage(id: number): Observable<any> {}
-    }
+}
+
