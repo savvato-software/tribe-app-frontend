@@ -8,23 +8,22 @@ import { NotificationModelService } from './_service/notifications.model.service
   styleUrls: ['./notifications.page.scss']
 })
 export class NotificationPage implements OnInit {
-  model: any = {};
+  constructor(private notificationModelService: NotificationModelService) {}
 
-  constructor(private NotificationModelService: NotificationModelService,) {}
-    
   ngOnInit() {
-      
-      this.model = this.NotificationModelService.getAllNotificationsForUsers();
+    this.notificationModelService.init();
   }
-    
-  getIcon(model: any): string {
-    const icon = model.iconUrl;
+
+  get notifications() {
+    return this.notificationModelService.getNotifications();
+  }
+
+  onShowMoreInfo(notification: any) {
+    console.log('More information:', notification.body);
+  }
+
+  getIcon(notification: any): string {
+    const icon = notification.iconUrl;
     return icon ? icon : '';
-  }
-
-  //onDeleteNotification(id: number) {}
-
-  onShowMoreInfo(model: any) {
-    console.log('More information: ', model.body);
   }
 }

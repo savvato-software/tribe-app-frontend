@@ -6,20 +6,19 @@ import { Constants } from "../../../_constants/constants";
 
 @Injectable({
     providedIn: 'root'
-})
-export class NotificationModelService {
-
-    constructor(private _notificationService: NotificationApiService) {}
-
-    async getAllNotificationsForUsers() {
-        const self = this;
-        return new Promise((resolve, reject) => {
-            this._notificationService.getAllNotificationsForUsers().then(
-                (rtn) => {
-                    resolve(rtn);
-                }
-            )
-        })
+  })
+  export class NotificationModelService {
+    notifications: any = [];
+  
+    constructor(private _notificationApiService: NotificationApiService) {}
+  
+    async init() {
+      this.notifications = await this._notificationApiService.getAllNotificationsForUsers();
+      console.log('Retrieved data:', this.notifications);
     }
-
-}
+  
+    getNotifications() {
+      return this.notifications;
+    }
+  
+  }
