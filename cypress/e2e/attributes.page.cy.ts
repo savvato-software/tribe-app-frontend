@@ -37,75 +37,91 @@ describe('check for existence of attributes page', () => {
     
   })
 
-  // check for reactivity for inputAdverbField, click submit button, read value, click success button
-  it('check for reactivity from adverb input field', () => {
-    cy.get('[data-test="inputAdverbField"]').type('banana')
-
-    // press the button
-    cy.get('[data-test="submitAttributesButton"]').click()
+  // Type phrase that passes and check for success message
+    it('type into verb input field', () => {
+      //  cy.wait(500); 
+      cy.get('[data-test="inputVerbField"]').type('sculpts')
 
     // read value from output field
-        cy.get('[data-test="inputAdverbField"]').should('have.value', 'banana')
+    cy.get('[data-test="inputVerbField"]').should('have.value', 'sculpts')
 
-    // clear success button
-        cy.get('button').click()
+  })
+
+    it('type into preposition input field', () => {
+      //  cy.wait(500); 
+      cy.get('[data-test="inputPrepositionField"]').type('with')
     
-  })
-
-  // check for reactivity for inputVerbField, click submit button, read value, click success button
-    it('check for reactivity from verb input field', () => {
-       cy.wait(500); cy.get('[data-test="inputVerbField"]').type('apple')
-
-    // press the button
-    cy.get('[data-test="submitAttributesButton"]').click()
-
-    // read value from output field
-    cy.get('[data-test="inputVerbField"]').should('have.value', 'apple')
-
-    // clear success button
-        cy.get('button').click()
+    cy.get('[data-test="inputPrepositionField"]').should('have.value', 'with')
 
   })
 
-  // check for reactivity for inputPrepositionField, click submit button, read value, click success button
-    it('check for reactivity from preposition input field', () => {
-       cy.wait(500); cy.get('[data-test="inputPrepositionField"]').type('watermelon')
+    it('type into noun input field', () => {
+      //  cy.wait(500); 
+       cy.get('[data-test="inputNounField"]').type('clay')
 
-    // press the button
-    cy.get('[data-test="submitAttributesButton"]').click()
-
-    // read value from output field
-    
-    cy.get('[data-test="inputPrepositionField"]').should('have.value', 'watermelon')
-
-    // clear success button
-        cy.get('button').click()
+        // read value from output field
+    cy.get('[data-test="inputNounField"]').should('have.value', 'clay')
 
   })
 
-  // check for reactivity for inputNounField, click submit button, read value, click success button
-    it('check for reactivity from noun input field', () => {
-       cy.wait(500); cy.get('[data-test="inputNounField"]').type('strawberry')
-
-    // press the button
-    cy.get('[data-test="submitAttributesButton"]').click()
-
-    // read value from output field
-    cy.get('[data-test="inputNounField"]').should('have.value', 'strawberry')
-
-// clear success button
-        cy.get('button').click()
-
-  })
-
-  // check to see if the submit button exists
-  it('check to see if the submit button exists', () => {
+  // check to see if success message appears
+  it('check reactivity of submit button success', () => {
 
     cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
+      // press submit button
+      cy.get('[data-test="submitAttributesButton"]').click()
+
+    // Assert that the success message is displayed
+      cy.contains('ion-alert', 'Success!').should('exist');
+
+   
+// clear success button
+       cy.wait(500); cy.get('button').click()
+
+
   })
 
+    // Type phrase that fails and check for failure message
+    it('navigates to create page', () => {
 
-  // check to see if the new attributes are displayed in the grid on the attributes page
+      cy.get('[data-test="launchHeaderPrimaryActionButton"]').should('have.length', 1)
+      cy.get('[data-test="launchHeaderPrimaryActionButton"]').click()
+    })
+
+    it('type into verb input field', () => {
+      cy.get('[data-test="inputVerbField"]').type('your')
+
+    // read value from output field
+    cy.get('[data-test="inputVerbField"]').should('have.value', 'your')
+
+  })
+
+  it('type into noun input field', () => {
+    //  cy.wait(500); 
+     cy.get('[data-test="inputNounField"]').type('mom')
+
+      // read value from output field
+  cy.get('[data-test="inputNounField"]').should('have.value', 'mom')
+
+})
+
+// check to see if failure message appears
+it('check reactivity of submit button failure', () => {
+
+  cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
+
+    // press submit button
+    cy.get('[data-test="submitAttributesButton"]').click()
+
+  // Assert that the In Review message is displayed
+    cy.contains('ion-alert', 'In Review').should('exist');
+
+ 
+// clear success button
+     cy.wait(500); cy.get('button').click()
+
+
+})
 
 })
