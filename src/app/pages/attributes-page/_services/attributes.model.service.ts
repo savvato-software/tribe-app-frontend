@@ -24,7 +24,6 @@ export class AttributesModelService {
             this._attributesApiService.getAttributesByUser().then(
                 (rtn) => {
                     this.model = rtn;
-                    // console.log('Retrieved data:', this.model);
                     resolve(rtn);
                 }
             )
@@ -39,14 +38,14 @@ export class AttributesModelService {
     save(model: {}) {
         return new Promise((resolve, reject) => {
             this._attributesApiService.save(model).then(
-                (rtn) => {
+                (isPhraseReviewed: boolean) => {
                     console.log("Call to attributeApiService was successful");
-                    resolve({"successful": rtn});
+                    resolve(isPhraseReviewed);
                 },
                 (err) => {
                     reject(err);
                 }
             );
         });
-    }
+    }    
 }
