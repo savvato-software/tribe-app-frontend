@@ -8,6 +8,7 @@ import { NotificationModelService } from './_service/notifications.model.service
   styleUrls: ['./notifications.page.scss']
 })
 export class NotificationPage implements OnInit {
+  headerPageTitle: string = 'Notifications';
   constructor(private notificationModelService: NotificationModelService) {}
 
   ngOnInit() {
