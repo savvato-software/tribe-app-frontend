@@ -121,7 +121,12 @@ export class PermissionsPage {
     this.router.navigate(['home']);
   }
 
-  removeSkill(skill) {
+  addRole(role) {
+    console.log("we added ", role , " to the party");
+    this.selectedUserRoles.push(role);
+  }
+
+  removeRole(skill) {
     let x = this.selectedUserRoles.indexOf(skill);
     this.selectedUserRoles.splice(x,1);
     this._permissionsModelService.dirty = true;
