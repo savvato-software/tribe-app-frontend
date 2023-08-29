@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@savvato-software/savvato-javascript-services';
+import { AlertService } from 'src/app/_services/alert/alert.service';
 import { PermissionsModelService } from './_services/permissions.model.service';
 import {LoadingService} from "../../_services/loading-spinner/loading.service";
 import { curry } from 'cypress/types/lodash';
@@ -23,6 +24,7 @@ export class PermissionsPage {
 
   constructor( private router: Router,
     private _authService: AuthService,
+    private _alertService: AlertService,
     private _permissionsModelService: PermissionsModelService,
     private _loadingService: LoadingService) {
 
@@ -37,38 +39,48 @@ export class PermissionsPage {
     })
   }
 
-  // is dirty in model service
 
-  hasUserSelected = false;
+  hasSelectedUser = false;
 
-  role = [];
+  selectedUserRoles = [];
 
-  availRoles = [];
-
-  selectedSkills = [];
-
-  theCurrentUser = this.getUser();
-
-  selectedUser = {};
+  selectedUserName = "";
 
   selectUser(user) {
-    this.role = [];
-    for (let i of user.roles){
-    this.role.push(i.name);
+    if (this._permissionsModelService.isDirty() == false) {
+      this.selectedUserRoles = [];
+      for (let i of user.roles){
+      this.selectedUserRoles.push(i.name);
+      }
+      this.selectedUserName = user.name;
+      this.hasSelectedUser = true;
     }
-    this.selectedUser = user;
-    this.selectedSkills = this.role;
-    this.hasUserSelected = true;
+    else {
+      this._alertService.show({
+        header: 'Changes Not Saved!',
+        message: 'Discard changes?',
+        buttons: [{
+          text: "Go Back",
+          role: 'cancel'
+        }, {
+          text: "Discard" ,
+          handler: () => {
+            this._permissionsModelService.dirty = false;
+            this.selectUser(user);
+          }
+        }]
+      })
+    }
   }
 
   clearUser() {
-    this.selectedSkills = [];
-    this.hasUserSelected = false;
+    this.selectedUserRoles = [];
+    this.hasSelectedUser = false;
 
   }
 
-  getUser() {
-    return this._authService.getUser();
+  getCurrentUserName() {
+    return this._authService.getUser().name;
   }
 
 
@@ -77,29 +89,26 @@ export class PermissionsPage {
   }
 
 
-// TRIB --- 117
+
   getListOfRoles() {
-    
-    let rolz = this._permissionsModelService.getListOfRoles();
-    if (rolz !== undefined && rolz !== null) {
-      this.availRoles = [];
-      for (let j of Object.values(rolz)) {
-        if (this.selectedSkills.includes( j['name'])) {
-          console.log("this is in ", j['name'], ' on the list');
-          
+    let availableRoles = [];
+    let allroles = this._permissionsModelService.getListOfRoles();
+    if (allroles !== undefined && allroles !== null) {
+      availableRoles = [];
+      for (let j of Object.values(allroles)) {
+        if (this.selectedUserRoles.includes( j['name'])) {
+          continue;
         }
         else {
-          console.log("no sir ", j['name'], " not on the list");
-          this.availRoles.push(j['name']);
+          availableRoles.push(j['name']);
         }
       }
     } else {
-      // Handle the case when rolz is undefined or null, e.g., show an error message.
-      console.error("rolz is undefined or null");
+      console.error("Available role list is undefined or null");
     }
-    
 
-    return this.availRoles
+
+    return availableRoles;
 
   }
 
@@ -113,13 +122,9 @@ export class PermissionsPage {
   }
 
   removeSkill(skill) {
-    let x = this.role.indexOf(skill);
-    this.role.splice(x,1)
-  }
-
-
-  runTest(subject) {
-  console.log("i have", subject);
+    let x = this.selectedUserRoles.indexOf(skill);
+    this.selectedUserRoles.splice(x,1);
+    this._permissionsModelService.dirty = true;
   }
 }
 

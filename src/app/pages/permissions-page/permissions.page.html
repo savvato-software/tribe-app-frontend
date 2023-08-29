@@ -1,15 +1,15 @@
 <app-header [currentPageTitle]="headerPageTitle"></app-header>
 
 <ion-content>
-  <ion-card-title>  Logged in as: {{theCurrentUser.name}} </ion-card-title>
-  <ion-card-title *ngIf="hasUserSelected == false">Select a user </ion-card-title>
-  <ion-card-title *ngIf="hasUserSelected == true">You selected {{selectedUser.name}} </ion-card-title>
+  <ion-card-title>  Logged in as: {{getCurrentUserName()}} </ion-card-title>
+  <ion-card-title *ngIf="hasSelectedUser == false">Select a user </ion-card-title>
+  <ion-card-title *ngIf="hasSelectedUser == true">You selected {{selectedUserName}} </ion-card-title>
   <ion-item (click)="clearUser()" class="clickable"></ion-item>
   <ion-item *ngFor="let user of getListOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
   <ion-item (click)="clearUser()" class="clickable"></ion-item>
   <ion-item>Assigned Roles</ion-item>
-  <ng-container *ngIf="selectedSkills != []">
-    <ion-item *ngFor="let skill of selectedSkills"> {{skill}} <ion-button (click)="removeSkill(skill)" > X </ion-button></ion-item>
+  <ng-container *ngIf="selectedUserRoles != []">
+    <ion-item *ngFor="let skill of selectedUserRoles"> {{skill}} <ion-button (click)="removeSkill(skill)" > X </ion-button></ion-item>
   </ng-container>
   <ion-item>
       <select aria-label="additional-roles">

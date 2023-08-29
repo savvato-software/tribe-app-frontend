@@ -9,7 +9,7 @@ export class PermissionsModelService {
 
   model = {};
 
-  //dirty = false;
+  dirty = false;
 
   constructor(
     private _modelTransformingService: ModelTransformingService,
@@ -45,8 +45,8 @@ export class PermissionsModelService {
     return this.model['listOfUserRoles'];
   }
 
-  //isDirty() {
-  //  return this.dirty;
-  //}
+  isDirty() {
+   return this.dirty;
+  }
 
 }
