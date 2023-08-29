@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@savvato-software/savvato-javascript-services';
 import { AlertService } from 'src/app/_services/alert/alert.service';
@@ -45,6 +46,8 @@ export class PermissionsPage {
   selectedUserRoles = [];
 
   selectedUserName = "";
+
+  selectedRole: string = '';
 
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
@@ -122,8 +125,11 @@ export class PermissionsPage {
   }
 
   addRole(role) {
-    console.log("we added ", role , " to the party");
-    this.selectedUserRoles.push(role);
+    if(role && role !=='') {
+      this.selectedUserRoles.push(role);
+    }
+    this.selectedRole = '';
+    this._permissionsModelService.dirty = true;
   }
 
   removeRole(skill) {

@@ -12,14 +12,11 @@
     <ion-item *ngFor="let skill of selectedUserRoles"> {{skill}} <ion-button (click)="removeRole(skill)" > X </ion-button></ion-item>
   </ng-container>
   <ion-item>
-      <select aria-label="additional-roles" >
-      <option *ngFor="let role of getListOfRoles()"> {{role}} </option> 
-      <br/>
-      <ion-button (click)="addRole('Test')"> Add Selection </ion-button>
+    <select [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
+      <option *ngFor="let role of getListOfRoles()">{{role}}</option>
     </select>
-    
+    <ion-button (click)="addRole(selectedRole)">Add Selection</ion-button>
   </ion-item>
-</ion-content>
 
 
 <ion-footer>
