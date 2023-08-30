@@ -76,11 +76,7 @@ export class PermissionsPage {
     }
   }
 
-  clearUser() {
-    this.selectedUserRoles = [];
-    this.hasSelectedUser = false;
 
-  }
 
   getCurrentUserName() {
     return this._authService.getUser().name;
@@ -120,7 +116,8 @@ export class PermissionsPage {
 
   }
 
-  cancelChanges() {
+  exitToHomePage() {
+
     this.router.navigate(['home']);
   }
 

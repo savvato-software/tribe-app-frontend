@@ -4,9 +4,9 @@
   <ion-card-title>  Logged in as: {{getCurrentUserName()}} </ion-card-title>
   <ion-card-title *ngIf="hasSelectedUser == false">Select a user </ion-card-title>
   <ion-card-title *ngIf="hasSelectedUser == true">You selected {{selectedUserName}} </ion-card-title>
-  <ion-item (click)="clearUser()" class="clickable"></ion-item>
+  <ion-item></ion-item>
   <ion-item *ngFor="let user of getListOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
-  <ion-item (click)="clearUser()" class="clickable"></ion-item>
+  <ion-item></ion-item>
   <ion-item>Assigned Roles</ion-item>
   <ng-container *ngIf="selectedUserRoles != []">
     <ion-item *ngFor="let skill of selectedUserRoles"> {{skill}} <ion-button (click)="removeRole(skill)" > X </ion-button></ion-item>
@@ -22,6 +22,6 @@
 <ion-footer>
   <ion-toolbar id="bottom-toolbar" color="light">
     <ion-button (click)="saveChanges()" fill="clear">Save</ion-button>
-    <ion-button (click)="cancelChanges()" fill="clear">Cancel</ion-button>
+    <ion-button (click)="exitToHomePage()" fill="clear">Cancel</ion-button>
   </ion-toolbar>
 </ion-footer>
