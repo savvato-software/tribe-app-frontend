@@ -129,8 +129,8 @@ export class PermissionsPage {
     this._permissionsModelService.dirty = true;
   }
 
-  removeRole(skill) {
-    let x = this.selectedUserRoles.indexOf(skill);
+  removeRole(role) {
+    let x = this.selectedUserRoles.indexOf(role);
     this.selectedUserRoles.splice(x,1);
     this._permissionsModelService.dirty = true;
   }
