@@ -13,19 +13,17 @@ export class NotificationApiService {
     constructor(private _apiService: JWTApiService,
                 private _authService:AuthService) {}
 
-    getAllNotificationsForUsers() {
-        
+    async getAllNotificationsForUsers() {
         const url = environment.apiUrl + '/api/notifications/user/' + this._authService.getUser().id;
-        
-        return new Promise((resolve, reject) => {
-            this._apiService.get(url).subscribe(
-                (_data) => {
-                    resolve(_data);
-                }
-            )
-        })
+    
+        try {
+            const data = await this._apiService.get(url).toPromise();
+            return data;
+        } catch (error) {
+            throw error;
+        }
     }
+    
 
     // deleteMessage(id: number): Observable<any> {}
 }
-
