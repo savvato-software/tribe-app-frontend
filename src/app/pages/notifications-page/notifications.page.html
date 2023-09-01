@@ -1,13 +1,13 @@
 <app-header [currentPageTitle]="headerPageTitle"></app-header>
-
 <ion-content>
   <ng-container *ngIf="notifications.length > 0; else noNotifications">
     <ion-list>
-      <ion-item *ngFor="let notification of notifications" appLongPress
-        (longPress)="onDeleteNotification(notification.id)" (click)="onShowMoreInfo(notification)"
-        [class.long-press]="isPressed">
+      <ion-item *ngFor="let notification of notifications"
+                appLongPress (longPress)="onDeleteNotification(notification.id)"
+                (click)="onShowMoreInfo(notification)"
+                [class.long-press]="isPressed">
         <ion-icon slot="start" [name]="getIcon(notification)"></ion-icon>
-        <ion-label>{{ notification.text }}</ion-label>
+        <ion-label>{{ notification.description }}</ion-label>
       </ion-item>
     </ion-list>
   </ng-container>
