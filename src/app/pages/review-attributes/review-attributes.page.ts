@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ReviewAttributesModelService } from "./_services/review-attributes.model.service";
+
 import { AlertService } from '../../_services/alert/alert.service';
 
 @Component({
@@ -7,25 +9,23 @@ import { AlertService } from '../../_services/alert/alert.service';
   templateUrl: './review-attributes.page.html',
   styleUrls: ['./review-attributes.page.scss'],
 })
+
 export class ReviewAttributesPage implements OnInit {
 
   headerPageTitle: string = 'Review Attributes';
-
   phraseToBeReviewed: String = "";
   getNextPhraseButtonDisabled: boolean = false;
   approveAndRejectButtonDisplayed: boolean = false;
 
-  constructor(private _alertService: AlertService) { }
+  constructor(private _alertService: AlertService,
+              private  _reviewAttributesModelService: ReviewAttributesModelService) { }
 
   ngOnInit() {
   }
 
   onRejectPhraseBtnClick() {
     //mock data
-    const reasons = [
-      {"id": 1, "reason": "approved"},
-      {"id": 2, "reason": "doesn't make sense"},
-      {"id": 3, "reason": "vulgar"}];
+   const reasons = this.getListOfReviewDecisionReasons();
 
     const self = this;
 
@@ -56,7 +56,10 @@ export class ReviewAttributesPage implements OnInit {
 
   onApprovePhraseBtnClick() {
     const self = this;
-
+    const phrase = self._reviewAttributesModelService.get();
+    var reviewId = phrase.id; // get from modelservice
+    var reasonID = 1;
+    self._reviewAttributesModelService.saveReviewAttributes(reviewId,reasonID);
     self._alertService.show({
     header: 'Message approved!',
     buttons: [{
@@ -72,17 +75,21 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onGetNextPhraseBtnClick() {
+
     this.getNextPhraseToBeReviewed();
   }
 
   getNextPhraseToBeReviewed() {
-    //mock data
-    const phraseTBR = {"adverb": "competitively", "verb": "writes", "preposition": "nullvalue", "noun": "code" };
-
-    const phraseTBRAsString = this.getAttrString(phraseTBR);
-    this.phraseToBeReviewed = phraseTBRAsString;
-    this.getNextPhraseButtonDisabled = true;
-    this.approveAndRejectButtonDisplayed = true;
+    this._reviewAttributesModelService.getNewPhrase();
+    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+    console.log("newphrase loading ...");
+    wait(1000).then(() => {
+      const phraseTBRAsString = this.getAttrString(this._reviewAttributesModelService.get()); 
+      console.log(phraseTBRAsString);
+      this.phraseToBeReviewed = phraseTBRAsString;
+      this.getNextPhraseButtonDisabled = true;
+      this.approveAndRejectButtonDisplayed = true;
+    });
   }
 
   getAttrString(tbr) {
@@ -102,7 +109,11 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   getListOfReviewDecisionReasons() {
-    return
+    const reasons = [
+      {"id": 1, "reason": "approved"},
+      {"id": 2, "reason": "doesn't make sense"},
+      {"id": 3, "reason": "vulgar"}];
+    return reasons;
   }
 
 }
