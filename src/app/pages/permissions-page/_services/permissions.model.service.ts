@@ -11,6 +11,15 @@ export class PermissionsModelService {
 
   dirty = false;
 
+  hasSelectedUser = false;
+
+  selectedUserRoles = [];
+
+  selectedUserName = "";
+
+  //selectedRole: string = '';
+
+
   constructor(
     private _modelTransformingService: ModelTransformingService,
     private _permissionsApiService: PermissionsApiService) { }

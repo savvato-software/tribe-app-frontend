@@ -41,22 +41,16 @@ export class PermissionsPage {
   }
 
 
-  hasSelectedUser = false;
-
-  selectedUserRoles = [];
-
-  selectedUserName = "";
-
   selectedRole: string = '';
 
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
-      this.selectedUserRoles = [];
+      this._permissionsModelService.selectedUserRoles = [];
       for (let i of user.roles){
-      this.selectedUserRoles.push(i.name);
+      this._permissionsModelService.selectedUserRoles.push(i.name);
       }
-      this.selectedUserName = user.name;
-      this.hasSelectedUser = true;
+      this._permissionsModelService.selectedUserName = user.name;
+      this._permissionsModelService.hasSelectedUser = true;
     }
     else {
       this._alertService.show({
@@ -77,6 +71,17 @@ export class PermissionsPage {
   }
 
 
+  hasSelectedUser() {
+    return this._permissionsModelService.hasSelectedUser
+  } 
+
+  getselectedUserRoles() {
+    return this._permissionsModelService.selectedUserRoles;
+  }
+
+  getSelectedUserName() {
+    return this._permissionsModelService.selectedUserName;
+  }
 
   getCurrentUserName() {
     return this._authService.getUser().name;
@@ -95,7 +100,7 @@ export class PermissionsPage {
     if (allroles !== undefined && allroles !== null) {
       availableRoles = [];
       for (let j of Object.values(allroles)) {
-        if (this.selectedUserRoles.includes( j['name'])) {
+        if (this._permissionsModelService.selectedUserRoles.includes( j['name'])) {
           continue;
         }
         else {
@@ -123,15 +128,15 @@ export class PermissionsPage {
 
   addRole(role) {
     if(role && role !=='') {
-      this.selectedUserRoles.push(role);
+      this._permissionsModelService.selectedUserRoles.push(role);
     }
     this.selectedRole = '';
     this._permissionsModelService.dirty = true;
   }
 
   removeRole(role) {
-    let x = this.selectedUserRoles.indexOf(role);
-    this.selectedUserRoles.splice(x,1);
+    let x = this._permissionsModelService.selectedUserRoles.indexOf(role);
+    this._permissionsModelService.selectedUserRoles.splice(x,1);
     this._permissionsModelService.dirty = true;
   }
 }
