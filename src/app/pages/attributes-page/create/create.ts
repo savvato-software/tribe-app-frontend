@@ -73,28 +73,49 @@ export class CreateAttributePage implements OnInit
         this.inputNounTxt = $event.currentTarget.value
     }
 
-    applyPhraseToUser(){ //Change the method called in the html
+    applyPhraseToUser() {
         const self = this;
+        const model:any = {"inputAdverbText": this.inputAdverbTxt,
+                        "inputVerbText": this.inputVerbTxt, 
+                        "inputPrepositionText": this.inputPrepositionTxt, 
+                        "inputNounText": this.inputNounTxt};
         let msg = 'Saving your attributes!';
 
-        self._loadingService.show({message: msg}).then(() => {
-
-            self._attributesModelService.save(self.model).then(() => {
+        
+    
+        self._loadingService.show({ message: msg }).then(() => {
+            self._attributesModelService.save(model).then((isPhraseReviewed: boolean) => {
                 self._loadingService.dismiss().then(() => {
-                    self._alertService.show({
-                        header: 'Alright!',
-                        message: "Success! Phrase Added!",
-                        buttons: [{
-                            text: 'OK', role: 'cancel',
-                            handler: () => {
-                                //this._router.navigate(['/attributes']);
-                            }
-                        }]
-                    })
-                })
+                    if (isPhraseReviewed === true) {
+                        self._alertService.show({
+                            header: 'Success!',
+                            message: "Attribute has been applied!",
+                            buttons: [{
+                                text: 'OK',
+                                role: 'cancel',
+                                handler: () => {
+                                    self.navigateTo('/attributes');
+                                }
+                            }]
+                        });
+                    } else {
+                        self._alertService.show({
+                            header: 'In Review',
+                            message: "we have not seen this attribute before, it is in review. We will add it to your profile once it is approved.",
+                            buttons: [{
+                                text: 'OK',
+                                role: 'cancel',
+                                handler: () => {
+                                    self.navigateTo('/attributes');
+                                }
+                            }]
+                        });
+                    }
+                });
             });
-        })
+        });
     }
+    
 
     navigateTo(url?: string) {
         url = url || 'nav';
