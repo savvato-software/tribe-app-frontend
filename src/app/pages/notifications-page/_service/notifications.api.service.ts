@@ -23,6 +23,17 @@ export class NotificationApiService {
             throw error;
         }
     }
+    async readNotification(notificationId: number) {
+        const url = environment.apiUrl + '/api/notifications/?id=' + notificationId;
+        try{
+            const data = this._apiService.put(url, notificationId);
+            console.log(data)
+            return data;
+            
+        } catch (error) {
+            throw error;
+        }
+    }
     
 
     // deleteMessage(id: number): Observable<any> {}

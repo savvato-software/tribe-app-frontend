@@ -20,7 +20,13 @@ export class NotificationPage implements OnInit {
   }
 
   onShowMoreInfo(notification: any) {
-    console.log('More information:', notification.body);
+    console.log('More information:', notification.body, notification.id, notification.isRead);
+    this.onNotificationRead(notification.id)
+    this.notificationModelService.toggleExpanded(notification)
+  }
+  
+  onNotificationRead(id: number) {
+    this.notificationModelService.readNotification(id)
   }
 
   getIcon(notification: any): string {

@@ -11,6 +11,10 @@ import { Constants } from "../../../_constants/constants";
     notifications: any = [];
   
     constructor(private _notificationApiService: NotificationApiService) {}
+
+    toggleExpanded(notification:any) {
+      notification.expanded = !notification.expanded;
+    }
   
     async init() {
       this.notifications = await this._notificationApiService.getAllNotificationsForUsers();
@@ -19,6 +23,10 @@ import { Constants } from "../../../_constants/constants";
   
     getNotifications() {
       return this.notifications;
+    }
+
+    async readNotification(notificationId: number){
+      this._notificationApiService.readNotification(notificationId);
     }
   
   }

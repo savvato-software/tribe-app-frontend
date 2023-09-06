@@ -8,6 +8,9 @@
                 [class.long-press]="isPressed">
         <ion-icon slot="start" [name]="getIcon(notification)"></ion-icon>
         <ion-label>{{ notification.description }}</ion-label>
+        <div *ngIf="notification.expanded">
+          {{notification.body}}
+        </div>
       </ion-item>
     </ion-list>
   </ng-container>
