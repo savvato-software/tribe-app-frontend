@@ -40,8 +40,9 @@ export class PermissionsPage {
     })
   }
 
-
+  
   selectedRole: string = '';
+
 
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
@@ -89,6 +90,17 @@ export class PermissionsPage {
 
 
   getListOfUsers() {
+    /*
+    This is a list of roles for logged in user
+    if (this._permissionsModelService.getListOfUsers() != null){
+      let list = [];
+      for (let i of this._permissionsModelService.getListOfUsers()) {
+        list.push(i.roles);
+      }
+      console.log(list[this._authService.getUser().id-1]);
+      
+    }
+    */
     return this._permissionsModelService.getListOfUsers();
   }
 
@@ -122,10 +134,37 @@ export class PermissionsPage {
   }
 
   exitToHomePage() {
-
-    this.router.navigate(['home']);
-  }
-
+      if (this._permissionsModelService.isDirty() == false){
+        this._permissionsModelService.selectedUserName = "";
+        this._permissionsModelService.selectedUserRoles = [];
+        this._permissionsModelService.hasSelectedUser = false;
+        this.router.navigate(['home']);
+      }
+      else {
+        
+        this._alertService.show({
+          header: 'Changes Not Saved!',
+          message: 'Discard changes?',
+          buttons: [{
+            text: "Go Back",
+            role: 'cancel'
+          }, {
+            text: "Discard" ,
+            handler: () => {
+              this._permissionsModelService.dirty = false;
+              this._permissionsModelService.selectedUserName = "";
+              this._permissionsModelService.selectedUserRoles = [];
+              this._permissionsModelService.hasSelectedUser = false;
+              this.router.navigate(['home']);
+            }
+          }]
+        })
+        console.log('data reset');
+      }
+      
+      
+    }
+ 
   addRole(role) {
     if(role && role !=='') {
       this._permissionsModelService.selectedUserRoles.push(role);

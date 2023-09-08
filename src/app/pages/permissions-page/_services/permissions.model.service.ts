@@ -17,7 +17,7 @@ export class PermissionsModelService {
 
   selectedUserName = "";
 
-  //selectedRole: string = '';
+  
 
 
   constructor(
