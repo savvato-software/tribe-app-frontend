@@ -5,16 +5,21 @@
       <ion-item *ngFor="let notification of notifications"
                 appLongPress (longPress)="onDeleteNotification(notification.id)"
                 (click)="onShowMoreInfo(notification)"
-                [class.long-press]="isPressed">
-        <ion-icon slot="start" [name]="getIcon(notification)"></ion-icon>
-        <ion-label>{{ notification.description }}</ion-label>
-        <div *ngIf="notification.expanded">
-          {{notification.body}}
+                [class.long-press]="isPressed"
+                class="notification-item"
+                [class.expanded]="isNotificationExpanded(notification)">
+        <div class="notification-content">
+          <div class="notification-title">
+            <ion-icon slot="start" [name]="getIcon(notification)"></ion-icon>
+            <ion-label [class.bold-text]="!notification.isRead">{{ notification.description }}</ion-label>        
+          </div>
+          <div *ngIf="isNotificationExpanded(notification)" class="notification-body">
+            {{notification.body}}
+          </div>
         </div>
       </ion-item>
     </ion-list>
   </ng-container>
-
   <ng-template #noNotifications>
     <div>No new notifications</div>
   </ng-template>

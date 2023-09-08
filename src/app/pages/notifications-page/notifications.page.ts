@@ -5,8 +5,9 @@ import { NotificationModelService } from './_service/notifications.model.service
 @Component({
   selector: 'page-notification',
   templateUrl: './notifications.page.html',
-  styleUrls: ['./notifications.page.scss']
+  styleUrls: ['./notifications.page.scss'],
 })
+
 export class NotificationPage implements OnInit {
   headerPageTitle: string = 'Notifications';
   constructor(private notificationModelService: NotificationModelService) {}
@@ -18,11 +19,27 @@ export class NotificationPage implements OnInit {
   get notifications() {
     return this.notificationModelService.getNotifications();
   }
+  
+  currentlyExpandedNotificationId: number | null = null;
 
+  toggleExpanded(notification: any) {
+    console.log("expanding!")
+    if (this.currentlyExpandedNotificationId === notification.id) {
+      this.currentlyExpandedNotificationId = null;
+    } else {
+      this.currentlyExpandedNotificationId = notification.id;
+    }
+  }
+  
+  isNotificationExpanded(notification: any) {
+    return this.currentlyExpandedNotificationId === notification.id 
+  }
+  
   onShowMoreInfo(notification: any) {
     console.log('More information:', notification.body, notification.id, notification.isRead);
     this.onNotificationRead(notification.id)
-    this.notificationModelService.toggleExpanded(notification)
+    this.toggleExpanded(notification)
+    this.notificationModelService.setRead(notification)
   }
   
   onNotificationRead(id: number) {

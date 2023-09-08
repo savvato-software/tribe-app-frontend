@@ -24,11 +24,14 @@ export class NotificationApiService {
         }
     }
     async readNotification(notificationId: number) {
-        const url = environment.apiUrl + '/api/notifications/?id=' + notificationId;
+        const url = environment.apiUrl + '/api/notifications/';
+        console.log("apiservice started")
         try{
-            const data = this._apiService.put(url, notificationId);
+            let data = {"id" : notificationId}
+            const call = this._apiService.put(url, data);
             console.log(data)
-            return data;
+            console.log("sending data")
+            return call;
             
         } catch (error) {
             throw error;

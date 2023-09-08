@@ -7,13 +7,14 @@ import { Constants } from "../../../_constants/constants";
 @Injectable({
     providedIn: 'root'
   })
+
   export class NotificationModelService {
     notifications: any = [];
   
     constructor(private _notificationApiService: NotificationApiService) {}
 
-    toggleExpanded(notification:any) {
-      notification.expanded = !notification.expanded;
+    setRead(notification:any) {
+      notification.isRead = true
     }
   
     async init() {
@@ -26,6 +27,7 @@ import { Constants } from "../../../_constants/constants";
     }
 
     async readNotification(notificationId: number){
+      console.log("sending data to back server")
       this._notificationApiService.readNotification(notificationId);
     }
   
