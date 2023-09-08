@@ -45,6 +45,11 @@ const routes: Routes = [
     path: 'connect',
     loadChildren: () => import('./pages/connect-page/connect.module').then( m => m.ConnectPageModule)
     ,canActivate:[AuthGuard]
+  },
+  {
+    path: 'review-attributes',
+    loadChildren: () => import('./pages/review-attributes/review-attributes.page.module').then( m => m.ReviewAttributesPageModule)
+    ,canActivate:[AuthGuard]
   }
 ];
 
