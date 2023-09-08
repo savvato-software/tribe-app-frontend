@@ -1,0 +1,12 @@
+<app-header [currentPageTitle]="headerPageTitle"></app-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input label="phrase" [value]="phraseToBeReviewed" placeholder="Click get next phrase to review" [readonly]="true" data-test="inputPhraseToBeReviewed"></ion-input>
+  </ion-item>
+  <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="getNextPhraseButtonDisabled" data-test="launchGetNextPhraseBtn">Get Next Phrase</ion-button>
+  <ion-buttons *ngIf="approveAndRejectButtonDisplayed">
+    <ion-button color="tertiary" (click)="onApprovePhraseBtnClick()" data-test="launchApproveBtn">Approve</ion-button>
+    <ion-button id="reject" color="tertiary" (click)="onRejectPhraseBtnClick()" data-test="launchRejectBtn">Reject</ion-button>
+  </ion-buttons>
+</ion-content>

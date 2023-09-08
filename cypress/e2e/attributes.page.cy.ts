@@ -5,8 +5,7 @@ describe('check for existence of attributes page', () => {
     cy.visit('http://localhost:8100/login')
     cy.get('[data-test="sign-in-btn"]').click()
     
-    cy.get('[data-test="launchAttributesPageButton"]').should('have.length', 1)
-    cy.get('[data-test="launchAttributesPageButton"]').click()
+    cy.contains('ion-item', 'Attributes').click();
   })
 
   // check to see if the 4 attributes columns exist on the attributes page
@@ -45,18 +44,21 @@ describe('check for existence of attributes page', () => {
     
   })
 
-    it('check for reactivity from verb input field', () => {
-      cy.get('[data-test="inputVerbField"]').type('writes')
+  // Type phrase that passes and check for success message
+    it('type into verb input field', () => {
+      //  cy.wait(500); 
+      cy.get('[data-test="inputVerbField"]').type('sculpts')
 
-    cy.get('[data-test="inputVerbField"]').should('have.value', 'writes')
+    // read value from output field
+    cy.get('[data-test="inputVerbField"]').should('have.value', 'sculpts')
+
   })
 
-  // check for reactivity for inputPrepositionField, click submit button, read value, click success button
-    it('check for reactivity from preposition input field', () => {
-      cy.get('[data-test="inputPrepositionField"]').type('watermelon')
-
-    cy.get('[data-test="inputPrepositionField"]').should('have.value', 'watermelon')
-
+    it('type into preposition input field', () => {
+      //  cy.wait(500); 
+      cy.get('[data-test="inputPrepositionField"]').type('with')
+    
+    cy.get('[data-test="inputPrepositionField"]').should('have.value', 'with')
   })
 
 
@@ -67,16 +69,15 @@ describe('check for existence of attributes page', () => {
 
   })
 
-  // check to see if the submit button exists
-  it('check reactivity of submit button success', () => {
+  it('check reactivity of submit button: In Review', () => {
 
     cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
       // press submit button
       cy.get('[data-test="submitAttributesButton"]').click()
 
-    // Assert that the success message is displayed
-      cy.contains('ion-alert', 'Success!').should('exist');
+    // Assert that the In Review message is displayed
+      cy.contains('ion-alert', 'In Review').should('exist');
 
        cy.wait(500); cy.get('button').click()
   })
