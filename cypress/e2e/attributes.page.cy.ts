@@ -38,7 +38,7 @@ describe('check for existence of attributes page', () => {
 
   // Type phrase that passes and check for success message
     it('type into verb input field', () => {
-      //  cy.wait(500); 
+       cy.wait(500); 
       cy.get('[data-test="inputVerbField"]').type('sculpts')
 
     // read value from output field
