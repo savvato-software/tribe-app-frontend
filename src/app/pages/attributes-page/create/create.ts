@@ -81,8 +81,6 @@ export class CreateAttributePage implements OnInit
                         "inputNounText": this.inputNounTxt};
         let msg = 'Saving your attributes!';
 
-        
-    
         self._loadingService.show({ message: msg }).then(() => {
             self._attributesModelService.save(model).then((isPhraseReviewed: boolean) => {
                 self._loadingService.dismiss().then(() => {
@@ -98,7 +96,7 @@ export class CreateAttributePage implements OnInit
                                 }
                             }]
                         });
-                    } else {
+                    } else if (isPhraseReviewed === false){
                         self._alertService.show({
                             header: 'In Review',
                             message: "we have not seen this attribute before, it is in review. We will add it to your profile once it is approved.",
@@ -110,7 +108,21 @@ export class CreateAttributePage implements OnInit
                                 }
                             }]
                         });
-                    }
+                    } else {
+                        if (isPhraseReviewed === 'alreadyAssigned') {
+                            self._alertService.show({
+                                header: 'Already Assigned',
+                                message: "That attribute is already assigned to you.",
+                                buttons: [{
+                                    text: 'OK',
+                                    role: 'cancel',
+                                    handler: () => {
+                                        self.navigateTo('/attributes');
+                                    }
+                                }]
+                            });
+                        }
+                    }    
                 });
             });
         });
