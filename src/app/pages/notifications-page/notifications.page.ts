@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from './_service/notifications.api.service';
+import { NotificationModelService } from './_service/notifications.model.service';
+
 
 @Component({
   selector: 'page-notification',
@@ -7,32 +8,23 @@ import { NotificationService } from './_service/notifications.api.service';
   styleUrls: ['./notifications.page.scss']
 })
 export class NotificationPage implements OnInit {
-  notifications: any[];
   headerPageTitle: string = 'Notifications';
-
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationModelService: NotificationModelService) {}
 
   ngOnInit() {
-    // Call the getMessages() method of the notification service to load all notifications
-    this.notificationService.getMessages().subscribe(notifications => {
-      this.notifications = notifications;
-    });
+    this.notificationModelService.init();
   }
 
-  getIcon(notification: any): string {
-    const icon = notification.icon;
-    return icon ? icon : '';
-  }
-
-  onDeleteNotification(id: number) {
-    // Call the deleteMessage() method of the notification service to delete a notification
-    this.notificationService.deleteMessage(id).subscribe(() => {
-      // Remove the deleted notification from the local array of notifications
-      this.notifications = this.notifications.filter(notification => notification.id !== id);
-    });
+  get notifications() {
+    return this.notificationModelService.getNotifications();
   }
 
   onShowMoreInfo(notification: any) {
-    console.log('More information: ', notification);
+    console.log('More information:', notification.body);
+  }
+
+  getIcon(notification: any): string {
+    const icon = notification.iconUrl;
+    return icon ? icon : '';
   }
 }
