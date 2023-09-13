@@ -89,7 +89,7 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   getAttrString(tbr) {
-    let rtn = "";
+    let rtn = ""; 
 
     if (tbr.adverb)
       rtn += tbr.adverb + " ";
