@@ -39,7 +39,6 @@
     "file-saver": "^2.0.5",
     "google-libphonenumber": "^3.2.27",
     "hammerjs": "^2.0.8",
-    "inquirer": "^9.2.9",
     "moment": "^2.29.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

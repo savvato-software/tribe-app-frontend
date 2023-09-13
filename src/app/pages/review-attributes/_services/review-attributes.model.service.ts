@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-services';
 import { ReviewAttributesApiService } from "./review-attributes.api.service";
-import { ReviewAttributesPageModule } from "../review-attributes.page.module";
 import { Constants } from "../../../_constants/constants";
 
 @Injectable({
@@ -21,30 +20,17 @@ export class ReviewAttributesModelService {
 
 
     getNewPhrase() {
-        /**return new Promise((resolve, reject) => {
-           //this.model = this.ReviewAttributesApiService.getPhrase();
-          // resolve(this.model);
-         this.ReviewAttributesApiService.getPhrase().then((response) => {
-                this.model = response;
-                resolve(this.model);
-            })
-            
-        })**/
-        this.ReviewAttributesApiService.getPhrase().then((response) => {
-                //if(response != undefined){
+        return new Promise((resolve, reject) => {
+            this.ReviewAttributesApiService.getPhrase().then((response) => {
                     this.model = response;
-                    return this.model;
-               // }
-               // else{
-                //    throw new Error("no more phrase");
-               // }
-        })
-            
+                   resolve(this.model);
+           })
+        })   
         
     }
 
-    saveReviewAttributes(reviewId, reasonId) {
-            this.saveReview['reviewId'] = reviewId;
+    saveReviewAttributes(reasonId) {
+            this.saveReview['reviewId'] = this.model.id;
             this.saveReview['reviewerId'] = this._authService.getUser().id;
             this.saveReview['reasonId'] = reasonId; 
             this.ReviewAttributesApiService.saveRA(this.saveReview).then(() =>{

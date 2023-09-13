@@ -17,8 +17,6 @@ export class ReviewAttributesApiService {
 
     getPhrase() {
         const url = environment.apiUrl + '/api/review';
-        //var data: any = {"id": "3", "adverb": "quickly", "verb": "reads", "preposition": "of", "noun": "book" };
-        //return data;
         const rtn = new Promise(
             (resolve, reject) => {
                 this._apiService.get(url).subscribe(
@@ -36,7 +34,7 @@ export class ReviewAttributesApiService {
     }
 
     saveRA(data) {
-        const url = environment.apiUrl + '/api/reviewer-decision'; //+ data['reviewId'];
+        const url = environment.apiUrl + '/api/reviewer-decision';
         return new Promise(
             (resolve, reject) => {
                 this._apiService.post(url, data).subscribe(

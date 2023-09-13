@@ -16,6 +16,8 @@ export class ReviewAttributesPage implements OnInit {
   phraseToBeReviewed: String = "";
   getNextPhraseButtonDisabled: boolean = false;
   approveAndRejectButtonDisplayed: boolean = false;
+  reasonIDApprove: number = 1;
+  reasonIDReject: number = 1;
 
   constructor(private _alertService: AlertService,
               private  _reviewAttributesModelService: ReviewAttributesModelService) { }
@@ -56,10 +58,7 @@ export class ReviewAttributesPage implements OnInit {
 
   onApprovePhraseBtnClick() {
     const self = this;
-    const phrase = self._reviewAttributesModelService.get();
-    var reviewId = phrase.id; // get from modelservice
-    var reasonID = 1;
-    self._reviewAttributesModelService.saveReviewAttributes(reviewId,reasonID);
+    self._reviewAttributesModelService.saveReviewAttributes(this.reasonIDApprove);
     self._alertService.show({
     header: 'Message approved!',
     buttons: [{
@@ -80,11 +79,8 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   getNextPhraseToBeReviewed() {
-    this._reviewAttributesModelService.getNewPhrase();
-    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-    console.log("newphrase loading ...");
-    wait(1000).then(() => {
-      const phraseTBRAsString = this.getAttrString(this._reviewAttributesModelService.get()); 
+    this._reviewAttributesModelService.getNewPhrase().then((phrase) => {
+      const phraseTBRAsString = this.getAttrString(phrase); 
       console.log(phraseTBRAsString);
       this.phraseToBeReviewed = phraseTBRAsString;
       this.getNextPhraseButtonDisabled = true;
