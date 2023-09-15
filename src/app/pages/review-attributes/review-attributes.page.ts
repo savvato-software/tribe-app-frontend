@@ -16,8 +16,6 @@ export class ReviewAttributesPage implements OnInit {
   phraseToBeReviewed: String = "";
   getNextPhraseButtonDisabled: boolean = false;
   approveAndRejectButtonDisplayed: boolean = false;
-  reasonIDApprove: number = 1;
-  reasonIDReject: number = 1;
 
   constructor(private _alertService: AlertService,
               private  _reviewAttributesModelService: ReviewAttributesModelService) { }
@@ -58,7 +56,10 @@ export class ReviewAttributesPage implements OnInit {
 
   onApprovePhraseBtnClick() {
     const self = this;
-    self._reviewAttributesModelService.saveReviewAttributes(this.reasonIDApprove);
+    const reasonIDApprove = 1;
+    self._reviewAttributesModelService.saveReviewAttributes(reasonIDApprove).then((data) =>{
+      console.log(data);
+    });
     self._alertService.show({
     header: 'Message approved!',
     buttons: [{

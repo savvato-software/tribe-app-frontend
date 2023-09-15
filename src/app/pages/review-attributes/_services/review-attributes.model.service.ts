@@ -33,9 +33,12 @@ export class ReviewAttributesModelService {
             this.saveReview['reviewId'] = this.model.id;
             this.saveReview['reviewerId'] = this._authService.getUser().id;
             this.saveReview['reasonId'] = reasonId; 
-            this.ReviewAttributesApiService.saveRA(this.saveReview).then(() =>{
-                console.log("saved Review Attributes");
-            });
+            return new Promise((resolve, reject) => {
+                this.ReviewAttributesApiService.saveRA(this.saveReview).then((data) =>{
+                    console.log("saved Review Attributes");
+                    resolve(data);
+                });
+            }) 
     }
 
     get() {
