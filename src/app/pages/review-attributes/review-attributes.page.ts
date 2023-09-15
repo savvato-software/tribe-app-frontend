@@ -57,21 +57,21 @@ export class ReviewAttributesPage implements OnInit {
   onApprovePhraseBtnClick() {
     const self = this;
     const reasonIDApprove = 1;
-    self._reviewAttributesModelService.saveReviewAttributes(reasonIDApprove).then((data) =>{
-      console.log(data);
+    self._reviewAttributesModelService.saveReviewAttributes(reasonIDApprove).then(() =>{
+      this._alertService.show({
+        header: 'Message approved!',
+        buttons: [{
+          text: 'OK', role: 'cancel',
+          handler: () => {
+          }
+          }]
+        })
+    
+        this.phraseToBeReviewed = "";
+        this.getNextPhraseButtonDisabled = false;
+        this.approveAndRejectButtonDisplayed = false;
     });
-    self._alertService.show({
-    header: 'Message approved!',
-    buttons: [{
-      text: 'OK', role: 'cancel',
-      handler: () => {
-      }
-      }]
-    })
-
-    this.phraseToBeReviewed = "";
-    this.getNextPhraseButtonDisabled = false;
-    this.approveAndRejectButtonDisplayed = false;
+    
   }
 
   onGetNextPhraseBtnClick() {
@@ -81,11 +81,24 @@ export class ReviewAttributesPage implements OnInit {
 
   getNextPhraseToBeReviewed() {
     this._reviewAttributesModelService.getNewPhrase().then((phrase) => {
-      const phraseTBRAsString = this.getAttrString(phrase); 
-      console.log(phraseTBRAsString);
-      this.phraseToBeReviewed = phraseTBRAsString;
-      this.getNextPhraseButtonDisabled = true;
-      this.approveAndRejectButtonDisplayed = true;
+      if(phrase == null){
+        this._alertService.show({
+          header: 'No More Phrases',
+          buttons: [{
+            text: 'OK', role: 'cancel',
+            handler: () => {
+            }
+            }]
+          })
+         this.getNextPhraseButtonDisabled = false;  
+      }
+      else{
+        const phraseTBRAsString = this.getAttrString(phrase); 
+        console.log(phraseTBRAsString);
+        this.phraseToBeReviewed = phraseTBRAsString;
+        this.getNextPhraseButtonDisabled = true;
+        this.approveAndRejectButtonDisplayed = true;
+      }
     });
   }
 

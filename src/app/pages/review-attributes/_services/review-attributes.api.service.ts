@@ -26,7 +26,7 @@ export class ReviewAttributesApiService {
 
                         resolve(_data);         
                     }, (err) => {
-                        reject(err);
+                        resolve(err.error);
                     });
             });
 

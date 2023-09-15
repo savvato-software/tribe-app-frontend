@@ -22,8 +22,12 @@ export class ReviewAttributesModelService {
     getNewPhrase() {
         return new Promise((resolve, reject) => {
             this.ReviewAttributesApiService.getPhrase().then((response) => {
+                if(response == null)
+                    resolve(response);
+                else{
                     this.model = response;
-                   resolve(this.model);
+                    resolve(this.model);
+                }
            })
         })   
         
@@ -34,9 +38,9 @@ export class ReviewAttributesModelService {
             this.saveReview['reviewerId'] = this._authService.getUser().id;
             this.saveReview['reasonId'] = reasonId; 
             return new Promise((resolve, reject) => {
-                this.ReviewAttributesApiService.saveRA(this.saveReview).then((data) =>{
+                this.ReviewAttributesApiService.saveRA(this.saveReview).then(() =>{
                     console.log("saved Review Attributes");
-                    resolve(data);
+                    resolve(this.saveReview);
                 });
             }) 
     }
