@@ -3,7 +3,7 @@
   <ng-container *ngIf="notifications.length > 0; else noNotifications">
     <ion-list>
       <ion-item *ngFor="let notification of notifications"
-                appLongPress (longPress)="onDeleteNotification(notification.id)"
+                appLongPress (longPress)="onDeleteNotification(notification)"
                 (click)="onShowMoreInfo(notification)"
                 [class.long-press]="isPressed"
                 class="notification-item"

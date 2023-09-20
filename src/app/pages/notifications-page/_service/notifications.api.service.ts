@@ -39,5 +39,23 @@ export class NotificationApiService {
     }
     
 
-    // deleteMessage(id: number): Observable<any> {}
+    async deleteMessage(notificationId: number){
+        const url = environment.apiUrl + '/api/notifications/' + notificationId;
+        console.log(url)
+        try{
+            let data = {"deleting": notificationId}
+            const call = this._apiService.delete(url, data).subscribe(
+                (response: any)=> {
+                    console.log(response)
+                }
+            );
+            console.log(data)
+            console.log("sending data")
+            console.log(call)
+            return call;
+            
+        } catch (error) {
+            throw error;
+        }
+    }
 }
