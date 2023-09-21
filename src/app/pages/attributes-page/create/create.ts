@@ -36,7 +36,9 @@ export class CreateAttributePage implements OnInit
     }
 
     public ngOnInit() {
-
+        this._attributesModelService.get().then((attributes) => {
+            this.model = attributes;
+        });    
     }
 
     onCancelBtnClick() {
