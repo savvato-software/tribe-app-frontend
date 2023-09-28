@@ -1,20 +1,12 @@
 <app-header [currentPageTitle]="headerPageTitle" [displayPrimaryActionButton]="true"
   [primaryActionButtonText]="headerPagePrimaryActionButtonText" [primaryActionButtonFunc]="getCreateBtnClickFunc()"></app-header>
 
-<ion-content>
-  <ion-grid [fixed]="true">
-    <ion-row class="header-row">
-      <ion-col>Adverb</ion-col>
-      <ion-col>Verb</ion-col>
-      <ion-col>Preposition</ion-col>
-      <ion-col>Noun</ion-col>
-    </ion-row>
-    
-    <ion-row *ngFor="let attr of getAttributes()">
-      <ion-col>{{attr.phrase.adverb || ''}}</ion-col>
-      <ion-col>{{attr.phrase.verb || ''}}</ion-col>
-      <ion-col>{{attr.phrase.preposition || ''}}</ion-col>
-      <ion-col>{{attr.phrase.noun || ''}}</ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+  <ion-content>
+    <ion-card color="warning" *ngFor="let attr of getAttributes()">
+      <ion-card-content>
+        <ion-card-title>Attribute</ion-card-title>
+        <p>{{attr.phrase.adverb || ''}} {{attr.phrase.verb || ''}} {{attr.phrase.preposition || ''}} {{attr.phrase.noun || ''}}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  
