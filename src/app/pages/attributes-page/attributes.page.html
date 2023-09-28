@@ -2,7 +2,7 @@
   [primaryActionButtonText]="headerPagePrimaryActionButtonText" [primaryActionButtonFunc]="getCreateBtnClickFunc()"></app-header>
 
   <ion-content>
-    <ion-card *ngFor="let attr of getAttributes()">
+    <ion-card color="warning" *ngFor="let attr of getAttributes()">
       <ion-card-content>
         <ion-card-title>Attribute</ion-card-title>
         <p>{{attr.phrase.adverb || ''}} {{attr.phrase.verb || ''}} {{attr.phrase.preposition || ''}} {{attr.phrase.noun || ''}}</p>
