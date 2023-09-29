@@ -46,8 +46,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {
 
     if (!environment.production) {
-      this.emailaddress = "testuser@tribeapp.com";
-      this.password = "admin"
+      if(localStorage.getItem("emailaddress") === null){
+        this.emailaddress = "testuser@tribeapp.com";
+        this.password = "admin";
+      } else {
+        this.emailaddress = localStorage.getItem("emailaddress");
+        this.password = localStorage.getItem("password");
+      }
+      
     } else {
       this.emailaddress = '';
       this.password = '';
@@ -73,6 +79,8 @@ export class LoginPage implements OnInit {
     this._loadingService.show({message: "..logging in.."}).then(() => {
       this.loginService.login(environment, this.emailaddress, this.password).then(
           (response) => {
+            localStorage.setItem("emailaddress", this.emailaddress);
+            localStorage.setItem("password", this.password);
             this._loadingService.dismiss().then(() => {
               this._router.navigate(['/home']);
             })
