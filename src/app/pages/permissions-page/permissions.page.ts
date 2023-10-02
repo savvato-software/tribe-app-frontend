@@ -47,10 +47,9 @@ export class PermissionsPage {
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
       this._permissionsModelService.selectedUserRoles = [];
-      // for (let i of user.roles){
-      // this._permissionsModelService.selectedUserRoles.push(i.name);
-      // }
-      console.log(user);
+      for (let i of user.roles){
+      this._permissionsModelService.selectedUserRoles.push(i.name);
+      }
       this._permissionsModelService.selectedUserName = user.name;
       this._permissionsModelService.hasSelectedUser = true;
     }
@@ -131,10 +130,7 @@ export class PermissionsPage {
 
 
   saveRoleChanges() {
-    // let saveObject = {id:2, array:["one","two","three"] };
-
-    // //saveObject['user'] = this._permissionsModelService.selectedUserRoles;
-    // this._permissionsModelService.save(saveObject);
+    this._permissionsModelService.save(this._permissionsModelService.selectedUserRoles);
   }
 
   exitToHomePage() {
