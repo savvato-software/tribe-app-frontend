@@ -58,4 +58,35 @@ export class PermissionsModelService {
    return this.dirty;
   }
 
+  save(roles) {
+    return new Promise((resolve, reject) => {
+        this._permissionsApiService.save(roles).then(
+            (rtn) => {
+                console.log("Call to attributeApiService was successful");
+                resolve({"successful": rtn});
+            },
+            (err) => {
+                console.log('error in model');
+                reject(err);
+            }
+        );
+    });
+  }
+
+
+  /*
+  save(model: {}) {
+    return new Promise((resolve, reject) => {
+        this._attributesApiService.save(model).then(
+            (rtn) => {
+                console.log("Call to attributeApiService was successful");
+                resolve({"successful": rtn});
+            },
+            (err) => {
+                reject(err);
+            }
+        );
+    });
+  }*/
+
 }

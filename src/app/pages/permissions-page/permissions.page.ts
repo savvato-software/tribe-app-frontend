@@ -129,8 +129,8 @@ export class PermissionsPage {
   }
 
 
-  saveChanges() {
-
+  saveRoleChanges() {
+    this._permissionsModelService.save(this._permissionsModelService.selectedUserRoles);
   }
 
   exitToHomePage() {
