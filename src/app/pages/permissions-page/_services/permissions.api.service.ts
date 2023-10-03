@@ -20,6 +20,7 @@ export class PermissionsApiService {
         this._apiService.get(url).subscribe(
             (_data) => {
 
+                console.log("getListOfRoles API call succeeded.", _data)
                 resolve(_data);
             }, (err) => {
                 reject(err);
@@ -37,10 +38,11 @@ export class PermissionsApiService {
           this._apiService.get(url).subscribe(
               (_data) => {
 
-                  resolve(_data);
-              }, (err) => {
-                  reject(err);
-              });
+                console.log("getListOfAllUsers API call succeeded.", _data)
+                resolve(_data);
+            }, (err) => {
+                reject(err);
+            });
     });
 
     return rtn;

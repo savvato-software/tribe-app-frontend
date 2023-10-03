@@ -1,5 +1,5 @@
 name: tribeapp-frontend-ci
-on: [pull_request, push]
+on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,11 +14,16 @@ jobs:
       - run: cp src/app/_environments/environment.dev.ts  src/app/_environments/environment.ts
       - run: ng test --no-watch --no-progress --browsers ChromeHeadless
 # cypress-run:
+#   runs-on: ubuntu-latest
+#   steps:
+#     - name: Checkout
+#       uses: actions/checkout@v3
+    # Copy environment.dev.ts to environment.ts
+#     - name: Copy environment.dev.ts
+#       run: cp ./src/app/_environments/environment.dev.ts ./src/app/_environments/environment.ts
 #   steps:
 #     - name: Cypress run
 #       uses: cypress-io/github-action@v5
 #       with:
 #         build: npm run build
 #         start: npm start
-
-
