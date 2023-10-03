@@ -32,7 +32,10 @@ import { Constants } from "../../../_constants/constants";
     }
 
     async deleteNotification(notificationId: number){
-      this._notificationApiService.deleteMessage(notificationId)
+      this._notificationApiService.deleteMessage(notificationId).then((data)=>{
+        this.init();
+      })
+      
     }
   
   }

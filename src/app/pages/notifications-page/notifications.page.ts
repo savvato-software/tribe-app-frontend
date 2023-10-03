@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationModelService } from './_service/notifications.model.service';
-import { data } from 'cypress/types/jquery';
 
 
 @Component({
@@ -53,9 +52,6 @@ export class NotificationPage implements OnInit {
   }
 
   onDeleteNotification(notification: any) {
-    this.notificationModelService.deleteNotification(notification.id).then((data)=>{
-      this.notificationModelService.init();
-    })
-    
+    this.notificationModelService.deleteNotification(notification.id)
   }
 }
