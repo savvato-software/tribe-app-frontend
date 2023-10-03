@@ -46,6 +46,22 @@ export class PermissionsApiService {
     return rtn;
   }
 
+  save1() {
+    const url = environment.apiUrl + '/api/permissions';
+    let changes = {id:2, roles:["test1", "test2", "test3"]}
+    return new Promise(
+      (resolve, reject) => {
+        this._apiService.post(url, changes).subscribe(
+          (_data) => {
+            console.log('roles saved to server' + _data);
+            resolve({ "successful": {status: true} });
+          }, (err) => {
+            console.log('API error');
+            reject(err);
+          });
+      });
+  }
+
   save(changes) {
     const url = environment.apiUrl + '/api/permissions';
     return new Promise(

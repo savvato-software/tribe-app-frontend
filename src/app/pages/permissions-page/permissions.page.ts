@@ -128,10 +128,13 @@ export class PermissionsPage {
 
   }
 
-
   saveRoleChanges() {
-    this._permissionsModelService.save(this._permissionsModelService.selectedUserRoles);
+    this._permissionsModelService.save1();
   }
+
+  // saveRoleChanges() {
+  //   this._permissionsModelService.save(this._permissionsModelService.selectedUserRoles);
+  // }
 
   exitToHomePage() {
       if (this._permissionsModelService.isDirty() == false){

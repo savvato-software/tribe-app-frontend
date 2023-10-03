@@ -73,6 +73,10 @@ export class PermissionsModelService {
     });
   }
 
+  save1() {
+    this._permissionsApiService.save1();
+  }
+
 
   /*
   save(model: {}) {
