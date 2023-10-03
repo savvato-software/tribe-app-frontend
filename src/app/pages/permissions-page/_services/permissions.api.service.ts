@@ -45,7 +45,7 @@ export class PermissionsApiService {
 
     return rtn;
   }
-
+  // Test data for save feature
   save1() {
     const url = environment.apiUrl + '/api/permissions';
     let changes = {id:2, roles:["test1", "test2", "test3"]}
