@@ -50,4 +50,8 @@ export class NotificationPage implements OnInit {
     const icon = notification.iconUrl;
     return icon ? icon : '';
   }
+
+  onDeleteNotification(notification: any) {
+    this.notificationModelService.deleteNotification(notification.id)
+  }
 }

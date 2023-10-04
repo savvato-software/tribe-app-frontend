@@ -30,6 +30,13 @@ import { Constants } from "../../../_constants/constants";
       console.log("sending data to back server")
       this._notificationApiService.readNotification(notificationId);
     }
+
+    async deleteNotification(notificationId: number){
+      this._notificationApiService.deleteMessage(notificationId).then((data)=>{
+        this.init();
+      })
+      
+    }
   
   }
   
