@@ -47,6 +47,7 @@ export class PermissionsPage {
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
       this._permissionsModelService.selectedUserRoles = [];
+
       for (let i of user.roles){
       this._permissionsModelService.selectedUserRoles.push(i.name);
       }
