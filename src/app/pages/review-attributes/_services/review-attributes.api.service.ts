@@ -32,6 +32,23 @@ export class ReviewAttributesApiService {
 
         return rtn;
     }
+    getReasonListApi(){
+        const url = environment.apiUrl + '/api/reviewer-decision';
+        const rtn = new Promise(
+            (resolve, reject) => {
+                this._apiService.get(url).subscribe(
+                    (_data) => {
+                        console.log('get reasons-list operation completed!');
+                        console.log(_data);
+
+                        resolve(_data);         
+                    }, (err) => {
+                        reject(err);
+                    });
+            });
+
+        return rtn;
+    }
 
     saveRA(data) {
         const url = environment.apiUrl + '/api/reviewer-decision';

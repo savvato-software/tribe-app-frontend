@@ -14,6 +14,7 @@ export class ReviewAttributesPage implements OnInit {
 
   headerPageTitle: string = 'Review Attributes';
   phraseToBeReviewed: String = "";
+  reasons: any = [];
   getNextPhraseButtonDisabled: boolean = false;
   approveAndRejectButtonDisplayed: boolean = false;
 
@@ -21,18 +22,18 @@ export class ReviewAttributesPage implements OnInit {
               private  _reviewAttributesModelService: ReviewAttributesModelService) { }
 
   ngOnInit() {
+    this.getListOfReviewDecisionReasons();
   }
 
   onRejectPhraseBtnClick() {
     //mock data
-   const reasons = this.getListOfReviewDecisionReasons();
 
     const self = this;
 
     self._alertService.show({
       header: 'Message rejected',
       subheader: 'Choose a reason why:',
-      inputs: reasons.map((rsn) => {
+      inputs: this.reasons.foreach((rsn) => {
               return {
                   type: 'radio',
                   label: rsn.reason,
@@ -56,8 +57,8 @@ export class ReviewAttributesPage implements OnInit {
 
   onApprovePhraseBtnClick() {
     const self = this;
-    const reasonIDApprove = 1;
-    self._reviewAttributesModelService.saveReviewAttributes(reasonIDApprove).then(() =>{
+    console.log(this.reasons[0].id);
+    self._reviewAttributesModelService.saveReviewAttributes(this.reasons[0].id).then(() =>{
       this._alertService.show({
         header: 'Message approved!',
         buttons: [{
@@ -119,11 +120,13 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   getListOfReviewDecisionReasons() {
-    const reasons = [
-      {"id": 1, "reason": "approved"},
-      {"id": 2, "reason": "doesn't make sense"},
-      {"id": 3, "reason": "vulgar"}];
-    return reasons;
+    this._reviewAttributesModelService.getReasonList().then((reasonsList) => {
+     this.reasons = reasonsList;
+    });
+    // [ {"id": 1, "reason": "approved"},
+    //   {"id": 2, "reason": "doesn't make sense"},
+    //   {"id": 3, "reason": "vulgar"}];
+    
   }
 
 }

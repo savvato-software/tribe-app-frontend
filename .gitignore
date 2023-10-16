@@ -15,5 +15,3 @@ www/
 src/app/_environments/environment.ts
 
 .DS_Store
-
-package-lock.json
