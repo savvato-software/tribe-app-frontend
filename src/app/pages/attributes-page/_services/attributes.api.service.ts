@@ -47,5 +47,20 @@ export class AttributesApiService {
             );
         });
     }
+
+    delete(id: string): Promise<any> {
+        const url = environment.apiUrl + '/api/attributes/?phraseId=' + id + '&userId=' + this._authService.getUser().id + '&isReviewed=true';
+    
+        return new Promise((resolve, reject) => {
+            this._apiService.delete(url, {}).subscribe(
+                (response: any) => {
+                    resolve(response);
+                },
+                (err) => {
+                    reject(err);
+                }
+            );
+        });
+    }
     
 }
