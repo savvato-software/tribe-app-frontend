@@ -41,9 +41,9 @@ export class AttributesPage implements OnInit {
     return Object.values(attributes);
   }
   
-  deleteAttribute(index: number) {
+  deleteAttribute(id: number) {
     const self = this;
-    const attributeToDelete = this.getAttributes()[index] as {id: string};
+    const attributeToDelete = this.getAttributes()[id] as {id: string};
     let msg = "Deleting attribute...";
   
     self._loadingService.show({message: msg}).then(() => {
