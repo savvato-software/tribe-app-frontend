@@ -54,6 +54,7 @@ export class AttributesApiService {
         return new Promise((resolve, reject) => {
             this._apiService.delete(url, {}).subscribe(
                 (response: any) => {
+                    console.log("Call to attributeApiService was successful");
                     resolve(response);
                 },
                 (err) => {

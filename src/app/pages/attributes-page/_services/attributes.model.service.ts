@@ -53,7 +53,6 @@ export class AttributesModelService {
         return new Promise((resolve, reject) => {
             this._attributesApiService.delete(id).then(
                 (response) => {
-                    console.log("Call to attributeApiService was successful");
                     resolve(response);
                 },
                 (err) => {
