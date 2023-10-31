@@ -13,6 +13,7 @@
   </ng-container>
   <ion-item>
     <select [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
+      <option> </option>
       <option *ngFor="let role of getListOfRoles()">{{role}}</option>
     </select>
     <ion-button (click)="addRole(selectedRole)">Add Selection</ion-button>

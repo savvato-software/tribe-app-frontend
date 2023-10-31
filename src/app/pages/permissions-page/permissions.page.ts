@@ -40,13 +40,23 @@ export class PermissionsPage {
     })
   }
 
+  refreshPage() {
+    this._loadingService.show({message: "..loading.."}).then(() => {
+      this._permissionsModelService.init();
+      this._loadingService.dismiss ();
+    })
+  }
+
   
   selectedRole: string = '';
+
+  selectedUser = this._permissionsModelService.selectedUser;
 
 
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
       this._permissionsModelService.selectedUserRoles = [];
+      this._permissionsModelService.selectedUser = user;  //working
 
       for (let i of user.roles){
       this._permissionsModelService.selectedUserRoles.push(i.name);
@@ -128,14 +138,19 @@ export class PermissionsPage {
     return availableRoles;
 
   }
+  // test function
+  // saveRoleChanges() {
+  //   this._permissionsModelService.save1();
+  //   //this.selectUser(this.selectedUser);
+  // }
 
   saveRoleChanges() {
-    this._permissionsModelService.save1();
+    //  working >>> 
+    let idNumber = (this._permissionsModelService.selectedUser["id"]);
+    let newRoles = (this._permissionsModelService.selectedUserRoles);
+    console.log("Sending: ",{id:idNumber, permissions:newRoles});
+    this._permissionsModelService.save({id:idNumber, permissions:newRoles});    
   }
-
-  // saveRoleChanges() {
-  //   this._permissionsModelService.save(this._permissionsModelService.selectedUserRoles);
-  // }
 
   exitToHomePage() {
       if (this._permissionsModelService.isDirty() == false){
