@@ -317,7 +317,7 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
 
             self._profileModelService.save(this.model).then(() => {
                 if (model['isPasswordChanged'])
-                        self._userService.changeLostPassword(code, phoneNumber, pw).then(() => {
+                        self._userService.changePassword(code, phoneNumber, pw).then(() => {
                             self._loadingService.dismiss().then(() => {
 
                                 self._alertService.show({
