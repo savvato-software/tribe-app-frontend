@@ -200,7 +200,7 @@ export class LoginPage implements OnInit {
                     text: 'OK',
                     handler: (data2) => {
                       if (data2.pw1 && data2.pw1.length > 5 && data2.pw1 == data2.pw2) {
-                        self._userService.changeLostPassword(data.code, phoneNumber, data2.pw2).then((response) => {
+                        self._userService.changePassword(data.code, phoneNumber, data2.pw2).then((response) => {
 
                           if (response["body"]["id"]) {
                             self._alertService.show({
