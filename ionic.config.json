@@ -1,8 +1,7 @@
 {
-  "name": "Voting App",
+  "name": "deletemequickly",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular",
-  "id": "4961da33"
+  "type": "angular"
 }

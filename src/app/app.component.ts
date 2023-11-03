@@ -16,7 +16,8 @@ export class AppComponent {
     {title: 'Attributes', url: '/attributes', icon: 'list'},
     {title: 'Notifications', url: '/notifications', icon: 'notifications'},
     {title: 'Permissions', url: '/permissions', icon: 'cog'},
-    {title: 'Review Attributes', url: '/review-attributes', icon: 'flash'}
+    {title: 'Review Attributes', url: '/review-attributes', icon: 'flash'},
+    {title: 'Connect', url: '/connect', icon: 'contract'},
   ];
 
   public loggedOutAppPages = [
