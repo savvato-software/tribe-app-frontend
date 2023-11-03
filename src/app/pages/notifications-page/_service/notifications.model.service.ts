@@ -31,12 +31,15 @@ import { Constants } from "../../../_constants/constants";
       this._notificationApiService.readNotification(notificationId);
     }
 
-    async deleteNotification(notificationId: number){
-      this._notificationApiService.deleteMessage(notificationId).then((data)=>{
+    async deleteNotification(notificationId: number) {
+      try {
+        const data = await this._notificationApiService.deleteMessage(notificationId);
         this.init();
-      })
-      
+      } catch (error) {
+        console.error(error);
+      }
     }
+    
   
   }
   
