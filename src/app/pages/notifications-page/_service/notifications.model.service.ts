@@ -39,7 +39,5 @@ import { Constants } from "../../../_constants/constants";
         console.error(error);
       }
     }
-    
-  
   }
   

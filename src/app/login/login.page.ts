@@ -46,8 +46,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {
 
     if (!environment.production) {
-      this.emailaddress = "testuser@tribeapp.com";
-      this.password = "admin"
+      if(localStorage.getItem("emailaddress") === null){
+        this.emailaddress = "testuser@tribeapp.com";
+        this.password = "admin";
+      } else {
+        this.emailaddress = localStorage.getItem("emailaddress");
+        this.password = localStorage.getItem("password");
+      }
+      
     } else {
       this.emailaddress = '';
       this.password = '';
@@ -73,6 +79,8 @@ export class LoginPage implements OnInit {
     this._loadingService.show({message: "..logging in.."}).then(() => {
       this.loginService.login(environment, this.emailaddress, this.password).then(
           (response) => {
+            localStorage.setItem("emailaddress", this.emailaddress);
+            localStorage.setItem("password", this.password);
             this._loadingService.dismiss().then(() => {
               this._router.navigate(['/home']);
             })
@@ -192,7 +200,7 @@ export class LoginPage implements OnInit {
                     text: 'OK',
                     handler: (data2) => {
                       if (data2.pw1 && data2.pw1.length > 5 && data2.pw1 == data2.pw2) {
-                        self._userService.changeLostPassword(data.code, phoneNumber, data2.pw2).then((response) => {
+                        self._userService.changePassword(data.code, phoneNumber, data2.pw2).then((response) => {
 
                           if (response["body"]["id"]) {
                             self._alertService.show({

@@ -38,7 +38,6 @@ export class NotificationApiService {
         }
     }
     
-
     async deleteMessage(notificationId: number) {
         const url = environment.apiUrl + '/api/notifications/' + notificationId;
         console.log(url);
@@ -49,9 +48,9 @@ export class NotificationApiService {
             console.log(response);
             console.log("Deleted successfully");
             return response;
+
         } catch (error) {
             throw error;
         }
     }
-    
 }

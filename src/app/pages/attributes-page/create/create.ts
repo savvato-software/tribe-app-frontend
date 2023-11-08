@@ -36,7 +36,8 @@ export class CreateAttributePage implements OnInit
     }
 
     public ngOnInit() {
-
+        this._attributesModelService.init().then(() => {
+        });
     }
 
     onCancelBtnClick() {
@@ -75,21 +76,62 @@ export class CreateAttributePage implements OnInit
 
     applyPhraseToUser() {
         const self = this;
-        const model:any = {"inputAdverbText": this.inputAdverbTxt,
-                        "inputVerbText": this.inputVerbTxt, 
-                        "inputPrepositionText": this.inputPrepositionTxt, 
-                        "inputNounText": this.inputNounTxt};
+        const model:any = {
+            "inputAdverbText": this.inputAdverbTxt,
+            "inputVerbText": this.inputVerbTxt, 
+            "inputPrepositionText": this.inputPrepositionTxt, 
+            "inputNounText": this.inputNounTxt
+        };
         let msg = 'Saving your attributes!';
-
-        
+        const attributeSet = new Set<string>();
     
+
+        //Populate the attributeSet with the existing attributes
+        const attributes = this._attributesModelService.get();
+        attributes.forEach((attribute) => {
+            const existingAttribute = `${attribute.phrase.adverb} ${attribute.phrase.verb} ${attribute.phrase.preposition} ${attribute.phrase.noun}`;
+            attributeSet.add(existingAttribute.toLowerCase());
+        });
+
         self._loadingService.show({ message: msg }).then(() => {
-            self._attributesModelService.save(model).then((isPhraseReviewed: boolean) => {
-                self._loadingService.dismiss().then(() => {
-                    if (isPhraseReviewed === true) {
+            
+            self._loadingService.dismiss().then(() => {
+
+                // Check if the entered attribute already exists in the model   
+                const enteredAttribute = `${model.inputAdverbText} ${model.inputVerbText} ${model.inputPrepositionText} ${model.inputNounText}`;
+                const attributeExists = attributeSet.has(enteredAttribute.toLowerCase());
+        
+                if (attributeExists) {
+                    self._alertService.show({
+                        header: 'Attribute Exists',
+                        message: 'The attribute you entered already exists.',
+                        buttons: [{
+                            text: 'OK',
+                            role: 'cancel',
+                            handler: () => {
+                                self.navigateTo('/attributes');
+                            }
+                        }]
+                    });
+                } else {
+                    // Save the attribute if it doesn't already exist
+                    self._attributesModelService.save(model).then((isPhraseReviewed: boolean) => {
+                        let header = '';
+                        let message = '';
+        
+                        switch (isPhraseReviewed) {
+                            case true:
+                                header = 'Success';
+                                message = 'Attribute has been applied!';
+                                break;
+                            case false:
+                                header = 'In Review';
+                                message = 'We have not seen this attribute before, it is in review. We will add it to your profile once it is approved.';
+                                break;
+                        }
                         self._alertService.show({
-                            header: 'Success!',
-                            message: "Attribute has been applied!",
+                            header: header,
+                            message: message,
                             buttons: [{
                                 text: 'OK',
                                 role: 'cancel',
@@ -98,22 +140,11 @@ export class CreateAttributePage implements OnInit
                                 }
                             }]
                         });
-                    } else {
-                        self._alertService.show({
-                            header: 'In Review',
-                            message: "we have not seen this attribute before, it is in review. We will add it to your profile once it is approved.",
-                            buttons: [{
-                                text: 'OK',
-                                role: 'cancel',
-                                handler: () => {
-                                    self.navigateTo('/attributes');
-                                }
-                            }]
-                        });
-                    }
-                });
+                    });
+                }
             });
         });
+        
     }
     
 

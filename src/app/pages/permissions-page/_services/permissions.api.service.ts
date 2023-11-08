@@ -19,6 +19,7 @@ getListOfRoles() {
         this._apiService.get(url).subscribe(
             (_data) => {
 
+                console.log("getListOfRoles API call succeeded.", _data)
                 resolve(_data);
             }, (err) => {
                 reject(err);
@@ -36,6 +37,7 @@ getListOfAllUsers() {
         this._apiService.get(url).subscribe(
             (_data) => {
 
+                console.log("getListOfAllUsers API call succeeded.", _data)
                 resolve(_data);
             }, (err) => {
                 reject(err);
