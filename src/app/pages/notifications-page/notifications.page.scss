@@ -8,3 +8,41 @@ ion-item.long-press {
   background-color: #e6e6e6;
   transition: background-color 1s;
 }
+
+.bold-text {
+  font-weight: bold;
+}
+
+
+.notification-item {
+  display: flex;
+  flex-direction: column; 
+}
+
+.notification-content {
+  flex: 1; 
+}
+
+.notification-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.notification-title ion-icon {
+  margin-right: 10px;
+}
+
+.notification-body {
+  display: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+}
+
+.notification-item.expanded .notification-body {
+  display: block;
+}
+
+
