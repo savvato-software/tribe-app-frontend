@@ -47,5 +47,9 @@ export class AttributesModelService {
                 }
             );
         });
-    }    
+    } 
+    
+    delete(id: string): Promise<any> {
+        return this._attributesApiService.delete(id);
+    }
 }
