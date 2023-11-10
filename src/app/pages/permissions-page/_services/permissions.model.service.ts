@@ -28,6 +28,7 @@ export class PermissionsModelService {
 
   init() {
     this._modelTransformingService.clearAllTransformers();
+    this._modelTransformingService.reset();
 
     this._modelTransformingService.addTransformer((model, done) => {
       this._permissionsApiService.getListOfAllUsers().then((response1) => {
@@ -60,25 +61,12 @@ export class PermissionsModelService {
    return this.dirty;
   }
 
-  // save(roles) {
-    
-  //     return this._permissionsApiService.save(roles).then(
-  //           (rtn) => {
-  //               console.log("Save call to attributeApiService was successful");
-  //               resolve({"successful": rtn});
-  //           },
-  //           (err) => {
-  //               console.log('error in model');
-  //               reject(err);
-  //           }
-  //       );
-    
-  //}
 
   save(roles){
     this.dirty = false;
     return this._permissionsApiService.save(roles).then(() => {
-      this.init();
+      this._permissionsApiService.getListOfAllUsers();
+      this._permissionsApiService.getListOfRoles();
     })
   }
 

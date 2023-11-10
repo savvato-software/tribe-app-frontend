@@ -130,8 +130,6 @@ export class PermissionsPage {
           availableRoles.push(j['name']);
         }
       }
-    } else {
-      console.error("Available role list is undefined or null");
     }
 
 
@@ -148,8 +146,10 @@ export class PermissionsPage {
     //  working >>> 
     let idNumber = (this._permissionsModelService.selectedUser["id"]);
     let newRoles = (this._permissionsModelService.selectedUserRoles);
-    console.log("Sending: ",{id:idNumber, permissions:newRoles});
-    this._permissionsModelService.save({id:idNumber, permissions:newRoles});    
+    //console.log("Sending: ",{id:idNumber, permissions:newRoles});
+    this._permissionsModelService.save({id:idNumber, permissions:newRoles})
+    this.getListOfUsers();
+    console.log("list reset");    
   }
 
   exitToHomePage() {

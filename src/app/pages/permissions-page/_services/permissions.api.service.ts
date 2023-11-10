@@ -53,21 +53,27 @@ export class PermissionsApiService {
   }
 
   save(changes) {
-    console.log("requested data ==>  ",changes.id)
+    
+    console.log("requested data ==>  ",changes.id);
+      
     const url = environment.apiUrl + '/api/permissions';
-    this.delete(changes.id);
-    return new Promise(
-      (resolve, reject) => {
-        this._apiService.post(url, changes).subscribe(
-          (_data) => {
-            console.log('roles saved to server ' + _data);
-            resolve({ "successful": {status: true} });
-            resolve({ "successful": _data });
-          }, (err) => {
-            console.log('API error');
-            reject(err);
-          });
-      });
+    
+      return new Promise(
+        (resolve, reject) => {
+          this.delete(changes.id);
+          this._apiService.post(url, changes).subscribe(
+            (_data) => {
+              console.log('roles saved to server ' + _data);
+              resolve({ "successful": {status: true} });
+              resolve({ "successful": _data });
+            }, (err) => {
+              console.log('API error');
+              reject(err);
+            });
+        });
+        
+      
+    
 
   }
  
