@@ -25,10 +25,10 @@ export class NotificationApiService {
     }
     async readNotification(notificationId: number) {
         const url = environment.apiUrl + '/api/notifications/';
-        console.log("apiservice started")
+        console.log("api service started")
         try{
             let data = {"id" : notificationId}
-            const call = this._apiService.put(url, data);
+            const call = await this._apiService.put(url, data).toPromise();
             console.log(data)
             console.log("sending data")
             return call;
@@ -38,22 +38,17 @@ export class NotificationApiService {
         }
     }
     
-
-    async deleteMessage(notificationId: number){
+    async deleteMessage(notificationId: number) {
         const url = environment.apiUrl + '/api/notifications/' + notificationId;
-        console.log(url)
-        try{
-            let data = {"deleting": notificationId}
-            const call = this._apiService.delete(url, data).subscribe(
-                (response: any)=> {
-                    console.log(response)
-                }
-            );
-            console.log(data)
-            console.log("sending data")
-            console.log(call)
-            return call;
-            
+        console.log(url);
+    
+        try {
+            let data = { "deleting": notificationId };
+            const response = await this._apiService.delete(url, data).toPromise();
+            console.log(response);
+            console.log("Deleted successfully");
+            return response;
+
         } catch (error) {
             throw error;
         }
