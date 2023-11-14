@@ -57,8 +57,7 @@ export class ReviewAttributesApiService {
                 this._apiService.post(url, data).subscribe(
                     (data) => {
                         console.log('save reviewer-decision ' + data['reviewId'] + ' was successful --> ' +data);
-
-                        resolve({"successful": data});
+                        resolve(data);
                     }, (err) => {
                         reject(err);
                     });

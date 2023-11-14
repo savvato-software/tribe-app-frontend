@@ -26,27 +26,25 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onRejectPhraseBtnClick() {
-    //mock data
-
     const self = this;
 
     self._alertService.show({
       header: 'Message rejected',
       subheader: 'Choose a reason why:',
       inputs: this.reasons.foreach((rsn) => {
-              return {
-                  type: 'radio',
-                  label: rsn.reason,
-                  value: rsn.reason,
-                  handler: (data) => {
-                    console.log('User choice: ', data.value);
-                  }
-              }
-          }, self),
-      buttons: [{
-        text: 'OK', role: 'cancel',
-        handler: () => {
-        }
+            return {
+                type: 'radio',
+                label: rsn.reason,
+                value: rsn.reason,
+                handler: (data) => {
+                  console.log('User choice: ', data.value);
+                }
+            }
+        }, self),
+        buttons: [{
+          text: 'OK', role: 'cancel',
+          handler: () => {
+          }
         }]
     })
 
@@ -57,7 +55,6 @@ export class ReviewAttributesPage implements OnInit {
 
   onApprovePhraseBtnClick() {
     const self = this;
-    console.log(this.reasons[0].id);
     self._reviewAttributesModelService.saveReviewAttributes(this.reasons[0].id).then(() =>{
       this._alertService.show({
         header: 'Message approved!',
@@ -76,12 +73,11 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onGetNextPhraseBtnClick() {
-
     this.getNextPhraseToBeReviewed();
   }
 
   getNextPhraseToBeReviewed() {
-    this._reviewAttributesModelService.getNewPhrase().then((phrase) => {
+   this._reviewAttributesModelService.getNewPhrase().then((phrase) => {
       if(phrase == null){
         this._alertService.show({
           header: 'No More Phrases',
@@ -123,10 +119,7 @@ export class ReviewAttributesPage implements OnInit {
     this._reviewAttributesModelService.getReasonList().then((reasonsList) => {
      this.reasons = reasonsList;
     });
-    // [ {"id": 1, "reason": "approved"},
-    //   {"id": 2, "reason": "doesn't make sense"},
-    //   {"id": 3, "reason": "vulgar"}];
-    
+   
   }
 
 }
