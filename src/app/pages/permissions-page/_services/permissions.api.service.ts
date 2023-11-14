@@ -60,7 +60,7 @@ export class PermissionsApiService {
     
       return new Promise(
         (resolve, reject) => {
-          this.delete(changes.id);
+          //this.delete(changes.id);
           this._apiService.post(url, changes).subscribe(
             (_data) => {
               console.log('roles saved to server ' + _data);
