@@ -87,7 +87,7 @@ export class PermissionsPage {
     return this._permissionsModelService.hasSelectedUser
   } 
 
-  getselectedUserRoles() {
+  get selectedUserRoles() {
     return this._permissionsModelService.selectedUserRoles;
   }
 
@@ -98,26 +98,12 @@ export class PermissionsPage {
   getCurrentUserName() {
     return this._authService.getUser().name;
   }
-
-
-  getListOfUsers() {
-    /*
-    This is a list of roles for logged in user
-    if (this._permissionsModelService.getListOfUsers() != null){
-      let list = [];
-      for (let i of this._permissionsModelService.getListOfUsers()) {
-        list.push(i.roles);
-      }
-      console.log(list[this._authService.getUser().id-1]);
-      
-    }
-    */
+  
+  get listOfUsers() {
     return this._permissionsModelService.getListOfUsers();
   }
 
-
-
-  getListOfRoles() {
+  get listOfAvailableRoles() {
     let availableRoles = [];
     let allroles = this._permissionsModelService.getListOfRoles();
     if (allroles !== undefined && allroles !== null) {
@@ -147,9 +133,7 @@ export class PermissionsPage {
     let idNumber = (this._permissionsModelService.selectedUser["id"]);
     let newRoles = (this._permissionsModelService.selectedUserRoles);
     //console.log("Sending: ",{id:idNumber, permissions:newRoles});
-    this._permissionsModelService.save({id:idNumber, permissions:newRoles})
-    this.getListOfUsers();
-    console.log("list reset");    
+    this._permissionsModelService.save({id:idNumber, permissions:newRoles})  
   }
 
   exitToHomePage() {
@@ -200,6 +184,16 @@ export class PermissionsPage {
 }
 
 
-
+    /*
+    This is a list of roles for logged in user
+    if (this._permissionsModelService.getListOfUsers() != null){
+      let list = [];
+      for (let i of this._permissionsModelService.getListOfUsers()) {
+        list.push(i.roles);
+      }
+      console.log(list[this._authService.getUser().id-1]);
+      
+    }
+    */
 
 
