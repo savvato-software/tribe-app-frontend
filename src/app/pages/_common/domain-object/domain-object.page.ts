@@ -13,7 +13,11 @@ export class DomainObjectPage implements OnInit {
 
   dirty = false;
 
-  constructor(objectInitMap) {
+  constructor() {
+
+  }
+
+  setObjectMap(objectInitMap) {
     this.objectMap = objectInitMap;
   }
 

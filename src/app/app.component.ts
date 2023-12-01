@@ -11,16 +11,17 @@ import { MenuController } from "@ionic/angular";
 export class AppComponent {
 
   public loggedInAppPages =  [
-    {title: 'Home', url: '/home', icon: 'albums'},
-    {title: 'Profile', url: '/profile', icon: 'person'},
-    {title: 'Attributes', url: '/attributes', icon: 'list'},
-    {title: 'Notifications', url: '/notifications', icon: 'notifications'},
-    {title: 'Permissions', url: '/permissions', icon: 'cog'},
-    {title: 'Review Attributes', url: '/review-attributes', icon: 'flash'}
+    {title: 'Home', url: '/home', icon: 'albums', dataTestName: 'home-menu-item'},
+    {title: 'Profile', url: '/profile', icon: 'person', dataTestName: 'profile-menu-item'},
+    {title: 'Attributes', url: '/attributes', icon: 'list', dataTestName: 'attributes-menu-item'},
+    {title: 'Notifications', url: '/notifications', icon: 'notifications', dataTestName: 'notifications-menu-item'},
+    {title: 'Permissions', url: '/permissions', icon: 'cog', dataTestName: 'permissions-menu-item'},
+    {title: 'Review Attributes', url: '/review-attributes', icon: 'flash', dataTestName: 'review-attributes-menu-item'},
+    {title: 'Connect', url: '/connect', icon: 'contract', dataTestName: 'connect-menu-item'}
   ];
 
   public loggedOutAppPages = [
-    {title: 'Login', url: '/login', icon: 'flash'}
+    {title: 'Login', url: '/login', icon: 'flash', dataTestName: 'login-menu-item'}
   ];
 
   constructor(private _authService: AuthService,

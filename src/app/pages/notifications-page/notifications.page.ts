@@ -10,6 +10,8 @@ import { NotificationModelService } from './_service/notifications.model.service
 
 export class NotificationPage implements OnInit {
   headerPageTitle: string = 'Notifications';
+  isPressed: boolean = false;
+
   constructor(private notificationModelService: NotificationModelService) {}
 
   ngOnInit() {
@@ -19,7 +21,7 @@ export class NotificationPage implements OnInit {
   get notifications() {
     return this.notificationModelService.getNotifications();
   }
-  
+
   currentlyExpandedNotificationId: number | null = null;
 
   toggleExpanded(notification: any) {
@@ -30,18 +32,18 @@ export class NotificationPage implements OnInit {
       this.currentlyExpandedNotificationId = notification.id;
     }
   }
-  
+
   isNotificationExpanded(notification: any) {
-    return this.currentlyExpandedNotificationId === notification.id 
+    return this.currentlyExpandedNotificationId === notification.id
   }
-  
+
   onShowMoreInfo(notification: any) {
     console.log('More information:', notification.body, notification.id, notification.isRead);
     this.onNotificationRead(notification.id)
     this.toggleExpanded(notification)
     this.notificationModelService.setRead(notification)
   }
-  
+
   onNotificationRead(id: number) {
     this.notificationModelService.readNotification(id)
   }
