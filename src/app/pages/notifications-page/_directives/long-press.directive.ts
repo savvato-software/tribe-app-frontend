@@ -18,7 +18,8 @@ export class LongPressDirective {
 
   @HostBinding('class.long-press') isPressed = false;
   @HostBinding('class.loading-bar') loadingBar = false;
-
+  @HostBinding('class.loading-bar-text') loadingBarText = false;
+  
   @HostListener('mousedown') onMouseDown() {
     this.isPressed = true;
     this.startTime = Date.now();
@@ -27,6 +28,7 @@ export class LongPressDirective {
     this.loadingBarTimeout = setTimeout(() => {
       if (this.isPressed) {
         this.loadingBar = true; // Show loading bar after the delay
+        this.loadingBarText = true
       }
     }, loadingBarDelay);
 
@@ -63,5 +65,6 @@ export class LongPressDirective {
   private resetState() {
     this.isPressed = false;
     this.loadingBar = false;
+    this.loadingBarText = false;
   }
 }

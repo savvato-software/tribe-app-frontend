@@ -10,7 +10,6 @@
   position: relative;
 
   &.long-press {
-
     &.loading-bar {
       &:after {
         content: '';
@@ -24,14 +23,40 @@
         z-index: 1;
       }
     }
+  
+    &.loading-bar-text {
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        color: black;
+        mix-blend-mode: multiply; /* Set text color to white */
+        animation: loading-bar-animation 1s linear infinite;
+        z-index: 2;
+      }
+    }
+  }
+
+  &.expanded {
+    .notification-body {
+      display: block;
+      height: auto;
+      max-height: 1000px; /* Set a maximum height based on your content size */
+      opacity: 1;
+      transition: max-height 0.3s ease, opacity 0.3s ease; /* Adjust the duration and timing function as needed */
+    }
   }
 }
-
-@keyframes loading-bar-animation {
-  to {
-    width: 100%;
-  } 
-}
+  
+  @keyframes loading-bar-animation {
+    to {
+      width: 100%;
+      color: white
+    } 
+  }
 
 .notification-content {
   flex: 1; 
@@ -47,16 +72,6 @@
   margin-right: 10px;
 }
 
-.notification-body {
-  display: none;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  z-index: 1;
-}
 
-.notification-item.expanded .notification-body {
-  display: block;
-}
 
 
