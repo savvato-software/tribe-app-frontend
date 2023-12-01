@@ -62,15 +62,17 @@ export class EditProfilePage extends DomainObjectPage implements OnInit
                 private _cameraService: CameraService,
                 private _http: HttpClient) {
 
-        super({
-            getModelFunc: () => this.model,
-            _http: _http,
-            actionSheetController: _actionSheetController,
-            cameraService: _cameraService,
-            _alertService: _alertService,
-            _pictureService: _pictureService,
-            photoType: _constants.PHOTO_TYPE_PROFILE
-        })
+        super()
+
+        super.setObjectMap({
+          getModelFunc: () => this.model,
+          _http: _http,
+          actionSheetController: _actionSheetController,
+          cameraService: _cameraService,
+          _alertService: _alertService,
+          _pictureService: _pictureService,
+          photoType: _constants.PHOTO_TYPE_PROFILE
+        });
 
         this.validationsForm = this.formBuilder.group({
             name: new FormControl('', Validators.required),

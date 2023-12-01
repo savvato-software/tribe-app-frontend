@@ -41,7 +41,43 @@ export class AttributesPage implements OnInit {
     return Object.values(attributes);
   }
   
-    
+  deleteAttribute(id: number) {
+    const self = this;
+    const attributeToDelete = this.getAttributes()[id] as {id: string};
+    let msg = "Deleting attribute...";
+  
+    self._loadingService.show({message: msg}).then(() => {
+      self._loadingService.dismiss().then(() => {
+        self._alertService.show({
+          header: 'Delete Attribute?',
+          message: 'Are you sure you want to delete this attribute?',
+          buttons: [
+            {
+              text: 'Yes',
+              handler: () => {
+                self.navigateTo('attributes');
+  
+                // Remove the attribute from the frontend
+                this._attributesModelService.delete(attributeToDelete.id).then(
+                  (response) => {
+                    console.log("Call to attributeApiService was successful");
+          
+                },
+                (err) => {
+                  console.log("error!!!!!!!!!!!!!!!");
+                  }
+                );
+              }
+            },
+            {
+              text: 'No',
+              role: 'cancel' 
+            }
+          ]
+        })
+      })
+    });
+  }  
    
 
   getAttrString(attr) {
