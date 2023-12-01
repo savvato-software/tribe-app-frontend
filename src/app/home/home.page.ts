@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
   ionViewWillEnter() {
     this._pictureService.init();
     //this._loadingService.show({message: "..loading.."}).then(() => {
-       // Do nothing
+    // Do nothing
     //})
   }
 
