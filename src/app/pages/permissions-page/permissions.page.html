@@ -1,17 +1,17 @@
 <app-header [currentPageTitle]="headerPageTitle"></app-header>
 
 <ion-content>
-  <ion-card-title>  Logged in as: {{theCurrentUser.name}} </ion-card-title> 
+  <ion-card-title>  Logged in as: {{theCurrentUser.name}} </ion-card-title>
   <ion-card-title *ngIf="hasUser == false">Select a user </ion-card-title>
-  <ion-card-title *ngIf="hasUser == true">You selected {{selectedUser.name}} </ion-card-title>
+  <ion-card-title *ngIf="hasUser == true">You selected {{selectedUser['name']}} </ion-card-title>
   <ion-item (click)="clearUser()" class="clickable"></ion-item>
   <ion-item *ngFor="let user of getListOfUsers()" (click)="selectUser(user)" class="clickable">
-    {{user.name}} 
+    {{user.name}}
   </ion-item>
   <ion-item (click)="clearUser()" class="clickable"></ion-item>
   <ion-item>Assigned Roles</ion-item>
   <ng-container *ngIf="selectedSkills != []">
-    <ion-item *ngFor="let skils of selectedSkills"> {{skils}} <ion-button> X </ion-button></ion-item>    
+    <ion-item *ngFor="let skils of selectedSkills"> {{skils}} <ion-button> X </ion-button></ion-item>
   </ng-container>
   <ion-item>
     <select aria-label="additional-roles">

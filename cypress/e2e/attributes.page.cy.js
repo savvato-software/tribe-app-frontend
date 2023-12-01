@@ -1,4 +1,3 @@
-// check to see if attributes page exists
 describe('check for existence of attributes page', () => {
   // get to attributes page
   it('navigate to attributes page', () => {
@@ -119,8 +118,6 @@ it('check reactivity of submit button failure', () => {
  
 // clear success button
      cy.wait(500); cy.get('button').click()
-
-
 })
 
 })
