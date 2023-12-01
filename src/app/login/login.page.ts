@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
         this.emailaddress = localStorage.getItem("emailaddress");
         this.password = localStorage.getItem("password");
       }
-      
+
     } else {
       this.emailaddress = '';
       this.password = '';
@@ -103,7 +103,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  onLostPasswordClick(event) {
+  onLostPasswordClick() {
     let self = this;
     this._alertService.show({
       header: '',
