@@ -61,12 +61,22 @@ export class PermissionsModelService {
    return this.dirty;
   }
 
+  //work 
+  clearUser(){
+    this.dirty = false;
+    this.hasSelectedUser = false;
+    this.selectedUserRoles = [];
+    this.selectedUser = {};
+    this.selectedUserName = "";
+  }
+
 
   save(roles){
     this.dirty = false;
     return this._permissionsApiService.save(roles).then(() => {
       this._permissionsApiService.getListOfAllUsers();
       this._permissionsApiService.getListOfRoles();
+      this.init();
     })
   }
 

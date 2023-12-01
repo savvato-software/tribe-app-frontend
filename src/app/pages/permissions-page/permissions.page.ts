@@ -31,6 +31,7 @@ export class PermissionsPage {
 
   }
 
+  //currentUsers = {};
 
 
   ionViewWillEnter() {
@@ -58,9 +59,10 @@ export class PermissionsPage {
       this._permissionsModelService.selectedUserRoles = [];
       this._permissionsModelService.selectedUser = user;  //working
 
-      for (let i of user.roles){
-      this._permissionsModelService.selectedUserRoles.push(i.name);
-      }
+      this.updateRolesList(user.roles);
+      // for (let i of user.roles){
+      // this._permissionsModelService.selectedUserRoles.push(i.name);
+      // }
       this._permissionsModelService.selectedUserName = user.name;
       this._permissionsModelService.hasSelectedUser = true;
     }
@@ -82,13 +84,22 @@ export class PermissionsPage {
     }
   }
 
+  //THE REPLACEMENT
+  updateRolesList(userRoles){
+    this._permissionsModelService.selectedUserRoles = [];
+    for (let i of userRoles){
+      this._permissionsModelService.selectedUserRoles.push(i.name);
+      }
+  }
+
 
   hasSelectedUser() {
     return this._permissionsModelService.hasSelectedUser
   } 
 
-  get selectedUserRoles() {
+  getselectedUserRoles() {
     return this._permissionsModelService.selectedUserRoles;
+
   }
 
   getSelectedUserName() {
@@ -99,11 +110,11 @@ export class PermissionsPage {
     return this._authService.getUser().name;
   }
   
-  get listOfUsers() {
+  getlistOfUsers() {
     return this._permissionsModelService.getListOfUsers();
   }
 
-  get listOfAvailableRoles() {
+  getlistOfAvailableRoles() {
     let availableRoles = [];
     let allroles = this._permissionsModelService.getListOfRoles();
     if (allroles !== undefined && allroles !== null) {
@@ -132,8 +143,12 @@ export class PermissionsPage {
     //  working >>> 
     let idNumber = (this._permissionsModelService.selectedUser["id"]);
     let newRoles = (this._permissionsModelService.selectedUserRoles);
+    let newList = (this._permissionsModelService.selectedUser["roles"]);
     //console.log("Sending: ",{id:idNumber, permissions:newRoles});
-    this._permissionsModelService.save({id:idNumber, permissions:newRoles})  
+    this._permissionsModelService.save({id:idNumber, permissions:newRoles});
+    this._permissionsModelService.clearUser();
+    this.updateRolesList(newList);
+    this.selectUser({});
   }
 
   exitToHomePage() {
