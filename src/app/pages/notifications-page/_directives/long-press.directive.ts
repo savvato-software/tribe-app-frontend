@@ -29,6 +29,8 @@ export class LongPressDirective {
       if (this.isPressed) {
         this.loadingBar = true; // Show loading bar after the delay
         this.loadingBarText = true
+        console.log(this.loadingBarText)
+        console.log("loading bar timer started")
       }
     }, loadingBarDelay);
 
@@ -51,6 +53,7 @@ export class LongPressDirective {
   private emitOrReset() {
     clearTimeout(this.loadingBarTimeout);
     clearTimeout(this.longPressTimeout);
+    console.log("Put up or shut up")
 
     if (this.isPressed && this.loadingBar) {
       const elapsed = Date.now() - this.startTime;
