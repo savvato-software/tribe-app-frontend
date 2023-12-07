@@ -10,7 +10,15 @@ import { Constants } from "../../../_constants/constants";
 
   export class NotificationModelService {
     notifications: any = [];
-  
+
+    setProgress() {
+      this.notifications.forEach(notification => {
+        notification.progress = 0;
+        console.log('Notification ID:', notification.id, 'Progress set to:', notification.progress);
+      });
+    }
+    
+
     constructor(private _notificationApiService: NotificationApiService) {}
 
     setRead(notification:any) {
@@ -20,6 +28,7 @@ import { Constants } from "../../../_constants/constants";
     async init() {
       this.notifications = await this._notificationApiService.getAllNotificationsForUsers();
       console.log('Retrieved data:', this.notifications);
+      this.setProgress()
     }
   
     getNotifications() {
