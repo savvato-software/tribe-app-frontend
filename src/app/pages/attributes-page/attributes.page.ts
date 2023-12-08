@@ -43,7 +43,6 @@ export class AttributesPage implements OnInit {
   
   deleteAttribute(id: number) {
     const self = this;
-    const attributeToDelete = this.getAttributes()[id] as {id: string};
     let msg = "Deleting attribute...";
   
     self._loadingService.show({message: msg}).then(() => {
@@ -58,7 +57,7 @@ export class AttributesPage implements OnInit {
                 self.navigateTo('attributes');
   
                 // Remove the attribute from the frontend
-                this._attributesModelService.delete(attributeToDelete.id).then(
+                this._attributesModelService.delete(id).then(
                   (response) => {
                     console.log("Call to attributeApiService was successful");
           
