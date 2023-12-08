@@ -54,13 +54,15 @@ export class AttributesPage implements OnInit {
             {
               text: 'Yes',
               handler: () => {
-                self.navigateTo('attributes');
-  
-                // Remove the attribute from the frontend
+                
                 this._attributesModelService.delete(id).then(
                   (response) => {
-                    console.log("Call to attributeApiService was successful");
-          
+                   console.log("Call to attributeApiService was successful");
+                   // Fetch the updated attributes
+                   this._attributesModelService.init().then(() => {
+                    // Navigate to the 'attributes' page after the deletion is complete
+                    self.navigateTo('attributes');
+                   });
                 },
                 (err) => {
                   console.log("error!!!!!!!!!!!!!!!");
