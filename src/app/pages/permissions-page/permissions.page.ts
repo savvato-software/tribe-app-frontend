@@ -141,14 +141,31 @@ export class PermissionsPage {
 
   saveRoleChanges() {
     //  working >>> 
+    this.saveMessage();
     let idNumber = (this._permissionsModelService.selectedUser["id"]);
     let newRoles = (this._permissionsModelService.selectedUserRoles);
     let newList = (this._permissionsModelService.selectedUser["roles"]);
+    let roleList = [];
+    for (let role of newList) {
+      roleList.push("role list", role);
+    }
+    console.log(roleList);
     //console.log("Sending: ",{id:idNumber, permissions:newRoles});
     this._permissionsModelService.save({id:idNumber, permissions:newRoles});
     this._permissionsModelService.clearUser();
-    this.updateRolesList(newList);
+    this.updateRolesList(roleList);
     this.selectUser({});
+    
+  }
+
+  saveMessage() {
+    this._alertService.show({
+      header: 'Changes Saved!',
+      message: 'Roles Updated',
+      buttons:[{
+        text: "OK",
+        role: 'cancel'}]
+    })
   }
 
   exitToHomePage() {

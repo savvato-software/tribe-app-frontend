@@ -48,7 +48,35 @@ export class AppComponent {
 
   getAppPages() {
     if (this._authService.isLoggedIn()) {
-      return this.loggedInAppPages;
+      let roleList = [];
+      for (let role of this._authService.getUser()['roles']) {
+        roleList.push(role['name']);
+      }
+      console.log(roleList);
+      console.log('all user info  ', this._authService.getUser())
+      if (roleList.includes('ROLE_admin')){
+        console.log("is admin");
+        return this.loggedInAppPages;
+      }
+      else {
+        console.log("not an admin");
+        let nonAdminPages = []; 
+        for (let page = 0;  page < this.loggedInAppPages.length; page++){
+          if (page == 4) {
+            continue;
+          }
+          else {
+            nonAdminPages.push(this.loggedInAppPages[page]);
+          }
+
+        }
+        
+        console.log(nonAdminPages);
+        
+        return nonAdminPages;
+        //return this.loggedInAppPages;
+      }
+      //return this.loggedInAppPages;
     } else {
       return this.loggedOutAppPages;
     }

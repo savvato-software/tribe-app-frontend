@@ -65,7 +65,7 @@ export class PermissionsModelService {
   clearUser(){
     this.dirty = false;
     this.hasSelectedUser = false;
-    this.selectedUserRoles = [];
+    this.selectedUserRoles = ["No","user","selected"];
     this.selectedUser = {};
     this.selectedUserName = "";
   }
