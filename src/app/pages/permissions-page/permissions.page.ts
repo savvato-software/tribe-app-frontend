@@ -102,13 +102,13 @@ export class PermissionsPage {
 
   }
 
-  getSelectedUserName() {
-    return this._permissionsModelService.selectedUserName;
-  }
+  // getSelectedUserName() {
+  //   return this._permissionsModelService.selectedUserName;
+  // }
 
-  getCurrentUserName() {
-    return this._authService.getUser().name;
-  }
+  // getCurrentUserName() {
+  //   return this._authService.getUser().name;
+  // }
   
   getlistOfUsers() {
     return this._permissionsModelService.getListOfUsers();

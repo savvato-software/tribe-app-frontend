@@ -2,9 +2,7 @@
 
 <ion-content>
 
-  <ion-card-title>  Logged in as: {{getCurrentUserName()}} </ion-card-title>
-  <ion-card-title *ngIf="hasSelectedUser() == false">Select a user </ion-card-title>
-  <ion-card-title *ngIf="hasSelectedUser() == true">You selected {{getSelectedUserName()}} </ion-card-title>
+  
   <ion-item></ion-item>
   <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
   <ion-item></ion-item>
