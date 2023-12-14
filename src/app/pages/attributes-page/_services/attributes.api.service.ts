@@ -48,7 +48,7 @@ export class AttributesApiService {
         });
     }
 
-    delete(id: string): Promise<any> {
+    delete(id: number): Promise<any> {
         const url = environment.apiUrl + '/api/attributes/?phraseId=' + id + '&userId=' + this._authService.getUser().id;
     
         return new Promise((resolve, reject) => {
