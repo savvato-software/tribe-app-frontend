@@ -40,7 +40,7 @@ export class NotificationPage implements OnInit {
   }
 
   isNotificationProgressed(notification: any) {
-    if (notification.progress > .1)
+    if (notification.progress > .01)
       return true
     else
       return false
