@@ -4,18 +4,18 @@
 
   
   <ion-item></ion-item>
-  <ion-item color="tertiary" *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
+  <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
   <ion-item></ion-item>
   <ion-item>Assigned Roles</ion-item>
   
   <ng-container *ngIf="getselectedUserRoles() != []">
-      <ion-item color="secondary" *ngFor="let roleOfUser of getselectedUserRoles()"> {{roleOfUser}} <ion-button (click)="removeRole(roleOfUser)"> X </ion-button></ion-item>
+      <ion-item *ngFor="let roleOfUser of getselectedUserRoles()"> {{roleOfUser}} <ion-button (click)="removeRole(roleOfUser)"> X </ion-button></ion-item>
   </ng-container>
   
   <ion-item>
     <select [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
       <option> </option>
-      <option class="current-roles" *ngFor="let roleAvailable of getlistOfAvailableRoles()">{{roleAvailable}}</option>
+      <option *ngFor="let roleAvailable of getlistOfAvailableRoles()">{{roleAvailable}}</option>
     </select>
     <ion-button (click)="addRole(selectedRole)">Add Selection</ion-button>
   </ion-item>
