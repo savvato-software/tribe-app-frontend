@@ -61,7 +61,6 @@ export class PermissionsModelService {
    return this.dirty;
   }
 
-  //work 
   clearUser(){
     this.dirty = false;
     this.hasSelectedUser = false;

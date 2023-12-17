@@ -13,7 +13,6 @@ export class PermissionsApiService {
 
 }
 
-// will not accept -- private _permissionsModelService: PermissionsModelService
 
 
   getListOfRoles() {
@@ -24,7 +23,6 @@ export class PermissionsApiService {
         this._apiService.get(url).subscribe(
             (_data) => {
 
-                console.log("getListOfRoles API call succeeded.", _data)
                 resolve(_data);
             }, (err) => {
                 reject(err);
@@ -42,7 +40,6 @@ export class PermissionsApiService {
           this._apiService.get(url).subscribe(
               (_data) => {
 
-                console.log("getListOfAllUsers API call succeeded.", _data)
                 resolve(_data);
             }, (err) => {
                 reject(err);
@@ -54,20 +51,17 @@ export class PermissionsApiService {
 
   save(changes) {
     
-    console.log("requested data ==>  ",changes.id);
+    
       
     const url = environment.apiUrl + '/api/permissions';
     
       return new Promise(
         (resolve, reject) => {
-          //this.delete(changes.id);
           this._apiService.post(url, changes).subscribe(
             (_data) => {
-              console.log('roles saved to server ' + _data);
               resolve({ "successful": {status: true} });
               resolve({ "successful": _data });
             }, (err) => {
-              console.log('API error');
               reject(err);
             });
         });
@@ -80,15 +74,13 @@ export class PermissionsApiService {
 
   delete(user) {
     const url = environment.apiUrl + "/api/permissions";
-    let changes = {id:user, permissions:["ROLE_ADMIN", "ROLE_PHRASEREVIEWER"]}; //{id:3, roles:["test1", "test2", "test3"]}; //
+    let changes = {id:user, permissions:["ROLE_ADMIN", "ROLE_PHRASEREVIEWER"]};
     return new Promise(
       (resolve, reject) => {
         this._apiService.delete(url, changes).subscribe(
           (_data) => {
-            console.log('role(s) removed from server ' + _data);
             resolve({ "successful": {status: true} });
           }, (err) => {
-            console.log('API error');
             reject(err);
           });
       });

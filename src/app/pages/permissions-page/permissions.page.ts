@@ -31,7 +31,7 @@ export class PermissionsPage {
 
   }
 
-  //currentUsers = {};
+  
 
 
   ionViewWillEnter() {
@@ -57,12 +57,9 @@ export class PermissionsPage {
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
       this._permissionsModelService.selectedUserRoles = [];
-      this._permissionsModelService.selectedUser = user;  //working
+      this._permissionsModelService.selectedUser = user;  
 
       this.updateRolesList(user.roles);
-      // for (let i of user.roles){
-      // this._permissionsModelService.selectedUserRoles.push(i.name);
-      // }
       this._permissionsModelService.selectedUserName = user.name;
       this._permissionsModelService.hasSelectedUser = true;
     }
@@ -84,7 +81,7 @@ export class PermissionsPage {
     }
   }
 
-  //THE REPLACEMENT
+  
   updateRolesList(userRoles){
     this._permissionsModelService.selectedUserRoles = [];
     for (let i of userRoles){
@@ -102,14 +99,6 @@ export class PermissionsPage {
 
   }
 
-  // getSelectedUserName() {
-  //   return this._permissionsModelService.selectedUserName;
-  // }
-
-  // getCurrentUserName() {
-  //   return this._authService.getUser().name;
-  // }
-  
   getlistOfUsers() {
     return this._permissionsModelService.getListOfUsers();
   }
@@ -133,14 +122,8 @@ export class PermissionsPage {
     return availableRoles;
 
   }
-  // test function
-  // saveRoleChanges() {
-  //   this._permissionsModelService.save1();
-  //   //this.selectUser(this.selectedUser);
-  // }
 
   saveRoleChanges() {
-    //  working >>> 
     this.saveMessage();
     let idNumber = (this._permissionsModelService.selectedUser["id"]);
     let newRoles = (this._permissionsModelService.selectedUserRoles);
@@ -149,8 +132,7 @@ export class PermissionsPage {
     for (let role of newList) {
       roleList.push("role list", role);
     }
-    console.log(roleList);
-    //console.log("Sending: ",{id:idNumber, permissions:newRoles});
+    
     this._permissionsModelService.save({id:idNumber, permissions:newRoles});
     this._permissionsModelService.clearUser();
     this.updateRolesList(roleList);
@@ -194,7 +176,7 @@ export class PermissionsPage {
             }
           }]
         })
-        console.log('data reset');
+        
       }
       
       
@@ -214,18 +196,3 @@ export class PermissionsPage {
     this._permissionsModelService.dirty = true;
   }
 }
-
-
-    /*
-    This is a list of roles for logged in user
-    if (this._permissionsModelService.getListOfUsers() != null){
-      let list = [];
-      for (let i of this._permissionsModelService.getListOfUsers()) {
-        list.push(i.roles);
-      }
-      console.log(list[this._authService.getUser().id-1]);
-      
-    }
-    */
-
-
