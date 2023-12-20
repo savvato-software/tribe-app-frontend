@@ -33,31 +33,21 @@ describe('check for existence of attributes page', () => {
   })
 
   // Type phrase that passes and check for success message
-    it('type into verb input field', () => {
-       cy.wait(500); 
+    it('type phrase that passes', () => {
+      cy.wait(500); 
+
       cy.get('[data-test="inputVerbField"]').type('sculpts')
+      cy.get('[data-test="inputVerbField"]').should('have.value', 'sculpts');
 
-    // read value from output field
-    cy.get('[data-test="inputVerbField"]').should('have.value', 'sculpts')
-
-  })
-
-    it('type into preposition input field', () => {
-      //  cy.wait(500); 
       cy.get('[data-test="inputPrepositionField"]').type('with')
-    
-    cy.get('[data-test="inputPrepositionField"]').should('have.value', 'with')
+      cy.get('[data-test="inputPrepositionField"]').should('have.value', 'with');
+
+      cy.get('[data-test="inputNounField"]').type('clay')
+      cy.get('[data-test="inputNounField"]').should('have.value', 'clay');
 
   })
 
-    it('type into noun input field', () => {
-      //  cy.wait(500); 
-       cy.get('[data-test="inputNounField"]').type('clay')
 
-        // read value from output field
-    cy.get('[data-test="inputNounField"]').should('have.value', 'clay')
-
-  })
 
   // check to see if success message appears
   it('check reactivity of submit button success', () => {
