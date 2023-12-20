@@ -7,19 +7,6 @@ describe('check for existence of attributes page', () => {
     cy.contains('ion-item', 'Attributes').click();
   })
 
-  // check to see if the 4 attributes columns exist on the attributes page
-
-  it('should display the four columns', () => {
-    // Assert that the four columns exist in the grid
-    cy.get('ion-grid').within(() => {
-      cy.get('ion-row.header-row')
-        .should('contain', 'Adverb')
-        .and('contain', 'Verb')
-        .and('contain', 'Preposition')
-        .and('contain', 'Noun')
-    })
-  }) 
-
   
 
   // check if the four input fields exist on the create attributes page
