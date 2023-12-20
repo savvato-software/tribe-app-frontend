@@ -7,6 +7,16 @@ describe('check for existence of attributes page', () => {
     cy.contains('ion-item', 'Attributes').click();
   })
 
+  //Delete an attribute
+  it('delete an attribute', () => {
+    cy.contains('ion-card-title', 'sculpts with clay').within(() => {
+      cy.get('ion-button').click();
+     });
+     cy.wait(500);
+     cy.contains('button', 'Yes').click()
+
+  })
+
   
 
   // check if the four input fields exist on the create attributes page
@@ -58,7 +68,7 @@ describe('check for existence of attributes page', () => {
       cy.get('[data-test="submitAttributesButton"]').click()
 
     // Assert that the success message is displayed
-      cy.contains('ion-alert', 'Success!').should('exist');
+      cy.contains('ion-alert', 'Success').should('exist');
 
    
 // clear success button
