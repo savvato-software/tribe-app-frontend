@@ -33,9 +33,6 @@ export class LongPressDirective {
     this.isPressed = true;
     this.startTime = Date.now();
     this.currentNotification = this.notification;
-
-    console.log('Starting progress:', this.currentNotification.progress);
-
     this.loadingBarTimeout = setTimeout(() => {
       if (this.isPressed && this.currentNotification) {
         this.loadingBar = true;
