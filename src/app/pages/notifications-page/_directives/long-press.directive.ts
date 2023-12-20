@@ -2,7 +2,8 @@ import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } fro
 import { NotificationModelService } from '../_service/notifications.model.service';
 
 
-const longPressDuration = 1200; // Set the long press duration in milliseconds
+export const longPressDuration = 1200; // Set the long press duration in milliseconds
+
 const loadingBarDelay = 200; // Set the delay for loading bar appearance in milliseconds
 
 @Directive({
