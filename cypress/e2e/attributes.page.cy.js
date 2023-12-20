@@ -33,7 +33,7 @@ describe('check for existence of attributes page', () => {
   })
 
   // Type phrase that passes and check for success message
-    it('type phrase that passes', () => {
+  it('type phrase that passes', () => {
       cy.wait(500); 
 
       cy.get('[data-test="inputVerbField"]').type('sculpts')
@@ -46,8 +46,6 @@ describe('check for existence of attributes page', () => {
       cy.get('[data-test="inputNounField"]').should('have.value', 'clay');
 
   })
-
-
 
   // check to see if success message appears
   it('check reactivity of submit button success', () => {
@@ -68,33 +66,26 @@ describe('check for existence of attributes page', () => {
   })
 
     // Type phrase that fails and check for failure message
-    it('navigates to create page', () => {
+  it('navigates to create page', () => {
 
       cy.get('[data-test="launchHeaderPrimaryActionButton"]').should('have.length', 1)
       cy.get('[data-test="launchHeaderPrimaryActionButton"]').click()
     })
 
-    it('type into verb input field', () => {
-      cy.get('[data-test="inputVerbField"]').type('your')
+    it('types phrase that fails', () => {
 
-    // read value from output field
-    cy.get('[data-test="inputVerbField"]').should('have.value', 'your')
+      cy.get('[data-test="inputVerbField"]').type('your')
+      cy.get('[data-test="inputVerbField"]').should('have.value', 'your');
+
+      cy.get('[data-test="inputNounField"]').type('mom')
+      cy.get('[data-test="inputNounField"]').should('have.value', 'mom');
 
   })
 
-  it('type into noun input field', () => {
-    //  cy.wait(500); 
-     cy.get('[data-test="inputNounField"]').type('mom')
+// check to see if in review message appears
+  it('check reactivity of submit button in review', () => {
 
-      // read value from output field
-  cy.get('[data-test="inputNounField"]').should('have.value', 'mom')
-
-})
-
-// check to see if failure message appears
-it('check reactivity of submit button failure', () => {
-
-  cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
+    cy.get('[data-test="submitAttributesButton"]').should('have.length', 1)
 
     // press submit button
     cy.get('[data-test="submitAttributesButton"]').click()
