@@ -14,6 +14,7 @@ describe('check for existence of attributes page', () => {
      });
      cy.wait(500);
      cy.contains('button', 'Yes').click()
+     cy.wait(500);
 
   })
 
