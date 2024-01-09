@@ -35,6 +35,11 @@ export class AttributesModelService {
         return this.model;
     }
 
+    fetchUserCounts() {
+        return this._attributesApiService.fetchUserCounts();
+
+    }
+
     save(model: {}) {
         return new Promise((resolve, reject) => {
             this._attributesApiService.save(model).then(
