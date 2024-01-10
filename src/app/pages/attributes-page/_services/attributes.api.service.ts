@@ -26,7 +26,7 @@ export class AttributesApiService {
     }
 
     fetchUserCounts() {
-        const url = environment.apiUrl + '/api/attributes/user-counts/' + this._authService.getUser().id;
+        const url = environment.apiUrl + '/api/attributes/total/{attributeId}' + this._authService.getUser().id;
 
         return new Promise((resolve, reject) => {
             this._apiService.get(url).subscribe(
