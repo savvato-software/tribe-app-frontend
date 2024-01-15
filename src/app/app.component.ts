@@ -52,7 +52,7 @@ export class AppComponent {
   getAppPages() {
     
     if (this._authService.isLoggedIn()) {
-      if (this.adminCheck()){
+      if (this._authService.hasRole("ROLE_admin")){
         return this.loggedInAppPages;
       }
       else {
@@ -71,22 +71,6 @@ export class AppComponent {
       
     } else {
       return this.loggedOutAppPages;
-    }
-  }
-
-  adminCheck(){
-    let hasAdmin = false;
-    for (let role of this._authService.getUser()['roles']) {
-      if (role['name'] == 'ROLE_admin' ) {
-        //console.log("admin found!!");
-        hasAdmin = true;
-      }
-    }
-    if (hasAdmin == true) {
-      return true;
-    }
-    else {
-      return false;
     }
   }
 }
