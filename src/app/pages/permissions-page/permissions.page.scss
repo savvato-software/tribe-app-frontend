@@ -7,6 +7,11 @@ ion-toolbar#bottom-toolbar {
     }
   }
 
+  .title {
+    font-weight: bolder;
+  }
+  
+  
   #permissions-availabe {
     width: 50%;
   }
@@ -15,8 +20,4 @@ ion-toolbar#bottom-toolbar {
     cursor: pointer;
   }
 
-  .current-roles {
-    color: #0a5;
-    background-color: #f9f;
-  }
 

@@ -6,7 +6,7 @@
   <ion-item></ion-item>
   <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
   <ion-item></ion-item>
-  <ion-item>Assigned Roles</ion-item>
+  <ion-item class="title">Assigned Roles</ion-item>
   
   <ng-container *ngIf="getselectedUserRoles() != []">
       <ion-item *ngFor="let roleOfUser of getselectedUserRoles()"> {{roleOfUser}} <ion-button (click)="removeRole(roleOfUser)"> X </ion-button></ion-item>
