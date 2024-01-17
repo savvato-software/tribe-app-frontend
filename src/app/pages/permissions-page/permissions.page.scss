@@ -11,6 +11,11 @@ ion-toolbar#bottom-toolbar {
     font-weight: bolder;
   }
   
+  ion-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   #permissions-availabe {
     width: 50%;
