@@ -41,19 +41,10 @@ export class PermissionsPage {
     })
   }
 
-  refreshPage() {
-    this._loadingService.show({message: "..loading.."}).then(() => {
-      this._permissionsModelService.init();
-      this._loadingService.dismiss ();
-    })
-  }
-
   
   selectedRole: string = '';
 
-  selectedUser = this._permissionsModelService.selectedUser;
-
-
+  
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
       this._permissionsModelService.selectedUserRoles = [];
@@ -186,7 +177,7 @@ export class PermissionsPage {
     if(role && role !=='') {
       this._permissionsModelService.selectedUserRoles.push(role);
     }
-    this.selectedRole = '';
+    //this.selectedRole = '';
     this._permissionsModelService.dirty = true;
   }
 

@@ -70,21 +70,6 @@ export class PermissionsApiService {
     
 
   }
- 
-
-  delete(user) {
-    const url = environment.apiUrl + "/api/permissions";
-    let changes = {id:user, permissions:["ROLE_ADMIN", "ROLE_PHRASEREVIEWER"]};
-    return new Promise(
-      (resolve, reject) => {
-        this._apiService.delete(url, changes).subscribe(
-          (_data) => {
-            resolve({ "successful": {status: true} });
-          }, (err) => {
-            reject(err);
-          });
-      });
-  }
 
 }
 
