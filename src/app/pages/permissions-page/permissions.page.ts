@@ -87,7 +87,6 @@ export class PermissionsPage {
 
   getselectedUserRoles() {
     return this._permissionsModelService.selectedUserRoles;
-
   }
 
   getlistOfUsers() {
