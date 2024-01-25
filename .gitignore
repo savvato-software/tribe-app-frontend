@@ -16,4 +16,6 @@ src/app/_environments/environment.ts
 
 .DS_Store
 
+package-lock.json
 
+angular.json
