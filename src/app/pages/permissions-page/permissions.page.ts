@@ -44,6 +44,7 @@ export class PermissionsPage {
   
   selectedRole: string = '';
 
+  selectedUser: any;
   
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {

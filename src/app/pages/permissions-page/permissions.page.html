@@ -4,7 +4,7 @@
 
   
   <ion-item></ion-item>
-  <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
+  <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" [class.selected]="user === selectedUser"   class="clickable"> {{user.name}} </ion-item>
   <ion-item></ion-item>
   
   <ion-item class="title ">
