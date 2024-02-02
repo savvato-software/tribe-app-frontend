@@ -7,7 +7,19 @@ import { ModelTransformingService } from '@savvato-software/savvato-javascript-s
 })
 export class PermissionsModelService {
 
-  model: any = {};
+  model = {};
+
+  dirty = false;
+
+  hasSelectedUser = false;
+
+  selectedUserRoles = [];
+
+  selectedUser = {};
+
+  selectedUserName = "";
+
+  
 
 
   constructor(
@@ -16,6 +28,7 @@ export class PermissionsModelService {
 
   init() {
     this._modelTransformingService.clearAllTransformers();
+    this._modelTransformingService.reset();
 
     this._modelTransformingService.addTransformer((model, done) => {
       this._permissionsApiService.getListOfAllUsers().then((response1) => {
@@ -32,6 +45,7 @@ export class PermissionsModelService {
     });
 
     this._modelTransformingService.transform(this.model);
+    
 
   }
   
@@ -41,6 +55,28 @@ export class PermissionsModelService {
 
   getListOfRoles() {
     return this.model['listOfUserRoles'];
+  }
+
+  isDirty() {
+   return this.dirty;
+  }
+
+  clearUser(){
+    this.dirty = false;
+    this.hasSelectedUser = false;
+    this.selectedUserRoles = ["No","user","selected"];
+    this.selectedUser = {};
+    this.selectedUserName = "";
+  }
+
+
+  save(roles){
+    this.dirty = false;
+    return this._permissionsApiService.save(roles).then(() => {
+      this._permissionsApiService.getListOfAllUsers();
+      this._permissionsApiService.getListOfRoles();
+      this.init();
+    })
   }
 
 }
