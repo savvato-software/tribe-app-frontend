@@ -18,3 +18,4 @@ src/app/_environments/environment.ts
 
 package-lock.json
 
+angular.json
