@@ -63,5 +63,42 @@ export class ConnectPageApiService {
             );
         });
     }
+
+    getRandomUserId() {
+        const randomUserIdArr = [2,3,4,5,6,7,8,9,10];
+
+        // return a user ID not equal to current user ID
+
+        let userIdIndex = (Math.floor(Math.random() * 10));
+        let userId = randomUserIdArr[userIdIndex];
+        let currentId = this._authService.getUser().id;
+
+        while (currentId == userId)
+        {
+            userIdIndex = (Math.floor(Math.random() * 10));
+            userId = randomUserIdArr[userIdIndex];
+        }
+
+        return userId;
+    }
+
+    getListOfConnectionsByUser() {
+
+        const listOfToBeConnectedWithUserId = [];
+
+        return new Promise((resolve, reject) => {
+            
+                for(let i = 0; i < 2; i++)
+                {
+                    const data = {
+                        requestingUserId: this._authService.getUser().id,
+                        toBeConnectedWithUserId: this.getRandomUserId()
+                    }
+                    listOfToBeConnectedWithUserId.push(data);
+                }
+                
+            resolve(listOfToBeConnectedWithUserId);
+        });
+    }
     
 }
