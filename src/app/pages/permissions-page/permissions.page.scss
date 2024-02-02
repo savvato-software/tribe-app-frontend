@@ -7,6 +7,16 @@ ion-toolbar#bottom-toolbar {
     }
   }
 
+  .title {
+    font-weight: bolder;
+  }
+  
+  ion-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
   #permissions-availabe {
     width: 50%;
   }
@@ -14,3 +24,5 @@ ion-toolbar#bottom-toolbar {
   .clickable {
     cursor: pointer;
   }
+
+

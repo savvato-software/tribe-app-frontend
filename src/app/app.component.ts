@@ -8,14 +8,17 @@ import { MenuController } from "@ionic/angular";
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
+
+
 export class AppComponent {
+  
 
   public loggedInAppPages =  [
     {title: 'Home', url: '/home', icon: 'albums', dataTestName: 'home-menu-item'},
     {title: 'Profile', url: '/profile', icon: 'person', dataTestName: 'profile-menu-item'},
     {title: 'Attributes', url: '/attributes', icon: 'list', dataTestName: 'attributes-menu-item'},
     {title: 'Notifications', url: '/notifications', icon: 'notifications', dataTestName: 'notifications-menu-item'},
-    {title: 'Permissions', url: '/permissions', icon: 'cog', dataTestName: 'permissions-menu-item'},
+    {title: 'Permissions', url: '/permissions', icon: 'cog', dataTestName: 'permissions-menu-item', isAdmin: true},
     {title: 'Review Attributes', url: '/review-attributes', icon: 'flash', dataTestName: 'review-attributes-menu-item'},
     {title: 'Connect', url: '/connect', icon: 'contract', dataTestName: 'connect-menu-item'}
   ];
@@ -47,8 +50,25 @@ export class AppComponent {
   }
 
   getAppPages() {
+    
     if (this._authService.isLoggedIn()) {
-      return this.loggedInAppPages;
+      if (this._authService.hasRole("ROLE_admin")){
+        return this.loggedInAppPages;
+      }
+      else {
+        let nonAdminPages = []; 
+        for (let page = 0;  page < this.loggedInAppPages.length; page++){
+          if (this.loggedInAppPages[page]["isAdmin"] == true) {
+            continue;
+          }
+          else {
+            nonAdminPages.push(this.loggedInAppPages[page]);
+          }
+
+        }
+        return nonAdminPages;
+      }
+      
     } else {
       return this.loggedOutAppPages;
     }
