@@ -1,16 +1,3 @@
-ion-toolbar#bottom-toolbar {
-    display: flex;
-    justify-content: space-evenly;
-  
-    ion-button {
-      width: 18.9%;
-    }
-  }
-
-  .title {
-    font-weight: bolder;
-  }
-
   #user-list {
     display: flex;
     width: 100%;
@@ -19,6 +6,10 @@ ion-toolbar#bottom-toolbar {
     ion-item {
       width: 100%;
     }
+  }
+
+  .clickable {
+    cursor: pointer;
   }
 
   .selected div {
@@ -36,14 +27,14 @@ ion-toolbar#bottom-toolbar {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  #permissions-availabe {
-    width: 50%;
-  }
-  
-  .clickable {
-    cursor: pointer;
+    font-weight: bolder;
   }
 
-
+  ion-toolbar #bottom-toolbar {
+    display: flex;
+    justify-content: space-evenly;
+  
+    ion-button {
+      width: 18.9%;
+    }
+  }
