@@ -45,11 +45,16 @@ export class PermissionsPage {
   selectedRole: string = '';
 
   selectedUser: any;
+
+  isUserSelected(user){
+    return user === this._permissionsModelService.selectedUser;
+  }
   
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
       this._permissionsModelService.selectedUserRoles = [];
       this._permissionsModelService.selectedUser = user;  
+      
 
       this.updateRolesList(user.roles);
       this._permissionsModelService.selectedUserName = user.name;
