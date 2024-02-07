@@ -73,7 +73,6 @@ export class PermissionsPage {
       })
     }
   }
-
   
   updateRolesList(userRoles){
     this._permissionsModelService.selectedUserRoles = [];

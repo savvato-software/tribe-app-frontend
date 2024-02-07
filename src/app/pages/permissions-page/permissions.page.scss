@@ -13,6 +13,7 @@
   }
 
   .selected div {
+    background-color: #0FF;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +22,17 @@
     font-weight: bolder;
     background-color: #2C5;
     color: #FFF;
+    border-radius: 10px;
+    animation-name: shimmer;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes shimmer {
+    0% {background-color: #2C5; color: #FFF;}
+    10% {background-color: #FFF; color: #2C5;}
+    20% {background-color: #2C5; color: #FFF;}
   }
   
   ion-label {
