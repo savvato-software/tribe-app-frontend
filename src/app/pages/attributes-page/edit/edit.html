@@ -1,6 +1,6 @@
 <app-header [currentPageTitle]="headerPageTitle" [displaySecondaryActionButton]="true"
     [secondaryActionButtonText]="headerPageSecondaryActionButtonText"
-    [secondaryActionButtonFunc]="getCancelBtnClickFunc()"></app-header>
+    [secondaryActionButtonFunc]="getCancelBtnClickFunc"></app-header>
 
 <ion-content>
     <ion-button color="tertiary" (click)="onSaveBtnClicked()" [disabled]="!isSaveBtnEnabled()">Save</ion-button>

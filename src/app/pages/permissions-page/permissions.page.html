@@ -1,19 +1,23 @@
 <app-header [currentPageTitle]="headerPageTitle"></app-header>
 
 <ion-content>
-  <ion-card-title>  Logged in as: {{getCurrentUserName()}} </ion-card-title>
-  <ion-card-title *ngIf="hasSelectedUser() == false">Select a user </ion-card-title>
-  <ion-card-title *ngIf="hasSelectedUser() == true">You selected {{getSelectedUserName()}} </ion-card-title>
-  <ion-item></ion-item>
-  <ion-item *ngFor="let user of getListOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
-  <ion-item></ion-item>
+  <ion-card-title>  Logged in as: {{theCurrentUser.name}} </ion-card-title> 
+  <ion-card-title *ngIf="hasUser == false">Select a user </ion-card-title>
+  <ion-card-title *ngIf="hasUser == true">You selected {{selectedUser.name}} </ion-card-title>
+  <ion-item (click)="clearUser()" class="clickable"></ion-item>
+  <ion-item *ngFor="let user of getListOfUsers()" (click)="selectUser(user)" class="clickable">
+    {{user.name}} 
+  </ion-item>
+  <ion-item (click)="clearUser()" class="clickable"></ion-item>
   <ion-item>Assigned Roles</ion-item>
-  <ng-container *ngIf="getselectedUserRoles() != []">
-    <ion-item *ngFor="let skill of getselectedUserRoles()"> {{skill}} <ion-button (click)="removeRole(skill)" > X </ion-button></ion-item>
+  <ng-container *ngIf="selectedSkills != []">
+    <ion-item *ngFor="let skils of selectedSkills"> {{skils}} <ion-button> X </ion-button></ion-item>    
   </ng-container>
+  
   <ion-item>
-    <select [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
-      <option *ngFor="let role of getListOfRoles()">{{role}}</option>
+    <select aria-label="additional-roles">
+      <option> Options will</option>
+      <option> Go Here</option>
     </select>
     <ion-button (click)="addRole(selectedRole)">Add Selection</ion-button>
   </ion-item>
@@ -22,6 +26,6 @@
 <ion-footer>
   <ion-toolbar id="bottom-toolbar" color="light">
     <ion-button (click)="saveChanges()" fill="clear">Save</ion-button>
-    <ion-button (click)="exitToHomePage()" fill="clear">Cancel</ion-button>
+    <ion-button (click)="cancelChanges()" fill="clear">Cancel</ion-button>
   </ion-toolbar>
 </ion-footer>

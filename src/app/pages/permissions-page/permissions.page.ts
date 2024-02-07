@@ -31,7 +31,7 @@ export class PermissionsPage {
 
   }
 
-
+  
 
   ionViewWillEnter() {
     this._loadingService.show({message: "..loading.."}).then(() => {
@@ -40,54 +40,37 @@ export class PermissionsPage {
     })
   }
 
+  hasUser = false;
 
-  selectedRole: string = '';
+  selectedSkills = [];
 
+  theCurrentUser = this.getUser();
+
+  selectedUser = {};
+
+  
+  
   selectUser(user) {
-    if (this._permissionsModelService.isDirty() == false) {
-      this._permissionsModelService.selectedUserRoles = [];
-      for (let i of user.roles){
-      this._permissionsModelService.selectedUserRoles.push(i.name);
-      }
-      this._permissionsModelService.selectedUserName = user.name;
-      this._permissionsModelService.hasSelectedUser = true;
+    let role = [];
+    for (let i of user.roles){
+    role.push(i.name);
     }
-    else {
-      this._alertService.show({
-        header: 'Changes Not Saved!',
-        message: 'Discard changes?',
-        buttons: [{
-          text: "Go Back",
-          role: 'cancel'
-        }, {
-          text: "Discard" ,
-          handler: () => {
-            this._permissionsModelService.dirty = false;
-            this.selectUser(user);
-          }
-        }]
-      })
-    }
+    this.selectedUser = user;
+    this.selectedSkills = role;
+    this.hasUser = true;
+  }
+  
+  clearUser() {
+    this.selectedSkills = [];
+    this.hasUser = false;
+    
   }
 
-
-  hasSelectedUser() {
-    return this._permissionsModelService.hasSelectedUser
-  } 
-
-  getselectedUserRoles() {
-    return this._permissionsModelService.selectedUserRoles;
+  getUser() {
+    return this._authService.getUser();
   }
-
-  getSelectedUserName() {
-    return this._permissionsModelService.selectedUserName;
-  }
-
-  getCurrentUserName() {
-    return this._authService.getUser().name;
-  }
-
-
+  
+  
   getListOfUsers() {
     return this._permissionsModelService.getListOfUsers();
   }
@@ -95,49 +78,15 @@ export class PermissionsPage {
 
 
   getListOfRoles() {
-    let availableRoles = [];
-    let allroles = this._permissionsModelService.getListOfRoles();
-    if (allroles !== undefined && allroles !== null) {
-      availableRoles = [];
-      for (let j of Object.values(allroles)) {
-        if (this._permissionsModelService.selectedUserRoles.includes( j['name'])) {
-          continue;
-        }
-        else {
-          availableRoles.push(j['name']);
-        }
-      }
-    } else {
-      console.error("Available role list is undefined or null");
-    }
-
-
-    return availableRoles;
-
+    return this._permissionsModelService.getListOfRoles();
   }
-
 
   saveChanges() {
 
   }
 
-  exitToHomePage() {
-
+  cancelChanges() {
     this.router.navigate(['home']);
-  }
-
-  addRole(role) {
-    if(role && role !=='') {
-      this._permissionsModelService.selectedUserRoles.push(role);
-    }
-    this.selectedRole = '';
-    this._permissionsModelService.dirty = true;
-  }
-
-  removeRole(role) {
-    let x = this._permissionsModelService.selectedUserRoles.indexOf(role);
-    this._permissionsModelService.selectedUserRoles.splice(x,1);
-    this._permissionsModelService.dirty = true;
   }
 }
 

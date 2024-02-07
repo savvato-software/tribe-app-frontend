@@ -111,11 +111,11 @@ export class UserService {
 			});
 	}
 
-	changeLostPassword(smsChallengeCode, phoneNumber, newPassword) {
+	changePassword(smsChallengeCode, phoneNumber, newPassword) {
 
 		let rtn = new Promise((resolve, reject) => {
 			let self = this;
-			let url = environment.apiUrl + "/api/public/user/changeLostPassword";
+			let url = environment.apiUrl + "/api/public/user/changePassword";
 
 			let data = {smsChallengeCode: smsChallengeCode, phoneNumber: phoneNumber, pw: newPassword}
 

@@ -1,55 +1,35 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, HammerModule } from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
-import { SavvatoJavascriptServicesModule } from '@savvato-software/savvato-javascript-services';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpConfigInterceptor } from './_services/_http/interceptor.service';
-
-import { Constants } from './_constants/constants';
-import { SharedComponentsModule } from './_shared-components/shared-components/shared-components.module'
-
-import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
-
-
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {Constants} from "./_constants/constants";
+import {HttpConfigInterceptor} from "./_services/_http/interceptor.service";
 
 export class CustomHammerConfig extends HammerGestureConfig {
-    overrides = {
-        'press': { time: 700 }  //set press delay for .70 seconds
-    }
+  overrides = {
+    'press': { time: 700 }  //set press delay for .70 seconds
+  }
 }
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-      BrowserModule,
-      IonicModule.forRoot(),
-      SavvatoJavascriptServicesModule,
-      HttpClientModule,
-      AppRoutingModule,
-      HammerModule,
-      SharedComponentsModule
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpConfigInterceptor,
-      multi: true,
-    },
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,],
+  providers: [    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpConfigInterceptor,
+    multi: true,
+  },
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-      { provide: HAMMER_GESTURE_CONFIG,    useClass: CustomHammerConfig },
-      Constants,
-      WebView
+    { provide: HAMMER_GESTURE_CONFIG,    useClass: CustomHammerConfig },
+    Constants
   ],
   bootstrap: [AppComponent],
 })

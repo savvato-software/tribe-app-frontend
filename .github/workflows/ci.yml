@@ -7,10 +7,10 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
       - run: npm install -g @ionic/cli
       - run: npm install -g @angular/cli
-      - run: npm install 
+      - run: npm install
       - run: cp src/app/_environments/environment.dev.ts  src/app/_environments/environment.ts
       - run: ng test --no-watch --no-progress --browsers ChromeHeadless
 # cypress-run:
