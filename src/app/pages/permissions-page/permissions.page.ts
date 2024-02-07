@@ -31,7 +31,7 @@ export class PermissionsPage {
 
   }
 
-
+  
 
 
   ionViewWillEnter() {
@@ -44,6 +44,7 @@ export class PermissionsPage {
   
   selectedRole: string = '';
 
+  selectedUser: any;
   
   selectUser(user) {
     if (this._permissionsModelService.isDirty() == false) {
@@ -172,15 +173,6 @@ export class PermissionsPage {
       
     }
  
-
-
-  addRole(role) {
-    if(role && role !=='') {
-      this._permissionsModelService.selectedUserRoles.push(role);
-    }
-    this.selectedRole = '';
-    this._permissionsModelService.dirty = true;
-  }
 
   removeRole(role) {
     let x = this._permissionsModelService.selectedUserRoles.indexOf(role);
