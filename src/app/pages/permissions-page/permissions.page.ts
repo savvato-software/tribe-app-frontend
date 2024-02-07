@@ -174,6 +174,16 @@ export class PermissionsPage {
     }
  
 
+
+  addRole(role) {
+    if(role && role !=='') {
+      this._permissionsModelService.selectedUserRoles.push(role);
+    }
+    this.selectedRole = '';
+    this._permissionsModelService.dirty = true;
+  }
+
+
   removeRole(role) {
     let x = this._permissionsModelService.selectedUserRoles.indexOf(role);
     this._permissionsModelService.selectedUserRoles.splice(x,1);
