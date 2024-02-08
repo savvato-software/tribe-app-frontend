@@ -3,29 +3,32 @@
 <ion-content id="permissions-page">
 
   <div id="user-list">
-    <ion-item></ion-item>
-    <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" [class.selected]="isUserSelected(user)"   class="clickable"> <div> {{user.name}} </div> </ion-item>
-    <ion-item></ion-item>
+    <ion-item>
+      <select id="users-dropdown" aria-label="users">
+        <option></option>
+        <option *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" [class.selected]="isUserSelected(user)"   class="clickable"> <div> {{user.name}} </div></option>
+      </select>
+    </ion-item>
   </div>
   <ion-item class="title ">
     <ion-label class="ion-text-center">
-      Assigned Roles
+      Roles
     </ion-label>
   </ion-item>
   
-  <ng-container *ngIf="getselectedUserRoles() != []">
+  <ng-container *ngIf="getselectedUserRoles().length > 0">
       <ion-item *ngFor="let roleOfUser of getselectedUserRoles()"> {{roleOfUser}} <ion-button (click)="removeRole(roleOfUser)"> X </ion-button></ion-item>
   </ng-container>
   
-  <ion-item>
-    <select [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
-      <option> </option>
-      <option *ngFor="let roleAvailable of getlistOfAvailableRoles()">{{roleAvailable}}</option>
-    </select>
+  
+    <!-- <ion-item [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
+      
+      <ion-item *ngFor="let roleAvailable of getlistOfAvailableRoles()">{{roleAvailable}}</ion-item>
+    </ion-item>
     <ion-button (click)="addRole(selectedRole)">Add Selection</ion-button>
-  </ion-item>
+   -->
 
-
+</ion-content>
 <ion-footer>
   <ion-toolbar id="bottom-toolbar" color="light">
     <ion-button (click)="saveRoleChanges()" fill="clear">Save</ion-button>

@@ -49,6 +49,7 @@ export class PermissionsPage {
   }
   
   selectUser(user) {
+    console.log("you selectd ", user);
     if (this._permissionsModelService.isDirty() == false) {
       this._permissionsModelService.selectedUserRoles = [];
       this._permissionsModelService.selectedUser = user;  

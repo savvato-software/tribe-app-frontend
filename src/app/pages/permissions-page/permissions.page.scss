@@ -1,11 +1,15 @@
-  #user-list {
-    display: flex;
+  // #user-list {
+  //   display: flex;
+  //   width: 100%;
+  //   height: auto;
+  //   flex-wrap: wrap;
+  //   ion-item {
+  //     width: 100%;
+  //   }
+  // }
+
+  #users-dropdown {
     width: 100%;
-    height: auto;
-    flex-wrap: wrap;
-    ion-item {
-      width: 100%;
-    }
   }
 
   .clickable {
