@@ -26,6 +26,8 @@
       <ion-item *ngFor="let roleAvailable of getlistOfAvailableRoles()">{{roleAvailable}}</ion-item>
     </ion-item>
     <ion-button (click)="addRole(selectedRole)">Add Selection</ion-button>
+    *******************************reference*******************
+    <option *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" [class.selected]="isUserSelected(user)"   class="clickable"> <div> {{user.name}} </div></option>
    -->
 
 </ion-content>
