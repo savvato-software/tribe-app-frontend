@@ -2,11 +2,17 @@
 
 <ion-content id="permissions-page">
 
+  <ion-item class="title ">
+    <ion-label class="ion-text-center">
+      Users
+    </ion-label>
+  </ion-item>
+
   <div id="user-list">
     <ion-item>
       <select id="users-dropdown" aria-label="users">
-        <option></option>
-        <option *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" [class.selected]="isUserSelected(user)"   class="clickable"> <div> {{user.name}} </div></option>
+        <option>Select a User</option>
+        <option *ngFor="let user of getlistOfUsers()"> {{user.name}} </option>
       </select>
     </ion-item>
   </div>
@@ -16,11 +22,14 @@
     </ion-label>
   </ion-item>
   
-  <ng-container *ngIf="getselectedUserRoles().length > 0">
+  <!-- <ng-container *ngIf="getselectedUserRoles().length > 0">
       <ion-item *ngFor="let roleOfUser of getselectedUserRoles()"> {{roleOfUser}} <ion-button (click)="removeRole(roleOfUser)"> X </ion-button></ion-item>
-  </ng-container>
+  </ng-container> -->
   
-  
+  <ion-item></ion-item>
+  <ion-item *ngFor="let roleAvailable of getlistOfAvailableRoles()" (click)="testRole(roleAvailable)"  class="clickable">{{roleAvailable}}</ion-item>
+  <ion-item></ion-item>
+
     <!-- <ion-item [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
       
       <ion-item *ngFor="let roleAvailable of getlistOfAvailableRoles()">{{roleAvailable}}</ion-item>

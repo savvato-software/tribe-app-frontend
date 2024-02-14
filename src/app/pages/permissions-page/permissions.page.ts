@@ -44,6 +44,8 @@ export class PermissionsPage {
   
   selectedRole: string = '';
 
+  selectedUser: string = '';
+
   isUserSelected(user){
     return user === this._permissionsModelService.selectedUser;
   }
@@ -189,5 +191,13 @@ export class PermissionsPage {
     let x = this._permissionsModelService.selectedUserRoles.indexOf(role);
     this._permissionsModelService.selectedUserRoles.splice(x,1);
     this._permissionsModelService.dirty = true;
+  }
+// test area 
+  testRole(role) {
+    console.log(role);
+  }
+
+  testUser(user) {
+    console.log(user);
   }
 }
