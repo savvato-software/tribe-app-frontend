@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-services';
+
+import { ConnectApiService } from "./connect.api.service";
+
+import { Constants } from "../../../_constants/constants";
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ConnectModelService {
+
+    model: any = {};
+
+    constructor(private _apiService: JWTApiService,
+                private _authService: AuthService,
+                private _connectApiService: ConnectApiService,
+                private _constants: Constants) {
+
+    }
+
+    init() {}
+
+    fetchQRCodeData(){
+        return  this._connectApiService.getQRCodeData();
+    }    
+    
+    
+}
