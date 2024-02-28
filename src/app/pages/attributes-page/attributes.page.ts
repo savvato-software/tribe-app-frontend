@@ -41,9 +41,6 @@ export class AttributesPage implements OnInit {
     return Object.values(attributes);
   }
 
-  getAttributeCount() {
-    return (this._attributesModelService.fetchUserCounts());
-  }
   
   deleteAttribute(id: number) {
     const self = this;

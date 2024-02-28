@@ -25,17 +25,6 @@ export class AttributesApiService {
         })
     }
 
-    fetchUserCounts() {
-        const url = environment.apiUrl + '/api/attributes/' + this._authService.getUser().id;
-
-        return new Promise((resolve, reject) => {
-            this._apiService.get(url).subscribe(
-                (_data) => {
-                    resolve(_data);
-                }
-            )
-        })
-    }
 
     save(model) {
         const url = environment.apiUrl + '/api/attributes/';
