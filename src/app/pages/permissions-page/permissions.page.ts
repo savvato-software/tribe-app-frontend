@@ -41,6 +41,9 @@ export class PermissionsPage {
     })
   }
 
+  isSelected = true;
+
+  notSelected = false;
   
   selectedRole: string = '';
 
@@ -51,17 +54,28 @@ export class PermissionsPage {
   }
 
   getCurrentUser(){
-    this.updateRoles()
+    
     console.log('user updated to ', this.selectedUser);
     return this.selectedUser
  }
 
  updateRoles() {
   console.log("roles change color");
- }
+  if (this.isSelected){
+    this.isSelected = false;
+    this.notSelected = true;
+  }
+  else{
+    this.isSelected = true;
+    this.notSelected = false;
+  }
+  console.log("is ", this.isSelected);
+  console.log("not ", this.notSelected);
+  }
 
  testRole(role) {
   console.log("the selected role is ", role);
+  this.updateRoles();
 }
 
 testUser() {

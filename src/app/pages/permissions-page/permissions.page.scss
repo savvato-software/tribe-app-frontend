@@ -17,22 +17,31 @@
   .clickable {
     cursor: pointer;
   }
-
-  .selected div {
-    background-color: #0FF;
+  .notSelected div {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
     font-weight: bolder;
-    background-color: #2C5;
+    background-color: #C02;
     color: #FFF;
-    border-radius: 10px;
-    animation-name: shimmer;
-    animation-duration: 5s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
+  }
+
+  .selected div {
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bolder;
+    background-color: #2C5;
+    // color: #FFF;
+    // border-radius: 10px;
+    // animation-name: shimmer;
+    // animation-duration: 5s;
+    // animation-timing-function: linear;
+    // animation-iteration-count: 1;
   }
 
   @keyframes shimmer {
