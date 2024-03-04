@@ -40,6 +40,7 @@ export class AttributesPage implements OnInit {
     const attributes = this._attributesModelService.get(); 
     return Object.values(attributes);
   }
+
   
   deleteAttribute(id: number) {
     const self = this;
