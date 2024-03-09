@@ -49,7 +49,7 @@ export class AttributesModelService {
         });
     } 
     
-    delete(id: string): Promise<any> {
+    delete(id: number): Promise<any> {
         return this._attributesApiService.delete(id);
     }
 }
