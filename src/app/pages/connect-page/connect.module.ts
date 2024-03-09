@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ConnectPageRoutingModule } from './connect-routing.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { ConnectPage } from './connect.page';
 import { ListConnectionsPageModule } from './list-connections/list-connections.module';
@@ -21,7 +22,8 @@ import { SharedComponentsModule } from '../../_shared-components/shared-componen
     SharedComponentsModule,
     ListConnectionsPageModule,
     AcceptNewConnectionPageModule,
-    OpenConnectionPageModule
+    OpenConnectionPageModule,
+    QRCodeModule
   ],
   declarations: [ConnectPage]
 })
