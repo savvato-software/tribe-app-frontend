@@ -21,7 +21,7 @@ export class ConnectModelService {
 
     init() {
       return new Promise((resolve, reject) => {
-            this._connectApiService.getAllConnections(this._authService.getUser().id).then(
+            this._connectApiService.getAllConnections(this._authService.getUser()['id']).then(
                 (rtn: any[]) => {
                     this.model = rtn;
                     resolve(rtn);
