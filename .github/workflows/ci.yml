@@ -12,7 +12,7 @@ jobs:
       - run: npm install -g @angular/cli
       - run: npm install
       - run: cp src/app/_environments/environment.dev.ts  src/app/_environments/environment.ts
-      - run: ng test --no-watch --no-progress --browsers ChromeHeadless
+      - run: ng test --no-watch --no-progress --code-coverage --browsers ChromeHeadless
 # cypress-run:
 #   runs-on: ubuntu-latest
 #   steps:
