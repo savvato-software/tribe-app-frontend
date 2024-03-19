@@ -23,9 +23,23 @@ export class ConnectApiService {
                 (err) => {
                     reject(err);
                 }
-            )         
+            )
         })
     }
-    
+
+    getAllConnections(userId: number) {
+        const url = environment.apiUrl + '/api/connect/' + userId + '/all';
+        return new Promise((resolve, reject) => {
+            this._apiService.get(url).subscribe(
+                (_data) => {
+                    resolve(_data);
+                },
+                (err) => {
+                    reject(err);
+                }
+            )
+        })
+    }
+
 
 }
