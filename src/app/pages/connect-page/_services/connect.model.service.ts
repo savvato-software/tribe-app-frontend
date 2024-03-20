@@ -10,7 +10,7 @@ import { Constants } from "../../../_constants/constants";
 })
 export class ConnectModelService {
 
-    model: any = {};
+    model :any[] = [];
 
     constructor(private _apiService: JWTApiService,
                 private _authService: AuthService,
@@ -19,11 +19,22 @@ export class ConnectModelService {
 
     }
 
-    init() {}
+    init() {
+      return new Promise((resolve, reject) => {
+            this._connectApiService.getAllConnections(this._authService.getUser()['id']).then(
+                (rtn: any[]) => {
+                    this.model = rtn;
+                    resolve(rtn);
+                }
+            )
+        })
+    }
 
     fetchQRCodeData(){
         return  this._connectApiService.getQRCodeData();
-    }    
-    
-    
+    }
+
+    getAllConnections() :any[] {
+      return this.model;
+    }
 }
