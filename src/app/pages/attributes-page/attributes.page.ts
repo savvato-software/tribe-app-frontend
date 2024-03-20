@@ -24,7 +24,7 @@ export class AttributesPage implements OnInit {
     private router: Router) { }
 
   public ngOnInit() {
- 
+
   }
 
   ionViewWillEnter() {
@@ -37,15 +37,15 @@ export class AttributesPage implements OnInit {
 
 
   getAttributes() {
-    const attributes = this._attributesModelService.get(); 
+    const attributes = this._attributesModelService.get();
     return Object.values(attributes);
   }
 
-  
+
   deleteAttribute(id: number) {
     const self = this;
     let msg = "Deleting attribute...";
-  
+
     self._loadingService.show({message: msg}).then(() => {
       self._loadingService.dismiss().then(() => {
         self._alertService.show({
@@ -55,7 +55,7 @@ export class AttributesPage implements OnInit {
             {
               text: 'Yes',
               handler: () => {
-                
+
                 this._attributesModelService.delete(id).then(
                   (response) => {
                    console.log("Call to attributeApiService was successful");
@@ -73,30 +73,30 @@ export class AttributesPage implements OnInit {
             },
             {
               text: 'No',
-              role: 'cancel' 
+              role: 'cancel'
             }
           ]
         })
       })
     });
-  }  
-   
-
-  getAttrString(attr) {
-    let rtn = "";
-
-    if (attr.phrase.adverb)
-      rtn += attr.phrase.adverb + " ";
-
-      rtn += attr.phrase.verb + " ";
-
-    if (attr.phrase.preposition)
-      rtn += attr.phrase.preposition + " ";
-
-    rtn += attr.phrase.noun;
-
-    return rtn;
   }
+
+
+  // getAttrString(attr) {
+  //   let rtn = "";
+  //
+  //   if (attr.phrase.adverb)
+  //     rtn += attr.phrase.adverb + " ";
+  //
+  //     rtn += attr.phrase.verb + " ";
+  //
+  //   if (attr.phrase.preposition)
+  //     rtn += attr.phrase.preposition + " ";
+  //
+  //   rtn += attr.phrase.noun;
+  //
+  //   return rtn;
+  // }
 
   onCreateBtnClick() {
       this.navigateTo('attributes/create');
