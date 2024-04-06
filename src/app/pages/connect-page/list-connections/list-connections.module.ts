@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { ConnectionDetailsPage } from '../connection-details/connection-details.page';
 import { ListConnectionsPageRoutingModule } from './list-connections-routing.module';
 
 import { ListConnectionsPage } from './list-connections.page';
@@ -17,6 +17,6 @@ import { SharedComponentsModule } from '../../../_shared-components/shared-compo
     ListConnectionsPageRoutingModule,
     SharedComponentsModule
   ],
-  declarations: [ListConnectionsPage]
+  declarations: [ListConnectionsPage, ConnectionDetailsPage]
 })
 export class ListConnectionsPageModule {}
