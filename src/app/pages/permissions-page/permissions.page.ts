@@ -41,9 +41,6 @@ export class PermissionsPage {
     })
   }
 
-  isSelected = true;
-
-  notSelected = false;
   
   selectedRole: string = '';
 
@@ -59,56 +56,40 @@ export class PermissionsPage {
     return this.selectedUser
  }
 
- updateRoles() {
-  console.log("roles change color");
-  if (this.isSelected){
-    this.isSelected = false;
-    this.notSelected = true;
-  }
-  else{
-    this.isSelected = true;
-    this.notSelected = false;
-  }
-  console.log("is ", this.isSelected);
-  console.log("not ", this.notSelected);
-  }
-
  testRole(role) {
   console.log("the selected role is ", role);
-  this.updateRoles();
-}
-
-testUser() {
-  console.log(this.selectedUser);
-}
-
   
-  // selectUser(user) {
-  //   console.log("you selectd ", user);
-  //   if (this._permissionsModelService.isDirty() == false) {
-  //     this._permissionsModelService.selectedUserRoles = [];
-  //     this._permissionsModelService.selectedUser = user;  
-  //     this.updateRolesList(user.roles);
-  //     this._permissionsModelService.selectedUserName = user.name;
-  //     this._permissionsModelService.hasSelectedUser = true;
-  //   }
-  //   else {
-  //     this._alertService.show({
-  //       header: 'Changes Not Saved!',
-  //       message: 'Discard changes?',
-  //       buttons: [{
-  //         text: "Go Back",
-  //         role: 'cancel'
-  //       }, {
-  //         text: "Discard" ,
-  //         handler: () => {
-  //           this._permissionsModelService.dirty = false;
-  //           this.selectUser(user);
-  //         }
-  //       }]
-  //     })
-  //   }
-  // }
+  // Remove highlighting from previously selected role
+  if (this.selectedRole === role) {
+    // Clear the selected role
+    this.clearSelectedRole();
+  } else {
+    // Assign the new selected role
+    this.selectedRole = role;
+  }
+}
+
+
+
+
+  checkRole(role) {
+    console.log("checking for ", role);
+    return role === this.selectedRole;
+  }
+
+  checknotRole(role) {
+    return role != this.selectedRole;
+  } 
+
+  testUser() {
+    console.log(this.selectedUser);
+  }
+
+  clearSelectedRole() {
+    this.selectedRole = '';
+  }
+
+
   
   updateRolesList(userRoles){
     this._permissionsModelService.selectedUserRoles = [];
@@ -178,52 +159,34 @@ testUser() {
   }
 
   exitToHomePage() {
-      if (this._permissionsModelService.isDirty() == false){
-        this._permissionsModelService.selectedUserName = "";
-        this._permissionsModelService.selectedUserRoles = [];
-        this._permissionsModelService.hasSelectedUser = false;
-        this.router.navigate(['home']);
-      }
-      else {
-        
-        this._alertService.show({
-          header: 'Changes Not Saved!',
-          message: 'Discard changes?',
-          buttons: [{
-            text: "Go Back",
-            role: 'cancel'
-          }, {
-            text: "Discard" ,
-            handler: () => {
-              this._permissionsModelService.dirty = false;
-              this._permissionsModelService.selectedUserName = "";
-              this._permissionsModelService.selectedUserRoles = [];
-              this._permissionsModelService.hasSelectedUser = false;
-              this.router.navigate(['home']);
-            }
-          }]
-        })
-        
-      }
+    if (this._permissionsModelService.isDirty() == false){
+      this._permissionsModelService.selectedUserName = "";
+      this._permissionsModelService.selectedUserRoles = [];
+      this._permissionsModelService.hasSelectedUser = false;
+      this.router.navigate(['home']);
+    }
+    else {
       
+      this._alertService.show({
+        header: 'Changes Not Saved!',
+        message: 'Discard changes?',
+        buttons: [{
+          text: "Go Back",
+          role: 'cancel'
+        }, {
+          text: "Discard" ,
+          handler: () => {
+            this._permissionsModelService.dirty = false;
+            this._permissionsModelService.selectedUserName = "";
+            this._permissionsModelService.selectedUserRoles = [];
+            this._permissionsModelService.hasSelectedUser = false;
+            this.router.navigate(['home']);
+          }
+        }]
+      })
       
     }
- 
-
-
-  // addRole(role) {
-  //   if(role && role !=='') {
-  //     this._permissionsModelService.selectedUserRoles.push(role);
-  //   }
-  //   this.selectedRole = '';
-  //   this._permissionsModelService.dirty = true;
-  // }
-
-
-  // removeRole(role) {
-  //   let x = this._permissionsModelService.selectedUserRoles.indexOf(role);
-  //   this._permissionsModelService.selectedUserRoles.splice(x,1);
-  //   this._permissionsModelService.dirty = true;
-  // }
-// test area 
+      
+      
+  }
 }

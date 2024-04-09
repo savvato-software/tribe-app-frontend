@@ -24,14 +24,10 @@
   </ion-item>
   
 
-  
-  <ion-item></ion-item>
-  <ion-item *ngFor="let roleAvailable of getlistOfAvailableRoles()" (click)="testRole(roleAvailable)" [class.selected]="isSelected" [class.notSelected]="notSelected" class="clickable"> <div> {{roleAvailable}} </div></ion-item>
-  <ion-item></ion-item>
+<ion-item *ngFor="let roleAvailable of getlistOfAvailableRoles()" (click)="testRole(roleAvailable)" [class.selected]="checkRole(roleAvailable)" [class.notSelected]="checknotRole(roleAvailable)"> 
+<div>{{roleAvailable}}</div>
+</ion-item>
 
-  <!-- <ion-item></ion-item>
-  <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" [class.selected]="isUserSelected(user)"   class="clickable"> <div> {{user.name}} </div> </ion-item>
-  <ion-item></ion-item> -->
 
 
 </ion-content>

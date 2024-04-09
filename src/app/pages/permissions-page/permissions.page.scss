@@ -20,12 +20,13 @@
   .notSelected div {
     display: flex;
     align-items: center;
-    justify-content: center;
+    //justify-content: center;
     width: 100%;
     height: 100%;
     font-weight: bolder;
     background-color: #C02;
-    color: #FFF;
+    cursor: pointer;
+    //color: #FFF;
   }
 
   .selected div {
@@ -36,6 +37,7 @@
     height: 100%;
     font-weight: bolder;
     background-color: #2C5;
+    cursor: pointer;
     // color: #FFF;
     // border-radius: 10px;
     // animation-name: shimmer;
