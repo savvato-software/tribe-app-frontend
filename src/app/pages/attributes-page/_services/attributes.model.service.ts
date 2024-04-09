@@ -35,6 +35,7 @@ export class AttributesModelService {
         return this.model;
     }
 
+
     save(model: {}) {
         return new Promise((resolve, reject) => {
             this._attributesApiService.save(model).then(
@@ -49,7 +50,7 @@ export class AttributesModelService {
         });
     } 
     
-    delete(id: string): Promise<any> {
+    delete(id: number): Promise<any> {
         return this._attributesApiService.delete(id);
     }
 }

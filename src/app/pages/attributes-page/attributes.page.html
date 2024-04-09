@@ -5,7 +5,8 @@
     <ion-card color="warning" *ngFor="let attr of getAttributes()">
       <ion-card-content>
         <ion-card-title>{{attr['phrase']['adverb'] || ''}} {{attr['phrase']['verb'] || ''}} {{attr['phrase']['preposition'] || ''}} {{attr['phrase']['noun'] || ''}}
-          <ion-button color="danger" (click)="deleteAttribute(attr['id'])">x</ion-button>
+          <span class="user-count">({{attr['userCount'] || '0'}} users)</span>
+          <ion-button color="danger" (click)="deleteAttribute(attr['phrase']['id'])">x</ion-button>
         </ion-card-title>
       </ion-card-content>
     </ion-card>
