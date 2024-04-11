@@ -44,7 +44,7 @@ export class PermissionsPage {
   
   selectedRole: string = '';
 
-  selectedUser: string = '';
+  selectedUser: string = "";
 
   isUserSelected(user){
     return user === this._permissionsModelService.selectedUser;
@@ -53,11 +53,28 @@ export class PermissionsPage {
   getCurrentUser(){
     
     console.log('user updated to ', this.selectedUser);
-    return this.selectedUser
+    return this.selectedUser;
  }
 
+ getselectedUserRoles() {
+  if (this.selectedUser !== '' && this.selectedUser !== null) {
+  const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
+  let roleList = [];
+  for (let r in selectedUser.roles){
+    console.log("roles are now ",selectedUser.roles[r].name);
+    roleList.push(selectedUser.roles[r].name);
+  }
+  console.log("roleList", roleList);
+  return roleList;
+  }
+  else {
+    return ["nothing"];
+  }
+}
+
+
  testRole(role) {
-  console.log("the selected role is ", role);
+  //console.log("the selected role is ", role);
   
   // Remove highlighting from previously selected role
   if (this.selectedRole === role) {
@@ -73,7 +90,7 @@ export class PermissionsPage {
 
 
   checkRole(role) {
-    console.log("checking for ", role);
+    //console.log("checking for ", role);
     return role === this.selectedRole;
   }
 
@@ -103,11 +120,9 @@ export class PermissionsPage {
     return this._permissionsModelService.hasSelectedUser
   } 
 
-  getselectedUserRoles() {
-    return this._permissionsModelService.selectedUserRoles;
-  }
 
   getlistOfUsers() {
+    console.log("user list", this._permissionsModelService.getListOfUsers())
     return this._permissionsModelService.getListOfUsers();
   }
 
