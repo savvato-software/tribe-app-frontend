@@ -50,22 +50,21 @@ export class PermissionsPage {
     return user === this._permissionsModelService.selectedUser;
   }
 
-  getCurrentUser(){
-    
+  getCurrentUser(){    
     console.log('user updated to ', this.selectedUser);
     return this.selectedUser;
  }
 
  getselectedUserRoles() {
   if (this.selectedUser !== '' && this.selectedUser !== null) {
-  const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
-  let roleList = [];
-  for (let r in selectedUser.roles){
-    console.log("roles are now ",selectedUser.roles[r].name);
-    roleList.push(selectedUser.roles[r].name);
-  }
-  console.log("roleList", roleList);
-  return roleList;
+    const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
+    this._permissionsModelService.selectedUserRoles = [];
+    for (let r in selectedUser.roles){
+      console.log("roles are now ",selectedUser.roles[r].name);
+      this._permissionsModelService.selectedUserRoles.push(selectedUser.roles[r].name);
+    }
+    console.log("roleList", this._permissionsModelService.selectedUserRoles);
+    return this._permissionsModelService.selectedUserRoles;
   }
   else {
     return ["nothing"];
@@ -88,10 +87,20 @@ export class PermissionsPage {
 
 
 
+//new -------------------------------------
 
+  toggleRoles(role){
+    if (this._permissionsModelService.selectedUserRoles.includes(role)) {
+      const remRole = this._permissionsModelService.selectedUserRoles.indexOf(role)
+      this._permissionsModelService.selectedUserRoles.splice(remRole,1);
+    }
+    else {
+      this._permissionsModelService.selectedUserRoles.push(role);
+    }
+    this.getselectedUserRoles();
+  }
   checkRole(role) {
-    //console.log("checking for ", role);
-    return role === this.selectedRole;
+    return this._permissionsModelService.selectedUserRoles.includes(role);
   }
 
   checknotRole(role) {
@@ -126,25 +135,38 @@ export class PermissionsPage {
     return this._permissionsModelService.getListOfUsers();
   }
 
-  getlistOfAvailableRoles() {
+  getListOfAllRoles(){
     let availableRoles = [];
     let allroles = this._permissionsModelService.getListOfRoles();
     if (allroles !== undefined && allroles !== null) {
       availableRoles = [];
       for (let j of Object.values(allroles)) {
-        if (this._permissionsModelService.selectedUserRoles.includes( j['name'])) {
-          continue;
-        }
-        else {
-          availableRoles.push(j['name']);
-        }
+        availableRoles.push(j['name']);
       }
     }
-
-
     return availableRoles;
-
   }
+
+  //old function
+  // getlistOfAvailableRoles() {
+  //   let availableRoles = [];
+  //   let allroles = this._permissionsModelService.getListOfRoles();
+  //   if (allroles !== undefined && allroles !== null) {
+  //     availableRoles = [];
+  //     for (let j of Object.values(allroles)) {
+  //       if (this._permissionsModelService.selectedUserRoles.includes( j['name'])) {
+  //         continue;
+  //       }
+  //       else {
+  //         availableRoles.push(j['name']);
+  //       }
+  //     }
+  //   }
+
+
+  //   return availableRoles;
+
+  // }
 
   saveRoleChanges() {
     this.saveMessage();

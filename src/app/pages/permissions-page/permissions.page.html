@@ -26,7 +26,7 @@
   </ion-item>
   
 
-<ion-item *ngFor="let roleAvailable of getlistOfAvailableRoles()" (click)="testRole(roleAvailable)" [class.selected]="checkRole(roleAvailable)" [class.notSelected]="checknotRole(roleAvailable)"> 
+<ion-item *ngFor="let roleAvailable of getListOfAllRoles()" (click)="testRole(roleAvailable)" [class.selected]="checkRole(roleAvailable)" [class.notSelected]="checknotRole(roleAvailable)"> 
 <div>{{roleAvailable}}</div>
 </ion-item>
 
