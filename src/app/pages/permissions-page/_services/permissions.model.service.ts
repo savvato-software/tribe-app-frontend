@@ -15,7 +15,7 @@ export class PermissionsModelService {
 
   selectedUserRoles = [];
 
-  selectedUser = {};
+  selectedUser: string = "";
 
   selectedUserName = "";
 
@@ -65,7 +65,7 @@ export class PermissionsModelService {
     this.dirty = false;
     this.hasSelectedUser = false;
     this.selectedUserRoles = ["No","user","selected"];
-    this.selectedUser = {};
+    this.selectedUser = "";
     this.selectedUserName = "";
   }
 

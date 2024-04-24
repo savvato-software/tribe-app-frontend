@@ -13,7 +13,7 @@
     <!-- <ion-item *ngFor="let role of getselectedUserRoles()"> the roles are: {{role}} </ion-item> -->
     <p *ngFor="let role of getselectedUserRoles()">the roles are: {{role}} </p>
     <ion-item>
-       <select id="users-dropdown" aria-label="users" [(ngModel)]="selectedUser"> 
+       <select id="users-dropdown" aria-label="users" [(ngModel)]="selectedUser"> <!--replace with get selected user function-->
         <option>Select a User</option>
         <option *ngFor="let user of getlistOfUsers()" [value]="user.name"> {{user.name}} </option>
       </select>
@@ -26,7 +26,7 @@
   </ion-item>
   
 
-<ion-item *ngFor="let roleAvailable of getListOfAllRoles()" (click)="testRole(roleAvailable)" [class.selected]="checkRole(roleAvailable)" [class.notSelected]="checknotRole(roleAvailable)"> 
+<ion-item *ngFor="let roleAvailable of getListOfAllRoles()" (click)="toggleRoles(roleAvailable)" [class.selected]="checkRole(roleAvailable)" [class.notSelected]="!checkRole(roleAvailable)"> 
 <div>{{roleAvailable}}</div>
 </ion-item>
 

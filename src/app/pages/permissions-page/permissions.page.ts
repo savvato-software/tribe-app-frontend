@@ -31,14 +31,31 @@ export class PermissionsPage {
 
   }
 
-  
+  ngOnInit(){
+    this._permissionsModelService.selectedUserName = "";
+    this._permissionsModelService.selectedUser = "";
+    this._permissionsModelService.selectedUserRoles = [];
+    this._permissionsModelService.hasSelectedUser = false;
+    this._permissionsModelService.dirty = false;
 
+  }
+  
+  //This is JJ
 
   ionViewWillEnter() {
     this._loadingService.show({message: "..loading.."}).then(() => {
       this._permissionsModelService.init();
+      this.clearVlaues();
       this._loadingService.dismiss ();
     })
+  }
+
+  clearVlaues(){
+    this._permissionsModelService.selectedUserName = "";
+    this.selectedUser = "";
+    this._permissionsModelService.selectedUserRoles = [];
+    this._permissionsModelService.hasSelectedUser = false;
+    this._permissionsModelService.dirty = false;
   }
 
   
@@ -48,6 +65,10 @@ export class PermissionsPage {
 
   isUserSelected(user){
     return user === this._permissionsModelService.selectedUser;
+  }
+
+  getSelectedUser() {
+    return this._permissionsModelService.selectedUser;
   }
 
   getCurrentUser(){    
@@ -72,19 +93,6 @@ export class PermissionsPage {
 }
 
 
- testRole(role) {
-  //console.log("the selected role is ", role);
-  
-  // Remove highlighting from previously selected role
-  if (this.selectedRole === role) {
-    // Clear the selected role
-    this.clearSelectedRole();
-  } else {
-    // Assign the new selected role
-    this.selectedRole = role;
-  }
-}
-
 
 
 //new -------------------------------------
@@ -99,13 +107,12 @@ export class PermissionsPage {
     }
     this.getselectedUserRoles();
   }
+
+  
   checkRole(role) {
     return this._permissionsModelService.selectedUserRoles.includes(role);
   }
 
-  checknotRole(role) {
-    return role != this.selectedRole;
-  } 
 
   testUser() {
     console.log(this.selectedUser);
@@ -136,37 +143,15 @@ export class PermissionsPage {
   }
 
   getListOfAllRoles(){
-    let availableRoles = [];
-    let allroles = this._permissionsModelService.getListOfRoles();
-    if (allroles !== undefined && allroles !== null) {
-      availableRoles = [];
-      for (let j of Object.values(allroles)) {
-        availableRoles.push(j['name']);
-      }
+    let availableRoles = this._permissionsModelService.getListOfRoles();
+    let allRoles = [];
+    if (availableRoles !== undefined && availableRoles !== null) {
+      allRoles = availableRoles.map(role => role['name']);
     }
-    return availableRoles;
+    return allRoles;
   }
 
-  //old function
-  // getlistOfAvailableRoles() {
-  //   let availableRoles = [];
-  //   let allroles = this._permissionsModelService.getListOfRoles();
-  //   if (allroles !== undefined && allroles !== null) {
-  //     availableRoles = [];
-  //     for (let j of Object.values(allroles)) {
-  //       if (this._permissionsModelService.selectedUserRoles.includes( j['name'])) {
-  //         continue;
-  //       }
-  //       else {
-  //         availableRoles.push(j['name']);
-  //       }
-  //     }
-  //   }
 
-
-  //   return availableRoles;
-
-  // }
 
   saveRoleChanges() {
     this.saveMessage();
@@ -197,9 +182,6 @@ export class PermissionsPage {
 
   exitToHomePage() {
     if (this._permissionsModelService.isDirty() == false){
-      this._permissionsModelService.selectedUserName = "";
-      this._permissionsModelService.selectedUserRoles = [];
-      this._permissionsModelService.hasSelectedUser = false;
       this.router.navigate(['home']);
     }
     else {
@@ -213,10 +195,6 @@ export class PermissionsPage {
         }, {
           text: "Discard" ,
           handler: () => {
-            this._permissionsModelService.dirty = false;
-            this._permissionsModelService.selectedUserName = "";
-            this._permissionsModelService.selectedUserRoles = [];
-            this._permissionsModelService.hasSelectedUser = false;
             this.router.navigate(['home']);
           }
         }]
