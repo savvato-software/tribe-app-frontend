@@ -34,8 +34,8 @@ export class ConnectionDetailsPage implements OnInit{
     onRemoveBtnClick() {
         let self = this;
     this._alertService.show({
-      header: '',
-      message: "Would you like to reset your password?",
+      header: 'Wait!',
+      message: "Do you really want to remove this connection?",
       buttons: [{
         text: "Oops, no..",
         role: 'cancel'
