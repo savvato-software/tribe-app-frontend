@@ -19,16 +19,13 @@ export class ConnectionDetailsPage implements OnInit{
 
     ngOnInit() {}
 
+    goToUserProfile() {
+        this._router.navigate(['/profile']);
+    }
+
     onCancelBtnClick() {
         this._router.navigate(['/connect/list-connections']);
     }
-
-    // getCancelBtnClickFunc() {
-    //     const self = this;
-    //     return () => {
-    //       self.navigateTo('/list-connections');
-    //     }
-    // }
     
 
     navigateTo(url?: string) {
