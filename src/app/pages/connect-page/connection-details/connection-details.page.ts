@@ -29,7 +29,9 @@ export class ConnectionDetailsPage implements OnInit{
     //       self.navigateTo('/list-connections');
     //     }
     // }
-    
+    onRemoveBtnClick() {
+        console.log("Remove clicked!")
+    }
 
     navigateTo(url?: string) {
         this._router.navigate([url], { replaceUrl: true });
