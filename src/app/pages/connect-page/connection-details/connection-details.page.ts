@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import { Router} from "@angular/router";
 import { ConnectModelService } from '../_services/connect.model.service';
-import { AlertService } from "../_services/alert/alert.service";
+import { AlertService } from "src/app/_services/alert/alert.service";
 
 @Component({
     selector: 'app-connection-details',
@@ -31,18 +31,19 @@ export class ConnectionDetailsPage implements OnInit{
     //       self.navigateTo('/list-connections');
     //     }
     // }
+
     onRemoveBtnClick() {
         let self = this;
-    this._alertService.show({
-      header: 'Wait!',
-      message: "Do you really want to remove this connection?",
-      buttons: [{
-        text: "Oops, no..",
-        role: 'cancel'
-      }, {
-        text: 'Yes!'
-      }]
-    })
+        this._alertService.show({
+            header: 'Wait!',
+            message: "Do you really want to remove this connection?",
+            buttons: [{
+                text: "Oops, no..",
+                role: 'cancel'
+            }, {
+                text: 'Yes!'
+            }]
+        })
     }
 
     navigateTo(url?: string) {
