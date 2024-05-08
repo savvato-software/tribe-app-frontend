@@ -32,6 +32,7 @@ export class ConnectionDetailsPage implements OnInit{
     //     }
     // }
 
+
     onRemoveBtnClick() {
         let self = this;
         this._alertService.show({
@@ -44,6 +45,10 @@ export class ConnectionDetailsPage implements OnInit{
                 text: 'Yes!'
             }]
         })
+
+    onRemoveBtnClick() {
+        console.log("Remove clicked!")
+
     }
 
     navigateTo(url?: string) {
