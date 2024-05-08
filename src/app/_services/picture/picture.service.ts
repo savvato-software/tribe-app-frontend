@@ -133,30 +133,33 @@ export class PictureService {
   }
 
   save(photoType, model) {
-    let self = this;
+    return new Promise(async (resolve, reject) => {
+      const blob = await fetch(model["imageWebPath"]).then(r => r.blob());
 
-    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      formData.append('file', blob, model["imageWebPath"]);
 
-      const uploadImageToAPI = async () => {
-        const blob = await fetch(model["imageWebPath"]).then(r => r.blob());
+      const url = environment.apiUrl + "/api/resource/" + photoType + "/" + model["id"];
 
-        const formData = new FormData();
-        formData.append('file', blob, model["imageWebPath"]);
-
-        const url = environment.apiUrl + "/api/resource/" + photoType + "/" + model["id"];
-
-        self._apiService.post(url, formData)
-            .subscribe(res => {
-              if (res['msg'] === 'ok') {
-                resolve(true);
-              } else {
-                reject("error posting image to server");
-              }
-            });
-      };
-
-      uploadImageToAPI();
-    })
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + this._authService.getToken()
+        },
+        body: formData
+      })
+          .then(response => response.json()) // Assuming the response is in JSON format
+          .then(data => {
+            if (data.msg === 'ok') {
+              resolve(data); // Resolve the promise if the response message is 'ok'
+            } else {
+              reject(new Error('Server responded with an error: ' + data.msg));
+            }
+          })
+          .catch(error => {
+            reject(new Error('Network error or server is unreachable: ' + error.message));
+          });
+    });
   }
 
   getAssociatedImage(photoType, model, photoSize) {
