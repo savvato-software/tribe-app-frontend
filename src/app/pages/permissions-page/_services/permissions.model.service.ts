@@ -15,6 +15,10 @@ export class PermissionsModelService {
 
   selectedUserRoles = [];
 
+  newUserRoles = [];
+
+  
+
   selectedUser: string = "";
 
   selectedUserName = "";

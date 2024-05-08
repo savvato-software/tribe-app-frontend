@@ -31,16 +31,6 @@ export class PermissionsPage {
 
   }
 
-  ngOnInit(){
-    this._permissionsModelService.selectedUserName = "";
-    this._permissionsModelService.selectedUser = "";
-    this._permissionsModelService.selectedUserRoles = [];
-    this._permissionsModelService.hasSelectedUser = false;
-    this._permissionsModelService.dirty = false;
-
-  }
-  
-  //This is JJ
 
   ionViewWillEnter() {
     this._loadingService.show({message: "..loading.."}).then(() => {
@@ -56,6 +46,7 @@ export class PermissionsPage {
     this._permissionsModelService.selectedUserRoles = [];
     this._permissionsModelService.hasSelectedUser = false;
     this._permissionsModelService.dirty = false;
+    this._permissionsModelService.newUserRoles = [];
   }
 
   
@@ -63,9 +54,7 @@ export class PermissionsPage {
 
   selectedUser: string = "";
 
-  isUserSelected(user){
-    return user === this._permissionsModelService.selectedUser;
-  }
+  
 
   getSelectedUser() {
     return this._permissionsModelService.selectedUser;
@@ -79,12 +68,15 @@ export class PermissionsPage {
  getselectedUserRoles() {
   if (this.selectedUser !== '' && this.selectedUser !== null) {
     const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
+    
     this._permissionsModelService.selectedUserRoles = [];
     for (let r in selectedUser.roles){
       console.log("roles are now ",selectedUser.roles[r].name);
       this._permissionsModelService.selectedUserRoles.push(selectedUser.roles[r].name);
+      
     }
     console.log("roleList", this._permissionsModelService.selectedUserRoles);
+    
     return this._permissionsModelService.selectedUserRoles;
   }
   else {
@@ -98,19 +90,36 @@ export class PermissionsPage {
 //new -------------------------------------
 
   toggleRoles(role){
-    if (this._permissionsModelService.selectedUserRoles.includes(role)) {
-      const remRole = this._permissionsModelService.selectedUserRoles.indexOf(role)
-      this._permissionsModelService.selectedUserRoles.splice(remRole,1);
+    let currentRoles = [];
+    if (this._permissionsModelService.newUserRoles.length == 0) {
+      currentRoles = this._permissionsModelService.selectedUserRoles;
+    }
+    else{
+      currentRoles = this._permissionsModelService.newUserRoles;
+    }
+    
+    if (currentRoles.includes(role)) {
+      const remRole = currentRoles.indexOf(role)
+      currentRoles.splice(remRole,1);
     }
     else {
-      this._permissionsModelService.selectedUserRoles.push(role);
+      currentRoles.push(role);
     }
-    this.getselectedUserRoles();
+    // this.getselectedUserRoles();
+    console.log("toggle ", currentRoles);
+    this._permissionsModelService.newUserRoles = currentRoles;
+
   }
 
   
   checkRole(role) {
-    return this._permissionsModelService.selectedUserRoles.includes(role);
+    if (this._permissionsModelService.newUserRoles.length != 0){
+      return this._permissionsModelService.newUserRoles.includes(role);
+    }
+    else {
+      return this._permissionsModelService.selectedUserRoles.includes(role);
+    }
+    
   }
 
 
@@ -132,6 +141,7 @@ export class PermissionsPage {
   }
 
 
+  // refactor this to new variables 
   hasSelectedUser() {
     return this._permissionsModelService.hasSelectedUser
   } 
