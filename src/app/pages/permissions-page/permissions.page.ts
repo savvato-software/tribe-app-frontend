@@ -50,38 +50,46 @@ export class PermissionsPage {
   }
 
   
-  selectedRole: string = '';
+
 
   selectedUser: string = "";
 
   
 
   getSelectedUser() {
+    this.getCurrentUser();
     return this._permissionsModelService.selectedUser;
   }
 
   getCurrentUser(){    
     console.log('user updated to ', this.selectedUser);
+    
     return this.selectedUser;
  }
 
  getselectedUserRoles() {
-  if (this.selectedUser !== '' && this.selectedUser !== null) {
-    const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
-    
-    this._permissionsModelService.selectedUserRoles = [];
-    for (let r in selectedUser.roles){
-      console.log("roles are now ",selectedUser.roles[r].name);
-      this._permissionsModelService.selectedUserRoles.push(selectedUser.roles[r].name);
+  if (this._permissionsModelService.isDirty()){
+    if (this.selectedUser !== '' && this.selectedUser !== null) {
+      const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
       
+      this._permissionsModelService.selectedUserRoles = [];
+      for (let r in selectedUser.roles){
+        console.log("roles are now ",selectedUser.roles[r].name);
+        this._permissionsModelService.selectedUserRoles.push(selectedUser.roles[r].name);
+        
+      }
+      console.log("roleList", this._permissionsModelService.selectedUserRoles);
+      
+      return this._permissionsModelService.selectedUserRoles;
     }
-    console.log("roleList", this._permissionsModelService.selectedUserRoles);
-    
-    return this._permissionsModelService.selectedUserRoles;
+    else {
+      return ["nothing"];
+    }
   }
   else {
-    return ["nothing"];
+    console.log("I can't let you do that");
   }
+  
 }
 
 
@@ -108,7 +116,6 @@ export class PermissionsPage {
     // this.getselectedUserRoles();
     console.log("toggle ", currentRoles);
     this._permissionsModelService.newUserRoles = currentRoles;
-
   }
 
   
@@ -123,14 +130,7 @@ export class PermissionsPage {
   }
 
 
-  testUser() {
-    console.log(this.selectedUser);
-  }
-
-  clearSelectedRole() {
-    this.selectedRole = '';
-  }
-
+ 
 
   
   updateRolesList(userRoles){
@@ -148,6 +148,7 @@ export class PermissionsPage {
 
 
   getlistOfUsers() {
+    this.getselectedUserRoles();
     console.log("user list", this._permissionsModelService.getListOfUsers())
     return this._permissionsModelService.getListOfUsers();
   }
@@ -158,6 +159,7 @@ export class PermissionsPage {
     if (availableRoles !== undefined && availableRoles !== null) {
       allRoles = availableRoles.map(role => role['name']);
     }
+    
     return allRoles;
   }
 
