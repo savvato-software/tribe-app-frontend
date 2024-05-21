@@ -73,22 +73,19 @@ export class PermissionsApiService {
 
     const url = environment.apiUrl + '/api/permissions';
     
-      return new Promise(
-        (resolve, reject) => {
-          this._apiService.post(url, changes).subscribe(
-            (_data) => {
-              resolve({ "successful": {status: true} });
-              resolve({ "successful": _data });
-            }, (err) => {
-              reject(err);
-            });
-        });
-        
-      
-    
-
+    return new Promise(
+      (resolve, reject) => {
+        this._apiService.post(url, changes).subscribe(
+          (_data) => {
+            resolve({ "successful": {status: true} });
+            resolve({ "successful": _data });
+          }, (err) => {
+            reject(err);
+          }
+        );
+      }
+    );
   }
-
 }
 
 
