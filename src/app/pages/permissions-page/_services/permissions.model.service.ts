@@ -21,7 +21,7 @@ export class PermissionsModelService {
 
   selectedUser: string = "";
 
-  selectedUserName = "";
+  // selectedUserName = "";
 
   
 
@@ -70,7 +70,7 @@ export class PermissionsModelService {
     this.hasSelectedUser = false;
     this.selectedUserRoles = ["No","user","selected"];
     this.selectedUser = "";
-    this.selectedUserName = "";
+    // this.selectedUserName = "";
   }
 
 

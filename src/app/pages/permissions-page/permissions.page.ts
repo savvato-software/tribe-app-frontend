@@ -41,7 +41,7 @@ export class PermissionsPage {
   }
 
   clearVlaues(){
-    this._permissionsModelService.selectedUserName = "";
+    
     this.selectedUser = "";
     this._permissionsModelService.selectedUserRoles = [];
     this._permissionsModelService.hasSelectedUser = false;
@@ -113,13 +113,13 @@ export class PermissionsPage {
     this._permissionsModelService.newUserRoles = currentRoles;
   }
 
-  isdirty(){
+  isDirty(){
     return this._permissionsModelService.isDirty();
   }
   
   checkRole(role) {
     
-    if (this._permissionsModelService.newUserRoles.length != 0){
+    if (this._permissionsModelService.newUserRoles.length != 0 || this.isDirty()){
       return this._permissionsModelService.newUserRoles.includes(role);
     }
     else {
@@ -132,12 +132,12 @@ export class PermissionsPage {
  
 
   
-  updateRolesList(userRoles){
-    this._permissionsModelService.selectedUserRoles = [];
-    for (let i of userRoles){
-      this._permissionsModelService.selectedUserRoles.push(i.name);
-      }
-  }
+  // updateRolesList(userRoles){
+  //   this._permissionsModelService.selectedUserRoles = [];
+  //   for (let i of userRoles){
+  //     this._permissionsModelService.selectedUserRoles.push(i.name);
+  //     }
+  // }
 
 
   // refactor this to new variables 
@@ -163,19 +163,23 @@ export class PermissionsPage {
 
 
   saveRoleChanges() {
-    this._permissionsModelService.dirty = false;
-    this._permissionsModelService.newUserRoles = [];
-    // this.saveMessage();
-    // let idNumber = (this._permissionsModelService.selectedUser["id"]);
-    // let newRoles = (this._permissionsModelService.selectedUserRoles);
+    const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
+    console.log("user id",selectedUser.id, " and name ", selectedUser.name);
+    this.saveMessage();
+    let idNumber = selectedUser.id;
+    let newRoles = (this._permissionsModelService.newUserRoles);
     // let newList = (this._permissionsModelService.selectedUser["roles"]);
-    // let roleList = [];
-    // for (let role of newList) {
-    //   roleList.push("role list", role);
-    // }
+    //  let roleList = [];
+    // for (let role of newRoles) {
+    //    roleList.push(role);
+    //  }
+    console.log("role list ",newRoles);
     
-    // this._permissionsModelService.save({id:idNumber, permissions:newRoles});
-    // this._permissionsModelService.clearUser();
+    this._permissionsModelService.save({id:idNumber, permissions:newRoles});
+    
+    //this.clearVlaues(); //--------------Question----------------
+    this._permissionsModelService.dirty = false;  //--------------Question----------------
+    this._permissionsModelService.newUserRoles = [];
     // this.updateRolesList(roleList);
     // //this.selectUser({});
     
@@ -192,7 +196,7 @@ export class PermissionsPage {
   }
 
   exitToHomePage() {
-    if (this._permissionsModelService.isDirty() == false){
+    if (this._permissionsModelService.dirty == false){
       this.router.navigate(['home']);
     }
     else {

@@ -49,6 +49,26 @@ export class PermissionsApiService {
     return rtn;
   }
 
+  save2(changes) {
+
+    const url = environment.apiUrl + '/api/permissions';
+      let testChanges = {id:3, permissions:['ADMIN','PHRASE_REVIEWER']}
+      return new Promise(
+        (resolve, reject) => {
+          this._apiService.post(url, testChanges).subscribe(
+            (_data) => {
+              resolve({ "successful": {status: true} });
+              resolve({ "successful": _data });
+            }, (err) => {
+              reject(err);
+            });
+        });
+        
+      
+    
+
+  }
+
   save(changes) {
 
     const url = environment.apiUrl + '/api/permissions';

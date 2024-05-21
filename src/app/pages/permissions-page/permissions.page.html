@@ -9,12 +9,12 @@
   </ion-item>
 
   <div id="user-list">
-    <p>The user is: {{selectedUser}} </p>
+    <!-- <p>The user is: {{selectedUser}} </p> -->
     <!-- <ion-item *ngFor="let role of getselectedUserRoles()"> the roles are: {{role}} </ion-item> -->
-    <p *ngFor="let role of getselectedUserRoles()">the roles are: {{role}} </p>
+    <!-- <p *ngFor="let role of getselectedUserRoles()">the roles are: {{role}} </p> -->
     
     <ion-item>
-       <select id="users-dropdown" aria-label="users" [disabled]="isdirty()" [(ngModel)]="selectedUser"> <!--replace with get selected user function-->
+       <select id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser"> <!--replace with get selected user function-->
         <option>Select a User</option>
         <option *ngFor="let user of getlistOfUsers()" [value]="user.name"> {{user.name}} </option>
       </select>
