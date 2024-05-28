@@ -11,7 +11,7 @@ export class PermissionsModelService {
 
   dirty = false;
 
-  hasSelectedUser = false;
+  //hasSelectedUser = false;
 
   selectedUserRoles = [];
 
@@ -19,7 +19,7 @@ export class PermissionsModelService {
 
   
 
-  selectedUser: string = "";
+  //selectedUser: string = "";
 
   // selectedUserName = "";
 
@@ -65,13 +65,13 @@ export class PermissionsModelService {
    return this.dirty;
   }
 
-  clearUser(){
-    this.dirty = false;
-    this.hasSelectedUser = false;
-    this.selectedUserRoles = ["No","user","selected"];
-    this.selectedUser = "";
-    // this.selectedUserName = "";
-  }
+  // clearUser(){
+  //   this.dirty = false;
+  //   this.hasSelectedUser = false;
+  //   this.selectedUserRoles = ["No","user","selected"];
+  //   this.selectedUser = "";
+  //   // this.selectedUserName = "";
+  // }
 
 
   save(roles){

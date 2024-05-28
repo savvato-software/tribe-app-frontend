@@ -43,10 +43,11 @@ export class PermissionsPage {
   clearVlaues(){
     
     this.selectedUser = "";
+    //--------------move to model????-------------
     this._permissionsModelService.selectedUserRoles = [];
-    this._permissionsModelService.hasSelectedUser = false;
     this._permissionsModelService.dirty = false;
     this._permissionsModelService.newUserRoles = [];
+    //--------------move to model????-------------
   }
 
   
@@ -55,40 +56,21 @@ export class PermissionsPage {
   selectedUser: string = "";
 
   
-
-  getSelectedUser() {
-    return this._permissionsModelService.selectedUser;
-  }
-
-  getCurrentUser(){        
-    return this.selectedUser;
- }
-
  getselectedUserRoles() {
     if (this.selectedUser !== '' && this.selectedUser !== null) {
       const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
-      
       this._permissionsModelService.selectedUserRoles = [];
       for (let r in selectedUser.roles){
         this._permissionsModelService.selectedUserRoles.push(selectedUser.roles[r].name);
-        
       }
-      
+
       return this._permissionsModelService.selectedUserRoles;
     }
     else {
       return ["nothing"];
     }
-  
-  
-  
-  
 }
 
-
-
-
-//new -------------------------------------
 
   toggleRoles(role){
     this._permissionsModelService.dirty = true;
@@ -109,7 +91,7 @@ export class PermissionsPage {
       currentRoles.push(role);
     }
     
-    console.log("toggle ", currentRoles);
+    // console.log("toggle ", currentRoles);
     this._permissionsModelService.newUserRoles = currentRoles;
   }
 
@@ -127,24 +109,6 @@ export class PermissionsPage {
     }
     
   }
-
-
- 
-
-  
-  // updateRolesList(userRoles){
-  //   this._permissionsModelService.selectedUserRoles = [];
-  //   for (let i of userRoles){
-  //     this._permissionsModelService.selectedUserRoles.push(i.name);
-  //     }
-  // }
-
-
-  // refactor this to new variables 
-  hasSelectedUser() {
-    return this._permissionsModelService.hasSelectedUser
-  } 
-
 
   getlistOfUsers() {
     return this._permissionsModelService.getListOfUsers();
@@ -164,25 +128,17 @@ export class PermissionsPage {
 
   saveRoleChanges() {
     const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
-    console.log("user id",selectedUser.id, " and name ", selectedUser.name);
+    //console.log("user id",selectedUser.id, " and name ", selectedUser.name);
     this.saveMessage();
     let idNumber = selectedUser.id;
     let newRoles = (this._permissionsModelService.newUserRoles);
-    // let newList = (this._permissionsModelService.selectedUser["roles"]);
-    //  let roleList = [];
-    // for (let role of newRoles) {
-    //    roleList.push(role);
-    //  }
-    console.log("role list ",newRoles);
+
+    //console.log("role list ",newRoles);
     
     this._permissionsModelService.save({id:idNumber, permissions:newRoles});
     
-    //this.clearVlaues(); //--------------Question----------------
-    this._permissionsModelService.dirty = false;  //--------------Question----------------
+    this._permissionsModelService.dirty = false;  
     this._permissionsModelService.newUserRoles = [];
-    // this.updateRolesList(roleList);
-    // //this.selectUser({});
-    
   }
 
   saveMessage() {
@@ -216,7 +172,5 @@ export class PermissionsPage {
       })
       
     }
-      
-      
   }
 }
