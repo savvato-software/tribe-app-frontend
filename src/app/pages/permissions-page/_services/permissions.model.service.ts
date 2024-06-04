@@ -11,17 +11,10 @@ export class PermissionsModelService {
 
   dirty = false;
 
-  //hasSelectedUser = false;
-
   selectedUserRoles = [];
 
   newUserRoles = [];
 
-  
-
-  //selectedUser: string = "";
-
-  // selectedUserName = "";
 
   
 
@@ -65,13 +58,11 @@ export class PermissionsModelService {
    return this.dirty;
   }
 
-  // clearUser(){
-  //   this.dirty = false;
-  //   this.hasSelectedUser = false;
-  //   this.selectedUserRoles = ["No","user","selected"];
-  //   this.selectedUser = "";
-  //   // this.selectedUserName = "";
-  // }
+  clearValues(){
+    this.selectedUserRoles = [];
+    this.dirty = false;
+    this.newUserRoles = [];
+  }
 
 
   save(roles){

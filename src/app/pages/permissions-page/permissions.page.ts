@@ -43,11 +43,7 @@ export class PermissionsPage {
   clearVlaues(){
     
     this.selectedUser = "";
-    //--------------move to model????-------------
-    this._permissionsModelService.selectedUserRoles = [];
-    this._permissionsModelService.dirty = false;
-    this._permissionsModelService.newUserRoles = [];
-    //--------------move to model????-------------
+    this._permissionsModelService.clearValues();
   }
 
   
