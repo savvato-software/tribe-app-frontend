@@ -9,6 +9,7 @@ import { AttributesModelService } from "./_services/attributes.model.service";
 import { SequenceService, Sequenceable } from '@savvato-software/savvato-javascript-services';
 import {Attribute} from '../../_type/attribute.type'
 import {Phrase} from '../../_type/phrase.type'
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-attributes',
@@ -29,8 +30,11 @@ export class AttributesPage implements OnInit {
     private _loadingService: LoadingService,
     private _attributesModelService: AttributesModelService,
     private router: Router,
-    private sequenceService: SequenceService
-    ) { }
+    private sequenceService: SequenceService,
+    private cd: ChangeDetectorRef
+    ) {
+
+      }
 
     public ngOnInit() {
       this.loadAttributes();
@@ -55,16 +59,16 @@ export class AttributesPage implements OnInit {
     return attributes.sort((a, b) => a.sequence - b.sequence);
   }
 
-  selectAttribute(attr: Sequenceable) {
+  selectAttribute(attr: Attribute) {
     this.selectedAttr = attr;
   }
 
   canMoveUp(): boolean {
-    return this.selectedAttr && this.selectedAttr['phrase'].sequence > 1;
+    return this.selectedAttr && this.selectedAttr.sequence > 1;
   }
 
   canMoveDown(): boolean {
-    return this.selectedAttr && this.selectedAttr['phrase'].sequence < this.attributes.length;
+    return this.selectedAttr && this.selectedAttr.sequence < this.attributes.length;
   }
 
   hasChanges(): boolean {
@@ -72,14 +76,27 @@ export class AttributesPage implements OnInit {
   }
 
   moveUp() {
-    if (this.selectedAttr && this.canMoveUp()) {
-      this.sequenceService.moveSequenceByOne(this.attributes, this.selectedAttr, this.sequenceService.UP);
-    }
+   if (this.selectedAttr && this.canMoveUp()) {
+     console.log("Before move: Attribute", this.selectedAttr);
+     this.sequenceService.moveSequenceByOne(this.attributes, this.selectedAttr, this.sequenceService.UP);
+     this.cd.detectChanges();
+     console.log("After move: Attribute", this.selectedAttr);
+     console.log("Moving Up!");
+     this.printList()
+   }
+  }
+
+  printList(){
+    console.log(this.attributes)
   }
 
   moveDown() {
     if (this.selectedAttr && this.canMoveDown()) {
+      console.log("Before move: Attribute", this.selectedAttr);
       this.sequenceService.moveSequenceByOne(this.attributes, this.selectedAttr, this.sequenceService.DOWN);
+      this.cd.detectChanges();
+      console.log("After move: Attribute", this.selectedAttr);
+      console.log("Moving Down!")
     }
   }
 
