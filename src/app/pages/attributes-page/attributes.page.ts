@@ -6,46 +6,93 @@ import { AlertService } from '../../_services/alert/alert.service';
 import { UserService } from '../../_services/user/user.service';
 import { LoadingService } from "../../_services/loading-spinner/loading.service";
 import { AttributesModelService } from "./_services/attributes.model.service";
+import { SequenceService, Sequenceable } from '@savvato-software/savvato-javascript-services';
+import {Attribute} from '../../_type/attribute.type'
+import {Phrase} from '../../_type/phrase.type'
 
 @Component({
   selector: 'app-attributes',
   templateUrl: './attributes.page.html',
   styleUrls: ['./attributes.page.scss'],
 })
+
 export class AttributesPage implements OnInit {
 
   headerPageTitle: string = 'Attributes';
   headerPagePrimaryActionButtonText: string = 'Create';
+  attributes: Attribute[] = [];
+  selectedAttr: Attribute | null = null;
+  originalAttributes: Attribute[] = [];
 
   constructor(private _userService: UserService,
     private _alertService: AlertService,
     private _loadingService: LoadingService,
     private _attributesModelService: AttributesModelService,
-    private router: Router) { }
+    private router: Router,
+    private sequenceService: SequenceService
+    ) { }
 
-  public ngOnInit() {
- 
+    public ngOnInit() {
+      this.loadAttributes();
+    }
+
+    ionViewWillEnter() {
+      this.loadAttributes();
+    }
+
+    loadAttributes() {
+      this._loadingService.show({message: "..loading.."}).then(() => {
+        this._attributesModelService.init().then(() => {
+          this.attributes = this.getAttributes();
+          this.originalAttributes = [...this.attributes];
+          this._loadingService.dismiss();
+        });
+      });
+    }
+
+  getAttributes(): Attribute[] {
+    const attributes: Attribute[] = this._attributesModelService.get();
+    return attributes.sort((a, b) => a.sequence - b.sequence);
   }
 
-  ionViewWillEnter() {
-    this._loadingService.show({message: "..loading.."}).then(() => {
-      this._attributesModelService.init().then(() => {
-        this._loadingService.dismiss();
-      })
-    })
+  selectAttribute(attr: Sequenceable) {
+    this.selectedAttr = attr;
   }
 
-
-  getAttributes() {
-    const attributes = this._attributesModelService.get(); 
-    return Object.values(attributes);
+  canMoveUp(): boolean {
+    return this.selectedAttr && this.selectedAttr['phrase'].sequence > 1;
   }
 
-  
+  canMoveDown(): boolean {
+    return this.selectedAttr && this.selectedAttr['phrase'].sequence < this.attributes.length;
+  }
+
+  hasChanges(): boolean {
+    return JSON.stringify(this.attributes) !== JSON.stringify(this.originalAttributes);
+  }
+
+  moveUp() {
+    if (this.selectedAttr && this.canMoveUp()) {
+      this.sequenceService.moveSequenceByOne(this.attributes, this.selectedAttr, this.sequenceService.UP);
+    }
+  }
+
+  moveDown() {
+    if (this.selectedAttr && this.canMoveDown()) {
+      this.sequenceService.moveSequenceByOne(this.attributes, this.selectedAttr, this.sequenceService.DOWN);
+    }
+  }
+
+  saveChanges() {
+    // not implemented
+    this.originalAttributes = [...this.attributes];
+    console.log('Changes saved:', this.attributes);
+  }
+
   deleteAttribute(id: number) {
     const self = this;
     let msg = "Deleting attribute...";
-  
+
     self._loadingService.show({message: msg}).then(() => {
       self._loadingService.dismiss().then(() => {
         self._alertService.show({
@@ -55,7 +102,7 @@ export class AttributesPage implements OnInit {
             {
               text: 'Yes',
               handler: () => {
-                
+
                 this._attributesModelService.delete(id).then(
                   (response) => {
                    console.log("Call to attributeApiService was successful");
@@ -73,14 +120,14 @@ export class AttributesPage implements OnInit {
             },
             {
               text: 'No',
-              role: 'cancel' 
+              role: 'cancel'
             }
           ]
         })
       })
     });
-  }  
-   
+  }
+
 
   getAttrString(attr) {
     let rtn = "";
@@ -114,4 +161,25 @@ export class AttributesPage implements OnInit {
     this.router.navigate([url], { replaceUrl: true });
   }
 
+  ionViewWillLeave() {
+    if (this.hasChanges()) {
+      this._alertService.show({
+        header: 'Unsaved Changes',
+        message: 'You have unsaved changes. Do you want to save before leaving?',
+        buttons: [
+          {
+            text: 'Yes',
+            handler: () => {
+              this.saveChanges();
+              this.navigateTo();
+            }
+          },
+          {
+            text: 'No',
+            role: 'cancel'
+          }
+        ]
+      });
+    }
+  }
 }

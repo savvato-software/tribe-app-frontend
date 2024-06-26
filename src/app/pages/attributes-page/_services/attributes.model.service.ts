@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-services';
 
 import { AttributesApiService } from "./attributes.api.service";
+import {Attribute} from '../../../_type/attribute.type'
 
 import { Constants } from "../../../_constants/constants";
 
@@ -10,7 +11,7 @@ import { Constants } from "../../../_constants/constants";
 })
 export class AttributesModelService {
 
-    model: any = {};
+    model:Attribute[] = [];
 
     constructor(private _apiService: JWTApiService,
                 private _authService: AuthService,
@@ -22,7 +23,7 @@ export class AttributesModelService {
     init() {
         return new Promise((resolve, reject) => {
             this._attributesApiService.getAttributesByUser().then(
-                (rtn) => {
+                (rtn:Attribute[]) => {
                     this.model = rtn;
                     resolve(rtn);
                 }
@@ -36,7 +37,7 @@ export class AttributesModelService {
     }
 
 
-    save(model: {}) {
+    save(model:Attribute) {
         return new Promise((resolve, reject) => {
             this._attributesApiService.save(model).then(
                 (isPhraseReviewed: boolean) => {
@@ -48,8 +49,8 @@ export class AttributesModelService {
                 }
             );
         });
-    } 
-    
+    }
+
     delete(id: number): Promise<any> {
         return this._attributesApiService.delete(id);
     }
