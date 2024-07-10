@@ -49,6 +49,23 @@ export class AttributesApiService {
             );
         });
     }
+    saveSequence(data) {
+        const url = environment.apiUrl + '/api/attributes/update';
+         console.log(data);
+
+        return new Promise((resolve, reject) => {
+            this._apiService.post(url, data).subscribe(
+                (response: any) => {
+                    resolve(response);
+                    console.log(response)
+                },
+                (err) => {
+                    reject(err);
+                }
+            );
+        });
+    }
+
 
     delete(id: number): Promise<any> {
         const url = environment.apiUrl + '/api/attributes/?phraseId=' + id + '&userId=' + this._authService.getUser().id;

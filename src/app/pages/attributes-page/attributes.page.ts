@@ -21,9 +21,8 @@ export class AttributesPage implements OnInit {
 
   headerPageTitle: string = 'Attributes';
   headerPagePrimaryActionButtonText: string = 'Create';
-  attributes: Attribute[] = [];
   selectedAttr: Attribute | null = null;
-  originalAttributes: Attribute[] = [];
+
 
   constructor(private _userService: UserService,
     private _alertService: AlertService,
@@ -32,9 +31,7 @@ export class AttributesPage implements OnInit {
     private router: Router,
     private sequenceService: SequenceService,
     private cd: ChangeDetectorRef
-    ) {
-
-      }
+    ) {}
 
     public ngOnInit() {
       this.loadAttributes();
@@ -47,14 +44,12 @@ export class AttributesPage implements OnInit {
     loadAttributes() {
       this._loadingService.show({message: "..loading.."}).then(() => {
         this._attributesModelService.init().then(() => {
-          this.attributes = this.getAttributes();
-          this.originalAttributes = [...this.attributes];
           this._loadingService.dismiss();
         });
       });
     }
 
-  getAttributes(): Attribute[] {
+  get attributes(): Attribute[] {
     const attributes: Attribute[] = this._attributesModelService.get();
     return attributes.sort((a, b) => a.sequence - b.sequence);
   }
@@ -71,38 +66,30 @@ export class AttributesPage implements OnInit {
     return this.selectedAttr && this.selectedAttr.sequence < this.attributes.length;
   }
 
-  hasChanges(): boolean {
-    return JSON.stringify(this.attributes) !== JSON.stringify(this.originalAttributes);
-  }
+  isDirty(): boolean {
+    return this._attributesModelService.isDirty();
+ }
 
   moveUp() {
    if (this.selectedAttr && this.canMoveUp()) {
-     console.log("Before move: Attribute", this.selectedAttr);
-     this.sequenceService.moveSequenceByOne(this.attributes, this.selectedAttr, this.sequenceService.UP);
-     this.cd.detectChanges();
-     console.log("After move: Attribute", this.selectedAttr);
+     console.log("Before move: Attribute", this._attributesModelService.get());
+     this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.UP);
+     console.log("After move: Attribute", this._attributesModelService.get());
      console.log("Moving Up!");
-     this.printList()
    }
-  }
-
-  printList(){
-    console.log(this.attributes)
   }
 
   moveDown() {
     if (this.selectedAttr && this.canMoveDown()) {
-      console.log("Before move: Attribute", this.selectedAttr);
-      this.sequenceService.moveSequenceByOne(this.attributes, this.selectedAttr, this.sequenceService.DOWN);
-      this.cd.detectChanges();
-      console.log("After move: Attribute", this.selectedAttr);
+      console.log("Before move: Attribute", this._attributesModelService.get());
+      this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.DOWN);
+      console.log("After move: Attribute", this._attributesModelService.get());
       console.log("Moving Down!")
     }
   }
 
   saveChanges() {
-    // not implemented
-    this.originalAttributes = [...this.attributes];
+    this._attributesModelService.saveAttributeSequence()
     console.log('Changes saved:', this.attributes);
   }
 
@@ -179,7 +166,7 @@ export class AttributesPage implements OnInit {
   }
 
   ionViewWillLeave() {
-    if (this.hasChanges()) {
+    if (this.isDirty()) {
       this._alertService.show({
         header: 'Unsaved Changes',
         message: 'You have unsaved changes. Do you want to save before leaving?',

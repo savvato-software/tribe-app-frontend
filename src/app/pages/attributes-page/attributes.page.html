@@ -3,9 +3,10 @@
 <ion-toolbar>
   <ion-button (click)="moveUp()" [disabled]="!canMoveUp()">Up</ion-button>
   <ion-button (click)="moveDown()" [disabled]="!canMoveDown()">Down</ion-button>
-  <ion-button (click)="saveChanges()" [disabled]="!hasChanges()">Save</ion-button>
+  <ion-button (click)="saveChanges()" [disabled]="!isDirty()">Save</ion-button>
 </ion-toolbar>
   <ion-content>
+              <!--change attributes to getAttributes()-->
     <ion-card color="warning" *ngFor="let attr of attributes" [ngClass]="{'selected': selectedAttr === attr}" (click)="selectAttribute(attr)">
       <ion-card-content>
         <ion-card-title>{{attr['phrase']['adverb'] || ''}} {{attr['phrase']['verb'] || ''}} {{attr['phrase']['preposition'] || ''}} {{attr['phrase']['noun'] || ''}}
