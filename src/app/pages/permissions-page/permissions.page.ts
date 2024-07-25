@@ -6,7 +6,7 @@ import { AlertService } from 'src/app/_services/alert/alert.service';
 import { PermissionsModelService } from './_services/permissions.model.service';
 import {LoadingService} from "../../_services/loading-spinner/loading.service";
 import { curry } from 'cypress/types/lodash';
-
+import { UserRole } from './_types/user-role.type';
 
 
 
@@ -46,58 +46,67 @@ export class PermissionsPage {
     this._permissionsModelService.clearValues();
   }
 
+  // testValues(){
+  //   console.log("this is test 1", this._permissionsModelService.getListOfRoles());
+  //   console.log("this is test 2", this._permissionsModelService.getListOfUsers());
+  //   return "ready";
+  // }
   
-
+ 
+  testArray = ["one","two","three"];
 
   selectedUser: string = "";
 
-  
- getselectedUserRoles() {
-    if (this.selectedUser !== '' && this.selectedUser !== null) {
-      const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
-      this._permissionsModelService.selectedUserRoles = [];
-      for (let r in selectedUser.roles){
-        this._permissionsModelService.selectedUserRoles.push(selectedUser.roles[r].name);
-      }
+  allRoles = [];
 
-      return this._permissionsModelService.selectedUserRoles;
-    }
-    else {
-      return ["nothing"];
-    }
+  
+ 
+
+
+
+isDirty(){
+  return this._permissionsModelService.isDirty();
 }
 
 
-  toggleRoles(role){
-    this._permissionsModelService.dirty = true;
-    let currentRoles = [];
+//****************************start here  */
+// either move to model service or change logic to work with dirty 
+// dirty needs to compare lists upon changes 
+// make list already populate with user selection
+// detalied names for variables and functions
 
-    if (this._permissionsModelService.newUserRoles.length == 0) {
-      currentRoles = this._permissionsModelService.selectedUserRoles;
-    }
-    else{
-      currentRoles = this._permissionsModelService.newUserRoles;
-    }
+  // toggleRoles(role){
+  //   //this._permissionsModelService.dirtyOn();
+  //   let currentRoles = [];
+
+  //   if (this.isDirty() == false) {
+  //     currentRoles = this._permissionsModelService.selectedUserRoles; 
+  //   }
+  //   else{
+  //     currentRoles = this._permissionsModelService.newUserRoles;
+  //   }
     
-    if (currentRoles.includes(role)) {
-      const remRole = currentRoles.indexOf(role)
-      currentRoles.splice(remRole,1);
-    }
-    else {
-      currentRoles.push(role);
-    }
+  //   if (currentRoles.includes(role)) {
+  //     const remRole = currentRoles.indexOf(role)
+  //     currentRoles.splice(remRole,1);
+  //   }
+  //   else {
+  //     currentRoles.push(role);
+  //   }
     
-    // console.log("toggle ", currentRoles);
-    this._permissionsModelService.newUserRoles = currentRoles;
+  //   // console.log("toggle ", currentRoles);
+  //   this._permissionsModelService.newUserRoles = currentRoles;
+  //   this._permissionsModelService.newUserRoles.sort();
+  // }
+
+  toggleRoles(role) {
+    this._permissionsModelService.toggleRoles(role);
   }
 
-  isDirty(){
-    return this._permissionsModelService.isDirty();
-  }
   
   checkRole(role) {
     
-    if (this._permissionsModelService.newUserRoles.length != 0 || this.isDirty()){
+    if (this.isDirty()){
       return this._permissionsModelService.newUserRoles.includes(role);
     }
     else {
@@ -106,34 +115,54 @@ export class PermissionsPage {
     
   }
 
-  getlistOfUsers() {
+  getListOfUsers() {
     return this._permissionsModelService.getListOfUsers();
   }
 
   getListOfAllRoles(){
-    let availableRoles = this._permissionsModelService.getListOfRoles();
-    let allRoles = [];
-    if (availableRoles !== undefined && availableRoles !== null) {
-      allRoles = availableRoles.map(role => role['name']);
-    }
-    this.getselectedUserRoles();
-    return allRoles;
+      this._permissionsModelService.getListOfAllRoles();
+      this._permissionsModelService.getselectedUserRoles(this.selectedUser);
+      return this._permissionsModelService.allRoles;
+  }
+  getselectedUserRoles1() :UserRole{
+    return this._permissionsModelService.getselectedUserRoles1();
   }
 
+  // getselectedUserRoles(){
+  //   this._permissionsModelService.getselectedUserRoles(this.selectedUser);
+  //   console.log('new function ',this._permissionsModelService.selectedUserRoles);
+  // }
+
+//   getselectedUserRoles() {
+//     console.log("the user is ", this.selectedUser);
+//     this.getListOfAllRoles1();
+//     if (this.selectedUser !== '' && this.selectedUser !== null) {
+//       const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
+//       this._permissionsModelService.selectedUserRoles = [];
+//       for (let r in selectedUser.roles){
+//         this._permissionsModelService.selectedUserRoles.push(selectedUser.roles[r].name); // move this!!!
+//       }
+
+//       //return this._permissionsModelService.selectedUserRoles;
+//     }
+//     // else {
+//     //   return ["nothing"];
+//     // }
+//  }
 
 
   saveRoleChanges() {
-    const selectedUser = this.getlistOfUsers().find(user => user.name === this.selectedUser);
+    const selectedUser = this.getListOfUsers().find(user => user.name === this.selectedUser);
     //console.log("user id",selectedUser.id, " and name ", selectedUser.name);
     this.saveMessage();
     let idNumber = selectedUser.id;
     let newRoles = (this._permissionsModelService.newUserRoles);
 
-    //console.log("role list ",newRoles);
-    
+    console.log("role list ",newRoles);
+    console.log("id ", idNumber);
     this._permissionsModelService.save({id:idNumber, permissions:newRoles});
     
-    this._permissionsModelService.dirty = false;  
+    this._permissionsModelService.dirtyOff();  
     this._permissionsModelService.newUserRoles = [];
   }
 
@@ -148,7 +177,7 @@ export class PermissionsPage {
   }
 
   exitToHomePage() {
-    if (this._permissionsModelService.dirty == false){
+    if (this.isDirty() == false){
       this.router.navigate(['home']);
     }
     else {

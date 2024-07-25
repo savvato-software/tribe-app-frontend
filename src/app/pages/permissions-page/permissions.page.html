@@ -5,16 +5,30 @@
   <ion-item class="title ">
     <ion-label class="ion-text-center">
       Users
+      <!-- <p> roles {{testValues()}} </p> -->
     </ion-label>
   </ion-item>
 
   <div id="user-list">
     <ion-item>
-       <select id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser"> <!--replace with get selected user function-->
+      <select id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser"> <!--replace with get selected user function-->
         <option>Select a User</option>
-        <option *ngFor="let user of getlistOfUsers()" [value]="user.name"> {{user.name}} </option>
+        <option *ngFor="let user of getListOfUsers()" [value]="user.name"> {{user.name}} </option>
       </select>
     </ion-item>
+      <!-- <ion-select label="Default label" placeholder="Favorite Fruit"> -->
+       <!-- <ion-select id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser" placeholder="Select a User" > replace with get selected user function -->
+        <!-- <option>Select a User</option> -->
+        
+        <!-- <ion-select-option>This is just a test </ion-select-option>
+        <ion-select-option>This is just a test </ion-select-option>
+        <ion-select-option>This is just a test </ion-select-option>
+        <ion-select-option *ngFor="let user of testArray"> {{user}} </ion-select-option> -->
+        <!-- <ion-select-option *ngFor="let user of getlistOfUsers()" value="{{user.name}}"> {{user.name}} </ion-select-option> -->
+        
+    <!-- </ion-select> -->
+     
+    <!-- </ion-item> -->
   </div>
   <ion-item class="title ">
     <ion-label class="ion-text-center">
@@ -32,7 +46,7 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar id="bottom-toolbar" color="light">
-    <ion-button (click)="saveRoleChanges()" fill="clear">Save</ion-button>
+    <ion-button [disabled]="isDirty() == false" (click)="saveRoleChanges()" fill="clear">Save</ion-button>
     <ion-button (click)="exitToHomePage()" fill="clear">Cancel</ion-button>
   </ion-toolbar>
 </ion-footer>
