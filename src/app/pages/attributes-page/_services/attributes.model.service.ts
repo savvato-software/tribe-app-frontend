@@ -26,7 +26,8 @@ export class AttributesModelService {
             this._attributesApiService.getAttributesByUser().then(
                 (rtn:Attribute[]) => {
                     this.originalAttributes = rtn;
-                    this.model = [...this.originalAttributes]
+                    this.model = JSON.parse(JSON.stringify(rtn));
+
                     resolve(rtn);
                 }
             )
@@ -39,12 +40,14 @@ export class AttributesModelService {
     }
 
     isDirty(): boolean{
+//       if (!!this.model || !!this.originalAttributes)
+//         return false
       return JSON.stringify(this.model) !== JSON.stringify(this.originalAttributes);
       }
 
     save(model:Attribute) {
         return new Promise((resolve, reject) => {
-            this._attributesApiService.save(this.model).then(
+            this._attributesApiService.save(model).then(
                 (isPhraseReviewed: boolean) => {
                     console.log("Call to attributeApiService was successful");
                     resolve(isPhraseReviewed);
@@ -75,9 +78,10 @@ export class AttributesModelService {
                          })
               let data = {'phrases': phrase}
                 this._attributesApiService.saveSequence(data).then(
-                    (isPhraseReviewed: boolean) => {
-                        console.log("Call to attributeApiService was successful");
-                        resolve(isPhraseReviewed);
+                    (booleanMessage: boolean) => {
+                        console.log("Call to attributeApiService was successful(model)");
+                        resolve(booleanMessage);
+                        console.log(booleanMessage)
                     },
                     (err) => {
                         reject(err);

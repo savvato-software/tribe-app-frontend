@@ -37,9 +37,9 @@ export class AttributesPage implements OnInit {
       this.loadAttributes();
     }
 
-    ionViewWillEnter() {
-      this.loadAttributes();
-    }
+//     ionViewWillEnter() {
+//       this.loadAttributes();
+//     }
 
     loadAttributes() {
       this._loadingService.show({message: "..loading.."}).then(() => {
@@ -54,6 +54,11 @@ export class AttributesPage implements OnInit {
     return attributes.sort((a, b) => a.sequence - b.sequence);
   }
 
+  getAttributes():Attribute[] {
+      const attributes: Attribute[] = this._attributesModelService.get();
+      return attributes.sort((a, b) => a.sequence - b.sequence);
+    }
+
   selectAttribute(attr: Attribute) {
     this.selectedAttr = attr;
   }
@@ -66,31 +71,36 @@ export class AttributesPage implements OnInit {
     return this.selectedAttr && this.selectedAttr.sequence < this.attributes.length;
   }
 
-  isDirty(): boolean {
+  isSaveEnabled(): boolean {
+    //returns true if there is a change
     return this._attributesModelService.isDirty();
  }
 
   moveUp() {
    if (this.selectedAttr && this.canMoveUp()) {
-     console.log("Before move: Attribute", this._attributesModelService.get());
      this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.UP);
-     console.log("After move: Attribute", this._attributesModelService.get());
-     console.log("Moving Up!");
    }
   }
 
   moveDown() {
     if (this.selectedAttr && this.canMoveDown()) {
-      console.log("Before move: Attribute", this._attributesModelService.get());
       this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.DOWN);
-      console.log("After move: Attribute", this._attributesModelService.get());
-      console.log("Moving Down!")
     }
   }
 
   saveChanges() {
     this._attributesModelService.saveAttributeSequence()
-    console.log('Changes saved:', this.attributes);
+    .then((response) => {
+      console.log("Call to attributeApiService was successful");
+      return this._attributesModelService.init()
+       })
+    .then(() => {
+      this.selectedAttr = null;
+//       this.navigateTo('attributes');
+      })
+    .catch((err) => {
+      console.error("Error saving changes or reloading attributes", err);
+    });
   }
 
   deleteAttribute(id: number) {
@@ -166,7 +176,7 @@ export class AttributesPage implements OnInit {
   }
 
   ionViewWillLeave() {
-    if (this.isDirty()) {
+    if (this._attributesModelService.isDirty()) {
       this._alertService.show({
         header: 'Unsaved Changes',
         message: 'You have unsaved changes. Do you want to save before leaving?',
