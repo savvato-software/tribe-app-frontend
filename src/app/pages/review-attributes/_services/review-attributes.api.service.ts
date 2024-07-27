@@ -9,7 +9,7 @@ export class ReviewAttributesApiService {
   constructor(private _apiService: JWTApiService) {}
 
   getNextReviewEligiblePhrase() {
-    const url = environment.apiUrl + "/api/review/";
+    const url = environment.apiUrl + "/api/review";
 
     return new Promise((resolve, reject) => {
       this._apiService.get(url).subscribe((_data) => {

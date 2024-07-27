@@ -24,8 +24,8 @@ export class NotificationApiService {
         }
     }
     async readNotification(notificationId: number) {
-        const url = environment.apiUrl + '/api/notifications/';
-        console.log("api service started")
+        const url = environment.apiUrl + '/api/notifications';
+        console.log("apiservice started")
         try{
             let data = {"id" : notificationId}
             const call = await this._apiService.put(url, data).toPromise();
