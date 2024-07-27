@@ -27,7 +27,7 @@ export class AttributesApiService {
 
 
     save(model) {
-        const url = environment.apiUrl + '/api/attributes/';
+        const url = environment.apiUrl + '/api/attributes';
         let data = {
             'adverb': model['inputAdverbText'],
             'verb': model['inputVerbText'],
