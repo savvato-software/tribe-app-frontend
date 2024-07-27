@@ -64,6 +64,5 @@ export class ReviewAttributesApiService {
             });
     }
 
-
 }
 
