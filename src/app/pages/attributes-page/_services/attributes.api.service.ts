@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-services';
 
 import { environment } from '../../../_environments/environment';
-import {GenericResponse} from "../_types/generic-response.type";
+import {GenericResponse} from "../../_types/generic-response.type";
 
 @Injectable({
     providedIn: 'root'
