@@ -13,7 +13,7 @@ export class ConnectionDetailsPage implements OnInit{
     userId: string;
     connectionDetails: any;
 
-    constructor( 
+    constructor(
                 private route: ActivatedRoute,
                 private connectModelService: ConnectModelService,
                 private _alertService: AlertService,
@@ -34,21 +34,17 @@ export class ConnectionDetailsPage implements OnInit{
 
 
     onRemoveBtnClick() {
-        let self = this;
-        this._alertService.show({
-            header: 'Wait!',
-            message: "Do you really want to remove this connection?",
-            buttons: [{
-                text: "Oops, no..",
-                role: 'cancel'
-            }, {
-                text: 'Yes!'
-            }]
-        })
-
-    onRemoveBtnClick() {
-        console.log("Remove clicked!")
-
+      let self = this;
+      this._alertService.show({
+        header: 'Wait!',
+        message: "Do you really want to remove this connection?",
+        buttons: [{
+          text: "Oops, no..",
+          role: 'cancel'
+        }, {
+          text: 'Yes!'
+        }]
+      })
     }
 
     navigateTo(url?: string) {
