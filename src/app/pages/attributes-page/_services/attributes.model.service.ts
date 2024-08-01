@@ -39,17 +39,17 @@ export class AttributesModelService {
     save(model: {}) {
         return new Promise((resolve, reject) => {
             this._attributesApiService.save(model).then(
-                (isPhraseReviewed: boolean) => {
-                    console.log("Call to attributeApiService was successful");
-                    resolve(isPhraseReviewed);
+                (isPhraseAssociatedWithUser: boolean) => {
+                    console.log("Call to attributeApiService was successful. Returned " + isPhraseAssociatedWithUser);
+                    resolve(isPhraseAssociatedWithUser);
                 },
                 (err) => {
                     reject(err);
                 }
             );
         });
-    } 
-    
+    }
+
     delete(id: number): Promise<any> {
         return this._attributesApiService.delete(id);
     }
