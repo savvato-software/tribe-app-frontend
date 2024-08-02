@@ -25,6 +25,7 @@ export class AttributesModelService {
         return new Promise((resolve, reject) => {
             this._attributesApiService.getAttributesByUser().then(
                 (rtn:Attribute[]) => {
+                    rtn.sort((a, b) => a.sequence - b.sequence)
                     this.originalAttributes = rtn;
                     this.model = JSON.parse(JSON.stringify(rtn));
 
@@ -42,6 +43,9 @@ export class AttributesModelService {
     isDirty(): boolean{
 //       if (!!this.model || !!this.originalAttributes)
 //         return false
+      console.log("JSON.stringify(this.model):", JSON.stringify(this.model))
+      console.log("JSON.stringify(this.originalAttributes):", JSON.stringify(this.originalAttributes))
+
       return JSON.stringify(this.model) !== JSON.stringify(this.originalAttributes);
       }
 

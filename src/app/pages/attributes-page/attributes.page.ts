@@ -51,12 +51,12 @@ export class AttributesPage implements OnInit {
 
   get attributes(): Attribute[] {
     const attributes: Attribute[] = this._attributesModelService.get();
-    return attributes.sort((a, b) => a.sequence - b.sequence);
+    return attributes;
   }
 
   getAttributes():Attribute[] {
       const attributes: Attribute[] = this._attributesModelService.get();
-      return attributes.sort((a, b) => a.sequence - b.sequence);
+      return attributes;
     }
 
   selectAttribute(attr: Attribute) {
@@ -73,7 +73,9 @@ export class AttributesPage implements OnInit {
 
   isSaveEnabled(): boolean {
     //returns true if there is a change
-    return this._attributesModelService.isDirty();
+    let isDirty = this._attributesModelService.isDirty();
+    console.log(isDirty)
+    return isDirty;
  }
 
   moveUp() {
