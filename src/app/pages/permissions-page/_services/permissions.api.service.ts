@@ -3,6 +3,7 @@ import { JWTApiService } from '@savvato-software/savvato-javascript-services';
 import { environment } from '../../../_environments/environment';
 import { reject, resolve } from 'cypress/types/bluebird';
 import { PermissionsModelService } from './permissions.model.service';
+import {GenericResponse} from "../../_types/generic-response.type";
 
 @Injectable({
   providedIn: 'root'
@@ -50,24 +51,24 @@ export class PermissionsApiService {
   }
 
   save(changes) {
-    
-    
-      
+
+
+
     const url = environment.apiUrl + '/api/permissions';
-    
+
       return new Promise(
         (resolve, reject) => {
           this._apiService.post(url, changes).subscribe(
-            (_data) => {
+            (_data: GenericResponse) => {
               resolve({ "successful": {status: true} });
               resolve({ "successful": _data });
             }, (err) => {
               reject(err);
             });
         });
-        
-      
-    
+
+
+
 
   }
 
