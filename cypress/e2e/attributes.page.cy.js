@@ -74,7 +74,7 @@ describe('Attributes Page', () => {
     })
 
     describe('the phrase is valid, but does not exist', () => {
-      it('fills the form with an existing attribute', () => {
+      it('fills the form with an non-existing attribute', () => {
         cy.fillAttributesForm('', 'studies', 'with', 'partners');
       });
 
@@ -84,7 +84,7 @@ describe('Attributes Page', () => {
     })
 
     describe('the phrase is invalid', () => {
-      it('fills the form with an existing attribute', () => {
+      it('fills the form with an invalid attribute', () => {
         cy.fillAttributesForm('', 'your', '', 'mom');
       });
 
