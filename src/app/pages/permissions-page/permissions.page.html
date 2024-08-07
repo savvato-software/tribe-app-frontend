@@ -5,30 +5,16 @@
   <ion-item class="title ">
     <ion-label class="ion-text-center">
       Users
-      <!-- <p> roles {{testValues()}} </p> -->
     </ion-label>
   </ion-item>
 
   <div id="user-list">
-    <ion-item>
-      <select id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser"> <!--replace with get selected user function-->
-        <option>Select a User</option>
-        <option *ngFor="let user of getListOfUsers()" [value]="user.name"> {{user.name}} </option>
-      </select>
-    </ion-item>
-      <!-- <ion-select label="Default label" placeholder="Favorite Fruit"> -->
-       <!-- <ion-select id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser" placeholder="Select a User" > replace with get selected user function -->
-        <!-- <option>Select a User</option> -->
-        
-        <!-- <ion-select-option>This is just a test </ion-select-option>
-        <ion-select-option>This is just a test </ion-select-option>
-        <ion-select-option>This is just a test </ion-select-option>
-        <ion-select-option *ngFor="let user of testArray"> {{user}} </ion-select-option> -->
-        <!-- <ion-select-option *ngFor="let user of getlistOfUsers()" value="{{user.name}}"> {{user.name}} </ion-select-option> -->
-        
-    <!-- </ion-select> -->
-     
-    <!-- </ion-item> -->
+        <ion-item>
+          <!-- (ionChange)="onUserChange($event)" -->
+      <ion-select  class="ion-text-center" interface="popover" placeholder="Select User" id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser"> 
+        <ion-select-option *ngFor="let user of getListOfUsers()" [value]="user.name"> {{user.name}} </ion-select-option>
+       </ion-select>
+    </ion-item> 
   </div>
   <ion-item class="title ">
     <ion-label class="ion-text-center">

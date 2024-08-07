@@ -225,10 +225,12 @@ export class PermissionsModelService {
 
 
   save(roles){
-    this.dirty = false;
+    
     console.log("saving in model");
     return this._permissionsApiService.save(roles).then(() => {
       console.log("saving in model success");
+      this.dirty = false;
+      this.newUserRoles = [];
       this._permissionsApiService.getListOfAllUsers();
       this._permissionsApiService.getListOfRoles();
       this.init();
