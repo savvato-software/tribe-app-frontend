@@ -9,7 +9,7 @@ import { User } from '../_types/user.type';
 })
 export class PermissionsModelService {
 
-  model = {};
+  model: {} = {};
 
   dirty = false;
 
@@ -68,17 +68,15 @@ export class PermissionsModelService {
   //   }
   // }
   
-  getListOfUsers() {
+  getListOfUsers(): User[] {
     return this.model['listOfUsers'];
   }
-  getselectedUserRoles1(): UserRole {
-      // remove mapping function replace with type casting
-    return this.model['listOfUserRoles'];
-  }
+  // getselectedUserRoles1(): UserRole {
+  //   return this.model['listOfUserRoles'];
+  // }
 
-  getListOfAllRoles() {
+  getListOfAllRoles() { //: UserRole <<<<<<<<<<<<<
     let availableRoles = this.model['listOfUserRoles'];
-    //console.log(this.model['listOfUserRoles']);
     this.allRoles = [];
     if (availableRoles !== undefined && availableRoles !== null) {
       this.allRoles = availableRoles.map(role => role['name']);
@@ -97,7 +95,7 @@ export class PermissionsModelService {
       }
       this.selectedUserRoles.sort();
 
-   }
+    }
   }
 
     toggleRoles1(role){
@@ -141,16 +139,11 @@ export class PermissionsModelService {
   }
 
   toggleRoles(role){
-    //this.dirtyOn();
-    //let currentRoles = [];
 
     if (this.newUserRoles.length == 0) {
       this.newUserRoles = this.selectedUserRoles.map(role => role); 
     }
-    // else{
-    //   this.newUserRoles = this.newUserRoles;
-    // }
-    
+
     if (this.newUserRoles.includes(role)) {
       const remRole = this.newUserRoles.indexOf(role)
       this.newUserRoles.splice(remRole,1);
@@ -159,24 +152,21 @@ export class PermissionsModelService {
       this.newUserRoles.push(role);
     }
     
-    // console.log("toggle ", currentRoles);
-    //this.newUserRoles = currentRoles;
     this.newUserRoles.sort();
 
     if (this.selectedUserRoles.toString() == this.newUserRoles.toString()) {
       console.log('is not dirty');
       this.dirtyOff();
-      
-      
     }
+
     else {
       console.log('is dirty');
       this.dirtyOn();
     }
 
-    console.log("current state ", this.dirty);
-    console.log("selected ",this.selectedUserRoles);
-    console.log("new ",this.newUserRoles);
+    // console.log("current state ", this.dirty);
+    // console.log("selected ",this.selectedUserRoles);
+    // console.log("new ",this.newUserRoles);
   }
 
 
@@ -187,30 +177,6 @@ export class PermissionsModelService {
 
   isDirty() {
     return this.dirty;
-    // if (this.dirty){
-    //   if (this.selectedUserRoles.toString() == this.newUserRoles.toString()) {
-
-    //     console.log('is not dirty');
-    //     this.dirtyOff();
-        
-        
-    //   }
-    //   else {
-    //     console.log('is dirty');
-    //     this.dirtyOn();
-    //   }
-    // }
-    // // else {
-    // //   console.log('is not dirty');
-    // //   this.dirtyOff();
-    // // }
-    // console.log("current state ", this.dirty);
-    // console.log("selected ",this.selectedUserRoles);
-    // console.log("new ",this.newUserRoles);
-    // if (this.dirty == false) {
-    //   this.newUserRoles = [];
-    // }
-   
   }
 
   clearValues(){

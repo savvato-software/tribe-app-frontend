@@ -7,6 +7,7 @@ import { PermissionsModelService } from './_services/permissions.model.service';
 import {LoadingService} from "../../_services/loading-spinner/loading.service";
 import { curry } from 'cypress/types/lodash';
 import { UserRole } from './_types/user-role.type';
+import { User } from './_types/user.type'; 
 import { IonSelect } from '@ionic/angular';
 
 
@@ -78,7 +79,7 @@ isDirty(): boolean {
     
   }
 
-  getListOfUsers() {
+  getListOfUsers(): User[] {
     return this._permissionsModelService.getListOfUsers();
   }
 
