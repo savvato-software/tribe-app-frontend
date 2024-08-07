@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import { Router} from "@angular/router";
 import { ConnectModelService } from '../_services/connect.model.service';
+import { AlertService } from "src/app/_services/alert/alert.service";
 
 @Component({
     selector: 'app-connection-details',
@@ -12,9 +13,10 @@ export class ConnectionDetailsPage implements OnInit{
     userId: string;
     connectionDetails: any;
 
-    constructor( 
+    constructor(
                 private route: ActivatedRoute,
                 private connectModelService: ConnectModelService,
+                private _alertService: AlertService,
                 private _router: Router) {}
 
     ngOnInit() {}
@@ -26,9 +28,19 @@ export class ConnectionDetailsPage implements OnInit{
     onCancelBtnClick() {
         this._router.navigate(['/connect/list-connections']);
     }
-    
+
     onRemoveBtnClick() {
-        console.log("Remove clicked!")
+      let self = this;
+      this._alertService.show({
+        header: 'Wait!',
+        message: "Do you really want to remove this connection?",
+        buttons: [{
+          text: "Oops, no..",
+          role: 'cancel'
+        }, {
+          text: 'Yes!'
+        }]
+      })
     }
 
     navigateTo(url?: string) {
