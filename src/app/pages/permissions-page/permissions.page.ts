@@ -54,10 +54,6 @@ export class PermissionsPage {
 
   selectedUser: string = "";
 
-  
- 
-
-
 
 isDirty(): boolean {  
   return this._permissionsModelService.isDirty();
@@ -95,17 +91,10 @@ isDirty(): boolean {
 
   saveRoleChanges() {
     const selectedUser = this.getListOfUsers().find(user => user.name === this.selectedUser);
-    //console.log("user id",selectedUser.id, " and name ", selectedUser.name);
-    
     let idNumber = selectedUser.id;
     let newRoles = (this._permissionsModelService.newUserRoles);
-
-    // console.log("role list ",newRoles);
-    // console.log("id ", idNumber);
     this._permissionsModelService.save({id:idNumber, permissions:newRoles});
     this.saveMessage();
-    // this._permissionsModelService.dirtyOff();  
-    // this._permissionsModelService.newUserRoles = [];
   }
 
   saveMessage() {

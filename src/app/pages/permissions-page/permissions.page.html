@@ -10,7 +10,6 @@
 
   <div id="user-list">
         <ion-item>
-          <!-- (ionChange)="onUserChange($event)" -->
       <ion-select  class="ion-text-center" interface="popover" placeholder="Select User" id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser"> 
         <ion-select-option *ngFor="let user of getListOfUsers()" [value]="user.name"> {{user.name}} </ion-select-option>
        </ion-select>

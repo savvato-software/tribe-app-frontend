@@ -23,7 +23,7 @@ export class PermissionsApiService {
     const rtn = new Promise(
       (resolve, reject) => {
         this._apiService.get(url).subscribe(
-            (_data: UserRole[]) => { //add type here 
+            (_data: UserRole[]) => { 
 
                 resolve(_data);
             }, (err) => {

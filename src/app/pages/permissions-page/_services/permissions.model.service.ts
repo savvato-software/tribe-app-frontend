@@ -59,21 +59,11 @@ export class PermissionsModelService {
 
   }
 
-  // testDirty() {
-  //   if (this.selectedUserRoles == this.newUserRoles) {
-  //     this.dirtyOff();
-  //   }
-  //   else {
-  //     this.dirtyOn();
-  //   }
-  // }
   
   getListOfUsers(): User[] {
     return this.model['listOfUsers'];
   }
-  // getselectedUserRoles1(): UserRole {
-  //   return this.model['listOfUserRoles'];
-  // }
+
 
   getListOfAllRoles() { //: UserRole                  <<<<<<<<<<<<<
     let availableRoles = this.model['listOfUserRoles'];
@@ -117,7 +107,7 @@ export class PermissionsModelService {
       currentRoles.push(role);
     }
     
-    // console.log("toggle ", currentRoles);
+    
     this.newUserRoles = currentRoles;
     this.newUserRoles.sort();
 
@@ -164,9 +154,6 @@ export class PermissionsModelService {
       this.dirtyOn();
     }
 
-    // console.log("current state ", this.dirty);
-    // console.log("selected ",this.selectedUserRoles);
-    // console.log("new ",this.newUserRoles);
   }
 
 
