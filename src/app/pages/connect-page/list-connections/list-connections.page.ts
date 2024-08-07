@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ConnectModelService} from "../_services/connect.model.service";
 
 @Component({
   selector: 'app-list-connections',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListConnectionsPage implements OnInit {
 
-  constructor() { }
+  constructor(private _connectModelService: ConnectModelService) { }
 
   ngOnInit() {
+    this._connectModelService.init();
+  }
+
+  getAllConnections() {
+    return this._connectModelService.getAllConnections()
   }
 
 }
