@@ -75,7 +75,7 @@ export class PermissionsModelService {
   //   return this.model['listOfUserRoles'];
   // }
 
-  getListOfAllRoles() { //: UserRole <<<<<<<<<<<<<
+  getListOfAllRoles() { //: UserRole                  <<<<<<<<<<<<<
     let availableRoles = this.model['listOfUserRoles'];
     this.allRoles = [];
     if (availableRoles !== undefined && availableRoles !== null) {
@@ -98,7 +98,7 @@ export class PermissionsModelService {
     }
   }
 
-    toggleRoles1(role){
+    toggleRoles1(role: string){
     let currentRoles = [];
 
     if (this.newUserRoles.length == 0) {
@@ -138,7 +138,7 @@ export class PermissionsModelService {
     
   }
 
-  toggleRoles(role){
+  toggleRoles(role: string){
 
     if (this.newUserRoles.length == 0) {
       this.newUserRoles = this.selectedUserRoles.map(role => role); 
@@ -171,7 +171,7 @@ export class PermissionsModelService {
 
 
 
-  getListOfRoles() {
+  getListOfRoles(): UserRole {
     return this.model['listOfUserRoles'];
   }
 
