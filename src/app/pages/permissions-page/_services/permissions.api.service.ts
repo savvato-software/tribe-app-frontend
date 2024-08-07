@@ -65,9 +65,9 @@ export class PermissionsApiService {
               reject(err);
             });
         });
-        
-      
-    
+
+
+
 
   }
 

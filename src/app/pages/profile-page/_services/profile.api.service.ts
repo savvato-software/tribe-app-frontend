@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-services';
 
 import { environment } from '../../../_environments/environment';
+import {GenericResponse} from "../../_types/generic-response.type";
 
 @Injectable({
     providedIn: 'root'
@@ -39,7 +40,7 @@ export class ProfileApiService {
         return new Promise(
             (resolve, reject) => {
                 this._apiService.put(url, data).subscribe(
-                    (_data) => {
+                    (_data : GenericResponse) => {
                         console.log('save profile ' + model['id'] + ' was successful --> ' +_data);
 
                         resolve({"successful": _data});

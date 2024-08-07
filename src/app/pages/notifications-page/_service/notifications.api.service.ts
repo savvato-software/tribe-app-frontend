@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../../_environments/environment';
 import { HttpClient } from '@angular/common/http';
 import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-services';
+import {GenericResponse} from "../../_types/generic-response.type";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +16,7 @@ export class NotificationApiService {
 
     async getAllNotificationsForUsers() {
         const url = environment.apiUrl + '/api/notifications/user/' + this._authService.getUser().id;
-    
+
         try {
             const data = await this._apiService.get(url).toPromise();
             return data;
@@ -24,7 +25,7 @@ export class NotificationApiService {
         }
     }
     async readNotification(notificationId: number) {
-        const url = environment.apiUrl + '/api/notifications/';
+        const url = environment.apiUrl + '/api/notifications';
         console.log("apiservice started")
         try{
             let data = {"id" : notificationId}
@@ -32,12 +33,12 @@ export class NotificationApiService {
             console.log(data)
             console.log("sending data")
             return call;
-            
+
         } catch (error) {
             throw error;
         }
     }
-    
+
 
     async deleteMessage(notificationId: number){
         const url = environment.apiUrl + '/api/notifications/' + notificationId;
@@ -45,7 +46,7 @@ export class NotificationApiService {
         try{
             let data = {"deleting": notificationId}
             const call = this._apiService.delete(url, data).subscribe(
-                (response: any)=> {
+                (response: GenericResponse)=> {
                     console.log(response)
                 }
             );
@@ -53,7 +54,7 @@ export class NotificationApiService {
             console.log("sending data")
             console.log(call)
             return call;
-            
+
         } catch (error) {
             throw error;
         }
