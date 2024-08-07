@@ -58,7 +58,7 @@ export class PermissionsPage {
 
 
 
-isDirty(){
+isDirty(): boolean {  
   return this._permissionsModelService.isDirty();
 }
 
