@@ -65,7 +65,7 @@ export class PermissionsModelService {
   }
 
 
-  getListOfAllRoles() { //: UserRole                  <<<<<<<<<<<<<
+  getListOfAllRoles() {
     let availableRoles = this.model['listOfUserRoles'];
     this.allRoles = [];
     if (availableRoles !== undefined && availableRoles !== null) {
