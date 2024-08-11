@@ -65,12 +65,14 @@ export class PermissionsModelService {
   }
 
 
-  getListOfAllRoles() {
+  getListOfAllRoles(user) {
     let availableRoles = this.model['listOfUserRoles'];
     this.allRoles = [];
     if (availableRoles !== undefined && availableRoles !== null) {
       this.allRoles = availableRoles.map(role => role['name']);
       this.allRoles.sort();
+      this.getselectedUserRoles(user)
+      return this.allRoles;
     }
   }
 
@@ -162,7 +164,7 @@ export class PermissionsModelService {
     return this.model['listOfUserRoles'];
   }
 
-  isDirty() {
+  isDirty(): boolean {
     return this.dirty;
   }
 

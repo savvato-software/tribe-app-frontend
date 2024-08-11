@@ -28,7 +28,7 @@ export class PermissionsPage {
   headerPageTitle: string = 'Permissions';
 
   constructor( private router: Router,
-    private _authService: AuthService,
+    // private _authService: AuthService,
     private _alertService: AlertService,
     private _permissionsModelService: PermissionsModelService,
     private _loadingService: LoadingService) {
@@ -50,14 +50,12 @@ export class PermissionsPage {
     this._permissionsModelService.clearValues();
   }
 
-
-
   selectedUser: string = "";
 
 
-isDirty(): boolean {  
-  return this._permissionsModelService.isDirty();
-}
+  isDirty(): boolean {  
+    return this._permissionsModelService.isDirty();
+  }
 
   toggleRoles(role: string) {
     this._permissionsModelService.toggleRoles(role);
@@ -80,13 +78,8 @@ isDirty(): boolean {
   }
 
   getListOfAllRoles(){
-      this._permissionsModelService.getListOfAllRoles();
-      this._permissionsModelService.getselectedUserRoles(this.selectedUser);
-      return this._permissionsModelService.allRoles;
+      return this._permissionsModelService.getListOfAllRoles(this.selectedUser);
   }
-
- 
-
 
 
   saveRoleChanges() {
