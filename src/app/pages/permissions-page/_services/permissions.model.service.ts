@@ -77,7 +77,7 @@ export class PermissionsModelService {
   }
 
   
-   getselectedUserRoles(currentUser) {
+  getselectedUserRoles(currentUser) {
     console.log("the user is ", currentUser);
     if (currentUser !== '' && currentUser !== null) {
       const selectedUser = this.model['listOfUsers'].find(user => user.name === currentUser);
@@ -90,7 +90,7 @@ export class PermissionsModelService {
     }
   }
 
-    toggleRoles1(role: string){
+  toggleRoles1(role: string){
     let currentRoles = [];
 
     if (this.newUserRoles.length == 0) {

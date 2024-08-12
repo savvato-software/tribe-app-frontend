@@ -28,7 +28,6 @@ export class PermissionsPage {
   headerPageTitle: string = 'Permissions';
 
   constructor( private router: Router,
-    // private _authService: AuthService,
     private _alertService: AlertService,
     private _permissionsModelService: PermissionsModelService,
     private _loadingService: LoadingService) {
