@@ -61,7 +61,6 @@ export class PermissionsApiService {
         this._apiService.post(url, roles).subscribe(
           (_data) => {
             console.log("api level success ");
-            resolve({ "successful": {status: true} });
             resolve({ "successful": _data });
           }, (err) => {
             console.log("api level error ",err);
