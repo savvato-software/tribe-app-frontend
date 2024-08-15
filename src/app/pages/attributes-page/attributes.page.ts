@@ -9,7 +9,6 @@ import { AttributesModelService } from "./_services/attributes.model.service";
 import { SequenceService, Sequenceable } from '@savvato-software/savvato-javascript-services';
 import {Attribute} from '../../_type/attribute.type'
 import {Phrase} from '../../_type/phrase.type'
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-attributes',
@@ -30,16 +29,11 @@ export class AttributesPage implements OnInit {
     private _attributesModelService: AttributesModelService,
     private router: Router,
     private sequenceService: SequenceService,
-    private cd: ChangeDetectorRef
     ) {}
 
     public ngOnInit() {
       this.loadAttributes();
     }
-
-//     ionViewWillEnter() {
-//       this.loadAttributes();
-//     }
 
     loadAttributes() {
       this._loadingService.show({message: "..loading.."}).then(() => {

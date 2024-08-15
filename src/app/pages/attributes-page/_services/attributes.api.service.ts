@@ -28,7 +28,7 @@ export class AttributesApiService {
 
 
     save(model:Attribute) {
-        const url = environment.apiUrl + '/api/attributes/';
+        const url = environment.apiUrl + '/api/attributes';
         let data = {
             'adverb': model['inputAdverbText'],
             'verb': model['inputVerbText'],
@@ -49,15 +49,14 @@ export class AttributesApiService {
             );
         });
     }
-    saveSequence(data) {
+    saveSequence(data: Attribute) {
         const url = environment.apiUrl + '/api/attributes/update';
          console.log(data);
 
         return new Promise((resolve, reject) => {
             this._apiService.post(url, data).subscribe(
-                (response: any) => {
+                (response: boolean) => {
                     resolve(response);
-                    console.log(response)
                 },
                 (err) => {
                     reject(err);

@@ -41,11 +41,6 @@ export class AttributesModelService {
     }
 
     isDirty(): boolean{
-//       if (!!this.model || !!this.originalAttributes)
-//         return false
-      console.log("JSON.stringify(this.model):", JSON.stringify(this.model))
-      console.log("JSON.stringify(this.originalAttributes):", JSON.stringify(this.originalAttributes))
-
       return JSON.stringify(this.model) !== JSON.stringify(this.originalAttributes);
       }
 
@@ -62,17 +57,7 @@ export class AttributesModelService {
             );
         });
     }
-/* {
-    "phrase": {
-        "id": 3,
-        "adverb": "",
-        "verb": "sculpts",
-        "preposition": "with",
-        "noun": "clay"
-    },
-    "userCount": 1,
-    "sequence": 1
-} */
+
     saveAttributeSequence() {
             return new Promise((resolve, reject) => {
               let phrase = this.model.map(item => {return {
@@ -83,9 +68,8 @@ export class AttributesModelService {
               let data = {'phrases': phrase}
                 this._attributesApiService.saveSequence(data).then(
                     (booleanMessage: boolean) => {
-                        console.log("Call to attributeApiService was successful(model)");
                         resolve(booleanMessage);
-                        console.log(booleanMessage)
+                        console.log("Call to attributeApiService was successful(model) + (booleanMessage)")
                     },
                     (err) => {
                         reject(err);

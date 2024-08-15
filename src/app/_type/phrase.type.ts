@@ -6,19 +6,3 @@ export type Phrase = {
       noun: string;
      }
 
-
- /*
- getAttributes()
-
- {
-  "phrase": {
-  "id": 2,
-  "adverb": "",
-  "verb": "plays",
-  "preposition": "",
-  "noun": "chess",
-  "sequence": 2
-  },
-  "userCount": 2
-  }
-*/
