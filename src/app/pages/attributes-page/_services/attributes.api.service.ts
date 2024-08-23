@@ -3,6 +3,7 @@ import {AuthService, JWTApiService} from '@savvato-software/savvato-javascript-s
 import {Attribute} from '../../../_type/attribute.type'
 
 import { environment } from '../../../_environments/environment';
+import {GenericResponse} from "../../_types/generic-response.type";
 
 @Injectable({
     providedIn: 'root'
@@ -38,10 +39,8 @@ export class AttributesApiService {
 
         return new Promise((resolve, reject) => {
             this._apiService.post(url, data).subscribe(
-                (response: any) => {
-                    const isPhraseReviewed = response;
-
-                    resolve(isPhraseReviewed);
+                (response: GenericResponse) => {
+                    resolve(response.booleanMessage);
                 },
                 (err) => {
                     reject(err);
