@@ -59,5 +59,19 @@ export class ConnectApiService {
         })
     }
 
+    getConnection(connectedWithUserId: number) {
+        const url = environment.apiUrl + `/api/connect/${connectedWithUserId}`;
+        return new Promise((resolve, reject) => {
+            this._apiService.get(url).subscribe(
+              (_data) => {
+                  resolve(_data);
+              },
+              (err) => {
+                  reject(err);
+              }
+            )
+        })
+    }
+
 
 }
