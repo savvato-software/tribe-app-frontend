@@ -10,7 +10,7 @@ import { AlertService } from "src/app/_services/alert/alert.service";
     styleUrls: ['./connection-details.scss']
 })
 export class ConnectionDetailsPage implements OnInit{
-    userId: string;
+    connectedWithUserId: number;
     connectionDetails: any;
 
     constructor(
