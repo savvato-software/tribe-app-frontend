@@ -42,7 +42,7 @@ export class ConnectApiService {
     }
 
     removeConnection(requestingUserId: number, connectedWithUserId: number) {
-        const url = environment.apiUrl + '/api/connect/';
+        const url = environment.apiUrl + '/api/connect';
         const connectionRemovalRequest = {
           requestingUserId: requestingUserId,
           connectedWithUserId: connectedWithUserId
