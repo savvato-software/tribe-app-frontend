@@ -30,11 +30,25 @@ export class ConnectModelService {
         })
     }
 
-    fetchQRCodeData(){
+    fetchQRCodeData() {
         return  this._connectApiService.getQRCodeData();
     }
 
     getAllConnections() :any[] {
       return this.model;
+    }
+
+    removeConnection(connectedWithUserId: number) {
+        return new Promise((resolve, reject) => {
+            this._connectApiService.removeConnection(this._authService.getUser()['id'], connectedWithUserId).then(
+                (rtn) => {
+                    this.init(); // I chose to re-call 'init' instead of filtering 'this.model' for simplicity.
+                    resolve(rtn);
+                },
+                (err) => {
+                    reject(err);
+                }
+            );
+        });
     }
 }
