@@ -15,7 +15,7 @@ export class ConnectionDetailsPage implements OnInit{
 
     constructor(
                 private route: ActivatedRoute,
-                private connectModelService: ConnectModelService,
+                private _connectModelService: ConnectModelService,
                 private _alertService: AlertService,
                 private _router: Router) {}
 
@@ -52,7 +52,7 @@ export class ConnectionDetailsPage implements OnInit{
         }, {
           text: 'Yes!',
           handler: () => {
-            this.connectModelService.removeConnection(this.connectedWithUserId);
+            this._connectModelService.removeConnection(this.connectedWithUserId);
           }
         }]
       })
