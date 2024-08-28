@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListConnectionsPage
   },
   {
-    path: 'connection-details/:userId',
+    path: 'connection-details/:connectedWithUserId',
     component: ConnectionDetailsPage
   }
 ];
