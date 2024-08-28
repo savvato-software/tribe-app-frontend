@@ -50,13 +50,12 @@ export class ConnectionDetailsPage implements OnInit{
           text: "Oops, no..",
           role: 'cancel'
         }, {
-          text: 'Yes!'
+          text: 'Yes!',
+          handler: () => {
+            this.connectModelService.removeConnection(this.connectedWithUserId);
+          }
         }]
       })
-    }
-
-    onRemoveConfirmBtnClick() {
-      this.connectModelService.removeConnection(this.connectedWithUserId);
     }
 
     navigateTo(url?: string) {
