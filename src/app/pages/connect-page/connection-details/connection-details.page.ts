@@ -19,7 +19,15 @@ export class ConnectionDetailsPage implements OnInit{
                 private _alertService: AlertService,
                 private _router: Router) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.initConnectedWithUserId();
+    }
+
+    initConnectedWithUserId() {
+        const userIdString = this.route.snapshot.paramMap.get('userId');
+        const userId = parseInt(userIdString, 10);
+        this.connectedWithUserId = userId;
+    }
 
     onCancelBtnClick() {
         this._router.navigate(['/connect/list-connections']);
@@ -45,6 +53,10 @@ export class ConnectionDetailsPage implements OnInit{
           text: 'Yes!'
         }]
       })
+    }
+
+    onRemoveConfirmBtnClick() {
+      this.connectModelService.removeConnection(this.connectedWithUserId);
     }
 
     navigateTo(url?: string) {
