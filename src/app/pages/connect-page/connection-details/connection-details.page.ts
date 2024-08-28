@@ -24,7 +24,7 @@ export class ConnectionDetailsPage implements OnInit{
     }
 
     initConnectedWithUserId() {
-        const userIdString = this.route.snapshot.paramMap.get('userId');
+        const userIdString = this.route.snapshot.paramMap.get('connectedWithUserId');
         const userId = parseInt(userIdString, 10);
         this.connectedWithUserId = userId;
     }
