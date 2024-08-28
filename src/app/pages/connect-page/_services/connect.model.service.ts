@@ -42,7 +42,7 @@ export class ConnectModelService {
         return new Promise((resolve, reject) => {
             this._connectApiService.removeConnection(this._authService.getUser()['id'], connectedWithUserId).then(
                 (rtn) => {
-                    this.init(); // I chose to re-call 'init' instead of filtering 'this.model' for simplicity.
+                    this.init();
                     resolve(rtn);
                 },
                 (err) => {
