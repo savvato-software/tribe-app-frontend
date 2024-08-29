@@ -16,30 +16,28 @@ export class ConnectApiService {
     getQRCodeData() {
         const url = environment.apiUrl + '/api/connect/' + this._authService.getUser().id;
         return new Promise((resolve, reject) => {
-            this._apiService.get(url).subscribe(
-                (_data) => {
+            this._apiService.get(url).subscribe({
+                next: (_data) => {
                     resolve(_data);
                 },
-                (err) => {
+                error: (err) => {
                     reject(err);
                 }
-            )
+            })
         })
     }
 
     getAllConnections(userId: number) {
         const url = environment.apiUrl + '/api/connect/' + userId + '/all';
         return new Promise((resolve, reject) => {
-            this._apiService.get(url).subscribe(
-                (_data) => {
+            this._apiService.get(url).subscribe({
+                next: (_data) => {
                     resolve(_data);
                 },
-                (err) => {
+                error: (err) => {
                     reject(err);
                 }
-            )
+            })
         })
     }
-
-
 }
