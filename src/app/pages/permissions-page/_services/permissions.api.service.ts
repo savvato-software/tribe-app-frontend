@@ -24,7 +24,6 @@ export class PermissionsApiService {
       (resolve, reject) => {
         this._apiService.get(url).subscribe(
             (_data: UserRole[]) => { 
-
                 resolve(_data);
             }, (err) => {
                 reject(err);
@@ -32,6 +31,10 @@ export class PermissionsApiService {
     });
 
     return rtn;
+  }
+
+  testOfTest(){
+    return false;
   }
 
   getListOfAllUsers() {
