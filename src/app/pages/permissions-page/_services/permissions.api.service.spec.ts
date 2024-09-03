@@ -6,52 +6,62 @@ import { User } from '../_types/user.type';
 import { TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from "@angular/common/http";
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing"; // Use HttpClientTestingModule
 
 
 
-// describe("PermissionsApiService", () => {
-//     let service: PermissionsApiService;
-//     let expectation: boolean = false;
-//     let userRole: UserRole;
 
-//     beforeEach(() => {
-//         TestBed.configureTestingModule({
-//             providers: [PermissionsApiService],
-//             imports: [ IonicModule.forRoot(), HttpClientModule]
-//         });
-//         service = TestBed.inject(PermissionsApiService);
-//     });
+describe("PermissionsApiService", () => {
+    let service: PermissionsApiService;
+    let expectation: boolean = false;
+    let httpTestingController: HttpTestingController;
+   
 
-    // it('should return false from testOfTest', () => {
-    //     const result = service.testOfTest();
-    //     expect(result).toEqual(true);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [PermissionsApiService],
+            imports: [ IonicModule.forRoot(), HttpClientModule, HttpClientTestingModule]
+        });
+        service = TestBed.inject(PermissionsApiService);
+        httpTestingController = TestBed.inject(HttpTestingController);
+    });
+
+    afterEach(() => {
+        httpTestingController.verify(); // Verify no outstanding requests after each test
+    });
+
+    it('should return false from testOfTest', () => {
+        const result = service.testOfTest();
+        expect(result).toEqual(false);
+    });
+
+    // it('should return userRoles from getListOfRoles', () => {
+    //     const result = service.getListOfRolesTest();
+    //     // let role: UserRole[] = userRole;
+    //     // const result = ["one","two","three"];
+    //     const expectation = ["one","two","three"];
+    //     expect(result).toEqual(expectation);
+    //     // expect(result).toEqual(role);
     // });
 
-    // it('should return false from testOfTest', () => {
-    //     const result = service.getListOfRoles();
-    //     let role = userRole;
+    it('should return userRoles from getListOfRoles', (done) => {
+        const mockUserRoles: UserRole[] = [
+            { id: 1, name: 'Admin' },
+            { id: 2, name: 'User' },
+            { id: 3, name: 'Guest' }
+        ];
 
-    //     expect(result).toEqual(true);
-    // });
+        service.getListOfRoles().then((result) => {
+            expect(result).toEqual(mockUserRoles);
+            done(); // Signal that the async test is complete
+        });
+
+        const req = httpTestingController.expectOne(`${environment.apiUrl}/api/permissions/user-roles-list`);
+        expect(req.request.method).toEqual('GET');
+
+        req.flush(mockUserRoles); // Provide the mock response
+    });
 
     
-// });
-
-
-// describe("permissionsApiService" , () => {
-//     let service: PermissionsApiService;
-//     let expectation = false;
-//     let response: boolean;
-
-//     it('should return false', () => {
-//         spyOn(service, 'testOfTest').and.returnValue(of(expectation) as any);
-
-//         service.testOfTest().subscribe((res: boolean) => {
-//             response = res;
-//             expect(response).toBe(expectation);
-//         });
-        
-
-        
-//     })
-// });
+    
+});
