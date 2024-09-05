@@ -12,6 +12,7 @@ import { AlertService } from "src/app/_services/alert/alert.service";
 export class ConnectionDetailsPage implements OnInit{
     connectedWithUserId: number;
     connectionDetails: any;
+    currentConnectionIsRequestingUser: boolean;
 
     constructor(
                 private route: ActivatedRoute,
@@ -21,12 +22,29 @@ export class ConnectionDetailsPage implements OnInit{
 
     ngOnInit() {
         this.initConnectedWithUserId();
+        this.initConnectionDetails();
+        this.initCurrentConnectionIsRequestingUser();
     }
 
     initConnectedWithUserId() {
-        const userIdString = this.route.snapshot.paramMap.get('connectedWithUserId');
+        const userIdString = this.route
+            .snapshot
+            .paramMap
+            .get('connectedWithUserId');
         const userId = parseInt(userIdString, 10);
         this.connectedWithUserId = userId;
+    }
+
+    initConnectionDetails() {
+        this.connectionDetails = this._connectModelService
+            .getAllConnections()
+            .find(
+                connection => connection.to.userId === this.connectedWithUserId
+            );
+    }
+
+    initCurrentConnectionIsRequestingUser() {
+        this.currentConnectionIsRequestingUser = this.connectionDetails.to.userConnectionStatus === 'requesting';
     }
 
     onCancelBtnClick() {
