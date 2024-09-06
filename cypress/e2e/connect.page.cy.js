@@ -26,7 +26,7 @@ describe('Connections Page', () => {
         const userId = '12345';
 
         it('should display list connections page', () => {
-            cy.intercept('GET', 'http://localhost:8080/api/connect/' + userId + '/all', (req) => {
+            cy.intercept('GET', 'api/connect/' + userId + '/all', (req) => {
                 req.reply({
                     statusCode: 200,
                     body: [{
