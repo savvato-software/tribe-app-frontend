@@ -7,7 +7,7 @@
 </ion-toolbar>
   <ion-content>
               <!--change attributes to getAttributes()-->
-    <ion-card color="warning" *ngFor="let attr of getAttributes()" [ngClass]="{'selected': selectedAttr === attr}" (click)="selectAttribute(attr)">
+    <ion-card class="attributeItem" color="warning" *ngFor="let attr of getAttributes()" [ngClass]="{'selected': selectedAttr === attr}" (click)="selectAttribute(attr)">
       <ion-card-content>
         <ion-card-title>{{attr['phrase']['adverb'] || ''}} {{attr['phrase']['verb'] || ''}} {{attr['phrase']['preposition'] || ''}} {{attr['phrase']['noun'] || ''}}
           <span class="user-count">({{attr['userCount'] || '0'}} users)</span>
