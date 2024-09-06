@@ -35,3 +35,31 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('appLogin', () => {
+    cy.intercept('POST', 'http://localhost:8080/api/public/login', (req) => {
+        req.reply({
+            statusCode: 200,
+            headers: {
+                "Authorization": "Bearer ey",
+            },
+            body: {
+                "id": 12345,
+                "name": "testuser",
+                "password": "$2a$10$wGcNuV0Kodg7uz6qI/l/1uz1mMcpmAGZqfuZ3JxY9cAeejtYXUbWC",
+                "phone": "3035551213",
+                "email": "testuser@tribeapp.com",
+                "enabled": 1,
+                "roles": [{"id": 2, "name": "ROLE_accountholder"}],
+                "created": 1724528143000,
+                "lastUpdated": 1724528143000
+            }
+        });
+    }).as('login');
+
+    cy.visit('http://localhost:8100/login')
+    cy.get('[data-test="sign-in-btn"]').click()
+
+    cy.wait('@login');
+});
+
