@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let connection of getAllConnections()" routerLink="../connection-details/{{connection['to']['userId']}}">
+    <ion-item data-test="connectionListItem" *ngFor="let connection of getAllConnections()" routerLink="../connection-details/{{connection['to']['userId']}}">
       <ion-label>
         <h2>{{connection['to']['username']}}</h2>
         <p>{{connection['message']}}</p>

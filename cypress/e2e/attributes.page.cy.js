@@ -1,18 +1,35 @@
 describe('Attributes Page', () => {
   Cypress.Commands.add('goToAttributesPage', () => {
-    cy.visit('http://localhost:8100/login')
-    cy.get('[data-test="sign-in-btn"]').click()
+    cy.appLogin();
+
+    const userId = '12345';
+
+    cy.intercept('GET', 'api/attributes/' + userId, (req) => {
+        req.reply({
+            statusCode: 200,
+            body: [{"phrase":{"id":3,"adverb":"","verb":"sculpts","preposition":"with","noun":"clay"},"userCount":1},{"phrase":{"id":2,"adverb":"","verb":"plays","preposition":"","noun":"chess"},"userCount":2}]
+        });
+    });
 
     cy.contains('ion-item', 'Attributes').click();
   });
 
+  it('navigate to attributes page', () => {
+    cy.goToAttributesPage();
+  });
+
+  it('should display a list of attributes', () => {
+    cy.goToAttributesPage();
+    cy.get('.attributeItem').should('have.length', 2);
+  });
+
   describe('Create Attributes Page', () => {
     Cypress.Commands.add('goToCreateAttributesPage', () => {
+      cy.goToAttributesPage();
       cy.get('[data-test="launchHeaderPrimaryActionButton"]').click();
     });
 
     Cypress.Commands.add('fillAttributesForm', (adverb, verb, preposition, noun) => {
-      cy.goToAttributesPage();
       cy.goToCreateAttributesPage();
 
       if (adverb) {

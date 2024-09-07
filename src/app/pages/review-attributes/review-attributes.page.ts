@@ -19,11 +19,10 @@ export class ReviewAttributesPage implements OnInit {
     private _reviewAttributesModelService: ReviewAttributesModelService
   ) {}
 
-  ngOnInit() {}
-
-  ionViewWillEnter() {
+  ngOnInit() {
     this._reviewAttributesModelService.init();
   }
+
   onRejectPhraseBtnClick() {
     //mock data
     const reasons = [
@@ -81,10 +80,6 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onGetNextPhraseBtnClick() {
-    this.getNextPhraseToBeReviewed();
-  }
-
-  getNextPhraseToBeReviewed() {
     const self = this;
     const phraseTBR =
       this._reviewAttributesModelService.getNextReviewEligiblePhrase();
@@ -119,9 +114,5 @@ export class ReviewAttributesPage implements OnInit {
     rtn += tbr.noun;
 
     return rtn;
-  }
-
-  getListOfReviewDecisionReasons() {
-    return;
   }
 }
