@@ -6,7 +6,7 @@
         <form [formGroup]="validationsForm" (ngSubmit)="onSubmitClick(validationsForm.value)">
           <ion-item>
             <ion-label position="floating" color="primary">Email Address</ion-label>
-            <ion-input data-test="emailaddress-input" class="centered" type="text" formControlName="emailaddress" (ionInput)="onEmailAddressChange($event)" [value]="getEmailAddress()" required></ion-input>
+            <ion-input data-test="emailaddress-input" class="centered" type="text" formControlName="emailaddress" (ionInput)="onEmailAddressChange($event)" [value]="getEmailAddress()" required aria-label="emailAddress"></ion-input>
           </ion-item>
           <div class="validation-errors">
             <ng-container *ngFor="let validation of validationMessages.emailaddress">
@@ -17,7 +17,7 @@
           </div>
           <ion-item>
             <ion-label position="floating" color="primary">Password</ion-label>
-            <ion-input data-test="password-input" class="centered" type="password" formControlName="password" (ionInput)="onPasswordChange($event)" [value]="getPassword()" required></ion-input>
+            <ion-input data-test="password-input" class="centered" type="password" formControlName="password" (ionInput)="onPasswordChange($event)" [value]="getPassword()" required aria-label="password"></ion-input>
           </ion-item>
           <div class="validation-errors">
             <ng-container *ngFor="let validation of validationMessages.password">

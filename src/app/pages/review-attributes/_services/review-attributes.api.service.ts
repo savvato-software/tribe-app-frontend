@@ -12,9 +12,14 @@ export class ReviewAttributesApiService {
     const url = environment.apiUrl + "/api/review";
 
     return new Promise((resolve, reject) => {
-      this._apiService.get(url).subscribe((_data) => {
-        resolve(_data);
-      });
+      this._apiService.get(url).subscribe({
+        next: (_data) => {
+          resolve(_data);
+        },
+        error: (err) => {
+          reject(err);
+        }});
     });
   }
+
 }
