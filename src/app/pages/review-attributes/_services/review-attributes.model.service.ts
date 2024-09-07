@@ -49,4 +49,8 @@ export class ReviewAttributesModelService {
     get() {
         return this.model;
     }
+
+  getNextReviewEligiblePhrase() {
+    return this.model["nextReviewPhrase"] && this.model["nextReviewPhrase"][0];
+  }
 }

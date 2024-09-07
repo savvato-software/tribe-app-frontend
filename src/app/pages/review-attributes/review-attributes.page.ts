@@ -23,7 +23,16 @@ export class ReviewAttributesPage implements OnInit {
 
   ngOnInit() {
     this.getListOfReviewDecisionReasons();
+    this._reviewAttributesModelService.init();
   }
+
+  onRejectPhraseBtnClick() {
+    //mock data
+    const reasons = [
+      { id: 1, reason: "approved" },
+      { id: 2, reason: "doesn't make sense" },
+      { id: 3, reason: "vulgar" },
+    ];
 
   onRejectPhraseBtnClick() {
     const self = this;
@@ -73,10 +82,6 @@ export class ReviewAttributesPage implements OnInit {
   }
 
   onGetNextPhraseBtnClick() {
-    this.getNextPhraseToBeReviewed();
-  }
-
-  getNextPhraseToBeReviewed() {
    this._reviewAttributesModelService.getNewPhrase().then((phrase) => {
       if(phrase == null){
         this._alertService.show({
