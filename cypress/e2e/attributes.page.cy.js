@@ -33,21 +33,25 @@ describe('Attributes Page', () => {
       cy.goToCreateAttributesPage();
 
       if (adverb) {
+        cy.get('[data-test="inputAdverbField"]').should('not.be.disabled');
         cy.get('[data-test="inputAdverbField"]').type(adverb)
         cy.get('[data-test="inputAdverbField"]').should('have.value', adverb)
       }
 
       if (verb) {
+        cy.get('[data-test="inputVerbField"]').should('not.be.disabled');
         cy.get('[data-test="inputVerbField"]').type(verb)
         cy.get('[data-test="inputVerbField"]').should('have.value', verb)
       }
 
       if (preposition) {
+        cy.get('[data-test="inputPrepositionField"]').should('not.be.disabled');
         cy.get('[data-test="inputPrepositionField"]').type(preposition)
         cy.get('[data-test="inputPrepositionField"]').should('have.value', preposition)
       }
 
       if (noun) {
+        cy.get('[data-test="inputNounField"]').should('not.be.disabled');
         cy.get('[data-test="inputNounField"]').type(noun)
         cy.get('[data-test="inputNounField"]').should('have.value', noun)
       }
