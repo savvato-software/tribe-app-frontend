@@ -1,4 +1,42 @@
-ion-toolbar#bottom-toolbar {
+
+
+  #users-dropdown {
+    width: 100%;
+    height: 40px;
+    font-size: larger;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+  .notSelected div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bolder;
+    cursor: pointer;
+    
+  }
+
+  .selected div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bolder;
+    background-color: #2C5;
+    cursor: pointer;
+  }
+  
+  ion-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+  }
+
+  ion-toolbar #bottom-toolbar {
     display: flex;
     justify-content: space-evenly;
   
@@ -6,23 +44,3 @@ ion-toolbar#bottom-toolbar {
       width: 18.9%;
     }
   }
-
-  .title {
-    font-weight: bolder;
-  }
-  
-  ion-label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #permissions-availabe {
-    width: 50%;
-  }
-  
-  .clickable {
-    cursor: pointer;
-  }
-
-
