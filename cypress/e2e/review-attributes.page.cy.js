@@ -48,6 +48,7 @@ describe('Review Attributes page', () => {
         cy.getNextPhrase({"id": 5, "hasBeenGroomed": true, "adverb": "never", "verb": "converts", "preposition": "from", "noun": "mac"});
 
         // cy.wait('@getReview').its('response.body').should('have.length', 1)
+        cy.wait(100);
 
         cy.get('[data-test="launchApproveBtn"]').should('have.length', 1)
         cy.get('[data-test="inputPhraseToBeReviewed"]').should('have.value', "never converts from mac")
@@ -56,6 +57,8 @@ describe('Review Attributes page', () => {
     // display alert after approve button clicked
     it('should display an alert after approve button clicked', () => {
         cy.getNextPhrase({"id": 5, "hasBeenGroomed": true, "adverb": "never", "verb": "converts", "preposition": "from", "noun": "mac"});
+
+        cy.wait(100);
 
         // click approve button
         cy.get('[data-test="launchApproveBtn"]').should('have.length', 1)
@@ -77,6 +80,8 @@ describe('Review Attributes page', () => {
     // display alert after reject button clicked (expect: mock data option "doesn't make sense")
     it('should display an alert after reject button clicked', () => {
         cy.getNextPhrase({"id": 5, "hasBeenGroomed": true, "adverb": "never", "verb": "converts", "preposition": "from", "noun": "mac"});
+
+        cy.wait(100);
 
         // click reject button
         cy.get('[data-test="launchRejectBtn"]').should('have.length', 1)

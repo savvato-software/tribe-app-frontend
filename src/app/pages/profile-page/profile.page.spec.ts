@@ -5,6 +5,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { Constants } from '../../_constants/constants';
+import {SharedComponentsModule} from "../../_shared-components/shared-components/shared-components.module";
+import {IonicModule} from "@ionic/angular";
+import {CommonModule} from "@angular/common";
 
 describe('ProfilePage', () => {
   let component: ProfilePage;
@@ -16,7 +19,7 @@ describe('ProfilePage', () => {
       providers: [
         { provide: Constants, useClass: Constants }
       ],
-      imports: [ HttpClientModule, RouterTestingModule.withRoutes([])]
+      imports: [ IonicModule.forRoot(), CommonModule, HttpClientModule, SharedComponentsModule, RouterTestingModule.withRoutes([])]
     })
     .compileComponents();
   }));

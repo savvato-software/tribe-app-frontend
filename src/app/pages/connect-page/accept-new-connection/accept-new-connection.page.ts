@@ -19,14 +19,10 @@ export class AcceptNewConnectionPage implements OnInit {
               private router: Router) { }
 
 
-    ngOnInit() {
-      this.getSpecialCode();
-    }
-
-    getSpecialCode() {
+  ngOnInit() {
       this._connectModelService.fetchQRCodeData().then(
           data => {
-            console.log('QR code data', data);
+              console.log('QR code data', data);
               this.qrData = data.toString();
           }
       ).catch(
@@ -44,9 +40,7 @@ export class AcceptNewConnectionPage implements OnInit {
       return this.qrData;
   }
 
-
-
-    onCancelBtnClick() {
+  onCancelBtnClick() {
       this.navigateTo('connect');
   }
 
