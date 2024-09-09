@@ -5,22 +5,22 @@
     <ion-list>
         <ion-item>
             <ion-label>Adverb</ion-label>
-            <ion-input id="inputAdverb" data-test="inputAdverbField" (ionInput)="onInputAdverbFieldChange($event)"></ion-input>
+            <ion-input id="inputAdverb" data-test="inputAdverbField" (ionInput)="onInputAdverbFieldChange($event)" aria-label="inputAdverb"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>Verb</ion-label>
-            <ion-input id="inputVerb" data-test="inputVerbField" (ionInput)="onInputVerbFieldChange($event)"></ion-input>
+            <ion-input id="inputVerb" data-test="inputVerbField" (ionInput)="onInputVerbFieldChange($event)" aria-label="inputVerb"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>Preposition</ion-label>
-            <ion-input id="inputPreposition" data-test="inputPrepositionField" (ionInput)="onInputPrepositionFieldChange($event)"></ion-input>
+            <ion-input id="inputPreposition" data-test="inputPrepositionField" (ionInput)="onInputPrepositionFieldChange($event)" aria-label="inputPreposition"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label>Noun</ion-label>
-            <ion-input id="inputNoun" data-test="inputNounField" (ionInput)="onInputNounFieldChange($event)"></ion-input>
+            <ion-input id="inputNoun" data-test="inputNounField" (ionInput)="onInputNounFieldChange($event)" aria-label="inputNoun"></ion-input>
         </ion-item>
         <ion-item>
             <ion-button data-test="submitAttributesButton" class="submit-attributes-btn" color="primary" type="submit" (click)="applyPhraseToUser()">Submit</ion-button>

@@ -6,6 +6,7 @@ import { AttributesPage } from './attributes.page';
 import {HttpClientModule} from "@angular/common/http";
 
 import { Constants } from '../../_constants/constants';
+import {SharedComponentsModule} from "../../_shared-components/shared-components/shared-components.module";
 
 describe('AttributesPage', () => {
   let component: AttributesPage;
@@ -17,7 +18,7 @@ describe('AttributesPage', () => {
       providers: [
         { provide: Constants, useClass: Constants }
       ],
-      imports: [HttpClientModule, RouterTestingModule.withRoutes([]), IonicModule.forRoot()]
+      imports: [HttpClientModule, SharedComponentsModule, RouterTestingModule.withRoutes([]), IonicModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AttributesPage);
