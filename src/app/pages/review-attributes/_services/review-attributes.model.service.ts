@@ -28,6 +28,6 @@ export class ReviewAttributesModelService {
   }
 
   getNextReviewEligiblePhrase() {
-    return this.model["nextReviewPhrase"];
+    return this.model["nextReviewPhrase"] && this.model["nextReviewPhrase"][0];
   }
 }
