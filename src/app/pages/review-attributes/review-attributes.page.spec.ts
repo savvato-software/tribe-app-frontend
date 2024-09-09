@@ -6,6 +6,11 @@ import { RouterTestingModule } from "@angular/router/testing";
 import {SharedComponentsModule} from "../../_shared-components/shared-components/shared-components.module";
 import {IonicModule} from "@ionic/angular";
 
+import { Constants } from "../../_constants/constants";
+
+
+
+
 describe('ReviewAttributesPage', () => {
   let component: ReviewAttributesPage;
   let fixture: ComponentFixture<ReviewAttributesPage>;
@@ -13,7 +18,8 @@ describe('ReviewAttributesPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ReviewAttributesPage ],
-      imports: [ IonicModule.forRoot(), HttpClientModule, SharedComponentsModule, RouterTestingModule.withRoutes([])]
+      imports: [ IonicModule.forRoot(), HttpClientModule, SharedComponentsModule, RouterTestingModule.withRoutes([])],
+      providers: [{ provide: Constants, useClass: Constants }]
     }).compileComponents();
 
   }));
