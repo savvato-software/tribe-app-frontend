@@ -20,7 +20,7 @@
             <ion-item>
                 <ion-label position="floating" color="primary">Name</ion-label>
                 <ion-input data-test="name-input" type="text" formControlName="name" (ionInput)="onNameChange($event)"
-                    [value]="getName()" required></ion-input>
+                    [value]="getName()" required aria-label="profileName"></ion-input>
             </ion-item>
             <div class="validation-errors">
                 <ng-container *ngFor="let validation of validationMessages.name">
@@ -34,7 +34,7 @@
                 <ion-label position="floating" color="primary">Phone</ion-label>
                 <ion-input data-test="phone-input" type="text" formControlName="phone"
                     (ionInput)="onPhoneChange($event)" [value]="getPhone()"
-                    placeholder="{{ validationsForm.value.countryPhone.country.sample_phone }}"></ion-input>
+                    placeholder="{{ validationsForm.value.countryPhone.country.sample_phone }}" aria-label="profilePhone"></ion-input>
             </ion-item>
             <div class="validation-errors">
                 <ng-container *ngFor="let validation of validationMessages.phone">
@@ -49,7 +49,7 @@
                 <ion-label position="floating" color="primary">Password</ion-label>
                 <ion-input data-test="password-input" type="text" formControlName="password"
                     (ionInput)="onPasswordChange($event)" [value]="getPassword()" placeholder="Change Password?"
-                    required></ion-input>
+                    required aria-label="profilePassword"></ion-input>
             </ion-item>
 
         </ion-list>

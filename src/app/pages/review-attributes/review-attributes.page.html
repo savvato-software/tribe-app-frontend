@@ -2,7 +2,7 @@
 
 <ion-content>
   <ion-item>
-    <ion-input label="phrase" [value]="phraseToBeReviewed" placeholder="Click get next phrase to review" [readonly]="true" data-test="inputPhraseToBeReviewed"></ion-input>
+    <ion-input label="phrase" [value]="phraseToBeReviewed" placeholder="Click get next phrase to review" [readonly]="true" data-test="inputPhraseToBeReviewed" aria-label="phraseToBeReviewed"></ion-input>
   </ion-item>
   <ion-button color="tertiary" (click)="onGetNextPhraseBtnClick()" [disabled]="getNextPhraseButtonDisabled" data-test="launchGetNextPhraseBtn">Get Next Phrase</ion-button>
   <ion-buttons *ngIf="approveAndRejectButtonDisplayed">

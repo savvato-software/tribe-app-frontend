@@ -32,6 +32,9 @@ describe('Attributes Page', () => {
     Cypress.Commands.add('fillAttributesForm', (adverb, verb, preposition, noun) => {
       cy.goToCreateAttributesPage();
 
+      cy.contains('..loading..').should('not.exist');
+      cy.wait(200)
+
       if (adverb) {
         cy.get('[data-test="inputAdverbField"]').should('not.be.disabled');
         cy.get('[data-test="inputAdverbField"]').type(adverb)

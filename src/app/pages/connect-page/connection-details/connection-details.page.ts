@@ -47,17 +47,13 @@ export class ConnectionDetailsPage implements OnInit{
         this.currentConnectionIsRequestingUser = this.connectionDetails.to.userConnectionStatus === 'requesting';
     }
 
+    goToUserProfile() {
+        this._router.navigate(['/profile']);
+    }
+
     onCancelBtnClick() {
         this._router.navigate(['/connect/list-connections']);
     }
-
-    // getCancelBtnClickFunc() {
-    //     const self = this;
-    //     return () => {
-    //       self.navigateTo('/list-connections');
-    //     }
-    // }
-
 
     onRemoveBtnClick() {
       let self = this;
