@@ -8,7 +8,7 @@
   <form [formGroup]="validationsForm" (ngSubmit)="onSaveBtnClicked()">
     <ion-item>
       <ion-label position="floating" color="primary">Name</ion-label>
-      <ion-input data-test="name-input" type="text" formControlName="name" (ionInput)="onNameChange($event)" [value]="getName()" required></ion-input>
+      <ion-input data-test="name-input" type="text" formControlName="name" (ionInput)="onNameChange($event)" [value]="getName()" required aria-label="name"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validationMessages.name">
@@ -20,7 +20,7 @@
 
     <ion-item>
       <ion-label position="floating" color="primary">Email</ion-label>
-      <ion-input data-test="email-input" type="text" formControlName="email" (ionInput)="onEmailChange($event)" [value]="getEmail()" ></ion-input>
+      <ion-input data-test="email-input" type="text" formControlName="email" (ionInput)="onEmailChange($event)" [value]="getEmail()"  aria-label="name"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validationMessages.email">
@@ -32,7 +32,7 @@
 
     <ion-item>
       <ion-label position="floating" color="primary">Password</ion-label>
-      <ion-input data-test="password-input" type="text" formControlName="password" (ionInput)="onPasswordChange($event)" [value]="getPassword()" ></ion-input>
+      <ion-input data-test="password-input" type="text" formControlName="password" (ionInput)="onPasswordChange($event)" [value]="getPassword()"  aria-label="password"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validationMessages.password">
@@ -45,7 +45,7 @@
     <div formGroupName="countryPhone">
       <ion-item>
         <ion-label position="floating" color="primary">Phone</ion-label>
-        <ion-input data-test="phone-input" type="text" formControlName="phone" (ionInput)="onPhoneChange($event)" [value]="getPhone()" placeholder="{{ validationsForm.value.countryPhone.country.sample_phone }}"></ion-input>
+        <ion-input data-test="phone-input" type="text" formControlName="phone" (ionInput)="onPhoneChange($event)" [value]="getPhone()" placeholder="{{ validationsForm.value.countryPhone.country.sample_phone }}" aria-label="phone"></ion-input>
       </ion-item>
       <div class="validation-errors">
         <ng-container *ngFor="let validation of validationMessages.phone">

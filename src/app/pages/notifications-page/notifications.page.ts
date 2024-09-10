@@ -11,8 +11,10 @@ import { NotificationModelService } from './_service/notifications.model.service
 export class NotificationPage implements OnInit {
   headerPageTitle: string = 'Notifications';
   isPressed: boolean = false;
+  
 
-  constructor(private notificationModelService: NotificationModelService) {}
+  constructor(private notificationModelService: NotificationModelService) {
+  }
 
   ngOnInit() {
     this.notificationModelService.init();
@@ -35,6 +37,13 @@ export class NotificationPage implements OnInit {
 
   isNotificationExpanded(notification: any) {
     return this.currentlyExpandedNotificationId === notification.id
+  }
+
+  isNotificationProgressed(notification: any) {
+    if (notification.progress > .01)
+      return true
+    else
+      return false
   }
 
   onShowMoreInfo(notification: any) {
