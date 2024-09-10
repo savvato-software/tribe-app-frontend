@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Detect the home directory
+home_dir=$(eval echo "~")
+
+# Source the common functions
+source $home_dir/src/bin/savv-shared-functions.sh
+
+# Check if an environment parameter is provided
+if [ $# -lt 1 ]; then
+    echo "Error: No environment parameter provided."
+    exit 1
+fi
+
+# Environment parameter (dev, staging, prod)
+ENV_PARAM=$1
+
+# Get the current project
+current_project=$(get_active_project)
+
+# Define the source and destination paths
+SOURCE_PATH="$home_dir/src/$current_project/src/app/_environments/environment.${ENV_PARAM}.ts"
+DESTINATION_PATH="$home_dir/src/$current_project/src/app/_environments/environment.ts"
+
+# Copy the environment file
+if [ -f "$SOURCE_PATH" ]; then
+    cp "$SOURCE_PATH" "$DESTINATION_PATH"
+#    echo "Environment file copied to $DESTINATION_PATH"
+else
+    echo "Error: Source environment file $SOURCE_PATH does not exist."
+    exit 1
+fi

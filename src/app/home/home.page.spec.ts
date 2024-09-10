@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { Constants } from '../_constants/constants';
+import {SharedComponentsModule} from "../_shared-components/shared-components/shared-components.module";
 
 describe('HomePage', () => {
   let component: HomePage;
@@ -17,7 +18,7 @@ describe('HomePage', () => {
       providers: [
         { provide: Constants, useClass: Constants }
       ],
-      imports: [IonicModule.forRoot(), HttpClientModule, RouterTestingModule.withRoutes([])]
+      imports: [IonicModule.forRoot(), HttpClientModule, SharedComponentsModule, RouterTestingModule.withRoutes([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomePage);

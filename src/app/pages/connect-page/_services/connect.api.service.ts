@@ -23,7 +23,7 @@ export class ConnectApiService {
                 error: (err) => {
                     reject(err);
                 }
-            })
+            });
         })
     }
 
@@ -37,7 +37,7 @@ export class ConnectApiService {
                 error: (err) => {
                     reject(err);
                 }
-            })
+            });
         })
     }
 }
