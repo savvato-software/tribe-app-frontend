@@ -39,16 +39,10 @@ export class ConnectModelService {
     }
 
     removeConnection(connectedWithUserId: number) {
-        return new Promise((resolve, reject) => {
-            this._connectApiService.removeConnection(this._authService.getUser().id, connectedWithUserId).then(
-                (rtn) => {
-                    this.init();
-                    resolve(rtn);
-                },
-                (err) => {
-                    reject(err);
-                }
-            );
-        });
+        return this._connectApiService.removeConnection(this._authService.getUser().id, connectedWithUserId).then(
+            () => {
+                this.init();
+            },
+        );
     }
 }
