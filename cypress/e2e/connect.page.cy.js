@@ -19,30 +19,34 @@ describe('Connections Page', () => {
     describe('List Connections Page', () => {
         const connectionListItemDataTest = '[data-test="connectionListItem"]';
 
-        // This is mutable for mocking purposes.
-        // connections[1] will be removed during the 'deleteConnection' intercept on the connection details page.
-        let connections = [
-            {
-                "connectionError": null,
-                "connectionSuccess": true,
-                "message": "",
-                "to": {
-                    "userId": 11,
-                    "username": "testuser10",
-                    "userConnectionStatus": "requesting"
-                }
-            },
-            {
-                "connectionError": null,
-                "connectionSuccess": true,
-                "message": "",
-                "to": {
-                    "userId": 4,
-                    "username": "testuser3",
-                    "userConnectionStatus": "to be connected with"
-                }
-            },
-        ];
+        let connections;
+        // I set up the connections this way for easy resetting after a test.
+        // See 'should correctly delete a connection that is not requesting' for details.
+        function initializeConnections() {
+            connections = [
+                {
+                    "connectionError": null,
+                    "connectionSuccess": true,
+                    "message": "",
+                    "to": {
+                        "userId": 11,
+                        "username": "testuser10",
+                        "userConnectionStatus": "requesting"
+                    }
+                },
+                {
+                    "connectionError": null,
+                    "connectionSuccess": true,
+                    "message": "",
+                    "to": {
+                        "userId": 4,
+                        "username": "testuser3",
+                        "userConnectionStatus": "to be connected with"
+                    }
+                },
+            ];
+        }
+        initializeConnections();
 
         Cypress.Commands.add('goToListConnectionsPage', () => {
             cy.goToConnectionsPage();
@@ -106,7 +110,7 @@ describe('Connections Page', () => {
                 cy.goToConnectionDetailsPage(1);
                 cy.get(removeConnectionButtonDataTest).click();
                 cy.get('.alert-button-role-confirm').click();
-                cy.get(connectionListItemDataTest).should('have.length', 1);
+                cy.get(connectionListItemDataTest).should('have.length', 1).then(() => initializeConnections());
             })
         })
     });
