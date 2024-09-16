@@ -65,6 +65,7 @@ export class ConnectionDetailsPage implements OnInit{
           role: 'cancel'
         }, {
           text: 'Yes!',
+          role: 'confirm',
           handler: () => {
             this._connectModelService.removeConnection(this.connectedWithUserId).then(
               () => this._router.navigate(['/connect/list-connections'])
