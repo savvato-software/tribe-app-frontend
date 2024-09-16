@@ -33,14 +33,6 @@ export class PermissionsApiService {
     return rtn;
   }
 
-  getListOfRolesTest() {
-    return  ["one","two","three"];
-  }
-
-  testOfTest(){
-    return false;
-  }
-
   getListOfAllUsers() {
     const url = environment.apiUrl + '/api/permissions/users';
 

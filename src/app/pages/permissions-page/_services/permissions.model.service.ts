@@ -61,13 +61,14 @@ export class PermissionsModelService {
 
   
   getListOfUsers(): User[] {
+    console.log(this.model['listOfUsers']);
     return this.model['listOfUsers'];
   }
 
 
   getListOfAllRoles(user) {
     let availableRoles = this.model['listOfUserRoles'];
-    console.log("raw form ",this.model['listOfUserRoles']);
+    //console.log("raw form ",this.model['listOfUserRoles']);
     this.allRoles = [];
     if (availableRoles !== undefined && availableRoles !== null) {
       this.allRoles = availableRoles.map(role => role['name']);
