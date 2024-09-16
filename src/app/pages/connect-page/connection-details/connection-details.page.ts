@@ -67,7 +67,7 @@ export class ConnectionDetailsPage implements OnInit{
           text: 'Yes!',
           handler: () => {
             this._connectModelService.removeConnection(this.connectedWithUserId).then(
-              _ => this._router.navigate(['/connect/list-connections'])
+              () => this._router.navigate(['/connect/list-connections'])
             );
           }
         }]
