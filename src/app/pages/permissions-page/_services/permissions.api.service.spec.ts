@@ -31,15 +31,6 @@ describe("PermissionsApiService", () => {
     });
 
 
-    // it('should return userRoles from getListOfRoles', () => {
-    //     const result = service.getListOfRolesTest();
-    //     // let role: UserRole[] = userRole;
-    //     // const result = ["one","two","three"];
-    //     const expectation = ["one","two","three"];
-    //     expect(result).toEqual(expectation);
-    //     // expect(result).toEqual(role);
-    // });
-
     it('should return userRoles from getListOfRoles', (done) => {
         const mockUserRoles: UserRole[] = [
             { id: 1, name: 'admin' },
