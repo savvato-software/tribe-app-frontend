@@ -3,7 +3,8 @@
   <ng-container *ngIf="notifications.length > 0; else noNotifications">
     <ion-list>
       <ion-item *ngFor="let notification of notifications"
-                appLongPress (longPress)="onDeleteNotification(notification)"
+                appLongPress [notification]="notification" 
+                (longPress)="onDeleteNotification(notification)"
                 (click)="onShowMoreInfo(notification)"
                 [class.long-press]="isPressed"
                 class="notification-item"
@@ -15,6 +16,13 @@
           </div>
           <div *ngIf="isNotificationExpanded(notification)" class="notification-body">
             {{notification.body}}
+          </div>
+          <div *ngIf="isNotificationProgressed(notification)">
+            <ion-progress-bar 
+            [value]="notification.progress"
+            type = "determinate"
+            color="danger">
+          </ion-progress-bar>
           </div>
         </div>
       </ion-item>

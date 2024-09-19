@@ -29,7 +29,7 @@ export class NotificationApiService {
         console.log("apiservice started")
         try{
             let data = {"id" : notificationId}
-            const call = this._apiService.put(url, data);
+            const call = await this._apiService.put(url, data).toPromise();
             console.log(data)
             console.log("sending data")
             return call;
@@ -38,7 +38,6 @@ export class NotificationApiService {
             throw error;
         }
     }
-
 
     async deleteMessage(notificationId: number){
         const url = environment.apiUrl + '/api/notifications/' + notificationId;

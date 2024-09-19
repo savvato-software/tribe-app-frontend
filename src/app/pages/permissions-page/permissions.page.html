@@ -2,33 +2,36 @@
 
 <ion-content id="permissions-page">
 
-  
-  <ion-item></ion-item>
-  <ion-item *ngFor="let user of getlistOfUsers()" (click)="selectUser(user)" class="clickable"> {{user.name}} </ion-item>
-  <ion-item></ion-item>
-  
   <ion-item class="title ">
     <ion-label class="ion-text-center">
-      Assigned Roles
+      Users
+    </ion-label>
+  </ion-item>
+
+  <div id="user-list">
+        <ion-item>
+      <ion-select  class="ion-text-center" interface="popover" placeholder="Select User" id="users-dropdown" aria-label="users" [disabled]="isDirty()" [(ngModel)]="selectedUser"> 
+        <ion-select-option *ngFor="let user of getListOfUsers()" [value]="user.name"> {{user.name}} </ion-select-option>
+       </ion-select>
+    </ion-item> 
+  </div>
+  <ion-item class="title ">
+    <ion-label class="ion-text-center">
+      Roles
     </ion-label>
   </ion-item>
   
-  <ng-container *ngIf="getselectedUserRoles() != []">
-      <ion-item *ngFor="let roleOfUser of getselectedUserRoles()"> {{roleOfUser}} <ion-button (click)="removeRole(roleOfUser)"> X </ion-button></ion-item>
-  </ng-container>
-  
-  <ion-item>
-    <select [(ngModel)]="selectedRole" name="selectedRole" aria-label="additional-roles">
-      <option> </option>
-      <option *ngFor="let roleAvailable of getlistOfAvailableRoles()">{{roleAvailable}}</option>
-    </select>
-    <ion-button (click)="addRole(selectedRole)">Add Selection</ion-button>
-  </ion-item>
+
+<ion-item *ngFor="let roleAvailable of getListOfAllRoles()" (click)="toggleRoles(roleAvailable)" [class.selected]="checkRole(roleAvailable)" [class.notSelected]="!checkRole(roleAvailable)"> 
+<div>{{roleAvailable}}</div>
+</ion-item>
 
 
+
+</ion-content>
 <ion-footer>
   <ion-toolbar id="bottom-toolbar" color="light">
-    <ion-button (click)="saveRoleChanges()" fill="clear">Save</ion-button>
+    <ion-button [disabled]="isDirty() == false" (click)="saveRoleChanges()" fill="clear">Save</ion-button>
     <ion-button (click)="exitToHomePage()" fill="clear">Cancel</ion-button>
   </ion-toolbar>
 </ion-footer>
