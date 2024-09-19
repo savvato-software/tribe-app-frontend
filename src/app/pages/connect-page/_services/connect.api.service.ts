@@ -40,4 +40,23 @@ export class ConnectApiService {
             });
         })
     }
+
+    removeConnection(requestingUserId: number, connectedWithUserId: number) {
+        const url = environment.apiUrl + '/api/connect';
+        const connectionRemovalRequest = {
+          requestingUserId: requestingUserId,
+          connectedWithUserId: connectedWithUserId
+        };
+        return new Promise((resolve, reject) => {
+            this._apiService.delete(url, connectionRemovalRequest).subscribe(
+                (_data) => {
+                    resolve(_data);
+                },
+                (err) => {
+                    reject(err);
+                }
+            )
+        })
+    }
+
 }

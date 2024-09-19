@@ -21,7 +21,7 @@ export class ConnectModelService {
 
     init() {
       return new Promise((resolve, reject) => {
-            this._connectApiService.getAllConnections(this._authService.getUser()['id']).then(
+            this._connectApiService.getAllConnections(this._authService.getUser().id).then(
                 (rtn: any[]) => {
                     this.model = rtn;
                     resolve(rtn);
@@ -30,11 +30,19 @@ export class ConnectModelService {
         })
     }
 
-    fetchQRCodeData(){
+    fetchQRCodeData() {
         return  this._connectApiService.getQRCodeData();
     }
 
     getAllConnections() :any[] {
       return this.model;
+    }
+
+    removeConnection(connectedWithUserId: number) {
+        return this._connectApiService.removeConnection(this._authService.getUser().id, connectedWithUserId).then(
+            () => {
+                this.init();
+            },
+        );
     }
 }

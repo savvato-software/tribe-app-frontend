@@ -6,9 +6,9 @@
 
 <ion-content>
   <div>
-    <p>Details coming soon</p>
+    <p data-test="connectionDetails">Details coming soon</p>
   </div>
-    <ion-button (click)="onCancelBtnClick()">cancel</ion-button>
-    <ion-button (click)="goToUserProfile()">View Profile</ion-button>
-    <ion-button (click)="onRemoveBtnClick()">remove</ion-button>
-  </ion-content>
+    <ion-button data-test="cancelButton" (click)="onCancelBtnClick()">cancel</ion-button>
+    <ion-button data-test="viewProfileButton" (click)="goToUserProfile()">View Profile</ion-button>
+    <ion-button data-test="removeConnectionButton" *ngIf="!currentConnectionIsRequestingUser" (click)="onRemoveBtnClick()">remove</ion-button>
+</ion-content>

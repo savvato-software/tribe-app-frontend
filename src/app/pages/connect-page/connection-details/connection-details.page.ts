@@ -10,16 +10,42 @@ import { AlertService } from "src/app/_services/alert/alert.service";
     styleUrls: ['./connection-details.scss']
 })
 export class ConnectionDetailsPage implements OnInit{
-    userId: string;
+    connectedWithUserId: number;
     connectionDetails: any;
+    currentConnectionIsRequestingUser: boolean;
 
     constructor(
                 private route: ActivatedRoute,
-                private connectModelService: ConnectModelService,
+                private _connectModelService: ConnectModelService,
                 private _alertService: AlertService,
                 private _router: Router) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.initConnectedWithUserId();
+        this.initConnectionDetails();
+        this.initCurrentConnectionIsRequestingUser();
+    }
+
+    initConnectedWithUserId() {
+        const userIdString = this.route
+            .snapshot
+            .paramMap
+            .get('connectedWithUserId');
+        const userId = parseInt(userIdString, 10);
+        this.connectedWithUserId = userId;
+    }
+
+    initConnectionDetails() {
+        this.connectionDetails = this._connectModelService
+            .getAllConnections()
+            .find(
+                connection => connection.to.userId === this.connectedWithUserId
+            );
+    }
+
+    initCurrentConnectionIsRequestingUser() {
+        this.currentConnectionIsRequestingUser = this.connectionDetails.to.userConnectionStatus === 'requesting';
+    }
 
     goToUserProfile() {
         this._router.navigate(['/profile']);
@@ -38,7 +64,13 @@ export class ConnectionDetailsPage implements OnInit{
           text: "Oops, no..",
           role: 'cancel'
         }, {
-          text: 'Yes!'
+          text: 'Yes!',
+          role: 'confirm',
+          handler: () => {
+            this._connectModelService.removeConnection(this.connectedWithUserId).then(
+              () => this._router.navigate(['/connect/list-connections'])
+            );
+          }
         }]
       })
     }
