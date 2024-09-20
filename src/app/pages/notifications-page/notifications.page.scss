@@ -1,22 +1,27 @@
-ion-toolbar#bottom-toolbar {
-  display: flex;
-  justify-content: space-evenly;
 
- }
-
-ion-item.long-press {
-  background-color: #e6e6e6;
-  transition: background-color 1s;
-}
 
 .bold-text {
   font-weight: bold;
 }
 
-
 .notification-item {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  position: relative;
+
+  &.expanded {
+    .notification-body {
+      display: block;
+      height: auto;
+      max-height: 1000px; /* Set a maximum height based on your content size */
+      opacity: 1;
+      transition: max-height 0.3s ease, opacity 0.3s ease; /* Adjust the duration and timing function as needed */
+    }
+  }
+}
+
+ion-progress-bar::part(track) {
+  background: white
 }
 
 .notification-content {
@@ -33,16 +38,6 @@ ion-item.long-press {
   margin-right: 10px;
 }
 
-.notification-body {
-  display: none;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  z-index: 1;
-}
 
-.notification-item.expanded .notification-body {
-  display: block;
-}
 
 

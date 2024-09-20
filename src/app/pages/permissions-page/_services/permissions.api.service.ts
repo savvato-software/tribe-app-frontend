@@ -33,6 +33,10 @@ export class PermissionsApiService {
     return rtn;
   }
 
+  testOfTest(){
+    return false;
+  }
+
   getListOfAllUsers() {
     const url = environment.apiUrl + '/api/permissions/users';
 

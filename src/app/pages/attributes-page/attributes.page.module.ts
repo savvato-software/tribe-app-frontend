@@ -11,6 +11,7 @@ import { CreateAttributePage } from './create/create';
 import { DetailAttributePage } from "./detail/detail";
 import { EditAttributePage } from "./edit/edit";
 import { SharedComponentsModule } from '../../_shared-components/shared-components/shared-components.module';
+import { SequenceService } from '@savvato-software/savvato-javascript-services';
 
 @NgModule({
   imports: [
@@ -25,6 +26,9 @@ import { SharedComponentsModule } from '../../_shared-components/shared-componen
     CreateAttributePage,
     DetailAttributePage,
     EditAttributePage
-  ]
+  ],
+  providers: [
+    SequenceService // Provide the service here
+  ],
 })
 export class AttributesPageModule {}

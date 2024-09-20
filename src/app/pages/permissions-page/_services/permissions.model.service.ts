@@ -3,6 +3,8 @@ import { PermissionsApiService } from './permissions.api.service';
 import { ModelTransformingService } from '@savvato-software/savvato-javascript-services';
 import { UserRole } from '../_types/user-role.type';
 import { User } from '../_types/user.type';
+import { UserRole } from '../_types/user-role.type';
+import { User } from '../_types/user.type';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +12,16 @@ import { User } from '../_types/user.type';
 export class PermissionsModelService {
 
   model: {} = {};
+  model: {} = {};
 
   dirty = false;
 
   allRoles = [];
+  allRoles = [];
 
   selectedUserRoles = [];
 
+  newUserRoles = [];
   newUserRoles = [];
 
 
@@ -168,13 +173,22 @@ export class PermissionsModelService {
 
   isDirty(): boolean {
     return this.dirty;
+  isDirty(): boolean {
+    return this.dirty;
   }
 
   clearValues(){
     this.selectedUserRoles = [];
+  clearValues(){
+    this.selectedUserRoles = [];
     this.dirty = false;
     this.newUserRoles = [];
+    this.newUserRoles = [];
   }
+
+
+
+
 
 
 
@@ -184,7 +198,12 @@ export class PermissionsModelService {
   save(roles){
     
     console.log("saving in model");
+    
+    console.log("saving in model");
     return this._permissionsApiService.save(roles).then(() => {
+      console.log("saving in model success");
+      this.dirty = false;
+      this.newUserRoles = [];
       console.log("saving in model success");
       this.dirty = false;
       this.newUserRoles = [];
