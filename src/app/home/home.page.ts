@@ -1,12 +1,9 @@
-import {Component, ElementRef, NgZone, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from "@savvato-software/savvato-javascript-services";
-import {createAnimation, Gesture, GestureController, IonCard, Platform, MenuController} from "@ionic/angular";
+import {IonCard, MenuController} from "@ionic/angular";
 import {PictureService} from "../_services/picture/picture.service";
-import {Constants} from "../_constants/constants";
-import {LoadingService} from "../_services/loading-spinner/loading.service";
-import {AlertService} from "../_services/alert/alert.service";
 
 @Component({
   selector: 'app-home',
@@ -21,14 +18,8 @@ export class HomePage implements OnInit {
   headerPageTitle: string = "Home";
 
   constructor(private _authService:AuthService,
-              private _alertService: AlertService,
               private _pictureService: PictureService,
-              private _loadingService: LoadingService,
-              private _gestureCtrl: GestureController,
-              private zone: NgZone,
-              private platform: Platform,
               private _menuController: MenuController,
-              private _constants: Constants,
               private router: Router) { }
 
   ngOnInit() {
