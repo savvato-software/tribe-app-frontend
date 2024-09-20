@@ -48,7 +48,7 @@ export class AttributesApiService {
             );
         });
     }
-    saveSequence(data: {phrases: {sequence: number, phraseId: number}[]}) {
+    saveAttributeSequences(data: {phrases: {sequence: number, phraseId: number}[]}) {
         const url = environment.apiUrl + '/api/attributes/update';
          console.log(data);
 

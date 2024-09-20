@@ -43,26 +43,25 @@ export class AttributesPage implements OnInit {
       });
     }
 
-  get attributes(): Attribute[] {
-    const attributes: Attribute[] = this._attributesModelService.get();
-    return attributes;
-  }
-
   getAttributes():Attribute[] {
       const attributes: Attribute[] = this._attributesModelService.get();
       return attributes;
     }
 
   selectAttribute(attr: Attribute) {
-    this.selectedAttr = attr;
+    this._attributesModelService.setSelectedAttr(attr);
+  }
+
+  isSelected(attr: Attribute): boolean {
+      return this._attributesModelService.isSelected(attr);
   }
 
   canMoveUp(): boolean {
-    return this.selectedAttr && this.selectedAttr.sequence > 1;
+    return this._attributesModelService.canMoveUp();
   }
 
   canMoveDown(): boolean {
-    return this.selectedAttr && this.selectedAttr.sequence < this.attributes.length;
+    return this._attributesModelService.canMoveDown();
   }
 
   isSaveEnabled(): boolean {
@@ -73,19 +72,15 @@ export class AttributesPage implements OnInit {
  }
 
   moveUp() {
-   if (this.selectedAttr && this.canMoveUp()) {
-     this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.UP);
-   }
+    this._attributesModelService.moveUp();
   }
 
   moveDown() {
-    if (this.selectedAttr && this.canMoveDown()) {
-      this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.DOWN);
-    }
+    this._attributesModelService.moveDown();
   }
 
   saveChanges() {
-    this._attributesModelService.saveAttributeSequence()
+    this._attributesModelService.saveAttributeSequences()
     .then((response) => {
       console.log("Call to attributeApiService was successful");
       return this._attributesModelService.init()
