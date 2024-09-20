@@ -98,6 +98,7 @@ describe("PermissionsApiService", () => {
         expect(req.request.method).toEqual('GET');
 
         req.flush(mockUserRoles); // Provide the mock response 
+        
     });
 
     it('should save roles and return success message', (done) => {
