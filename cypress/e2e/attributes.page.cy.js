@@ -7,7 +7,8 @@ describe('Attributes Page', () => {
     cy.intercept('GET', 'api/attributes/' + userId, (req) => {
         req.reply({
             statusCode: 200,
-            body: [{"phrase":{"id":3,"adverb":"","verb":"sculpts","preposition":"with","noun":"clay"},"userCount":1},{"phrase":{"id":2,"adverb":"","verb":"plays","preposition":"","noun":"chess"},"userCount":2}]
+            body: [{"phrase":{"id":3,"adverb":"","verb":"sculpts","preposition":"with","noun":"clay"},"sequence":1,"userCount":1},
+                    {"phrase":{"id":2,"adverb":"","verb":"plays","preposition":"","noun":"chess"},"sequence":2,"userCount":2}]
         });
     });
 
@@ -117,4 +118,49 @@ describe('Attributes Page', () => {
       })
     })
   })
+  describe('Reorder Attributes', () => {
+
+    it('should move an attribute up the list', () => {
+      cy.goToAttributesPage();
+      cy.get('[data-test="attributeItem"]').eq(1).click();
+      cy.get('[data-test="upButton"]').click();
+      cy.get('[data-test="attributeItem"]').eq(0).contains(' plays chess (2 users)x');
+      cy.get('[data-test="attributeItem"]').eq(1).contains( ' sculpts with clay (1 users)x');
+    });
+  
+    it('should move an attribute down the list', () => {
+      cy.goToAttributesPage();
+      cy.get('[data-test="attributeItem"]').eq(0).click();
+      cy.get('[data-test="downButton"]').click();
+      cy.get('[data-test="attributeItem"]').eq(0).contains(' plays chess');
+      cy.get('[data-test="attributeItem"]').eq(1).contains( ' sculpts with clay (1 users)x');
+    });
+  
+    it('should disable the "Up" button for the first item', () => {
+      cy.goToAttributesPage();
+      cy.get('[data-test="attributeItem"]').eq(0).click();
+      cy.get('[data-test="upButton"]').should('have.attr','disabled');
+    });
+  
+    it('should disable the "Down" button for the last item', () => {
+      cy.goToAttributesPage();
+      cy.get('[data-test="attributeItem"]').eq(1).click();
+      cy.get('[data-test="downButton"]').should('have.attr','disabled');
+    });
+
+    it('should enable and save changes after reordering', () => {
+      cy.goToAttributesPage();
+      cy.get('[data-test="attributeItem"]').eq(1).click();
+      cy.get('[data-test="upButton"]').click();
+      cy.get('[data-test="saveButton"]').should('not.be.disabled');
+      cy.intercept('POST', '/api/attributes/update', {
+        statusCode: 200,
+        body: { success: true }
+      }).as('saveAttributesOrder');
+      cy.get('[data-test="saveButton"]').click();
+      cy.wait('@saveAttributesOrder');
+    });
+  });
+
+  
 })

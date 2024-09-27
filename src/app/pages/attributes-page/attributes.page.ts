@@ -8,7 +8,6 @@ import { LoadingService } from "../../_services/loading-spinner/loading.service"
 import { AttributesModelService } from "./_services/attributes.model.service";
 import { SequenceService, Sequenceable } from '@savvato-software/savvato-javascript-services';
 import {Attribute} from '../../_type/attribute.type'
-import {Phrase} from '../../_type/phrase.type'
 
 @Component({
   selector: 'app-attributes',
@@ -28,7 +27,6 @@ export class AttributesPage implements OnInit {
     private _loadingService: LoadingService,
     private _attributesModelService: AttributesModelService,
     private router: Router,
-    private sequenceService: SequenceService,
     ) {}
 
     public ngOnInit() {
@@ -67,7 +65,6 @@ export class AttributesPage implements OnInit {
   isSaveEnabled(): boolean {
     //returns true if there is a change
     let isDirty = this._attributesModelService.isDirty();
-    console.log(isDirty)
     return isDirty;
  }
 

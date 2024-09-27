@@ -50,8 +50,6 @@ export class AttributesApiService {
     }
     saveAttributeSequences(data: {phrases: {sequence: number, phraseId: number}[]}) {
         const url = environment.apiUrl + '/api/attributes/update';
-         console.log(data);
-
         return new Promise((resolve, reject) => {
             this._apiService.post(url, data).subscribe(
                 (response: boolean) => {
