@@ -8,7 +8,6 @@ import { LoadingService } from "../../_services/loading-spinner/loading.service"
 import { AttributesModelService } from "./_services/attributes.model.service";
 import { SequenceService, Sequenceable } from '@savvato-software/savvato-javascript-services';
 import {Attribute} from '../../_type/attribute.type'
-import {Phrase} from '../../_type/phrase.type'
 
 @Component({
   selector: 'app-attributes',
@@ -28,7 +27,6 @@ export class AttributesPage implements OnInit {
     private _loadingService: LoadingService,
     private _attributesModelService: AttributesModelService,
     private router: Router,
-    private sequenceService: SequenceService,
     ) {}
 
     public ngOnInit() {
@@ -43,49 +41,43 @@ export class AttributesPage implements OnInit {
       });
     }
 
-  get attributes(): Attribute[] {
-    const attributes: Attribute[] = this._attributesModelService.get();
-    return attributes;
-  }
-
   getAttributes():Attribute[] {
       const attributes: Attribute[] = this._attributesModelService.get();
       return attributes;
     }
 
   selectAttribute(attr: Attribute) {
-    this.selectedAttr = attr;
+    this._attributesModelService.setSelectedAttr(attr);
+  }
+
+  isSelected(attr: Attribute): boolean {
+      return this._attributesModelService.isSelected(attr);
   }
 
   canMoveUp(): boolean {
-    return this.selectedAttr && this.selectedAttr.sequence > 1;
+    return this._attributesModelService.canMoveUp();
   }
 
   canMoveDown(): boolean {
-    return this.selectedAttr && this.selectedAttr.sequence < this.attributes.length;
+    return this._attributesModelService.canMoveDown();
   }
 
   isSaveEnabled(): boolean {
     //returns true if there is a change
     let isDirty = this._attributesModelService.isDirty();
-    console.log(isDirty)
     return isDirty;
  }
 
   moveUp() {
-   if (this.selectedAttr && this.canMoveUp()) {
-     this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.UP);
-   }
+    this._attributesModelService.moveUp();
   }
 
   moveDown() {
-    if (this.selectedAttr && this.canMoveDown()) {
-      this.sequenceService.moveSequenceByOne(this._attributesModelService.get(), this.selectedAttr, this.sequenceService.DOWN);
-    }
+    this._attributesModelService.moveDown();
   }
 
   saveChanges() {
-    this._attributesModelService.saveAttributeSequence()
+    this._attributesModelService.saveAttributeSequences()
     .then((response) => {
       console.log("Call to attributeApiService was successful");
       return this._attributesModelService.init()
